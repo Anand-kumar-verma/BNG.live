@@ -57,24 +57,13 @@ function Register() {
     event.preventDefault();
   };
 
-  // useEffect(() => {
-  //   const value =
-  //     url.searchParams.get("ref") &&
-  //     crypto.AES.decrypt(
-  //       url.searchParams.get("ref")?.split(" ")?.join("+"),
-  //       "anand"
-  //     )?.toString(crypto.enc.Utf8);
-  //   setrefParam(value);
-  // }, [url.searchParams.get("ref")]);
-
   const initialValue = {
     email: "",
     mobile: "",
     name: "",
-    password: "",
-    confirmed_password: "",
-    // referral_code: refParam?.substring(1, refParam.length - 1) || "",
-    referral_code: refParam,
+    pass: "",
+    confirmpass: "",
+    refid : "",
   };
 
   const fk = useFormik({
@@ -82,95 +71,57 @@ function Register() {
     enableReinitialize: true,
     validationSchema: signupSchemaValidataon,
     onSubmit: () => {
-      if (fk.values.password !== fk.values.confirmed_password)
+      if (fk.values.pass !== fk.values.confirmpass)
         return toast("Password and confirm password should be same.");
-      if (!fk.values.privacy_policy)
-        return toast("Please confirm the privacy policy.");
-      const reqbody = {
+      // if (!fk.values.privacy_policy)
+      //   return toast("Please confirm the privacy policy.");
+
+      const reqBody = {
         email: fk.values.email,
         mobile: String(fk.values.mobile) || "",
-        password: fk.values.password,
-        confirmed_password: fk.values.confirmed_password,
-        referral_code: fk.values.referral_code,
+        pass: fk.values.pass,
+        confirmpass: fk.values.confirmpass,
+        refid : fk.values.refid ,
         name: fk.values.name,
-        privacy_policy: false,
-      };
-
-      signupFunction(reqbody);
+        // privacy_policy: false,
+      }
+      signupFunction(reqBody);
     },
   });
 
-  const signupFunction = async (reqbody) => {
+  const signupFunction = async (reqBody) => {
     // setloding(true);
-    const fd = new FormData();
-    fd.append("email", reqbody.email);
-    fd.append("mobile", reqbody.mobile);
-    fd.append("name", reqbody.name);
-    fd.append("password", reqbody.password);
-    fd.append("confirmed_password", reqbody.confirmed_password);
-    fd.append("referral_code", reqbody.referral_code);
-
-    try {
-      const response = await axios.post(endpoint.signup, fd, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          "Access-Control-Allow-Origin": "*",
-          // Add any other headers you may need, such as authorization
-        },
-      });
-      if (response?.data?.status === "200") {
-        const value = CryptoJS.AES.encrypt(
-          JSON.stringify(response?.data),
-          "anand"
-        ).toString();
-        localStorage.setItem("logindataen", value);
-        sessionStorage.setItem("isAvailableUser", true);
-        sessionStorage.setItem("isAvailableCricketUser", true);
-        storeCookies();
-        swal({
-          title: "Registration Successfully",
-          text: ` 
-          Email : ${fk?.values?.email}
-          Mobile : ${fk?.values?.mobile}
-          Password : ${fk?.values?.password} `,
-          // title: response?.data?.msg,
-          icon: "success",
-          button: "OK",
-        }).then(() => {
-          navigate("/dashboard");
-          document.location.reload();
-        });
-      } else {
-        swal({
-          title: "Registration Failed",
-          text: response?.data?.msg,
-          icon: "error",
-          button: "OK",
-        });
-        setloding(false);
-      }
-    } catch (error) {
-      console.error("Login error:", error);
+  try {
+    const response = await axios.post(endpoint.signup, reqBody);
+    if ("Registration Successfully." === response?.data?.msg ) {
+        toast(response?.data?.msg);
+         const value = CryptoJS.AES.encrypt(
+        JSON.stringify(response?.data),
+        "anand"
+      ).toString();
+      storeCookies()
+      localStorage.setItem("logindataen", value)
+        navigate("/dashboard");  
+        window.location.reload()
+    } else {
+      toast(response?.data?.msg);
     }
-  };
+  } catch (e) {
+    console.log(e);
+  }
+  // setloding(false);
+}
 
   const { isLoading, data } = useQuery(
-    ["getname", fk.values.referral_code],
-    () => CandidateNameFn({ reffral_id: fk.values.referral_code }),
+    ["getname", fk.values.refid ],
+    () => CandidateNameFn({ userid: fk.values.refid  }),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
     }
   );
-
-  const [CountryCode, setCountryCode] = React.useState("+91");
-
-  const handleChange = (event) => {
-    setCountryCode(event.target.value);
-  };
-
-  const result = data?.data?.data;
+  const result = data?.data?.data?.full_name ;
 
   return (
     <Layout header={false} footer={false}>
@@ -312,12 +263,12 @@ function Register() {
               <OutlinedInput
                 className="funp13"
                 placeholder="Enter password"
-                name="password"
+                name="pass"
                 sx={{ ...passwordinput, width: '100%', }}
-                value={fk.values.password}
+                value={fk.values.pass}
                 onChange={fk.handleChange}
                 onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? "text" : "pass"}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -335,8 +286,8 @@ function Register() {
                   </InputAdornment>
                 }
               />
-              {fk.touched.password && fk.errors.password && (
-                <div className="error">{fk.errors.password}</div>
+              {fk.touched.pass && fk.errors.pass && (
+                <div className="error">{fk.errors.pass}</div>
               )}
             </FormControl>
           </Box>
@@ -351,9 +302,9 @@ function Register() {
               <OutlinedInput
                 className="funp13"
                 sx={{ ...passwordinput, width: '100%', }}
-                name="confirmed_password"
-                id="confirmed_password"
-                value={fk.values.confirmed_password}
+                name="confirmpass"
+                id="confirmpass"
+                value={fk.values.confirmpass}
                 onChange={fk.handleChange}
                 onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                 placeholder="Enter confirm password"
@@ -375,8 +326,8 @@ function Register() {
                   </InputAdornment>
                 }
               />
-              {fk.touched.confirmed_password && fk.errors.confirmed_password && (
-                <div className="error">{fk.errors.confirmed_password}</div>
+              {fk.touched.confirmpass && fk.errors.confirmpass && (
+                <div className="error">{fk.errors.confirmpass}</div>
               )}
             </FormControl>
           </Box>
@@ -390,17 +341,17 @@ function Register() {
               </Box>
               <TextField
                 className="funp13"
-                id="referral_code"
+                id="refid"
                 placeholder="Enter Referral Code"
                 sx={{ ...normalinput, width: '100%', }}
-                name="referral_code"
-                value={fk.values.referral_code}
+                name="refid"
+                value={fk.values.refid}
                 onChange={fk.handleChange}
                 onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
               />
-              {fk.touched.referral_code && fk.errors.referral_code ? (
-                <div className="error">{fk.errors.referral_code}</div>
-              ) : fk.values.referral_code ? (
+              {fk.touched.refid  && fk.errors.refid  ? (
+                <div className="error">{fk.errors.refid }</div>
+              ) : fk.values.refid  ? (
                 result ? (
                   <div className="no-error">Referral From: {result}</div>
                 ) : (
@@ -411,7 +362,7 @@ function Register() {
             </FormControl>
           </Box>
           <Box mt={1}>
-            <FormControl fullWidth>
+            {/* <FormControl fullWidth>
               <FormControlLabel
                 required
                 control={
@@ -438,7 +389,7 @@ function Register() {
                   </span>
                 }
               />
-            </FormControl>
+            </FormControl> */}
           </Box>
           <Stack mt={3}>
             <Box sx={{ width: '100%' }}> <Button className='goldbtn' onClick={fk.handleSubmit}>Register</Button></Box>

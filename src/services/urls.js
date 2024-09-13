@@ -1,7 +1,7 @@
 export const rupees = "₹";
-
-export const baseUrl = "https://admin.funxplora.com";
-export const fron_end_main_domain = "https://funxplora.com";
+// https://admin.bngwin.live/
+export const baseUrl = "http://192.168.18.183:9000";
+export const fron_end_main_domain = "https://bngwin.live";
 
 export const newdomain1 = "https://api.funxplora.com";
 export const newdomain = "https://api.funxplora.com";
@@ -10,9 +10,9 @@ export const newdomain = "https://api.funxplora.com";
 
 export const domain = "https://funxplora-timer.onrender.com";
 export const support_mail = "";
-export const telegram_url = "https://t.me/+9c__nUH79PtiYzBl";
-export const facebook_url = "https://www.facebook.com/people/Funxplora-Gaming/61561351673648/";
-export const instagram_url = "https://www.instagram.com/funxplora_gaming/";
+export const telegram_url = "";
+export const facebook_url = "";
+export const instagram_url = "";
 
 export const endpoint = {
   //node login api  
@@ -20,7 +20,10 @@ export const endpoint = {
   login: `${newdomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
-  signup: `${baseUrl}/api/user_register`,
+  signup: `${baseUrl}/api/v1/signup`,
+  get_name_by_referral_code: `${baseUrl}/api/v1/get-sponsor-name`,
+
+
   userwallet: `${newdomain1}/api/v1/userwallet`,
   get_yesterday_deposit_withdrawl_by_treamFn: `${newdomain1}/api/v1/get_yesterday_deposit_withdrawl_by_treamFn`,
   top11winner: `${newdomain1}/api/v1/get-top-winners`,
@@ -47,7 +50,7 @@ export const endpoint = {
   cash_deposit: `${baseUrl}/api/deposit`,
   payment_url: "https://vpayout.com/Upi_controller/insert_fund_request_online",
   withdraw_payment: `${baseUrl}/api/payout-request`,
-  get_name_by_referral_code: `${baseUrl}/api/get-user-reffral-name`,
+
   payment_request: `${baseUrl}/api/deposit-request`,
   registration_bonus: `${baseUrl}/api/welcom-bonus`,
   deposit_history: `${baseUrl}/api/deposit-history`,

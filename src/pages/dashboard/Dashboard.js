@@ -120,7 +120,7 @@ function Dashboard() {
   };
 
   const top11WinnerFunction = async () => {
-    setloding(true);
+    // setloding(true);
     try {
       const response = await axios.get(`${endpoint.top11winner}`);
       setwinnerdata(response?.data?.data);

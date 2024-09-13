@@ -92,6 +92,7 @@ export const CandidateNameFn = async (reqbody) => {
     const response = await axios.get(`${endpoint.get_name_by_referral_code}`, {
       params: reqbody,
     });
+  
     return response;
   } catch (e) {
     toast(e?.message);

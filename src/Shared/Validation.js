@@ -37,15 +37,15 @@ export const LoginMobileSchemaValidaton = Yup.object().shape({
     .required("Mobile number is required"),
 });
 export const signupSchemaValidataon = Yup.object().shape({
-  referral_code: Yup.string().required("Referral Code is required"),
+  refid : Yup.string().required("Referral Code is required"),
   name: Yup.string().required("Name is required"),
   email: Yup.string()
     .email("Invalid email address format")
     .required("Email is required"),
-  password: Yup.string()
+    pass: Yup.string()
     .min(3, "Password must be 3 characters at minimum")
     .required("Password is required"),
-  confirmed_password: Yup.string()
+    confirmpass: Yup.string()
     .min(3, "Password must be 3 characters at minimum")
     .required("Password is required"),
   mobile: Yup.string()
