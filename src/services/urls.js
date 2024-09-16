@@ -1,12 +1,12 @@
 export const rupees = "₹";
 // https://admin.bngwin.live/
-export const baseUrl = "http://192.168.18.183:9000";
+export const baseUrl = "http://192.168.1.15:9000";
 export const fron_end_main_domain = "https://bngwin.live";
 
-export const newdomain1 = "https://api.funxplora.com";
-export const newdomain = "https://api.funxplora.com";
-// export const newdomain1 = "http://192.168.170.149:9000";
-// export const newdomain = "http://192.168.170.149:9000";
+// export const newdomain1 = "https://api.funxplora.com";
+// export const newdomain = "https://api.funxplora.com";
+export const newdomain1 = "http://192.168.1.15:9000";
+export const newdomain = "http://192.168.1.15:9000";
 
 export const domain = "https://funxplora-timer.onrender.com";
 export const support_mail = "";
@@ -22,6 +22,11 @@ export const endpoint = {
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
   signup: `${baseUrl}/api/v1/signup`,
   get_name_by_referral_code: `${baseUrl}/api/v1/get-sponsor-name`,
+  ticket_raised: `${baseUrl}/api/v1/ticket-raised`,
+  ticket_raised_history: `${baseUrl}/api/v1/ticket-raised-history`,
+  attendence_income: `${baseUrl}/api/v1/attendance-bonus`,
+  claim_income: `${baseUrl}/api/v1/clame-bonus`,
+ 
 
 
   userwallet: `${newdomain1}/api/v1/userwallet`,

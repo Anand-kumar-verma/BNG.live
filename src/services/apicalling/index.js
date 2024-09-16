@@ -380,6 +380,20 @@ export const dailySalaryIncomeFn = async () => {
     console.log(e);
   }
 };
+export const AttendenceIncomeFn = async () => {
+  //
+  try {
+    const response = await axios.get(
+      `${endpoint.attendence_income}?user_id=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
+
+
 export const WeeklySalaryIncomeFn = async () => {
   //
   try {
@@ -467,6 +481,17 @@ export const cashbackReportfn= async () => {
   try {
     const response = await axios.get(
       `${endpoint.cashback_report}?userid=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
+export const getTicketRaisedHistory = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.ticket_raised_history}?user_id=${user_id}`
     );
     return response;
   } catch (e) {

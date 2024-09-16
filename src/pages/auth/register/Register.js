@@ -9,10 +9,8 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import {
   Box,
   Button,
-  Checkbox,
   Container,
   FormControl,
-  FormControlLabel,
   IconButton,
   InputAdornment,
   OutlinedInput,
@@ -27,7 +25,6 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
-import swal from "sweetalert";
 import { flexbetween, flexcenter, flexcenterstart, normalinput, passwordinput } from '../../../Shared/Commom';
 import { storeCookies } from "../../../Shared/CookieStorage";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
@@ -42,8 +39,6 @@ import theme from '../../../utils/theme';
 
 
 function Register() {
-  const url = new URL(window.location.href);
-  const [refParam, setrefParam] = useState(url.searchParams.get("ref") || "");
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = React.useState(false);
   const [show_confirm_password, set_show_confirm_password] =
@@ -81,7 +76,7 @@ function Register() {
         mobile: String(fk.values.mobile) || "",
         pass: fk.values.pass,
         confirmpass: fk.values.confirmpass,
-        refid : fk.values.refid ,
+        refid : result?.id ,
         name: fk.values.name,
         // privacy_policy: false,
       }
@@ -90,10 +85,10 @@ function Register() {
   });
 
   const signupFunction = async (reqBody) => {
-    // setloding(true);
+    setloding(true);
   try {
     const response = await axios.post(endpoint.signup, reqBody);
-    if ("Registration Successfully." === response?.data?.msg ) {
+    if ("Registration Successful." === response?.data?.msg ) {
         toast(response?.data?.msg);
          const value = CryptoJS.AES.encrypt(
         JSON.stringify(response?.data),
@@ -109,10 +104,10 @@ function Register() {
   } catch (e) {
     console.log(e);
   }
-  // setloding(false);
+  setloding(false);
 }
 
-  const { isLoading, data } = useQuery(
+  const {  data } = useQuery(
     ["getname", fk.values.refid ],
     () => CandidateNameFn({ userid: fk.values.refid  }),
     {
@@ -121,7 +116,7 @@ function Register() {
       refetchOnWindowFocus: false,
     }
   );
-  const result = data?.data?.data?.full_name ;
+  const result = data?.data?.data ;
 
   return (
     <Layout header={false} footer={false}>
@@ -353,7 +348,7 @@ function Register() {
                 <div className="error">{fk.errors.refid }</div>
               ) : fk.values.refid  ? (
                 result ? (
-                  <div className="no-error">Referral From: {result}</div>
+                  <div className="no-error">Referral From: {result?.full_name}</div>
                 ) : (
                   <div className="error">Invalid Referral Id</div>
                 )
@@ -442,5 +437,5 @@ const style = {
     justifyContent: "center",
   },
   icons: { color: bggold },
-  icon2: { color: bggold, mr: 1 },
+  // icon2: { color: bggold, mr: 1 },
 };

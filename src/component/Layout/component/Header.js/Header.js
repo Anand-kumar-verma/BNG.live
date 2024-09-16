@@ -39,7 +39,7 @@ function Header() {
         </Box>
         <Box sx={{ width: '33%', display: 'flex', justifyContent: 'end' }}>
           <Stack direction="row">
-            <NavLink to={"/CustomerService"}>
+            <NavLink >
               <Box
                 component="img"
                 src={asistant}

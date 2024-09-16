@@ -1,5 +1,6 @@
 // import LayoutAviator from "../GamePage/Layout";
 // import PlayGame from "../GamePage/PlayGame";
+import Ticketgenerate from "../pages/promotion/component/Ticketgenerate";
 import Test from "../pages/Test";
 import Account from "../pages/account/Account";
 import AddBankDetails from "../pages/account/Component/AddBankDetails";
@@ -55,11 +56,21 @@ import WalletTransferHistory from "../pages/wallet/component/WalletTransferHisto
 import WithdravalHistory from "../pages/wallet/component/WithdravalHistory";
 import WinLossPopup from "../pages/win/component/WinOneMin/WinLossPopup";
 import Win from "../pages/win/win";
+import Attendence from "../pages/income/incomeSubSection/Attendaence";
+import Claim from "../pages/income/incomeSubSection/Claim";
 
 export const routes = [
     {
         path: "/win-los",
         component: <WinLossPopup />
+    },
+    {
+        path: "/account/income-main/attendance-bonus",
+        component: <Attendence />
+    },
+    {
+        path: "/account/income-main/claim-bonus",
+        component: <Claim />
     },
     {
         path: "/account",
@@ -210,6 +221,10 @@ export const routes = [
     {
         path: "/customerLine/",
         component: <CustomerLine />
+    },
+    {
+        path: "/ticket/",
+        component: <Ticketgenerate />
     },
     {
         path: "/view_fund_request",

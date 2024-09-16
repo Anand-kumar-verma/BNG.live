@@ -14,41 +14,52 @@ import theme from "../../utils/theme";
 
 function MainPageOFIncome() {
   const data_array = [
+    
     {
-      to: "/account/income-main/deposit-bonus",
-      name: "Deposit Self Income",
+      to: "/account/income-main/attendance-bonus",
+      name: "Attendence Income",
       logo: <PriceCheckIcon className="!w-[40px] !h-[40px] " color="black" />,
     },
-    {
-      to: "/account/income-main/referral-bonus",
-      name: "Sponsor Income",
-      logo: <RedeemIcon className="!w-[40px] !h-[40px] " color="black" />,
-    },
-    {
-      to: "/account/income-main/daily-salary-bonus",
-      name: "Daily Salary",
-      logo: <AccountBalanceIcon className="!w-[40px] !h-[40px] " color="black" />,
-    },
-    {
-      to: "/account/income-main/self-trading-bonus",
-      name: "Self Trade Income",
-      logo: <StoreIcon className="!w-[40px] !h-[40px] " color="black" />,
-    },
-    {
-      to: "/account/income-main/weekly-bonus",
-      name: "Weekly Salary Income",
-      logo: <Diversity2Outlined className="!w-[40px] !h-[40px] " color="black" />,
-    },
-    {
-      to: "/account/income-main/team-trading-bonus",
-      name: "Level Income",
-      logo: <CardGiftcardIcon className="!w-[40px] !h-[40px] " color="black" />,
-    },
-    {
-      to: "/account/income-main/cash_back_report",
-      name: "Cashback Income",
-      logo: <StoreIcon className="!w-[40px] !h-[40px] !text-white" color="#8f5206" sx={{ filter: 'invert(1)' }} />,
-    },
+    //  {
+    //   to: "/account/income-main/claim-bonus",
+    //   name: "Claim Income",
+    //   logo: <RedeemIcon className="!w-[40px] !h-[40px] " color="black" />,
+    // },
+    // {
+    //   to: "/account/income-main/deposit-bonus",
+    //   name: "Deposit Self Income",
+    //   logo: <PriceCheckIcon className="!w-[40px] !h-[40px] " color="black" />,
+    // },
+    // {
+    //   to: "/account/income-main/referral-bonus",
+    //   name: "Sponsor Income",
+    //   logo: <RedeemIcon className="!w-[40px] !h-[40px] " color="black" />,
+    // },
+    // {
+    //   to: "/account/income-main/daily-salary-bonus",
+    //   name: "Daily Salary",
+    //   logo: <AccountBalanceIcon className="!w-[40px] !h-[40px] " color="black" />,
+    // },
+    // {
+    //   to: "/account/income-main/self-trading-bonus",
+    //   name: "Self Trade Income",
+    //   logo: <StoreIcon className="!w-[40px] !h-[40px] " color="black" />,
+    // },
+    // {
+    //   to: "/account/income-main/weekly-bonus",
+    //   name: "Weekly Salary Income",
+    //   logo: <Diversity2Outlined className="!w-[40px] !h-[40px] " color="black" />,
+    // },
+    // {
+    //   to: "/account/income-main/team-trading-bonus",
+    //   name: "Level Income",
+    //   logo: <CardGiftcardIcon className="!w-[40px] !h-[40px] " color="black" />,
+    // },
+    // {
+    //   to: "/account/income-main/cash_back_report",
+    //   name: "Cashback Income",
+    //   logo: <StoreIcon className="!w-[40px] !h-[40px] !text-white" color="#8f5206" sx={{ filter: 'invert(1)' }} />,
+    // },
   ];
 
   return (
