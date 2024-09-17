@@ -260,7 +260,7 @@ function LoginWithMobile() {
         </FormControl>
       </Box> */}
       <Stack mt={3}>
-        <Box sx={{ width: '100%' }}> <Button className='goldbtn' onClick={fk.handleSubmit}>Log in</Button></Box>
+        <Box sx={{ width: '100%' }}> <Button className='goldbtn2' onClick={fk.handleSubmit}>Log in</Button></Box>
         <Box sx={{ width: '100%' }}>
           <NavLink to='/register'>
             <Button className='goldborderbtn'>Register</Button>

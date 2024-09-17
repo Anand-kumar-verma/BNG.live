@@ -14,6 +14,15 @@ import Mail from "../pages/account/Component/Mail";
 import Notification from "../pages/account/Component/Notification";
 import SettingCenter from "../pages/account/Component/SettingCenter";
 import Activity from "../pages/activity/Activity";
+import BettingRebate from "../pages/activity/component/BettingRebate";
+import DailySignInBonous from "../pages/activity/component/DailySignInBonous";
+import AttendanceBonus from "../pages/activity/component/DailySignInBonous";
+import DailySignInRules from "../pages/activity/component/DailySignInRules";
+import Gift from "../pages/activity/component/Gift";
+import InvitationBonus from "../pages/activity/component/InvitationBonus";
+import InvitationBonusRecord from "../pages/activity/component/InvitationBonusRecord";
+import InvitationBonusRules from "../pages/activity/component/InvitationBonusRules";
+import RebateHistory from "../pages/activity/component/RebateHistory";
 import Register from "../pages/auth/register/Register";
 import AddAddressUsdt from "../pages/dashboard/AddAddressUsdt";
 import Dashboard from "../pages/dashboard/Dashboard";
@@ -37,12 +46,14 @@ import CustomerLine from "../pages/promotion/component/CustomerLine";
 import Invitaton from "../pages/promotion/component/Invitaton";
 import PromotionRule from "../pages/promotion/component/PromotionRule";
 import RobateRetio from "../pages/promotion/component/RebateRatio";
+import QueryForm from "../pages/promotion/component/RiseQuery.js";
 import Subordinate from "../pages/promotion/component/Subordinate";
 import SubordinateIncome from "../pages/promotion/component/SubordinateIncome";
 import TeamData from "../pages/promotion/component/TeamData";
 import TeamReports from "../pages/promotion/component/TeamReport";
 import Trx from "../pages/trx/Trx";
 import TronScanPage from "../pages/trx/component/TronScanPage";
+import VIPPage from "../pages/vip/Vip";
 import Wallet from "../pages/wallet/Wallet";
 import WithdrawalHistoryUSdt from "../pages/wallet/WithdrawalHistoryUsdt";
 import DepositeHistory from "../pages/wallet/component/DepositeHistory";
@@ -54,6 +65,7 @@ import WalletTransfer from "../pages/wallet/component/WalletTransfer";
 import WalletTransferHistory from "../pages/wallet/component/WalletTransferHistory";
 import WithdravalHistory from "../pages/wallet/component/WithdravalHistory";
 import WinLossPopup from "../pages/win/component/WinOneMin/WinLossPopup";
+
 import Win from "../pages/win/win";
 
 export const routes = [
@@ -284,5 +296,46 @@ export const routes = [
     {
         path: "/trx/tron-scan",
         component: <TronScanPage />
+    },
+
+    {
+        path: "/activity/InvitationBonus",
+        component: <InvitationBonus />
+    },
+    {
+        path: "/activity/InvitationBonus/Rule",
+        component: <InvitationBonusRules />
+    },
+    {
+        path: "/activity/InvitationBonus/Record",
+        component: <InvitationBonusRecord />
+    },
+    {
+        path: "/activity/Betting/rebate",
+        component: <BettingRebate />
+    },
+    {
+        path: "/activity/Laundry/LaundryRecord",
+        component: <RebateHistory />
+    },
+    {
+        path: "/gift",
+        component: <Gift />
+    },
+    {
+        path: "/activity/DailySignIn",
+        component: <DailySignInBonous />
+    },
+    {
+        path: "/activity/DailySignIn/Rules",
+        component: <DailySignInRules />
+    },
+    {
+        path: "/vip",
+        component: <VIPPage />
+    },
+    {
+        path: "/rise/query",
+        component: <QueryForm />
     },
 ]
