@@ -60,7 +60,7 @@ const WinLossPopup = ({ gid }) => {
           status: "2",
           amount: amntAmnt,
         });
-        toast("Your Loss");
+        // toast("Your Loss");
       }
       // setstatus(response?.data?.data?.[0]);
     } catch (e) {
@@ -78,9 +78,9 @@ const WinLossPopup = ({ gid }) => {
     setstatusNew(status);
   }, [status]);
 
-  if (status?.status === "2") {
-    return null;
-  }
+  // if (status?.status === "2") {
+  //   return null;
+  // }
   if (loding) return <CustomCircularProgress isLoading={loding} />;
   return (
     <Box
@@ -192,7 +192,7 @@ const WinLossPopup = ({ gid }) => {
             variant="body1"
             color="initial"
             className={`bonusamt  ${
-              status?.status === "1" ? "!text-green-500" : "!text-white"
+              status?.status === "1" ? "!text-green-500" : "!text-red-300"
             }`}
           >
             ₹ {Number(status?.amount || 0)?.toFixed(2) || 0}
@@ -201,7 +201,7 @@ const WinLossPopup = ({ gid }) => {
             variant="body1"
             color="initial"
             className={`bonuspr ${
-              status?.status === "1" ? "!text-white" : "!text-white"
+              status?.status === "1" ? "!text-white" : "!text-black"
             }`}
           >
             Period min :{all_result?.gamesno}

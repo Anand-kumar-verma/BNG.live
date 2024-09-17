@@ -1,53 +1,42 @@
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
-import { Box, Container, Table, TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
-import axios from "axios";
+import {
+  Box,
+  Container,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TablePagination,
+  TableRow
+} from "@mui/material";
 import moment from "moment";
 import * as React from "react";
-import toast from "react-hot-toast";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { bgdarkgray, bgtan, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext } from "../../../Shared/color";
 import nodatafoundimage from "../../../assets/images/nodatafoundimage.png";
 import Layout from "../../../component/Layout/Layout";
 import {
-  InvitationIncomeFn
+  StreakIncomeFn
 } from "../../../services/apicalling";
-import { endpoint } from "../../../services/urls";
 
-function Claim() {
+function StreakBonus() {
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
   };
-
   const [visibleRows, setVisibleRows] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const client = useQueryClient();
-
-
-  const ClaimIncomeFn = async (id) => {
-    try {
-      const response = await axios.get(
-        `${endpoint.claim_income}?t_id=${id}`
-      );
-      client.refetchQueries("invitation_bonus");
-      client.refetchQueries("walletamount");
-      return response;
-    } catch (e) {
-      toast(e?.message);
-      console.log(e);
-    }
-  };
 
   const { isLoading, data } = useQuery(
-    ["invitation_bonus"],
-    () => InvitationIncomeFn(),
+    ["streak_bonus"],
+    () => StreakIncomeFn(),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+refetchOnWindowFocus:false
     }
   );
   const res = data?.data?.data;
@@ -87,7 +76,7 @@ function Claim() {
             <Box component={NavLink} onClick={goBack}>
               <KeyboardArrowLeftOutlinedIcon style={{ color: bgtan }} />
             </Box>
-            <p style={{ color: bgtan }}>Invitation  Income</p>
+            <p style={{ color: bgtan }}>Streak  Income</p>
           </Box>
           <div>
             <img className="" src={nodatafoundimage} />
@@ -111,7 +100,7 @@ function Claim() {
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon sx={{ color: bgtan }} />
           </Box>
-          <p style={{ color: bgtan }}>Invitation Income</p>
+          <p style={{ color: bgtan }}>Streak Income</p>
           <Box></Box>
         </Box>
         <div className="!overflow-x-auto" style={{ width: "95%", marginLeft: '2.5%', marginTop: '16px', }}>
@@ -121,7 +110,6 @@ function Claim() {
                 <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r  !text-center !border-b !border-white">S.No</TableCell>
                 <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Date/Time</TableCell>
                 <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Amount</TableCell>
-                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Claim</TableCell>
                 <TableCell sx={{ color: 'white' }} className="!font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Transaction Type</TableCell>
               </TableRow>
             </TableHead>
@@ -133,13 +121,7 @@ function Claim() {
                     {moment(i?.l01_date).format("DD-MM-YYYY HH:mm:ss")}
                   </TableCell>
                   <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{i?.l01_amount}</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">
-                  <span 
-                  className="border px-2 cursor-pointer"
-                  onClick={() =>i?.l01_clame_status === 0 &&  ClaimIncomeFn(i?.lo1_id)}>
-                  {i?.l01_clame_status === 0 ? "Claim" : "Achieve"}
-                  </span>
-                  </TableCell>
+                 
                   <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !border-b !border-white">{i?.l01_transection_type}</TableCell>
                 </TableRow>
               ))}
@@ -170,7 +152,7 @@ function Claim() {
   );
 }
 
-export default Claim;
+export default StreakBonus;
 
 const style = {
   header: {
@@ -257,6 +239,7 @@ const style = {
     "&>p": { marginLeft: "10px", color: "white !important", fontSize: "14px" },
   },
 };
+
 
 
 

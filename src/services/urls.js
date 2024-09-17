@@ -1,12 +1,12 @@
 export const rupees = "₹";
 // https://admin.bngwin.live/
-export const baseUrl = "http://192.168.1.15:9000";
+export const baseUrl = "http://192.168.18.183:9000";
 export const fron_end_main_domain = "https://bngwin.live";
 
 // export const newdomain1 = "https://api.funxplora.com";
 // export const newdomain = "https://api.funxplora.com";
-export const newdomain1 = "http://192.168.1.15:9000";
-export const newdomain = "http://192.168.1.15:9000";
+export const newdomain1 = "http://192.168.18.183:9000";
+export const newdomain = "http://192.168.18.183:9000";
 
 export const domain = "https://funxplora-timer.onrender.com";
 export const support_mail = "";
@@ -26,6 +26,11 @@ export const endpoint = {
   ticket_raised_history: `${baseUrl}/api/v1/ticket-raised-history`,
   attendence_income: `${baseUrl}/api/v1/attendance-bonus`,
   claim_income: `${baseUrl}/api/v1/clame-bonus`,
+  invitation_income: `${baseUrl}/api/v1/inivitation-bonus`,
+ streak_income: `${baseUrl}/api/v1/winning-streak-bonus`,
+ vip_income: `${baseUrl}/api/v1/vip-bonus`,
+ deposit_bonus: `${baseUrl}/api/v1/get-deposit-bonus-income/`,
+ daily_income: `${baseUrl}/api/v1/daily-salary-income`,
  
 
 
@@ -92,11 +97,8 @@ export const endpoint = {
   bet_now: `${domain}/api/aviator/bet_now`,
   cash_out: `${domain}/api/aviator/cash_out`,
 
-  place_bid_jackpod: `${newdomain}/api/v1/place-bid-jackpod`,
-  jackpod_my_history: `${newdomain}/api/v1/my-history-jackpod`,
-  jackpod_game_history: `${newdomain}/api/v1/game-history-jackpod`,
   change_password: `${newdomain}/api/v1/change-password`,
-  deposit_bonus: `${newdomain}/api/v1/self-deposit-bonus`,
+  // deposit_bonus: `${newdomain}/api/v1/self-deposit-bonus`,
   referral_bonus: `${newdomain}/api/v1/sponsor-income`,
   need_to_bet: `${newdomain}/api/v1/need-to-bet`,
   //income

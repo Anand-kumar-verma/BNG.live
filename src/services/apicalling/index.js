@@ -99,6 +99,7 @@ export const CandidateNameFn = async (reqbody) => {
     console.log(e);
   }
 };
+
 export const MyHistoryFn = async (gid) => {
   try {
     const response = await axios.get(
@@ -144,17 +145,7 @@ export const My_All_TRX_HistoryFnTemp = async (gid) => {
     console.log(e);
   }
 };
-export const jackpod_my_history = async (gid) => {
-  try {
-    const response = await axios.get(
-      `${endpoint.jackpod_my_history}?userid=${user_id}`
-    );
-    return response;
-  } catch (e) {
-    toast(e?.message);
-    console.log(e);
-  }
-};
+
 export const My_All_TRX_HistoryPendingFn = async (gid) => {
   try {
     const response = await axios.get(
@@ -372,7 +363,7 @@ export const dailySalaryIncomeFn = async () => {
   //
   try {
     const response = await axios.get(
-      `${endpoint.daily_salary_income}?id=${user_id}`
+      `${endpoint.daily_income}?user_id=${user_id}`
     );
     return response;
   } catch (e) {
@@ -393,6 +384,42 @@ export const AttendenceIncomeFn = async () => {
   }
 };
 
+export const InvitationIncomeFn = async () => {
+  //
+  try {
+    const response = await axios.get(
+      `${endpoint.invitation_income}?user_id=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
+export const StreakIncomeFn = async () => {
+  //
+  try {
+    const response = await axios.get(
+      `${endpoint.streak_income}?user_id=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
+export const VipIncomeFn = async () => {
+  //
+  try {
+    const response = await axios.get(
+      `${endpoint.vip_income}?user_id=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
 
 export const WeeklySalaryIncomeFn = async () => {
   //

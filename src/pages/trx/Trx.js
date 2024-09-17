@@ -5,24 +5,17 @@ import { useState } from "react";
 import { useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import asistant from "../../assets/images/asistant.png";
-import backbtn from "../../assets/images/backBtn.png";
-import music from "../../assets/images/music.png";
-import musicoff from "../../assets/images/musicoff.png";
 import refresh from "../../assets/images/refresh.png";
 import { default as Timeactive, default as Timeinactive, } from "../../assets/images/time-.png";
 import Layout from "../../component/Layout/Layout";
-import { bgdarkgray, bglightgray, bgtan, zubgback, zubgshadow, zubgtext } from "../../Shared/color";
-import theme from "../../utils/theme";
-import Jackpot from "./component/WinOneMin/Jackpot";
+import { bgdarkgray, bglightgray } from "../../Shared/color";
+import bg from "../../assets/img/walletbg-dcbd4124.png";
 import WinFiveMin from "./component/WinOneMin/WinFiveMin";
 import WinLossPopup from "./component/WinOneMin/WinLossPopup";
 import WinOneMin from "./component/WinOneMin/WinOneMin";
-import bg from "../../assets/img/walletbg-dcbd4124.png";
 import WinThreeMin from "./component/WinOneMin/WinThreeMin";
 
 function Win() {
-  const [musicicon, setmusicicon] = useState(true);
   const navigate = useNavigate();
   const client = useQueryClient();
   const [Tab, setTab] = useState(1);
@@ -199,27 +192,13 @@ function Win() {
                   TRX <br /> 5Min
                 </Typography>
               </Box>
-              <Box
-                component={NavLink}
-                onClick={() => setTab(4)}
-                className={Tab === 4 ? "activewinNav Winnav" : " Winnav"}
-              >
-                {Tab === 4 ? (
-                  <Box component="img" src={Timeinactive} width={50}></Box>
-                ) : (
-                  <Box component="img" src={Timeactive} width={50}></Box>
-                )}
-                <Typography className='!pb-4' variant="h3" color="initial">
-                  JACKPOT
-                </Typography>
-              </Box>
+            
             </Stack>
           </Box>
         </Box>
         {Tab === 1 && <WinOneMin gid="1" />}
         {Tab === 2 && <WinThreeMin gid="2" />}
         {Tab === 3 && <WinFiveMin gid="3" />}
-        {Tab === 4 && <Jackpot gid="4" />}
         {/* opendialogbox */}
         {opendialogbox && (
           <Dialog

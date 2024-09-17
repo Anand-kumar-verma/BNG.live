@@ -47,21 +47,12 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
     setpoicy(false);
   };
   React.useEffect(() => {
-    const handleFiveMin = (fivemin) => {
+    const handleFiveMin = (onemin) => {
+      let fivemin = `${4 - (new Date()?.getMinutes() % 5)}_${onemin}`;
       setOne_min_time(fivemin);
       setBetNumber(fivemin);
       fk.setFieldValue("show_this_one_min_time", fivemin)
-      // if (
-      //   (fivemin?.split("_")?.[1] === "5" ||
-      //     fivemin?.split("_")?.[1] === "4" ||
-      //     fivemin?.split("_")?.[1] === "3" ||
-      //     fivemin?.split("_")?.[1] === "2") &&
-      //   fivemin?.split("_")?.[0] === "0"
-      // )
-        // handlePlaySound();
-      // if (fivemin?.split("_")?.[1] === "1" && fivemin?.split("_")?.[0] === "0")
-        // handlePlaySoundLast();
-
+     
       if (
         Number(fivemin?.split("_")?.[1]) <= 10 && // this is for sec
         fivemin?.split("_")?.[0] === "0" // this is for minut
@@ -90,10 +81,10 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
       }
     };
 
-    socket.on("fivemintrx", handleFiveMin);
+    socket.on("onemintrx", handleFiveMin);
 
     return () => {
-      socket.off("fivemintrx", handleFiveMin);
+      socket.off("onemintrx", handleFiveMin);
     };
   }, []);
 

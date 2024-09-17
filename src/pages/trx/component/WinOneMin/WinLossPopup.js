@@ -69,51 +69,8 @@ const WinLossPopup = ({ gid }) => {
           status: "2",
           amount: amntAmnt,
         });
-        toast("Your Loss"); 
+        // toast("Your Loss"); 
       }
-      // setstatus(response?.data?.data?.[0]);
-    } catch (e) {
-      toast(e?.message);
-      console.log(e);
-    }
-    setloding(false);
-  };
-  const MyHistoryJackpodFn = async () => {
-    setloding(true);
-    console.log(gid, "anand kumar verma")
-    try {
-      const response = await axios.get(
-        `${endpoint.jackpod_my_history}?userid=${user_id}`
-      );
-      const firstId = response?.data?.data?.[0]?.gamesno;
-      const winAmnt =
-        response?.data?.data
-          ?.filter((i) => i?.gamesno === firstId)
-          ?.reduce((a, b) => a + Number(b?.win || 0), 0) || 0;
-      const amntAmnt =
-        response?.data?.data
-          ?.filter((i) => i?.gamesno === firstId)
-          ?.reduce((a, b) => a + Number(b?.amount || 0), 0) || 0;
-      setall_result(response?.data?.data?.[0]);
-
-      // const amntAmnt =
-      //   response?.data?.data
-      //     ?.filter((i) => i?.gamesno === firstId)
-      //     ?.reduce((a, b) => a + Number(b?.amount || 0), 0) || 0;
-
-      if (winAmnt) {
-        setstatus({
-          status: "1",
-          amount: winAmnt,
-        });
-      } else {
-        setstatus({
-          status: "2",
-          amount: amntAmnt,
-        });
-        toast("Your Loss"); 
-      }
-      // setstatus(response?.data?.data?.[0]);
     } catch (e) {
       toast(e?.message);
       console.log(e);
@@ -122,7 +79,6 @@ const WinLossPopup = ({ gid }) => {
   };
 
   useEffect(() => {
-    gid === "4" ? MyHistoryJackpodFn() :
       MyHistoryFn();
   }, []);
 
@@ -132,9 +88,9 @@ const WinLossPopup = ({ gid }) => {
 
   if (loding) return <CustomCircularProgress isLoading={loding} />;
   
-  if (status?.status === "2") {
-    return null;
-  }
+  // if (status?.status === "2") {
+  //   return null;
+  // }
   return (
     <Box
       sx={{
@@ -240,7 +196,7 @@ const WinLossPopup = ({ gid }) => {
           <Typography
             variant="body1"
             color="initial"
-            className={`bonuspr ${status?.status === "1" ? "!text-white" : "!text-white"
+            className={`bonuspr ${status?.status === "1" ? "!text-white" : "!text-black"
               }`}
           >
             Period min :{all_result?.gamesno}

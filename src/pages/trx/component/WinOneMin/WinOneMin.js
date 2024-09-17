@@ -28,7 +28,6 @@ function WinOneMin({ gid }) {
   const [timing, setBetNumber] = useState(100);
   const [value, setValue] = useState(1);
 
-  // const [show_this_one_min_time,setshow_this_one_min_time] = useState()
   const net_wallet_amount = useSelector(
     (state) => state.aviator.net_wallet_amount
   );

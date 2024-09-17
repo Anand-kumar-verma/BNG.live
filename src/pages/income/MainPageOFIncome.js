@@ -17,19 +17,40 @@ function MainPageOFIncome() {
     
     {
       to: "/account/income-main/attendance-bonus",
-      name: "Attendence Income",
+      name: "Attendance Income",
       logo: <PriceCheckIcon className="!w-[40px] !h-[40px] " color="black" />,
+    },
+    {
+      to: "/account/income-main/claim-bonus",
+      name: "Invitation Income",
+      logo: <RedeemIcon className="!w-[40px] !h-[40px] " color="black" />,
+    },
+    {
+       to: "/account/income-main/streak-bonus",
+      name: "Winning Streak Income",
+      logo: <PriceCheckIcon className="!w-[40px] !h-[40px] " color="black" />,
+    },
+    {
+        to: "/account/income-main/vip-bonus",
+        name: "VIP Income",
+        logo: <AccountBalanceIcon className="!w-[40px] !h-[40px] " color="black" />,
+      },
+       {
+      to: "/account/income-main/daily-salary-bonus",
+      name: "Daily Salary",
+      logo: <StoreIcon className="!w-[40px] !h-[40px] " color="black" />,
+    },
+    {
+      to: "/account/income-main/deposit-bonus",
+      name: "Deposit Self Income",
+      logo: <Diversity2Outlined className="!w-[40px] !h-[40px] " color="black" />,
     },
     //  {
     //   to: "/account/income-main/claim-bonus",
     //   name: "Claim Income",
     //   logo: <RedeemIcon className="!w-[40px] !h-[40px] " color="black" />,
     // },
-    // {
-    //   to: "/account/income-main/deposit-bonus",
-    //   name: "Deposit Self Income",
-    //   logo: <PriceCheckIcon className="!w-[40px] !h-[40px] " color="black" />,
-    // },
+   
     // {
     //   to: "/account/income-main/referral-bonus",
     //   name: "Sponsor Income",
@@ -38,7 +59,7 @@ function MainPageOFIncome() {
     // {
     //   to: "/account/income-main/daily-salary-bonus",
     //   name: "Daily Salary",
-    //   logo: <AccountBalanceIcon className="!w-[40px] !h-[40px] " color="black" />,
+    //   logo: <StoreIcon className="!w-[40px] !h-[40px] " color="black" />,
     // },
     // {
     //   to: "/account/income-main/self-trading-bonus",
@@ -93,8 +114,8 @@ function MainPageOFIncome() {
                 <TableHead>
                   <TableRow>
                     <TableCell className="!border !text-xs !border-r !border-black  !text-center" sx={{ color: "black !important", fontWeight: "600" }}>S.No</TableCell>
+                    <TableCell className="!border !text-xs !border-r !border-black  !text-center" sx={{ color: "black !important", fontWeight: "600" }}>Title</TableCell>
                     <TableCell className="!border !text-xs !border-r !border-black  !text-center" sx={{ color: "black !important", fontWeight: "600" }}>Icon</TableCell>
-                    <TableCell className="!border !text-xs !border-r !border-black  !text-center" sx={{ color: "black !important", fontWeight: "600" }}>Name</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

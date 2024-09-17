@@ -1,43 +1,45 @@
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import { Box, Container, Table, TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
+import axios from "axios";
 import moment from "moment";
 import * as React from "react";
-import { useQuery } from "react-query";
+import toast from "react-hot-toast";
+import { useQuery, useQueryClient } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { bgdarkgray, bgtan, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
+import { bgdarkgray, bgtan, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext } from "../../../Shared/color";
 import nodatafoundimage from "../../../assets/images/nodatafoundimage.png";
 import Layout from "../../../component/Layout/Layout";
 import {
-    AttendenceIncomeFn,
-  dailySalaryIncomeFn,
-  dailyWalletIncomeFn
+  AttendenceIncomeFn
 } from "../../../services/apicalling";
-import axios from "axios";
 import { endpoint } from "../../../services/urls";
-import toast from "react-hot-toast";
 
 function Attendence() {
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
   };
-
+  const client = useQueryClient();
   const [visibleRows, setVisibleRows] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const ClaimIncomeFn = async () => {
+
+  const ClaimIncomeFn = async (id) => {
     try {
       const response = await axios.get(
-        `${endpoint.claim_income}?t_id=${res}`
+        `${endpoint.claim_income}?t_id=${id}`
       );
+      client.refetchQueries("attendence_bonus");
+      client.refetchQueries("walletamount");
       return response;
     } catch (e) {
       toast(e?.message);
       console.log(e);
     }
   };
+
   const { isLoading, data } = useQuery(
     ["attendence_bonus"],
     () => AttendenceIncomeFn(),
@@ -48,6 +50,7 @@ function Attendence() {
     }
   );
   const res = data?.data?.data;
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -65,6 +68,7 @@ function Attendence() {
       )
     );
   }, [page, rowsPerPage, res]);
+
 
   if (!isLoading && !res)
     return (
@@ -130,9 +134,9 @@ function Attendence() {
                   <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{i?.l01_amount}</TableCell>
                   <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">
                   <span 
-                  className="border px-2"
-                  onClick={() => ClaimIncomeFn(i?.l01_id === 0 ? "Claim" : "Achieve")}>
-                  {i?.l01_id === 0 ? "Claim" : "Achieve"}
+                  className="border px-2 !cursor-pointer"
+                  onClick={() =>i?.l01_clame_status === 0 &&  ClaimIncomeFn(i?.lo1_id)}>
+                  {i?.l01_clame_status === 0 ? "Claim" : "Achieve"}
                   </span>
                   </TableCell>
                   <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !border-b !border-white">{i?.l01_transection_type}</TableCell>

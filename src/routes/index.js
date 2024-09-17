@@ -58,6 +58,8 @@ import WinLossPopup from "../pages/win/component/WinOneMin/WinLossPopup";
 import Win from "../pages/win/win";
 import Attendence from "../pages/income/incomeSubSection/Attendaence";
 import Claim from "../pages/income/incomeSubSection/Claim";
+import StreakBonus from "../pages/income/incomeSubSection/Streak";
+import VipBonus from "../pages/income/VipBonus";
 
 export const routes = [
     {
@@ -67,6 +69,14 @@ export const routes = [
     {
         path: "/account/income-main/attendance-bonus",
         component: <Attendence />
+    },
+    {
+        path: "/account/income-main/streak-bonus",
+        component: <StreakBonus />
+    },
+    {
+        path: "/account/income-main/vip-bonus",
+        component: <VipBonus />
     },
     {
         path: "/account/income-main/claim-bonus",
