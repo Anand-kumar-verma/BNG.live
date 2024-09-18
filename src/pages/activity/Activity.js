@@ -16,6 +16,7 @@ import invitationBonus from "../../assets/images/invitationBonus-aa7acbd3.png";
 import { bgfootergray } from "../../Shared/color";
 import Layout from "../../component/Layout/Layout";
 import { NavLink } from "react-router-dom";
+import MyModal from "../../Shared/Modal";
 
 
 const style = {
@@ -103,11 +104,10 @@ function Activity() {
         <Box sx={style.actimg} component={NavLink} to="/activity/DailySignIn">
           <Box component="img" sx={{ width: "100%" }} src={banner2}></Box>
           <Typography variant="body1" color="initial">
-            FIRST DEPOSIT BONUS
+            Attendance bonus
           </Typography>
-          <Typography variant="body1" color="initial">
-            The more consecutive days you sign in, the higher the reward will
-            be.
+          <Typography >
+            The more consecutive days you sign in, the higher the reward will be.
           </Typography>
         </Box>
       </Stack>
@@ -182,6 +182,7 @@ function Activity() {
             BNG Game SUPPORT FUNDS
           </Typography>
         </Box>
+        <MyModal />
       </Stack>
     </Layout >
   );

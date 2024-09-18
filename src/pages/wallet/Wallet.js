@@ -29,6 +29,7 @@ import rechargeIcon from "../../assets/images/new/download (8).png";
 import Layout from "../../component/Layout/Layout";
 import { walletamount } from "../../services/apicalling";
 import theme from "../../utils/theme";
+import MyModal from "../../Shared/Modal";
 
 function Wallet() {
 
@@ -335,7 +336,7 @@ function Wallet() {
 
           <div style={{ background: bglightgray, padding: '5px', borderRadius: '10px', marginTop: '16px', marginBottom: '100px' }}>
             <Box sx={{
-              display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', '&>a': { width: '33%', },
+              display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'flex-start', '&>a': { width: '33%', },
               '&>a>div': { display: 'flex', flexDirection: 'column-reverse', alignItems: 'center', alignItems: 'center', padding: '5px' },
               'a>div>p': { textAlign: 'center', fontSize: '11px', color: 'white' },
               '&>a>div>img': { width: '30px', filter: 'hue-rotate(-346deg)' },
@@ -350,6 +351,12 @@ function Wallet() {
                 <div className=" " >
                   <p className=" mt-4">Withdrawal</p>
                   <Box component="img" src={wallettransfer1} className="!text-blue-500" width={50}></Box>
+                </div>
+              </NavLink>
+              <NavLink to="/add-bank-details">
+                <div className=" " >
+                  <p className=" mt-4">Add Bank</p>
+                  <Box component="img" src={d14} width={50}></Box>
                 </div>
               </NavLink>
               <NavLink to="/transfer">
@@ -404,6 +411,7 @@ function Wallet() {
           </Dialog>
         )} */}
         <CustomCircularProgress isLoading={isLoading} />
+        <MyModal />
       </Container>
     </Layout>
   );

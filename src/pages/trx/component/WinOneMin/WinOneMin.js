@@ -282,41 +282,47 @@ function WinOneMin({ gid }) {
           return (
             <>
               <Box sx={{ borderRadius: "10px" }}>
-                <Stack direction="row">
-                  <Box
-                    sx={{ borderRadius: '10px 0px 0px 10px' }}
-                    component={NavLink}
-                    onClick={() => setTabTwo(1)}
-                    className={
-                      TabTwo === 1 ? "activewinNavtwo Winnavtow" : "Winnavtow"
-                    }
-                  >
-                    <Typography variant="h3" color="initial">
-                      Game HTY
-                    </Typography>
+                <Stack direction="row" justifyContent='space-between'>
+                  <Box sx={{ width: '31%' }}>
+                    <Box
+                      sx={{ borderRadius: '10px 0px 0px 10px' }}
+                      component={NavLink}
+                      onClick={() => setTabTwo(1)}
+                      className={
+                        TabTwo === 1 ? "activewinNavtwo Winnavtow" : "Winnavtow"
+                      }
+                    >
+                      <Typography variant="h3" color="initial">
+                        Game History
+                      </Typography>
+                    </Box>
                   </Box>
-                  <Box
-                    component={NavLink}
-                    onClick={() => setTabTwo(2)}
-                    className={
-                      TabTwo === 2 ? "activewinNavtwo Winnavtow" : "Winnavtow"
-                    }
-                  >
-                    <Typography variant="h3" color="initial">
-                      Chart
-                    </Typography>
+                  <Box sx={{ width: '31%' }}>
+                    <Box
+                      component={NavLink}
+                      onClick={() => setTabTwo(2)}
+                      className={
+                        TabTwo === 2 ? "activewinNavtwo Winnavtow" : "Winnavtow"
+                      }
+                    >
+                      <Typography variant="h3" color="initial">
+                        Chart
+                      </Typography>
+                    </Box>
                   </Box>
-                  <Box
-                    sx={{ borderRadius: '0px 10px 10px 0px' }}
-                    component={NavLink}
-                    onClick={() => setTabTwo(3)}
-                    className={
-                      TabTwo === 3 ? "activewinNavtwo Winnavtow" : "Winnavtow"
-                    }
-                  >
-                    <Typography variant="h3" color="initial">
-                      My History
-                    </Typography>
+                  <Box sx={{ width: '31%' }}>
+                    <Box
+                      sx={{ borderRadius: '0px 10px 10px 0px' }}
+                      component={NavLink}
+                      onClick={() => setTabTwo(3)}
+                      className={
+                        TabTwo === 3 ? "activewinNavtwo Winnavtow" : "Winnavtow"
+                      }
+                    >
+                      <Typography variant="h3" color="initial">
+                        My History
+                      </Typography>
+                    </Box>
                   </Box>
                 </Stack>
               </Box>
@@ -337,7 +343,7 @@ function WinOneMin({ gid }) {
           random={value}
         />
       )}
-    </Box>
+    </Box >
   );
 }
 

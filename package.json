@@ -55,7 +55,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-   "build": "set \"GENERATE_SOURCEMAP=false\" &&  react-scripts build",
+    "build": "set \"GENERATE_SOURCEMAP=false\" &&  react-scripts build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

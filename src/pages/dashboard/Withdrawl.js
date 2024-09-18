@@ -2,20 +2,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import CachedIcon from "@mui/icons-material/Cached";
 import HistoryIcon from "@mui/icons-material/History";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
-import {
-  Box,
-  Button,
-  Container,
-  Dialog,
-  FormControl,
-  IconButton,
-  InputAdornment,
-  MenuItem,
-  OutlinedInput,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, Dialog, FormControl, IconButton, InputAdornment, MenuItem, OutlinedInput, Stack, TextField, Typography, } from "@mui/material";
 import axios from "axios";
 import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
@@ -25,30 +12,20 @@ import { useQuery } from "react-query";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { withdraw_amount_validation_schema } from "../../Shared/Validation";
+import { bggrad, bglightgray, zubgback, zubgbackgrad, zubgmid, zubgtext } from "../../Shared/color";
+import cip from "../../assets/images/cash2.png";
 import logo1 from "../../assets/images/logotwhite.png";
-import bg from "../../assets/img/download.png";
-import {
-  bggold,
-  bggrad,
-  bglightgray,
-  zubgback,
-  zubgbackgrad,
-  zubgmid,
-  zubgshadow,
-  zubgtext,
-} from "../../Shared/color";
-import cip from "../../assets/cip.png";
 import balance from "../../assets/images/send.png";
 import payment from "../../assets/images/wallet.png";
 import audiovoice from "../../assets/images/withdrawol_voice.mp3";
-import usdt from "../../assets/payNameIcon1.png";
+import bg from "../../assets/img/download.png";
+// import usdt from "../../assets/payNameIcon1.png";
+import BEP20 from "../../assets/images/bep20.jpg";
 import Layout from "../../component/Layout/Layout";
-import {
-  BankListDetails,
-  NeedToBet,
-} from "../../services/apicalling";
+import { BankListDetails, NeedToBet, } from "../../services/apicalling";
 import { endpoint, rupees } from "../../services/urls";
 import theme from "../../utils/theme";
+
 function Withdrawl() {
 
   const location = useLocation();
@@ -315,7 +292,22 @@ function Withdrawl() {
           </Stack>
         </Box>
         <Box>
-          <Box className="!flex !justify-between " mt={2} sx={{ width: '95%', ml: '2.5%' }}>
+
+          <Box className="fccsb w95" mt={2}>
+            <Box sx={{ width: '48%', background: '#FFFFFF', borderRadius: "5px" }} className="fccc" component={NavLink} onClick={() => navigate("/Withdrawal")}>
+              <Box component="img" src={cip} sx={{ width: "120px", height: '55px', borderRadius: "10px", pt: 1, px: 1, }}></Box>
+              <Typography className="fp13 " sx={{ fontWeight: 'bolder', borderRadius: "0px 0px  5px 5px", background: bggrad, width: '100%', py: 1, textAlign: 'center', fontFamily: 'roboto !important' }} mt={1}>
+                Bank Card
+              </Typography>
+            </Box>
+            <Box sx={{ width: '48%', background: '#1B0E1F', borderRadius: "5px", }} className="fccc" onClick={() => navigate("/Withdrawalusdt")}>
+              <Box component="img" src={BEP20} sx={{ width: "100%", height: '55px', borderRadius: "10px", pt: 1, px: 1, }}></Box>
+              <Typography className="fp13 " sx={{ fontWeight: 'bolder', borderRadius: "0px 0px  5px 5px", background: bggrad, width: '100%', py: 1, textAlign: 'center', fontFamily: 'roboto !important' }} mt={1}>
+                USDT  BEP 20
+              </Typography>
+            </Box>
+          </Box>
+          {/* <Box className="!flex !justify-between " mt={2} sx={{ width: '95%', ml: '2.5%' }}>
             <Box sx={{ background: bglightgray, border: zubgtext, width: '48%', }} className="!cursor-pointer !rounded-lg "
             >
               <Box component={NavLink} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', py: 2 }}>
@@ -341,7 +333,7 @@ function Withdrawl() {
                 </Typography>
               </Box>
             </Box>
-          </Box>
+          </Box> */}
           <Box
             sx={{
               padding: "10px",

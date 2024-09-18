@@ -21,7 +21,9 @@ import dp1 from "../../assets/images/pr.png";
 import star from "../../assets/images/star.png";
 import vip from "../../assets/images/vip.png";
 import wit from "../../assets/images/witt.png";
-import edit from "../../assets/quickpay.png";
+import trc from "../../assets/images/tether-usdt-logo-FA55C7F397-seeklogo.com.png";
+import bep from "../../assets/images/bep20token_nadcab.png";
+import edit from "../../assets/images/vipicon.png";
 import wtd from "../../assets/rechargeIcon.png";
 // import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import s from "../../assets/wdhistory.png";
@@ -29,6 +31,7 @@ import dpt from "../../assets/withdrow.png";
 import Layout from "../../component/Layout/Layout";
 import { walletamount } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
+import MyModal from '../../Shared/Modal';
 
 function Account() {
   const [opend, setOpend] = useState(false);
@@ -105,9 +108,9 @@ function Account() {
 
           </Container>
         </Box>
-        <Box sx={{ position: 'relative', height: '133px', }}>
-          <Box sx={{ ...style.actionContainer, position: 'absolute', left: '2.5%', bottom: '38%' }}>
-            <Box sx={{ borderBottom: '1px solid #393939', paddingBottom: '10px', mb: 2, }}>
+        <Box sx={{ position: 'relative', height: '233px', }}>
+          <Box sx={{ ...style.actionContainer, position: 'absolute', left: '2.5%', bottom: '24%' }}>
+            <Box sx={{ borderBottom: '1px solid #5b5858', paddingBottom: '10px', mb: 2, }}>
               <Typography variant="body1" color="initial" sx={style.balanceText}>
                 Total Balance
               </Typography>
@@ -125,6 +128,7 @@ function Account() {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
+              flexWrap: 'wrap',
             }}>
               <Box sx={style.actionBox} component={NavLink} to="/wallet">
                 <Box component="img" src={s} sx={style.actionImage} />
@@ -144,10 +148,22 @@ function Account() {
                   Withdraw
                 </Typography>
               </Box>
-              <Box sx={style.actionBox} component={NavLink} to="/add-bank-details">
+              <Box sx={style.actionBox} component={NavLink} to="/vip">
                 <Box component="img" src={edit} sx={style.actionImage} />
                 <Typography variant="body1" color="initial" sx={style.actionText}>
-                  Add Bank
+                  vip level
+                </Typography>
+              </Box>
+              <Box sx={style.actionBox2} component={NavLink} to="/vip" mt={2}>
+                <Box component="img" src={trc} sx={style.actionImage2} />
+                <Typography variant="body1" color="initial" sx={style.actionText2}>
+                  USDT TRC 20
+                </Typography>
+              </Box>
+              <Box sx={style.actionBox2} component={NavLink} to="/vip" mt={2}>
+                <Box component="img" src={bep} sx={style.actionImage2} />
+                <Typography variant="body1" color="initial" sx={style.actionText2}>
+                  USDT BEP 20
                 </Typography>
               </Box>
             </Box>
@@ -445,6 +461,7 @@ function Account() {
           </Dialog>
         )} */}
         <CustomCircularProgress isLoading={isLoading} />
+        <MyModal />
       </Container>
     </Layout>
   );
@@ -521,7 +538,7 @@ const style = {
     width: "95%",
     margin: "auto",
     marginTop: "20px",
-    background: bglightgray,
+    background: '#4D4D4C',
   },
   actionBox: { width: "20%" },
   actionImage: { width: "30px", height: "30px", margin: "auto", },
@@ -541,5 +558,14 @@ const style = {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+  },
+  actionBox2: { width: "48%" },
+  actionImage2: { width: "30px", height: "30px", margin: "auto", },
+  actionText2: {
+    color: 'white',
+    textAlign: "center",
+    fontSize: "14px",
+    fontWeight: "500",
+    mt: '4px',
   },
 };

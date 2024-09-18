@@ -38,6 +38,13 @@
   }
 }
 
+.fccsb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .fccc {
   display: flex;
   flex-direction: column;
@@ -46,9 +53,9 @@
 }
 
 .fcc {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .fcsb {
@@ -88,6 +95,10 @@
 
 .fp20 {
   font-size: 20px !important;
+}
+
+.fp25 {
+  font-size: 25px !important;
 }
 
 .fp21 {
@@ -141,4 +152,13 @@
 
 .w {
   color: white !important;
+}
+
+.aghy>span>svg>path {
+  color: white !important;
+}
+
+.bdg {
+  margin-top: 15px !important;
+  display: block !important;
 }

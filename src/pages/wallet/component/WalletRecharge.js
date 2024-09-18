@@ -38,8 +38,10 @@ import user from "../../../assets/check.png";
 import dot from "../../../assets/images/circle-arrow.png";
 import balance from "../../../assets/images/send.png";
 import pay from "../../../assets/images/wallet.png";
-import usdt from "../../../assets/payNameIcon1.png";
-import payNameIcon2 from "../../../assets/payNameIcon2.png";
+import usdt from "../../../assets/images/usdt.png";
+import TRC20 from "../../../assets/images/trc20-removebg-preview.png";
+import BEP20 from "../../../assets/images/bep20.jpg";
+import upipayment from "../../../assets/images/upi.jpg";
 import Layout from "../../../component/Layout/Layout";
 import { endpoint } from "../../../services/urls";
 import theme from "../../../utils/theme";
@@ -592,8 +594,34 @@ function WalletRecharge() {
             </div>
           </Stack>
         </Box>
+        <Box className="fccsb w95" mt={2}>
+          <Box sx={{ width: '48%', background: '#FFFFFF', borderRadius: "5px" }} className="fccc" component={NavLink} onClick={() => setPaymentType("UPI")}>
+            <Box component="img" src={upipayment} sx={{ width: "100%", height: '55px', borderRadius: "10px", pt: 1, px: 1, }}></Box>
+            <Typography className="fp13 " sx={{ fontWeight: 'bolder', borderRadius: "0px 0px  5px 5px", background: bggrad, width: '100%', py: 1, textAlign: 'center', fontFamily: 'roboto !important' }} mt={1}>
+              UPI
+            </Typography>
+          </Box>
+          <Box sx={{ width: '48%', background: '#FFFFFF', borderRadius: "5px" }} className="fccc" component={NavLink} onClick={() => setPaymentType("USDT")}>
+            <Box component="img" src={usdt} sx={{ width: "100%", height: '55px', borderRadius: "10px", pt: 1, px: 1, }}></Box>
+            <Typography className="fp13 " sx={{ fontWeight: 'bolder', borderRadius: "0px 0px  5px 5px", background: bggrad, width: '100%', py: 1, textAlign: 'center', fontFamily: 'roboto !important' }} mt={1}>
+              USDT
+            </Typography>
+          </Box>
+          <Box sx={{ width: '48%', background: '#F0F0F0', borderRadius: "5px", mt: 2, }} className="fccc" component={NavLink} onClick={() => setPaymentType("USDT")}>
+            <Box component="img" src={TRC20} sx={{ width: "100%", height: '55px', borderRadius: "10px", pt: 1, px: 1, }}></Box>
+            <Typography className="fp13 " sx={{ fontWeight: 'bolder', borderRadius: "0px 0px  5px 5px", background: bggrad, width: '100%', py: 1, textAlign: 'center', fontFamily: 'roboto !important' }} mt={1}>
+              USDT TRC 20
+            </Typography>
+          </Box>
+          <Box sx={{ width: '48%', background: '#1B0E1F', borderRadius: "5px", mt: 2, }} className="fccc" component={NavLink} onClick={() => setPaymentType("USDT")}>
+            <Box component="img" src={BEP20} sx={{ width: "100%", height: '55px', borderRadius: "10px", pt: 1, px: 1, }}></Box>
+            <Typography className="fp13 " sx={{ fontWeight: 'bolder', borderRadius: "0px 0px  5px 5px", background: bggrad, width: '100%', py: 1, textAlign: 'center', fontFamily: 'roboto !important' }} mt={1}>
+              USDT  BEP 20
+            </Typography>
+          </Box>
+        </Box>
 
-        <Box className="!flex !justify-start !mx-5 gap-5  !-my-5">
+        {/* <Box className="!flex !justify-start !mx-5 gap-5  !-my-5">
           <Box
             sx={{
               background: zubgtext,
@@ -607,7 +635,7 @@ function WalletRecharge() {
             <Box component={NavLink}>
               <Box
                 component="img"
-                src={payNameIcon2}
+                src={upipayment}
                 sx={{ width: "100px", height: "80px", borderRadius: "10px" }}
               ></Box>
               <Typography className="!text-center !text-white !text-sm" mt={1}>
@@ -636,20 +664,21 @@ function WalletRecharge() {
               </Typography>
             </Box>
           </Box>
-        </Box>
+        </Box> */}
         {paymentType === "UPI" ? (
-          <Box sx={{ display: "flex", justifyContent: "start" }}>
+          <Box sx={{ display: "flex", justifyContent: "start", mt: 2, }}>
             <Box
               className="!text-black"
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                mx: 2,
+                // mx: 2,
                 background: bglightgray,
                 borderRadius: '10px',
                 width: '100%'
               }}
+              className="w95"
             >
               {/* contained */}
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '10px 20px' }}>

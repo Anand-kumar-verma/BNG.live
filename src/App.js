@@ -7,6 +7,9 @@ import ForgetPassword from "./pages/auth/login/ForgetPassword";
 import Login from "./pages/auth/login/Login";
 import Register from "./pages/auth/register/Register";
 import { routes } from "./routes";
+import { Box, Fab } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { Draggable } from 'react-draggable';
 
 const App = () => {
   const isAuthenticated =
@@ -18,21 +21,28 @@ const App = () => {
     null;
 
   return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/forget-password" element={<ForgetPassword />} />
-      <Route path="/register" element={<Register />} />
-
-      {isAuthenticated ? (
-        routes?.map((route, index) => {
-          return (
-            <Route key={index} path={route?.path} element={route?.component} />
-          );
-        })
-      ) : (
+    <Box>
+      {/* <Draggable>
+        <Fab color="primary" aria-label="add">
+          <AddIcon />
+        </Fab>
+      </Draggable> */}
+      <Routes>
         <Route path="/" element={<Login />} />
-      )}
-    </Routes>
+        <Route path="/forget-password" element={<ForgetPassword />} />
+        <Route path="/register" element={<Register />} />
+
+        {isAuthenticated ? (
+          routes?.map((route, index) => {
+            return (
+              <Route key={index} path={route?.path} element={route?.component} />
+            );
+          })
+        ) : (
+          <Route path="/" element={<Login />} />
+        )}
+      </Routes>
+    </Box>
   );
 };
 

@@ -74,7 +74,7 @@ const Chart = ({ gid }) => {
   return (
     <Box className="chartTable" sx={{ pb: 4 }}>
       <Stack direction="row" className="onegotextbox">
-        <Typography variant="body1" sx={{ color: bggold }}>
+        {/* <Typography variant="body1" sx={{ color: bggold }}>
           <Box
             component="img"
             src={history}
@@ -82,7 +82,7 @@ const Chart = ({ gid }) => {
             sx={{ marginRight: "10px", filter: 'drop-shadow(2px 4px 6px black)' }}
           ></Box>{" "}
           Statistic(last 100 Periods)
-        </Typography>
+        </Typography> */}
       </Stack>
       <div className="relative !h-[56vh] overflow-auto !w-[100%] no-scrollbar !overflow-x-hidden" >
         <div className="absolute !w-[100%] !bg-red-800 ">
@@ -92,12 +92,12 @@ const Chart = ({ gid }) => {
                 sx={{
                   background: bglightgray,
                   padding: "10px ",
-                  borderBottom: `1px solid ${bgdarkgray}`,
+                  borderBottom: `1px solid ${bggold}`,
                 }}
               >
                 <div className="flex justify-between">
                   <span
-                    style={{ color: 'white', fontWeight: 700, fontSize: '13px' }}
+                    style={{ color: 'white', fontWeight: 500, fontSize: '14px' }}
                   >
                     {i?.gamesno}
                   </span>

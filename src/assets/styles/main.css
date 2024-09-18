@@ -687,7 +687,9 @@ img {
   border-radius: 10px 10px 0 0 !important;
 }
 
-
+.wintable>tbody>tr>td {
+  text-align: center !important;
+}
 
 .wintable>tbody {
   background: #ffffff;
@@ -1895,7 +1897,7 @@ td {
   font-size: 17px !important;
   font-weight: 700 !important;
   text-transform: capitalize !important;
-  padding: 10px !important;
+  padding: 5px !important;
 }
 
 .swiper-button-prev {
