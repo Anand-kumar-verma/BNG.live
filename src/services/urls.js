@@ -3,10 +3,10 @@ export const rupees = "₹";
 export const baseUrl = "http://192.168.18.183:9000";
 export const fron_end_main_domain = "https://bngwin.live";
 
-// export const newdomain1 = "https://api.funxplora.com";
-// export const newdomain = "https://api.funxplora.com";
-export const newdomain1 = "http://192.168.18.183:9000";
-export const newdomain = "http://192.168.18.183:9000";
+export const newdomain1 = "https://api.bngwin.live";
+export const newdomain = "https://api.bngwin.live";
+// export const newdomain1 = "http://192.168.18.183:9000";
+// export const newdomain = "http://192.168.18.183:9000";
 
 export const domain = "https://funxplora-timer.onrender.com";
 export const support_mail = "";
@@ -31,7 +31,12 @@ export const endpoint = {
  vip_income: `${baseUrl}/api/v1/vip-bonus`,
  deposit_bonus: `${baseUrl}/api/v1/get-deposit-bonus-income/`,
  daily_income: `${baseUrl}/api/v1/daily-salary-income`,
- 
+ forget_pass: `${baseUrl}/api/v1/forget-password-send-otp`,
+ otp_verify: `${baseUrl}/api/v1/forget-password-veryfy-otp`,
+ change_password: `${baseUrl}/api/v1/forget-password-change-pass`,
+
+
+
 
 
   userwallet: `${newdomain1}/api/v1/userwallet`,
@@ -50,7 +55,7 @@ export const endpoint = {
   //payment
   payment: `${newdomain1}/api/v1/payment`,
   deposit_history_usdt: `${newdomain1}/api/v1/coin-payment-deposit-history`,
-  withdrawal_request_usdt: `${newdomain1}/api/v1/withdrawl-request`,
+  withdrawal_request_usdt: `${newdomain1}/api/v1/payout-request`,
   withdrawal_address_usdt: `${newdomain1}/api/v1/add-usdt-address`,
   get_address_list: `${newdomain1}/api/v1/usdt-address-record`,
   withdrawl_usdt_history: `${newdomain1}/api/v1/coin-payment-withdrawl-history`,
@@ -97,7 +102,7 @@ export const endpoint = {
   bet_now: `${domain}/api/aviator/bet_now`,
   cash_out: `${domain}/api/aviator/cash_out`,
 
-  change_password: `${newdomain}/api/v1/change-password`,
+  // change_password: `${newdomain}/api/v1/change-password`,
   // deposit_bonus: `${newdomain}/api/v1/self-deposit-bonus`,
   referral_bonus: `${newdomain}/api/v1/sponsor-income`,
   need_to_bet: `${newdomain}/api/v1/need-to-bet`,

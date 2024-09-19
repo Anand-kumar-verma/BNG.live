@@ -64,15 +64,7 @@ function WithdrawalUsdt() {
   const goBack = () => {
     navigate(-1);
   };
-  const { isLoading: loding, data: need_to_bet } = useQuery(
-    ["need_to_bet"],
-    () => NeedToBet(),
-    {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+
   const walletamountFn = async () => {
     try {
       const response = await axios.get(
@@ -104,36 +96,24 @@ function WithdrawalUsdt() {
 
   const initialValues = {
 
-    amount: 920,
-    withdrawal_add: "Select Address",
-    select_wallet: "Select Wallet",
+    request_amount: "",
+    req_type: "",
   };
 
   const fk = useFormik({
     enableReinitialize: true,
     initialValues: initialValues,
     onSubmit: () => {
-
-      if (fk.values.withdrawal_add === "Select Address")
-        return toast("Select Address ");
-      if (Number(fk.values.amount) < 92 * 10 || Number(fk.values.amount) > 500 * 92)
-        return toast("Amount shoulb be minimum $10 and maximum $500");
-
-      if (fk.values.select_wallet === "Select Wallet")
-        return toast("Select Wallet ");
-
       const reqbody = {
-        m_u_id: user_id,
-        withdrawal_add: fk.values.withdrawal_add,
-        m_w_amount: fk.values.amount,
-        select_wallet: fk.values.select_wallet
+        u_user_id: user_id,
+        req_type: fk.values.req_type === "USDT.BEP20" ? "1" : "2",
+        request_amount: fk.values.request_amount,
       }
       // console.log(reqbody)
       withdraw_payment_Function(reqbody)
 
     },
   });
-
   const withdraw_payment_Function = async (reqbody) => {
     setloding(true);
     try {
@@ -142,7 +122,6 @@ function WithdrawalUsdt() {
         walletamountFn();
         fk.handleReset();
         setOpenDialogBox(true);
-
       }
       else {
         fk.handleReset();
@@ -305,17 +284,17 @@ function WithdrawalUsdt() {
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: 'white' }}>
-                    Select address <span className="!text-red-600">*</span>
+                    Select Network / Address <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
                   select
-                  id="withdrawal_add"
-                  name="withdrawal_add"
-                  value={fk.values.withdrawal_add}
+                  id="req_type"
+                  name="req_type"
+                  value={fk.values.req_type}
                   onChange={fk.handleChange}
                   className="withdrawalfield2"
-                  placeholder="Select address"
+                  placeholder="Select address / Network"
                   sx={{
                     background: "white",
                     border: "none",
@@ -336,64 +315,24 @@ function WithdrawalUsdt() {
                   <MenuItem value={"Select Address"} >Select Address</MenuItem>
                   {result?.map((i, index) => {
                     return (
-                      <MenuItem value={i?.usdt_address}>
-                        {i?.usdt_address}
+                      <MenuItem key={index} value={i?.usdt_type}>
+                        {i?.usdt_type} <br /> {i?.usdt_address}
                       </MenuItem>
                     );
                   })}
                 </TextField>
               </FormControl>
-              <Box >
-                <FormControl fullWidth sx={{ mt: "10px" }}>
-                  <Stack direction="row" className="loginlabel">
-                    <Typography variant="h3" sx={{ color: 'white' }}>
-                      Select Wallet <span className="!text-red-600">*</span>
-                    </Typography>
-                  </Stack>
-                  <TextField
-                    select
-                    id="select_wallet"
-                    name="select_wallet"
-                    value={fk.values.select_wallet}
-                    onChange={fk.handleChange}
-                    className="withdrawalfield2"
-                    sx={{
-                      background: "white",
-                      border: "none",
-                      borderRadius: "5px",
-                      padding: '0px',
-                    }}
-                    InputProps={{
-                      style: {
-                        borderWidth: "1px",
-                        color: "black",
-                        borderRadius: "10px",
-                        border: "none",
-                        padding: '10px !important',
-                        '&>div': { padding: '0px !important', },
-                      },
-                    }}
-                  >
-                    <MenuItem value={"Select Wallet"} >Select Wallet</MenuItem>
-                    <MenuItem value="Working Wallet">Working Wallet</MenuItem>
-                    <MenuItem value="Main Wallet">Main Wallet</MenuItem>
-                  </TextField>
-                </FormControl>
-
-              </Box>
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: 'white' }}>
-                    Enter amount <span className="!text-red-600">*</span>
+                    Enter USDT <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
-                  id="amount"
-                  name="amount"
+                  id="request_amount"
+                  name="request_amount"
                   type="number"
-
-
-                  value={fk.values.amount}
+                  value={fk.values.request_amount}
                   onChange={fk.handleChange}
                   placeholder="Enter amount *"
                   className="withdrawalfield2"
@@ -405,12 +344,12 @@ function WithdrawalUsdt() {
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: 'white' }}>
-                    Enter USDT <span className="!text-red-600">*</span>
+                    INR <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
                 <TextField
                   type="number"
-                  value={Number(Number(fk.values.amount) / 92)?.toFixed(4)}
+                  value={Number(Number(fk.values.request_amount) * 92)?.toFixed(4)}
                   placeholder=" 00000 "
                   className="withdrawalfield2"
                 />
@@ -443,39 +382,7 @@ function WithdrawalUsdt() {
               borderRadius: "10px",
               mb: 8,
             }}>
-            <Stack
-              direction="row"
-              alignItems="center"
-              mt={1}
-              className="!text-bold "
-            >
-              {fk.values.select_wallet === "Working Wallet" && (
-                <Typography
-                  variant="body1"
-                  sx={{ color: "white" }}
-                  className="!text-xs"
-                >
-                  * Maximum Amount{" "}
-                  <span className="!text-green-500">
-                    {rupees} {Number(amount?.working_wallet) || 0}
-                  </span>{" "}
-                  can be withdrawl from working wallet.
-                </Typography>
-              )}
-              {fk.values.select_wallet === "Main Wallet" && (
-                <Typography
-                  variant="body1"
-                  sx={{ color: "white" }}
-                  className="!text-xs"
-                >
-                  * Maximum Amount{" "}
-                  <span className="!text-green-500">
-                    {rupees} {need_to_bet?.data?.data * 0.2 || 0}
-                  </span>{" "}
-                  can be withdrawl from winning wallet.
-                </Typography>
-              )}
-            </Stack>
+
             <Stack direction="row" alignItems="center" mt={1} className="!text-bold !text-xl">
               <Typography
                 variant="body1"

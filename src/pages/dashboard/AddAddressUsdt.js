@@ -1,27 +1,25 @@
 
-import HistoryIcon from "@mui/icons-material/History";
-import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import {
     Box,
     Button,
     Container,
     FormControl,
+    MenuItem,
     Stack,
     TextField,
     Typography,
 } from "@mui/material";
 import axios from "axios";
+import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
 import * as React from "react";
 import toast from "react-hot-toast";
-import { NavLink, useNavigate } from "react-router-dom";
-import { bgdarkgray, bggrad, bglightgray, bgtan, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext } from "../../Shared/color";
+import { useQueryClient } from "react-query";
+import { useNavigate } from "react-router-dom";
+import { bgdarkgray, bggrad, bglightgray, bgtan, zubgback, zubgbackgrad, zubgmid, zubgtext } from "../../Shared/color";
+import deposit from "../../assets/check.png";
 import Layout from "../../component/Layout/Layout";
 import { endpoint } from "../../services/urls";
-import CryptoJS from "crypto-js";
-import { useQueryClient } from "react-query";
-import theme from "../../utils/theme";
-import deposit from "../../assets/check.png";
 
 function AddAddressUsdt() {
     const login_data =
@@ -41,18 +39,21 @@ function AddAddressUsdt() {
     };
 
     const initialValues = {
-        address: ""
+        address: "",
+        usdt_type :""
+
     };
     const fk = useFormik({
         initialValues: initialValues,
         onSubmit: () => {
-            if (!fk.values.address) {
+            if (!fk.values.address  ||  !fk.values.usdt_type) {
                 toast.error("Please Enter Address field");
                 return;
             }
             const reqbody = {
-                address: fk.values.address,
-                m_u_id: user_id
+                address: fk.values.address ,
+                m_u_id: user_id,
+                usdt_type :fk.values.usdt_type === "USDT.BEP20" ? "1": "2" 
             }
             withdraw_request_Function(reqbody)
         },
@@ -122,17 +123,41 @@ function AddAddressUsdt() {
 
                             </Stack>
 
+
+
                             <FormControl fullWidth sx={{ mt: "10px" }}>
                                 <Stack direction="row" className="loginlabel">
                                     <Typography variant="h3" sx={{ color: 'white' }}>
-                                        Select Main Network <span className="!text-red-600">*</span>
+                                        Select Network <span className="!text-red-600">*</span>
                                     </Typography>
                                 </Stack>
                                 <TextField
-                                    value=" USDT.BEP20 "
-                                    placeholder=" USDT.BEP20  *"
+                                    select
+                                    id="usdt_type"
+                                    name="usdt_type"
+                                    value={fk.values.usdt_type}
+                                    onChange={fk.handleChange}
                                     className="withdrawalfield2"
-                                />
+                                    sx={{
+                                        background: "white",
+                                        border: "none",
+                                        borderRadius: "5px",
+                                        padding: '0px',
+                                    }}
+                                    InputProps={{
+                                        style: {
+                                            borderWidth: "1px",
+                                            color: "black",
+                                            borderRadius: "10px",
+                                            border: "none",
+                                            padding: '10px !important',
+                                            '&>div': { padding: '0px !important', },
+                                        },
+                                    }}
+                                >
+                                    <MenuItem value="USDT.BEP20">USDT.BEP20</MenuItem>
+                                    <MenuItem value="USDT.TRC20">USDT.TRC20</MenuItem>
+                                </TextField>
                             </FormControl>
 
                             <FormControl fullWidth sx={{ mt: "10px" }} className="!mt-10">

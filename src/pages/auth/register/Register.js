@@ -90,14 +90,14 @@ function Register() {
     const response = await axios.post(endpoint.signup, reqBody);
     if ("Registration Successful." === response?.data?.msg ) {
         toast(response?.data?.msg);
-         const value = CryptoJS.AES.encrypt(
-        JSON.stringify(response?.data),
-        "anand"
-      ).toString();
-      storeCookies()
-      localStorage.setItem("logindataen", value)
-        navigate("/dashboard");  
-        window.location.reload()
+      //    const value = CryptoJS.AES.encrypt(
+      //   JSON.stringify(response?.data),
+      //   "anand"
+      // ).toString();
+      // storeCookies()
+      // localStorage.setItem("logindataen", value)
+        navigate("/");  
+        // window.location.reload()
     } else {
       toast(response?.data?.msg);
     }

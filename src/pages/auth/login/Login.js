@@ -37,7 +37,7 @@ function Login() {
   const [value, setValue] = React.useState("one");
 
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
@@ -142,8 +142,8 @@ function Login() {
         <Stack direction='row' justifyContent={'space-between'} mt={3}>
           <Box
             sx={{ ...flexcoloumcenter, width: "80%", margin: "auto", mt: 3 }}
-            component={NavLink}
-            to="/CustomerService"
+             
+            onClick={()=> navigate('/forget-password')}
           >
             <Lock sx={{ fontSize: "40px", margin: "auto", textAlign: "center", color: theme.palette.primary.main }} />
             <Typography
