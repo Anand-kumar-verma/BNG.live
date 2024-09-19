@@ -32,6 +32,9 @@ import { bgdarkgray, bggold, bggrad, bggray, bglightgray, bgtan, zubgshadow } fr
 import aviator_game_image from "../../assets/aviator_game_image.png";
 import crown1 from "../../assets/crown1.png";
 import crown2 from "../../assets/crown2.png";
+import aviater from "../../assets/images/avioter.png";
+import k3lottery from "../../assets/images/k3lottery.png";
+import fivedlooter from "../../assets/images/5dlottery.png";
 import crown3 from "../../assets/crown3.png";
 import trximg from "../../assets/images/f233fc5431d2b61e65327cc77d9bb1f8.png";
 import stage from "../../assets/images/podium.png";
@@ -71,6 +74,7 @@ import {
   telegram_url,
 } from "../../services/urls";
 import theme from "../../utils/theme";
+import MyModal from '../../Shared/Modal';
 // import Lottery from "./DashboadSubcomponent/Lottery";
 // import Original from "./DashboadSubcomponent/Original";
 // import Sports from "./DashboadSubcomponent/Sports";
@@ -499,15 +503,15 @@ function Dashboard() {
                   </Box>
                   <Box sx={{ ...styles.gamenamebox }}>
                     <Box sx={{ ...flexbetween }}>
-                      <Typography variant="h4" sx={{ fontWeight: '900', color: 'white', fontSize: '25px', }} >Win Go</Typography>
+                      <Typography variant="h4" sx={{ fontWeight: '700', color: 'white', fontSize: '20px', }} >Win Go</Typography>
                       <Button onClick={() => navigate('/win')} variant="text" color="primary" sx={{ ...styles.playbutton }}> Go <StartIcon ml={2} /></Button>
                     </Box>
                     <Box sx={{ ...flexbetween, my: 1, ...styles.maxwin }}>
-                      <Typography variant="body2" sx={{ color: 'white', }} >The Highest Bounus in history</Typography>
-                      <Typography variant="body2" sx={{ color: bggold, fontWeight: '600', color: 'white', fontSize: '18px', }}>98456.66</Typography>
+                      <Typography className='w fp13 fw400 ' sx={{ color: 'white', fontFamily: 'roboto !important' }} >The Highest Bounus in history</Typography>
+                      <Typography variant="body2" sx={{ color: bggold, fontWeight: '500', color: 'white', fontSize: '14px', }}>98456.66</Typography>
                     </Box>
                     <Box sx={{}}>
-                      <Typography variant="body2" sx={{ color: 'white', }} >Through the platform Win Go Hash lottery seed as the result of the lottery
+                      <Typography variant="body2" sx={{ color: 'white', fontFamily: 'roboto !important' }} className='w fp13 fw400 '>Through the platform Win Go Hash lottery seed as the result of the lottery
                       </Typography>
                     </Box>
                   </Box>
@@ -518,15 +522,72 @@ function Dashboard() {
                   </Box>
                   <Box sx={{ ...styles.gamenamebox }}>
                     <Box sx={{ ...flexbetween }}>
-                      <Typography variant="h4" sx={{ fontWeight: '900', color: 'white', fontSize: '25px', }} >TRX</Typography>
+                      <Typography variant="h4" sx={{ fontWeight: '700', color: 'white', fontSize: '20px', }} >TRX</Typography>
                       <Button onClick={() => navigate('/trx')} variant="text" color="primary" sx={{ ...styles.playbutton }}> Go <StartIcon ml={2} /></Button>
                     </Box>
                     <Box sx={{ ...flexbetween, my: 1, ...styles.maxwin }}>
-                      <Typography variant="body2" sx={{ color: 'white', }} >The Highest Bounus in history</Typography>
-                      <Typography variant="body2" sx={{ color: bggold, fontWeight: '600', color: 'white', fontSize: '18px', }}>98456.66</Typography>
+                      <Typography className='w fp13 fw400 ' sx={{ color: 'white', fontFamily: 'roboto !important' }} >The Highest Bounus in history</Typography>
+                      <Typography variant="body2" sx={{ color: bggold, fontWeight: '500', color: 'white', fontSize: '14px', }}>98456.66</Typography>
                     </Box>
                     <Box sx={{}}>
-                      <Typography variant="body2" sx={{ color: 'white', }} >By obtaining the real-time hash value of the TRX blockchain as the result of the lottery
+                      <Typography variant="body2" sx={{ color: 'white', fontFamily: 'roboto !important' }} className='w fp13 fw400 '>By obtaining the real-time hash value of the TRX blockchain as the result of the lottery
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+                <Box sx={{ ...flexbetween, ...styles.gamemenubox }}>
+                  <Box sx={{ ...styles.gameimgbox }}>
+                    <Box component='img' src={aviater} sx={{ ...styles.gameimg }}></Box>
+                  </Box>
+                  <Box sx={{ ...styles.gamenamebox }}>
+                    <Box sx={{ ...flexbetween }}>
+                      <Typography variant="h4" sx={{ fontWeight: '700', color: 'white', fontSize: '20px', }} >Aviator</Typography>
+                      <Button onClick={() => navigate('/trx')} variant="text" color="primary" sx={{ ...styles.playbutton }}> Go <StartIcon ml={2} /></Button>
+                    </Box>
+                    <Box sx={{ ...flexbetween, my: 1, ...styles.maxwin }}>
+                      <Typography className='w fp13 fw400 ' sx={{ color: 'white', fontFamily: 'roboto !important' }} >The Highest Bounus in history</Typography>
+                      <Typography variant="body2" sx={{ color: bggold, fontWeight: '500', color: 'white', fontSize: '14px', }}>98456.66</Typography>
+                    </Box>
+                    <Box sx={{}}>
+                      <Typography variant="body2" sx={{ color: 'white', fontFamily: 'roboto !important' }} className='w fp13 fw400 '>By obtaining the real-time hash value of the TRX blockchain as the result of the lottery
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+                <Box sx={{ ...flexbetween, ...styles.gamemenubox }}>
+                  <Box sx={{ ...styles.gameimgbox }}>
+                    <Box component='img' src={k3lottery} sx={{ ...styles.gameimg }}></Box>
+                  </Box>
+                  <Box sx={{ ...styles.gamenamebox }}>
+                    <Box sx={{ ...flexbetween }}>
+                      <Typography variant="h4" sx={{ fontWeight: '700', color: 'white', fontSize: '20px', }} >K3 lottery</Typography>
+                      <Button onClick={() => navigate('/trx')} variant="text" color="primary" sx={{ ...styles.playbutton }}> Go <StartIcon ml={2} /></Button>
+                    </Box>
+                    <Box sx={{ ...flexbetween, my: 1, ...styles.maxwin }}>
+                      <Typography className='w fp13 fw400 ' sx={{ color: 'white', fontFamily: 'roboto !important' }} >The Highest Bounus in history</Typography>
+                      <Typography variant="body2" sx={{ color: bggold, fontWeight: '500', color: 'white', fontSize: '14px', }}>98456.66</Typography>
+                    </Box>
+                    <Box sx={{}}>
+                      <Typography variant="body2" sx={{ color: 'white', fontFamily: 'roboto !important' }} className='w fp13 fw400 '>By obtaining the real-time hash value of the TRX blockchain as the result of the lottery
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+                <Box sx={{ ...flexbetween, ...styles.gamemenubox }}>
+                  <Box sx={{ ...styles.gameimgbox }}>
+                    <Box component='img' src={fivedlooter} sx={{ ...styles.gameimg }}></Box>
+                  </Box>
+                  <Box sx={{ ...styles.gamenamebox }}>
+                    <Box sx={{ ...flexbetween }}>
+                      <Typography variant="h4" sx={{ fontWeight: '700', color: 'white', fontSize: '20px', }} >5D Lottery</Typography>
+                      <Button onClick={() => navigate('/trx')} variant="text" color="primary" sx={{ ...styles.playbutton }}> Go <StartIcon ml={2} /></Button>
+                    </Box>
+                    <Box sx={{ ...flexbetween, my: 1, ...styles.maxwin }}>
+                      <Typography className='w fp13 fw400 ' sx={{ color: 'white', fontFamily: 'roboto !important' }} >The Highest Bounus in history</Typography>
+                      <Typography variant="body2" sx={{ color: bggold, fontWeight: '500', color: 'white', fontSize: '14px', }}>98456.66</Typography>
+                    </Box>
+                    <Box sx={{}}>
+                      <Typography variant="body2" sx={{ color: 'white', fontFamily: 'roboto !important' }} className='w fp13 fw400 '>By obtaining the real-time hash value of the TRX blockchain as the result of the lottery
                       </Typography>
                     </Box>
                   </Box>
@@ -928,6 +989,7 @@ function Dashboard() {
               </DialogContent>
             </Dialog>
           )} */}
+          <MyModal />
         </Container>
       </Box>
       <CustomCircularProgress isLoading={isLoading || isLoading} />

@@ -12,7 +12,7 @@ const Notification = ({ handleClosepolicy }) => {
         sx={{ "&>p": { color: "white", fontSize: "12px" } }}
       >
         <p className=" pl-10 !text-red-600">
-          ⭐️ FunXplora Operating 5 Years+
+          ⭐️ BNG Game Operating 5 Years+
         </p>
         <p className=" pl-10 !text-red-600">⭐️ High Quality Agent Benefits</p>
         <p className=" pl-10 !text-red-600">⭐️ No.1 Game Platform</p>

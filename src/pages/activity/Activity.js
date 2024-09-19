@@ -11,14 +11,19 @@ import actbanner4 from "../../assets/img/slider4.png";
 import actbanner5 from "../../assets/img/slider5.png";
 import actbanner6 from "../../assets/img/slider6.png";
 import actbanner7 from "../../assets/img/slider8.png";
+import BettingRebate from "../../assets/images/BettingRebate-17d35455.png";
+import invitationBonus from "../../assets/images/invitationBonus-aa7acbd3.png";
 import { bgfootergray } from "../../Shared/color";
 import Layout from "../../component/Layout/Layout";
+import { NavLink } from "react-router-dom";
+import MyModal from "../../Shared/Modal";
 
 
 const style = {
   root: {
     background: bgfootergray,
     pt: 2,
+    mt: '45px',
     px: 1,
     "&>p": { color: "white" },
     "&>p:nth-child(1)": { fontSize: "17px", fontWeight: 600 },
@@ -63,7 +68,7 @@ function Activity() {
       {/* <Box sx={{ background: bgfootergray }}>
         <Box component='img' src={logo} sx={{ width: '120px', margin: 'auto' }}></Box>
       </Box> */}
-      <Box sx={style.root} mt={7}>
+      <Box sx={style.root} >
         <Typography variant="body1" color="initial">
           Activity
         </Typography>
@@ -74,24 +79,35 @@ function Activity() {
           We will launch user feedback activities from time to time
         </Typography>
       </Box>
-      <Stack direction="row" sx={style.act}>
-        <Box sx={style.actimg}>
-          <Box component="img" sx={{ width: "100%" }} src={banner2}></Box>
-          <Typography variant="body1" color="initial">
-            FIRST DEPOSIT BONUS
-          </Typography>
-          <Typography variant="body1" color="initial">
-            The more consecutive days you sign in, the higher the reward will
-            be.
-          </Typography>
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', mt: 2 }}>
+        <Box className="fccc fp13" component={NavLink} to="/activity/InvitationBonus">
+          <Box component='img' sx={{ width: '50px' }} src={invitationBonus}></Box>
+          <Typography className="fp13" sx={{ color: 'white' }}>Invitation </Typography>
+          <Typography className="fp13" sx={{ color: 'white', lineHeight: '10px' }}>bonus</Typography>
         </Box>
-        <Box sx={style.actimg}>
+        <Box className="fccc fp13" component={NavLink} to="/activity/Betting/rebate">
+          <Box component='img' sx={{ width: '50px' }} src={BettingRebate}></Box>
+          <Typography className="fp13" sx={{ color: 'white' }}>Betting </Typography>
+          <Typography className="fp13" sx={{ color: 'white', lineHeight: '10px' }}>rebate</Typography>
+        </Box>
+      </Box>
+      <Stack direction="row" sx={style.act}>
+        <Box sx={style.actimg} component={NavLink} to="/gift">
           <Box component="img" sx={{ width: "100%" }} src={banner1}></Box>
           <Typography variant="body1" color="initial">
             Gifts
           </Typography>
           <Typography variant="body1" color="initial">
             Enter the redemption code to receive gift rewards
+          </Typography>
+        </Box>
+        <Box sx={style.actimg} component={NavLink} to="/activity/DailySignIn">
+          <Box component="img" sx={{ width: "100%" }} src={banner2}></Box>
+          <Typography variant="body1" color="initial">
+            Attendance bonus
+          </Typography>
+          <Typography >
+            The more consecutive days you sign in, the higher the reward will be.
           </Typography>
         </Box>
       </Stack>
@@ -113,7 +129,7 @@ function Activity() {
             src={actbanner2}
           ></Box>
           <Typography variant="body1" color="initial">
-            ZUPEETER CREATIVE VIDEO CONTEST
+            BNG Game CREATIVE VIDEO CONTEST
           </Typography>
         </Box>
         <Box sx={style.actimg2}>
@@ -143,7 +159,7 @@ function Activity() {
             src={actbanner5}
           ></Box>
           <Typography variant="body1" color="initial">
-            BEST PILOT Zupeeter AIRLINES
+            BEST PILOT BNG Game AIRLINES
           </Typography>
         </Box>
         <Box sx={style.actimg2}>
@@ -163,9 +179,10 @@ function Activity() {
             src={actbanner7}
           ></Box>
           <Typography variant="body1" color="initial">
-            ZUPEETER SUPPORT FUNDS
+            BNG Game SUPPORT FUNDS
           </Typography>
         </Box>
+        <MyModal />
       </Stack>
     </Layout >
   );

@@ -44,7 +44,7 @@ const MyHistory = ({ gid }) => {
   return (
     <Box sx={{ pb: 4 }}>
       <Stack direction="row" className="onegotextbox">
-        <Typography variant="body1" sx={{ color: bggold }}>
+        {/* <Typography variant="body1" sx={{ color: bggold }}>
           <Box
             component="img"
             src={history}
@@ -56,7 +56,7 @@ const MyHistory = ({ gid }) => {
             : gid === "2"
               ? " My Three GO Record"
               : " My Five GO Record"}
-        </Typography>
+        </Typography> */}
       </Stack>
       <div className="flex flex-col gap-[2px]">
 

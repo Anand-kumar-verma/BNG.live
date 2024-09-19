@@ -43,29 +43,35 @@ const GameHistory = ({ gid }) => {
     <Box sx={{ pb: 4 }}>
       <Stack direction="row" className="onegotextbox">
         <Typography variant="body1" color="initial" sx={{ color: `${theme.palette.primary.main} !important` }}>
-          <Box component='img' src={history} width={25} sx={{ marginRight: '10px', filter: 'drop-shadow(2px 4px 6px black)' }}></Box>
-          {gid === "1"
+          {/* <Box component='img' src={history} width={25} sx={{ marginRight: '10px', filter: 'drop-shadow(2px 4px 6px black)' }}></Box> */}
+          {/* {gid === "1"
             ? "One GO Record"
             : gid === "2"
               ? "Three Go Record"
-              : "Five Go Record"}
+              : "Five Go Record"} */}
         </Typography>
       </Stack>
       <TableContainer >
-        <Table sx={{ maxWidth: 400, background: bglightgray, color: "white" }} className="wintable" aria-label="simple table">
+        <Table sx={{ maxWidth: 400, color: "white" }} className="wintable" aria-label="simple table">
           <TableHead>
             <TableRow sx={{ borderRadius: '10px 10px 0 0' }}>
-              <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>Period</TableCell>
-              <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>Number</TableCell>
-              <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>Big/Small</TableCell>
-              <TableCell sx={{ padding: ' 10px 5px', fontSize: '13px', fontWeight: 600, }}>Result</TableCell>
+              <TableCell sx={{
+                borderTopLeftRadius: '7px',
+                overflow: 'hidden', padding: ' 10px 5px', fontSize: '14px', fontWeight: 600,
+              }}>Period</TableCell>
+              <TableCell sx={{ padding: ' 10px 5px', fontSize: '14px', fontWeight: 600, }}>Number</TableCell>
+              <TableCell sx={{ padding: ' 10px 5px', fontSize: '14px', fontWeight: 600, }}>Big/Small</TableCell>
+              <TableCell sx={{
+                borderTopRightRadius: '7px',
+                overflow: 'hidden', padding: ' 10px 5px', fontSize: '14px', fontWeight: 600,
+              }}>Result</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {visibleRows?.map((i) => {
               return (
                 <TableRow sx={{ background: bglightgray, }}>
-                  <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 13px', borderBottom: `1px solid ${lightblue}` }}>
+                  <TableCell className="!text-white" sx={{ fontsize: ' 13px', borderBottom: '1px solid transparent', p: 0, }}>
                     <span
                       style={{ color: 'white', fontWeight: 600, fontSize: '12px' }}
                     >
@@ -73,9 +79,10 @@ const GameHistory = ({ gid }) => {
                     </span>
 
                   </TableCell>
-                  <TableCell className="!text-white" sx={{ padding: ' 10px 5px', fontsize: ' 1px', borderBottom: `1px solid ${lightblue}` }}>
+                  <TableCell className="!text-white" sx={{ fontsize: ' 15px !important', borderBottom: '1px solid transparent', p: 0, }}>
                     <span
                       className={`
+fp25 fw700
                 ${(i?.number === "0" &&
                           "!bg-gradient-to-t from-red-500 to-violet-400") ||
                         (i?.number === "5" &&
@@ -102,26 +109,26 @@ const GameHistory = ({ gid }) => {
                       {i?.number}
                     </span>
                   </TableCell>
-                  <TableCell sx={{ padding: ' 10px 5px', fontSize: '12px', fontWeight: '700', borderBottom: `1px solid ${lightblue}` }}
-                    className={`${Number(i?.number) <= 4
-                      ? "!bg-gradient-to-l !from-[#FE63FF] !to-violet-600"
-                      : "!bg-gradient-to-l !from-[#FE63FF] !to-green-600"
-                      }  transparentColor `}
+                  <TableCell sx={{ fontSize: '12px', fontWeight: '400', color: 'white', borderBottom: '1px solid transparent', p: 0, }}
+                  // className={`${Number(i?.number) <= 4
+                  //   ? "!bg-gradient-to-l !from-[#FE63FF] !to-violet-600"
+                  //   : "!bg-gradient-to-l !from-[#FE63FF] !to-green-600"
+                  //   }  transparentColor `}
                   >
                     {Number(i?.number) <= 4 ? "SMALL" : "BIG"}
                   </TableCell>
-                  <TableCell sx={{ padding: ' 10px 5px', borderBottom: `1px solid ${lightblue}` }}>
+                  <TableCell sx={{ borderBottom: '1px solid transparent', p: 0, }} className="fcc">
                     {i?.number === "0" || i?.number === "5" ? (
                       <div className="!flex !gap-1">
                         <div
-                          className={`!w-[15px] !h-[15px] !rounded-full ${(i?.number === "0" &&
+                          className={`!w-[10px] !h-[10px] !rounded-full ${(i?.number === "0" &&
                             " bg-[#be4345]") ||
                             (i?.number === "5" &&
                               "bg-[#249357]")
                             }`}
                         ></div>
                         <div
-                          className={`!w-[15px] !h-[15px] !rounded-full ${(i?.number === "0" &&
+                          className={`!w-[10px] !h-[10px] !rounded-full ${(i?.number === "0" &&
                             "bg-[#b065e9]") ||
                             (i?.number === "5" &&
                               "bg-[#b065e9]")
@@ -136,7 +143,7 @@ const GameHistory = ({ gid }) => {
                           i?.number === "9" ||
                           i?.number === "10") && (
                             <div
-                              className={`!w-[15px] !h-[15px] !rounded-full ${(i?.number === "1" ||
+                              className={`!w-[10px] !h-[10px] !rounded-full ${(i?.number === "1" ||
                                 i?.number === "3" ||
                                 i?.number === "7" ||
                                 i?.number === "9" ||
@@ -151,7 +158,7 @@ const GameHistory = ({ gid }) => {
                             i?.number === "8" ||
                             i?.number === "30") && (
                               <div
-                                className={`!w-[15px] !h-[15px] !rounded-full ${(i?.number === "2" ||
+                                className={`!w-[10px] !h-[10px] !rounded-full ${(i?.number === "2" ||
                                   i?.number === "4" ||
                                   i?.number === "6" ||
                                   i?.number === "8" ||
@@ -161,7 +168,7 @@ const GameHistory = ({ gid }) => {
                               ></div>
                             )) || (
                             <div
-                              className={`!w-[15px] !h-[15px] !rounded-full ${(i?.number === "50" && "bg-[#68A1ED]") ||
+                              className={`!w-[10px] !h-[10px] !rounded-full ${(i?.number === "50" && "bg-[#68A1ED]") ||
                                 (i?.number === "40" && "bg-[#D8B23E]") ||
                                 (i?.number === "20" && "bg-[#FE63FF]")
                                 }`}

@@ -106,7 +106,7 @@ function AddBankDetails() {
       >
         <Box sx={style.header}>
           <Box component={NavLink} onClick={goBack}>
-            <KeyboardArrowLeftOutlinedIcon />
+            <KeyboardArrowLeftOutlinedIcon sx={{ color: bgtan }} />
           </Box>
           <Typography variant="body1" sx={{ color: bgtan }}>
             Add Bank Details
@@ -294,10 +294,8 @@ const style = {
       fontSize: "20px",
       fontWeight: "600",
       textAlign: "center",
-      color: "white",
     },
     "& > a > svg": {
-      color: "white",
       fontSize: "35px",
     },
   },

@@ -21,6 +21,7 @@ import money from "../../assets/images/salary.png";
 import Layout from "../../component/Layout/Layout";
 import { walletamount, yesterdayFn } from "../../services/apicalling";
 import { fron_end_main_domain } from "../../services/urls";
+import MyModal from "../../Shared/Modal";
 
 function Promotion() {
   const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
@@ -146,6 +147,19 @@ function Promotion() {
                   Deposit amount
                 </Typography>
               </Box>
+              <Box sx={style.subcordinatelist}>
+                <Typography
+                  variant="body1"
+                  className="!text-white"
+
+                >
+                  0
+                </Typography>
+                <Typography
+                  variant="body1" >
+                  No of people making first deposit
+                </Typography>
+              </Box>
             </Box>
 
             <Box sx={style.innerBoxStylestwo}>
@@ -178,7 +192,111 @@ function Promotion() {
                   Deposit amount
                 </Typography>
               </Box>
+              <Box sx={style.subcordinatelist}>
+                <Typography
+                  variant="body1"
+                  className="!text-white"
 
+                >
+                  0
+                </Typography>
+                <Typography
+                  variant="body1" >
+                  No of people making first deposit
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+        <Box sx={style.subcordinateBox}>
+          <Stack direction="row" sx={{ width: "100%" }}>
+            <Box sx={style.subordinatesleft2}>
+              <EmojiPeopleOutlinedIcon />
+              <Typography variant="body1" >
+                Total commission
+              </Typography>
+            </Box>
+
+          </Stack>
+          <Box sx={style.boxStyles}>
+            <Box sx={style.innerBoxStyles}>
+              <Box sx={style.subcordinatelist}>
+                <Typography
+                  variant="body1"
+                  className="!text-white"
+
+                >
+                  0
+                </Typography>
+                <Typography
+                  variant="body1"
+                >
+                  Direct subordinates
+                </Typography>
+              </Box>
+              <Box sx={style.subcordinatelist} mt={3}>
+                <Typography
+                  variant="body1"
+                  className="!text-white"
+
+                >
+                  0
+                </Typography>
+                <Typography
+                  variant="body1"
+
+                >
+                  Total salary
+                </Typography>
+              </Box>
+              <Box sx={style.subcordinatelist}>
+                <Typography
+                  variant="body1"
+                  className="!text-white"
+
+                >
+                  0
+                </Typography>
+                <Typography
+                  variant="body1" >
+                  Today salary
+                </Typography>
+              </Box>
+            </Box>
+
+            <Box sx={style.innerBoxStylestwo}>
+              <Box sx={style.subcordinatelist}>
+                <Typography variant="body1"
+                  className="!text-white">
+                  0
+                </Typography>
+                <Typography variant="body1" >
+
+                  Total No of subordinates in the team
+                </Typography>
+              </Box>
+              <Box sx={style.subcordinatelist}>
+                <Typography variant="body1"
+                  className="!text-white" >
+                  0
+                </Typography>
+                <Typography variant="body1" >
+                  Today withdrawal
+                </Typography>
+              </Box>
+              <Box sx={style.subcordinatelist}>
+                <Typography
+                  variant="body1"
+                  className="!text-white"
+
+                >
+                  0
+                </Typography>
+                <Typography
+                  variant="body1" >
+                  Total withdrawal
+                </Typography>
+              </Box>
             </Box>
           </Box>
           <Box sx={style.invitebtn}>
@@ -358,6 +476,7 @@ function Promotion() {
             </div>
           </Dialog>
         )} */}
+        <MyModal />
       </Container>
     </Layout>
   );
@@ -418,6 +537,20 @@ const style = {
     "&>svg": { color: "black", fontSize: "25px", marginRight: "10px" },
     "&>p": { color: "black", fontSize: "14px", fontWeight: "500" },
   },
+  subordinatesleft2: {
+    width: "100%",
+    textAlign: "center",
+    py: 1,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: zubgtext,
+    borderTopLeftRadius: "10px",
+    borderTopRightRadius: "10px",
+    borderRight: "2px solid black",
+    "&>svg": { color: "black", fontSize: "25px", marginRight: "10px" },
+    "&>p": { color: "black", fontSize: "14px", fontWeight: "500" },
+  },
   subordinatesRight: {
     width: "50%",
     textAlign: "center",
@@ -435,7 +568,7 @@ const style = {
     // backgroundRepeat: 'no-repeat',
     // backgroundSize: '100% 100%',
     background: bglightgray,
-    padding: "30px 15px",
+    padding: "15px 15px",
     display: "flex",
     borderRadius: " 0px 0px 10px 10px",
   },
@@ -454,7 +587,7 @@ const style = {
   },
   subcordinateBox: {
     width: "100%",
-    padding: "20px 10px",
+    padding: "10px 10px",
     background: bgdarkgray,
   },
   invitebutton: {

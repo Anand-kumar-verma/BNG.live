@@ -40,7 +40,7 @@ const GameHistory = ({ gid }) => {
   return (
     <Box sx={{ pb: 4 }}>
       <Stack direction="row" className="onegotextbox">
-        <Typography variant="body1" sx={{ color: bggold }}>
+        {/* <Typography variant="body1" sx={{ color: bggold }}>
           <Box
             component="img"
             src={history}
@@ -55,7 +55,7 @@ const GameHistory = ({ gid }) => {
             : gid === "2"
               ? "Three Go Record"
               : "Five Go Record"}
-        </Typography>
+        </Typography> */}
       </Stack>
       <TableContainer sx={{ borderRadius: "7px" }}>
         {/* <Table
@@ -211,24 +211,24 @@ const GameHistory = ({ gid }) => {
       </TableContainer>
       <div className={`!w-full !text-[${zubgback}]   rounded-t-lg`}>
         <div
-          className="!w-full !text-[13px] !grid !grid-cols-8 !place-items-center !py-5 
+          className="!w-full !text-[13px] !grid !grid-cols-8 !place-items-center !px-2 py-4 
         !bg-[#3A3947] rounded-t-lg !text-white"
         >
-          <p className="!col-span-2">Period</p>
-          <p className="!col-span-2">Block No.</p>
-          <p className="!col-span-2">Block Time</p>
-          <p>Hash</p>
-          <p>Result</p>
+          <p className="fw600 !col-span-1">Period</p>
+          <p className="fw600 !col-span-2">Block height</p>
+          <p className="fw600 !col-span-2">Block Time</p>
+          <p className="fw600 !col-span-2">Hash value</p>
+          <p className="fw600 !col-span-1">Result</p>
         </div>
         <div className={`!w-full`}>
           {visibleRows?.map((i) => {
             return (
               <>
-                <div className="!w-full !p-3 !grid !grid-cols-8  !place-items-center !text-[12px] !bg-[#333332]">
-                  <p className="!col-span-2 !text-[#8f5206] !font-semibold !text-[13px]">
+                <div className="!w-full  !grid !grid-cols-12  !place-items-center !text-[12px] !bg-[#333332] !px-2 !py-1 ">
+                  <p className="!col-span-2 !text-[#ffffff] !font-semibold !text-[13px] bdg" >
                     {i?.tr_transaction_id}
                   </p>
-                  <p className="!col-span-2 !flex gap-[1px]">
+                  <p className="!col-span-3 !flex gap-[1px] fccc ">
                     <span style={{ color: "white" }} >
                       <LiveHelpIcon
                         className="!text-[#FBA343] cursor-pointer !text-[16px]"
@@ -247,11 +247,11 @@ const GameHistory = ({ gid }) => {
                       {i?.tr_number}
                     </span>
                   </p>
-                  <p className="!col-span-2" style={{ color: "white" }}>{i?.tr_block_time}</p>
-                  <p style={{ color: "white" }}>{i?.tr_hashno}</p>
-                  <div className="!flex !gap-[1px]  !items-center !pl-4">
+                  <p className="!col-span-3 bdg" style={{ color: "white" }}>{i?.tr_block_time}</p>
+                  <p className="bdg !col-span-3" style={{ color: "white" }}>{i?.tr_hashno}</p>
+                  <div className="!flex !gap-[1px]  !items-center ">
                     <p
-                      className={`
+                      className={` bdg
                       ${(String(Number(i?.tr41_slot_id)) === "0" &&
                           "!bg-gradient-to-t from-red-400 to-violet-400") ||
                         (String(Number(i?.tr41_slot_id)) === "5" &&
@@ -288,7 +288,7 @@ const GameHistory = ({ gid }) => {
                     </p>
                   </div>
                 </div>
-                <div className="!w-full !h-[1px] !bg-[#242424]"></div>
+                {/* <div className="!w-full !h-[1px] !bg-[#242424]"></div> */}
               </>
             );
           })}
