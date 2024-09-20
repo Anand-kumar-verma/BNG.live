@@ -50,16 +50,9 @@ import wingo from "../../assets/images/wingo.png";
 import customer from "../../assets/img/customer care.png";
 import download from "../../assets/img/download btn.png";
 import logo from "../../assets/img/logo.png";
-import slider10 from "../../assets/img/slider 10.png";
-import slider7 from "../../assets/img/slider 7.png";
-import slider1 from "../../assets/img/slider1.png";
-import slider2 from "../../assets/img/slider2.png";
-import slider3 from "../../assets/img/slider3.png";
-import slider4 from "../../assets/img/slider4.png";
-import slider5 from "../../assets/img/slider5.png";
-import slider6 from "../../assets/img/slider6.png";
-import slider8 from "../../assets/img/slider8.png";
-import slider9 from "../../assets/img/slider9.png";
+import slider1 from "../../assets/img/banner1.png";
+import slider2 from "../../assets/img/banner2.jpg";
+import slider3 from "../../assets/img/banner3.jpg";
 import place1 from "../../assets/place1.png";
 import place2 from "../../assets/place2.png";
 import place3 from "../../assets/place3.png";
@@ -240,34 +233,6 @@ function Dashboard() {
               <SwiperSlide sx={styles.sliderbox}>
                 {" "}
                 <Box component="img" src={slider3} sx={styles.sliderimg}></Box>
-              </SwiperSlide>
-              <SwiperSlide sx={styles.sliderbox}>
-                {" "}
-                <Box component="img" src={slider4} sx={styles.sliderimg}></Box>
-              </SwiperSlide>
-              <SwiperSlide sx={styles.sliderbox}>
-                {" "}
-                <Box component="img" src={slider5} sx={styles.sliderimg}></Box>
-              </SwiperSlide>
-              <SwiperSlide sx={styles.sliderbox}>
-                {" "}
-                <Box component="img" src={slider6} sx={styles.sliderimg}></Box>
-              </SwiperSlide>
-              <SwiperSlide sx={styles.sliderbox}>
-                {" "}
-                <Box component="img" src={slider7} sx={styles.sliderimg}></Box>
-              </SwiperSlide>
-              <SwiperSlide sx={styles.sliderbox}>
-                {" "}
-                <Box component="img" src={slider8} sx={styles.sliderimg}></Box>
-              </SwiperSlide>
-              <SwiperSlide sx={styles.sliderbox}>
-                {" "}
-                <Box component="img" src={slider9} sx={styles.sliderimg}></Box>
-              </SwiperSlide>
-              <SwiperSlide sx={styles.sliderbox}>
-                {" "}
-                <Box component="img" src={slider10} sx={styles.sliderimg}></Box>
               </SwiperSlide>
               <div
                 className="autoplay-progress"
@@ -858,10 +823,10 @@ function Dashboard() {
                       <p className="!flex !flex-col" style={{ color: "white" }}>
                         {i?.email
                           ? i.email.split("@")[0].substring(0, 2) +
-                            "**" +
-                            (i.email.split("@")[0].length > 2
-                              ? i.email.split("@")[0].substring(2, 4)
-                              : "")
+                          "**" +
+                          (i.email.split("@")[0].length > 2
+                            ? i.email.split("@")[0].substring(2, 4)
+                            : "")
                           : "**"}
                       </p>
                     </Typography>
@@ -920,14 +885,14 @@ function Dashboard() {
                   <Typography variant="body1" sx={{ color: bgdarkgray }}>
                     {winnner_data?.[1]?.email
                       ? winnner_data?.[1]?.email
+                        ?.split("@")?.[0]
+                        ?.substring(0, 2) +
+                      "**" +
+                      (winnner_data?.[1]?.email?.split("@")?.[0]?.length > 2
+                        ? winnner_data?.[1]?.email
                           ?.split("@")?.[0]
-                          ?.substring(0, 2) +
-                        "**" +
-                        (winnner_data?.[1]?.email?.split("@")?.[0]?.length > 2
-                          ? winnner_data?.[1]?.email
-                              ?.split("@")?.[0]
-                              ?.substring(2, 4)
-                          : "")
+                          ?.substring(2, 4)
+                        : "")
                       : "**"}
                   </Typography>
                   <Typography variant="body1" sx={styles.winningamount}>
@@ -964,14 +929,14 @@ function Dashboard() {
                   <Typography variant="body1">
                     {winnner_data?.[0]?.email
                       ? winnner_data?.[0]?.email
+                        ?.split("@")?.[0]
+                        ?.substring(0, 2) +
+                      "**" +
+                      (winnner_data?.[0]?.email?.split("@")?.[0]?.length > 2
+                        ? winnner_data?.[0]?.email
                           ?.split("@")?.[0]
-                          ?.substring(0, 2) +
-                        "**" +
-                        (winnner_data?.[0]?.email?.split("@")?.[0]?.length > 2
-                          ? winnner_data?.[0]?.email
-                              ?.split("@")?.[0]
-                              ?.substring(2, 4)
-                          : "")
+                          ?.substring(2, 4)
+                        : "")
                       : "**"}
                   </Typography>
                   <Typography variant="body1" sx={styles.winningamount}>
@@ -1008,14 +973,14 @@ function Dashboard() {
                   <Typography variant="body1">
                     {winnner_data?.[2]?.email
                       ? winnner_data?.[2]?.email
+                        ?.split("@")?.[0]
+                        ?.substring(0, 2) +
+                      "**" +
+                      (winnner_data?.[2]?.email?.split("@")?.[0]?.length > 2
+                        ? winnner_data?.[2]?.email
                           ?.split("@")?.[0]
-                          ?.substring(0, 2) +
-                        "**" +
-                        (winnner_data?.[2]?.email?.split("@")?.[0]?.length > 2
-                          ? winnner_data?.[2]?.email
-                              ?.split("@")?.[0]
-                              ?.substring(2, 4)
-                          : "")
+                          ?.substring(2, 4)
+                        : "")
                       : "**"}
                   </Typography>
                   <Typography variant="body1" sx={styles.winningamount}>
@@ -1051,10 +1016,10 @@ function Dashboard() {
                     <p className="!flex !flex-col" style={{ color: "white" }}>
                       {i?.email
                         ? i.email.split("@")[0].substring(0, 2) +
-                          "**" +
-                          (i.email.split("@")[0].length > 2
-                            ? i.email.split("@")[0].substring(2, 4)
-                            : "")
+                        "**" +
+                        (i.email.split("@")[0].length > 2
+                          ? i.email.split("@")[0].substring(2, 4)
+                          : "")
                         : "**"}
                     </p>
                   </Typography>
