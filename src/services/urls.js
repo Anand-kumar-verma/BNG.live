@@ -35,6 +35,8 @@ export const endpoint = {
   otp_verify: `${baseUrl}/api/v1/forget-password-veryfy-otp`,
   change_password: `${baseUrl}/api/v1/forget-password-change-pass`,
   forget_password: `${baseUrl}/api/v1/change-password`,
+  Qr_address: `${newdomain1}/api/v1/admin-qr-address`,
+
 
   userwallet: `${newdomain1}/api/v1/userwallet`,
   get_yesterday_deposit_withdrawl_by_treamFn: `${newdomain1}/api/v1/get_yesterday_deposit_withdrawl_by_treamFn`,
@@ -56,6 +58,7 @@ export const endpoint = {
   withdrawal_address_usdt: `${newdomain1}/api/v1/add-usdt-address`,
   get_address_list: `${newdomain1}/api/v1/usdt-address-record`,
   withdrawl_usdt_history: `${newdomain1}/api/v1/coin-payment-withdrawl-history`,
+  payment_deposite: `${newdomain}/api/v1/payin-request`,
 
   check_result: `${baseUrl}/api/checkresult`,
   color_winning: `${baseUrl}/api/colour_winning`,
