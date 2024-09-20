@@ -2,7 +2,20 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import CachedIcon from "@mui/icons-material/Cached";
 import HistoryIcon from "@mui/icons-material/History";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
-import { Box, Button, Container, Dialog, FormControl, IconButton, InputAdornment, MenuItem, OutlinedInput, Stack, TextField, Typography, } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Dialog,
+  FormControl,
+  IconButton,
+  InputAdornment,
+  MenuItem,
+  OutlinedInput,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
 import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
@@ -12,7 +25,14 @@ import { useQuery } from "react-query";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { withdraw_amount_validation_schema } from "../../Shared/Validation";
-import { bggrad, bglightgray, zubgback, zubgbackgrad, zubgmid, zubgtext } from "../../Shared/color";
+import {
+  bggrad,
+  bglightgray,
+  zubgback,
+  zubgbackgrad,
+  zubgmid,
+  zubgtext,
+} from "../../Shared/color";
 import cip from "../../assets/images/cash2.png";
 import logo1 from "../../assets/images/logotwhite.png";
 import balance from "../../assets/images/send.png";
@@ -22,12 +42,11 @@ import bg from "../../assets/img/download.png";
 // import usdt from "../../assets/payNameIcon1.png";
 import BEP20 from "../../assets/images/bep20.jpg";
 import Layout from "../../component/Layout/Layout";
-import { BankListDetails, NeedToBet, } from "../../services/apicalling";
+import { BankListDetails, NeedToBet } from "../../services/apicalling";
 import { endpoint, rupees } from "../../services/urls";
 import theme from "../../utils/theme";
 
 function Withdrawl() {
-
   const location = useLocation();
   const [showoldPassword, setShowoldPassword] = React.useState(false);
   const handleClickShowoldPassword = () => setShowoldPassword((show) => !show);
@@ -130,7 +149,7 @@ function Withdrawl() {
       fd.append("password", fk.values.password);
       fd.append("select_wallet", fk.values.select_wallet);
 
-      withdraw_payment_Function(fd)
+      withdraw_payment_Function(fd);
     },
   });
 
@@ -165,7 +184,6 @@ function Withdrawl() {
     }
     setloding(false);
   };
-
 
   return (
     <Layout header={false}>
@@ -204,9 +222,9 @@ function Withdrawl() {
             width: "95%",
             margin: "auto",
             position: "relative",
-            background: '#d9ac4f87',
+            background: "#d9ac4f87",
             backgroundImage: `url(${bg})`,
-            backgroundSize: '100% 100%',
+            backgroundSize: "100% 100%",
           }}
         >
           <Stack
@@ -247,8 +265,8 @@ function Withdrawl() {
               {type
                 ? Number(amount?.cricket_wallet || 0).toFixed(2)
                 : Number(
-                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)
-                )?.toFixed(2)}
+                    Number(amount?.wallet || 0) + Number(amount?.winning || 0)
+                  )?.toFixed(2)}
             </Typography>
             <CachedIcon
               sx={{
@@ -287,23 +305,75 @@ function Withdrawl() {
                 zIndex: 10,
               }}
             >
-              <Box component={'img'} src={logo1} sx={{ width: '90px' }}></Box>
+              <Box component={"img"} src={logo1} sx={{ width: "90px" }}></Box>
             </Typography>
           </Stack>
         </Box>
         <Box>
-
           <Box className="fccsb w95" mt={2}>
-            <Box sx={{ width: '48%', background: '#FFFFFF', borderRadius: "5px" }} className="fccc" component={NavLink} onClick={() => navigate("/Withdrawal")}>
-              <Box component="img" src={cip} sx={{ width: "120px", height: '55px', borderRadius: "10px", pt: 1, px: 1, }}></Box>
-              <Typography className="fp13 " sx={{ fontWeight: 'bolder', borderRadius: "0px 0px  5px 5px", background: bggrad, width: '100%', py: 1, textAlign: 'center', fontFamily: 'roboto !important' }} mt={1}>
+            <Box
+              sx={{ width: "48%", background: "#FFFFFF", borderRadius: "5px" }}
+              className="fccc"
+              component={NavLink}
+              onClick={() => navigate("/Withdrawal")}
+            >
+              <Box
+                component="img"
+                src={cip}
+                sx={{
+                  width: "120px",
+                  height: "55px",
+                  borderRadius: "10px",
+                  pt: 1,
+                  px: 1,
+                }}
+              ></Box>
+              <Typography
+                className="fp13 "
+                sx={{
+                  fontWeight: "bolder",
+                  borderRadius: "0px 0px  5px 5px",
+                  background: bggrad,
+                  width: "100%",
+                  py: 1,
+                  textAlign: "center",
+                  fontFamily: "roboto !important",
+                }}
+                mt={1}
+              >
                 Bank Card
               </Typography>
             </Box>
-            <Box sx={{ width: '48%', background: '#1B0E1F', borderRadius: "5px", }} className="fccc" onClick={() => navigate("/Withdrawalusdt")}>
-              <Box component="img" src={BEP20} sx={{ width: "100%", height: '55px', borderRadius: "10px", pt: 1, px: 1, }}></Box>
-              <Typography className="fp13 " sx={{ fontWeight: 'bolder', borderRadius: "0px 0px  5px 5px", background: bggrad, width: '100%', py: 1, textAlign: 'center', fontFamily: 'roboto !important' }} mt={1}>
-                USDT  BEP 20
+            <Box
+              sx={{ width: "48%", background: "#1B0E1F", borderRadius: "5px" }}
+              className="fccc"
+              onClick={() => navigate("/Withdrawalusdt")}
+            >
+              <Box
+                component="img"
+                src={BEP20}
+                sx={{
+                  width: "100%",
+                  height: "55px",
+                  borderRadius: "10px",
+                  pt: 1,
+                  px: 1,
+                }}
+              ></Box>
+              <Typography
+                className="fp13 "
+                sx={{
+                  fontWeight: "bolder",
+                  borderRadius: "0px 0px  5px 5px",
+                  background: bggrad,
+                  width: "100%",
+                  py: 1,
+                  textAlign: "center",
+                  fontFamily: "roboto !important",
+                }}
+                mt={1}
+              >
+                USDT BEP 20
               </Typography>
             </Box>
           </Box>
@@ -368,13 +438,13 @@ function Withdrawl() {
                   onChange={fk.handleChange}
                   placeholder="Enter amount *"
                   className="withdrawalfield2"
-                // onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                  // onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                 />
                 {fk.touched.amount && fk.errors.amount && (
                   <div className="error">{fk.errors.amount}</div>
                 )}
               </FormControl>
-              <Box mt={3}>
+              {/* <Box mt={3}>
                 <FormControl fullWidth sx={{ mt: "10px" }}>
                   <Stack direction="row" className="loginlabel">
                     <Typography variant="h3" sx={{ color: "white" }}>
@@ -392,7 +462,7 @@ function Withdrawl() {
                       background: "white",
                       border: "none",
                       borderRadius: "5px",
-                      padding: '0px',
+                      padding: "0px",
                     }}
                     InputProps={{
                       style: {
@@ -401,8 +471,8 @@ function Withdrawl() {
                         background: "red !important",
                         borderRadius: "10px",
                         border: "none",
-                        padding: '10px !important',
-                        '&>div': { padding: '0px !important', },
+                        padding: "10px !important",
+                        "&>div": { padding: "0px !important" },
                       },
                     }}
                   >
@@ -413,7 +483,7 @@ function Withdrawl() {
                 {fk.touched.select_wallet && fk.errors.select_wallet && (
                   <div className="error">{fk.errors.select_wallet}</div>
                 )}
-              </Box>
+              </Box> */}
 
               <Box mt={3}>
                 <FormControl fullWidth>
@@ -515,11 +585,12 @@ function Withdrawl() {
                   sx={{ color: "white" }}
                   className="!text-xs"
                 >
-                  * Maximum Amount{" "}
+                  * Need to play Amount{" "}
                   <span className="!text-green-500">
-                    {rupees} {need_to_bet?.data?.data * 0.2 || 0}
+                    {rupees}{" "}
+                    {need_to_bet?.data?.data <= 0 ? 0 : need_to_bet?.data?.data}
                   </span>{" "}
-                  can be withdrawl from winning wallet.
+                  for withdrawl from winning wallet.
                 </Typography>
               )}
             </Stack>
@@ -628,7 +699,7 @@ function Withdrawl() {
           </div>
         </Dialog>
       </Container>
-    </Layout >
+    </Layout>
   );
 }
 

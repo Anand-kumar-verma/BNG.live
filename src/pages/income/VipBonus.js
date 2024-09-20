@@ -7,19 +7,25 @@ import {
   TableCell,
   TableHead,
   TablePagination,
-  TableRow
+  TableRow,
 } from "@mui/material";
 import moment from "moment";
 import * as React from "react";
 import { useQuery } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { bgdarkgray, bgtan, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext } from "../../Shared/color";
+import {
+  bgdarkgray,
+  bgtan,
+  zubgback,
+  zubgbackgrad,
+  zubgmid,
+  zubgshadow,
+  zubgtext,
+} from "../../Shared/color";
 import nodatafoundimage from "../../assets/images/nodatafoundimage.png";
 import Layout from "../../component/Layout/Layout";
-import {
-  VipIncomeFn
-} from "../../services/apicalling";
+import { VipIncomeFn } from "../../services/apicalling";
 
 function VipBonus() {
   const navigate = useNavigate();
@@ -30,15 +36,11 @@ function VipBonus() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const { isLoading, data } = useQuery(
-    ["vip_bonus"],
-    () => VipIncomeFn(),
-    {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-refetchOnWindowFocus:false
-    }
-  );
+  const { isLoading, data } = useQuery(["vip_bonus"], () => VipIncomeFn(), {
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+  });
   const res = data?.data?.data;
 
   const handleChangePage = (event, newPage) => {
@@ -52,13 +54,9 @@ refetchOnWindowFocus:false
 
   React.useEffect(() => {
     setVisibleRows(
-      res?.slice(
-        page * rowsPerPage,
-        page * rowsPerPage + rowsPerPage
-      )
+      res?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
     );
   }, [page, rowsPerPage, res]);
-
 
   if (!isLoading && !res)
     return (
@@ -76,7 +74,7 @@ refetchOnWindowFocus:false
             <Box component={NavLink} onClick={goBack}>
               <KeyboardArrowLeftOutlinedIcon style={{ color: bgtan }} />
             </Box>
-            <p style={{ color: bgtan }}>Vip  Income</p>
+            <p style={{ color: bgtan }}>Vip Income</p>
           </Box>
           <div>
             <img className="" src={nodatafoundimage} />
@@ -103,26 +101,67 @@ refetchOnWindowFocus:false
           <p style={{ color: bgtan }}>Vip Income</p>
           <Box></Box>
         </Box>
-        <div className="!overflow-x-auto" style={{ width: "95%", marginLeft: '2.5%', marginTop: '16px', }}>
+        <div
+          className="!overflow-x-auto"
+          style={{ width: "95%", marginLeft: "2.5%", marginTop: "16px" }}
+        >
           <Table sx={{ background: bgdarkgray, boxShadow: zubgshadow }}>
             <TableHead>
-              <TableRow >
-                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r  !text-center !border-b !border-white">S.No</TableCell>
-                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Date/Time</TableCell>
-                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Amount</TableCell>
-                <TableCell sx={{ color: 'white' }} className="!font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Transaction Type</TableCell>
+              <TableRow>
+                <TableCell
+                  sx={{ color: "white" }}
+                  className=" !font-bold !border !text-xs !border-r  !text-center !border-b !border-white"
+                >
+                  S.No
+                </TableCell>
+                <TableCell
+                  sx={{ color: "white" }}
+                  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white"
+                >
+                  Date/Time
+                </TableCell>
+                <TableCell
+                  sx={{ color: "white" }}
+                  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white"
+                >
+                  Amount
+                </TableCell>
+                <TableCell
+                  sx={{ color: "white" }}
+                  className="!font-bold !border !text-xs !border-r !text-center  !border-b !border-white"
+                >
+                  Transaction Type
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {visibleRows?.map((i, index) => (
                 <TableRow key={i?.id}>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{index + 1}</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">
+                  <TableCell
+                    sx={{ color: "white" }}
+                    className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white"
+                  >
+                    {index + 1}
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "white" }}
+                    className="!border !border-r !text-xs !text-center  !border-b !border-white"
+                  >
                     {moment(i?.l01_date).format("DD-MM-YYYY HH:mm:ss")}
                   </TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{i?.l01_amount}</TableCell>
-                 
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !border-b !border-white">{i?.l01_transection_type}</TableCell>
+                  <TableCell
+                    sx={{ color: "white" }}
+                    className="!border !border-r !text-xs !text-center  !border-b !border-white"
+                  >
+                    {i?.l01_amount}
+                  </TableCell>
+
+                  <TableCell
+                    sx={{ color: "white" }}
+                    className="!border !border-r !text-xs !text-center !border-b !border-white"
+                  >
+                    {i?.l01_transection_type}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -148,7 +187,6 @@ refetchOnWindowFocus:false
         </div>
       </Container>
     </Layout>
-
   );
 }
 
@@ -239,8 +277,3 @@ const style = {
     "&>p": { marginLeft: "10px", color: "white !important", fontSize: "14px" },
   },
 };
-
-
-
-
-
