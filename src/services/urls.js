@@ -8,7 +8,7 @@ export const newdomain = "https://api.bngwin.live";
 // export const newdomain1 = "http://192.168.18.183:9000";
 // export const newdomain = "http://192.168.18.183:9000";
 
-export const domain = "https://funxplora-timer.onrender.com";
+export const domain = "https://bng-live-timer.onrender.com";
 export const support_mail = "";
 export const telegram_url = "";
 export const facebook_url = "";
