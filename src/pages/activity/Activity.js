@@ -4,13 +4,9 @@ import React, { useEffect } from "react";
 import banner2 from "../../assets/images/giftRedeem.png";
 import banner1 from "../../assets/images/signInBanner.png";
 import logo from '../../assets/img/logo.png';
-import actbanner1 from "../../assets/img/slider1.png";
-import actbanner2 from "../../assets/img/slider2.png";
-import actbanner3 from "../../assets/img/slider3.png";
-import actbanner4 from "../../assets/img/slider4.png";
-import actbanner5 from "../../assets/img/slider5.png";
-import actbanner6 from "../../assets/img/slider6.png";
-import actbanner7 from "../../assets/img/slider8.png";
+import actbanner1 from "../../assets/img/banner1.png";
+import actbanner2 from "../../assets/img/banner2.jpg";
+import actbanner3 from "../../assets/img/banner3.jpg";
 import BettingRebate from "../../assets/images/BettingRebate-17d35455.png";
 import invitationBonus from "../../assets/images/invitationBonus-aa7acbd3.png";
 import { bgfootergray } from "../../Shared/color";
@@ -140,46 +136,6 @@ function Activity() {
           ></Box>
           <Typography variant="body1" color="initial">
             WINSTREAK 2X PRIZE HAPPY HOUR
-          </Typography>
-        </Box>
-        <Box sx={style.actimg2}>
-          <Box
-            component="img"
-            sx={{ width: "100%", borderRadius: "10px 10px 0px 0px" }}
-            src={actbanner4}
-          ></Box>
-          <Typography variant="body1" color="initial">
-            DAILY BONUS UNTIL 1 CRORE
-          </Typography>
-        </Box>
-        <Box sx={style.actimg2}>
-          <Box
-            component="img"
-            sx={{ width: "100%", borderRadius: "10px 10px 0px 0px" }}
-            src={actbanner5}
-          ></Box>
-          <Typography variant="body1" color="initial">
-            BEST PILOT BNG Game AIRLINES
-          </Typography>
-        </Box>
-        <Box sx={style.actimg2}>
-          <Box
-            component="img"
-            sx={{ width: "100%", borderRadius: "10px 10px 0px 0px" }}
-            src={actbanner6}
-          ></Box>
-          <Typography variant="body1" color="initial">
-            MONTHLY VIP BONUS
-          </Typography>
-        </Box>
-        <Box sx={style.actimg2}>
-          <Box
-            component="img"
-            sx={{ width: "100%", borderRadius: "10px 10px 0px 0px" }}
-            src={actbanner7}
-          ></Box>
-          <Typography variant="body1" color="initial">
-            BNG Game SUPPORT FUNDS
           </Typography>
         </Box>
         <MyModal />
