@@ -14,23 +14,34 @@ import howToPlay from "../../../../assets/images/user-guide.png";
 import trxtimerbackground from "../../../../assets/trxtimerbackground.png";
 import Policy from "../policy/Policy";
 import ShowImages from "./ShowImages";
-import { dummycounterFun,trx_game_history_data_function, net_wallet_amount_function, trx_game_image_index_function, updateNextCounter, trx_my_history_data_function } from "../../../../redux/slices/counterSlice";
+import {
+  dummycounterFun,
+  trx_game_history_data_function,
+  net_wallet_amount_function,
+  trx_game_image_index_function,
+  updateNextCounter,
+  trx_my_history_data_function,
+} from "../../../../redux/slices/counterSlice";
 import axios from "axios";
 import { endpoint } from "../../../../services/urls";
 import toast from "react-hot-toast";
 import { zubgmid, zubgtext } from "../../../../Shared/color";
-import { My_All_TRX_HistoryFn, My_All_TRX_HistoryFnTemp, walletamount } from "../../../../services/apicalling";
+import {
+  My_All_TRX_HistoryFn,
+  My_All_TRX_HistoryFnTemp,
+  walletamount,
+} from "../../../../services/apicalling";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const ThreeMinCountDown = ({ fk,setBetNumber }) => {
+const ThreeMinCountDown = ({ fk, setBetNumber }) => {
   const socket = useSocket();
   const client = useQueryClient();
   const audioRefMusic = React.useRef(null);
   const audioRefMusiclast = React.useRef(null);
   const [poicy, setpoicy] = React.useState(false);
   const [one_min_time, setOne_min_time] = useState("0_0");
-  const next_step = useSelector((state) => state.aviator.next_step)
+  const next_step = useSelector((state) => state.aviator.next_step);
   const dispatch = useDispatch();
   const show_this_three_min_time_sec = React.useMemo(
     () => String(one_min_time?.split("_")?.[1]).padStart(2, "0"),
@@ -51,15 +62,16 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
       let fivemin = `${4 - (new Date()?.getMinutes() % 5)}_${onemin}`;
       setOne_min_time(fivemin);
       setBetNumber(fivemin);
-      fk.setFieldValue("show_this_one_min_time", fivemin)
-     
+      fk.setFieldValue("show_this_one_min_time", fivemin);
+
       if (
         Number(fivemin?.split("_")?.[1]) <= 10 && // this is for sec
         fivemin?.split("_")?.[0] === "0" // this is for minut
       ) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);
-      }
-      if (fivemin?.split("_")?.[1] === "59") {
+        Number(Number(fivemin?.split("_")?.[1])) <= 5 && Number(Number(fivemin?.split("_")?.[1])) > 0 && handlePlaySound();
+        Number(Number(fivemin?.split("_")?.[1])) === 0 && handlePlaySoundLast();
+      } else {
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
       if (
@@ -88,16 +100,19 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
     };
   }, []);
 
-  const { isLoading:amount_loder, data } = useQuery(["walletamount"], () => walletamount(), {
-    refetchOnMount: false,
-    refetchOnReconnect: true,
-    refetchOnWindowFocus: false,
-  });
+  const { isLoading: amount_loder, data } = useQuery(
+    ["walletamount"],
+    () => walletamount(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: false,
+    }
+  );
 
-
-  React.useEffect(()=>{
-    dispatch(net_wallet_amount_function(data?.data?.data))
-  },[Number(data?.data?.data?.wallet),Number(data?.data?.data?.winning)])
+  React.useEffect(() => {
+    dispatch(net_wallet_amount_function(data?.data?.data));
+  }, [Number(data?.data?.data?.wallet), Number(data?.data?.data?.winning)]);
 
   const { isLoading: myhistory_loding, data: my_history_old } = useQuery(
     ["my_trx_history_3"],
@@ -108,7 +123,7 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
       refetchOnWindowFocus: false,
     }
   );
-  const {data: my_history } = useQuery(
+  const { data: my_history } = useQuery(
     ["my_trx_history_3_temp"],
     () => My_All_TRX_HistoryFnTemp(3),
     {
@@ -122,13 +137,15 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus:false
+      refetchOnWindowFocus: false,
     }
   );
 
   const GameHistoryFn = async () => {
     try {
-      const response = await axios.get(`${endpoint.trx_game_history}?gameid=3&limit=500`);
+      const response = await axios.get(
+        `${endpoint.trx_game_history}?gameid=3&limit=500`
+      );
       return response;
     } catch (e) {
       toast(e?.message);
@@ -158,19 +175,25 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
     dispatch(trx_game_image_index_function(array));
   }, [game_history?.data?.result]);
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     const allEarnings = my_history_old?.data?.data;
     const newEarnings = my_history?.data?.data;
     if (Array.isArray(newEarnings) && newEarnings.length > 0) {
       if (Array.isArray(allEarnings)) {
-        dispatch(trx_my_history_data_function([...newEarnings, ...allEarnings]));
+        dispatch(
+          trx_my_history_data_function([...newEarnings, ...allEarnings])
+        );
       } else {
         dispatch(trx_my_history_data_function(newEarnings));
       }
     } else if (Array.isArray(allEarnings)) {
       dispatch(trx_my_history_data_function(allEarnings));
-    }    (Number(show_this_three_min_time_sec)>=58 || Number(show_this_three_min_time_sec)===0) && Number(show_this_three_min_time_min)===0 &&  dispatch(dummycounterFun());
-  },[my_history?.data?.data,my_history_old?.data?.data])
+    }
+    (Number(show_this_three_min_time_sec) >= 58 ||
+      Number(show_this_three_min_time_sec) === 0) &&
+      Number(show_this_three_min_time_min) === 0 &&
+      dispatch(dummycounterFun());
+  }, [my_history?.data?.data, my_history_old?.data?.data]);
 
   const handlePlaySound = async () => {
     try {
@@ -199,10 +222,7 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
   };
 
   return (
-    <Box
-      className="countdownbgtrx"
-      sx={{ background: zubgtext }}
-    >
+    <Box className="countdownbgtrx" sx={{ background: zubgtext }}>
       {React.useMemo(() => {
         return (
           <>
@@ -248,7 +268,11 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
                     sx={{ width: "15px !important", height: "15px !important" }}
                   ></Box>
                 </Box>
-                <Typography variant="body1" color="initial" className="!ml-2 !text-lg">
+                <Typography
+                  variant="body1"
+                  color="initial"
+                  className="!ml-2 !text-lg"
+                >
                   TRX 5 Min
                 </Typography>
               </>
@@ -276,7 +300,6 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
               <Policy />
             </Dialog>
           )}
-
         </Box>
         <Box>
           <Typography variant="h3" color="initial" className="winTextone">
@@ -310,12 +333,12 @@ const ThreeMinCountDown = ({ fk,setBetNumber }) => {
             }, [show_this_three_min_time_sec])}
           </Stack>
           <Typography variant="h3" color="initial" className="winTexttwo">
-            {(Number(next_step))?.toString()?.padStart(7, "0")}
+            {Number(next_step)?.toString()?.padStart(7, "0")}
           </Typography>
         </Box>
       </Box>
       {React.useMemo(() => {
-        return <ShowImages />
+        return <ShowImages />;
       }, [])}
       {/* {fk.values.openTimerDialogBox && (
         <Dialog

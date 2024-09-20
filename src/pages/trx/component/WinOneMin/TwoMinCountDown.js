@@ -25,11 +25,15 @@ import axios from "axios";
 import { endpoint } from "../../../../services/urls";
 import toast from "react-hot-toast";
 import { zubgtext } from "../../../../Shared/color";
-import { My_All_TRX_HistoryFn, My_All_TRX_HistoryFnTemp, walletamount } from "../../../../services/apicalling";
+import {
+  My_All_TRX_HistoryFn,
+  My_All_TRX_HistoryFnTemp,
+  walletamount,
+} from "../../../../services/apicalling";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const TwoMinCountDown = ({ fk,setBetNumber }) => {
+const TwoMinCountDown = ({ fk, setBetNumber }) => {
   const socket = useSocket();
   const client = useQueryClient();
   const [three_min_time, setThree_min_time] = useState("0_0");
@@ -59,30 +63,28 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
     const handleThreeMin = (onemin) => {
       let threemin = `${2 - (new Date()?.getMinutes() % 3)}_${onemin}`;
       setThree_min_time(threemin);
-      setBetNumber(threemin)
+      setBetNumber(threemin);
       fk.setFieldValue("show_this_one_min_time", threemin);
-      // if (
-      //   (threemin?.split("_")?.[1] === "5" ||
-      //     threemin?.split("_")?.[1] === "4" ||
-      //     threemin?.split("_")?.[1] === "3" ||
-      //     threemin?.split("_")?.[1] === "2") &&
-      //   threemin?.split("_")?.[0] === "0"
-      // )
-        // handlePlaySound();
-      // if (
-      //   threemin?.split("_")?.[1] === "1" &&
-      //   threemin?.split("_")?.[0] === "0"
-      // )
-        // handlePlaySoundLast();
+      if (
+        (threemin?.split("_")?.[1] === "5" ||
+          threemin?.split("_")?.[1] === "4" ||
+          threemin?.split("_")?.[1] === "3" ||
+          threemin?.split("_")?.[1] === "2") &&
+        threemin?.split("_")?.[0] === "0"
+      )
+        handlePlaySound();
+      if (
+        threemin?.split("_")?.[1] === "1" &&
+        threemin?.split("_")?.[0] === "0"
+      )
+        handlePlaySoundLast();
       if (
         Number(threemin?.split("_")?.[1]) <= 10 && // 1 index means second
         threemin?.split("_")?.[0] === "0" // 0 index means min
       ) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);
-      }
-      if (threemin?.split("_")?.[1] === "59") {
-        fk.setFieldValue("openTimerDialogBoxOneMin", false);
-      }
+      } else fk.setFieldValue("openTimerDialogBoxOneMin", false);
+
       if (
         threemin?.split("_")?.[1] === "25" &&
         threemin?.split("_")?.[0] === "0"
@@ -115,7 +117,7 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
 
@@ -132,7 +134,7 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
       refetchOnWindowFocus: false,
     }
   );
-  const {data: my_history } = useQuery(
+  const { data: my_history } = useQuery(
     ["my_trx_history_2_temp"],
     () => My_All_TRX_HistoryFnTemp(2),
     {
@@ -146,7 +148,7 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
 
@@ -184,47 +186,52 @@ const TwoMinCountDown = ({ fk,setBetNumber }) => {
     dispatch(trx_game_image_index_function(array));
   }, [game_history?.data?.result]);
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     const allEarnings = my_history_old?.data?.data;
     const newEarnings = my_history?.data?.data;
     if (Array.isArray(newEarnings) && newEarnings.length > 0) {
       if (Array.isArray(allEarnings)) {
-        dispatch(trx_my_history_data_function([...newEarnings, ...allEarnings]));
+        dispatch(
+          trx_my_history_data_function([...newEarnings, ...allEarnings])
+        );
       } else {
         dispatch(trx_my_history_data_function(newEarnings));
       }
     } else if (Array.isArray(allEarnings)) {
       dispatch(trx_my_history_data_function(allEarnings));
     }
-    (Number(show_this_three_min_time_sec)>=58 || Number(show_this_three_min_time_sec)===0) && Number(show_this_three_min_time_min)===0 &&  dispatch(dummycounterFun());
-  },[my_history?.data?.data,my_history_old?.data?.data])
+    (Number(show_this_three_min_time_sec) >= 58 ||
+      Number(show_this_three_min_time_sec) === 0) &&
+      Number(show_this_three_min_time_min) === 0 &&
+      dispatch(dummycounterFun());
+  }, [my_history?.data?.data, my_history_old?.data?.data]);
 
-   const audioRefMusic = React.useRef(null);
-  // const handlePlaySound = async () => {
-  //   try {
-  //     if (audioRefMusic?.current?.pause) {
-  //       await audioRefMusic?.current?.play();
-  //     } else {
-  //       await audioRefMusic?.current?.pause();
-  //     }
-  //   } catch (error) {
-  //     // Handle any errors during play
-  //     console.error("Error during play:", error);
-  //   }
-  // };
-   const audioRefMusiclast = React.useRef(null);
-  // const handlePlaySoundLast = async () => {
-  //   try {
-  //     if (audioRefMusiclast?.current?.pause) {
-  //       await audioRefMusiclast?.current?.play();
-  //     } else {
-  //       await audioRefMusiclast?.current?.pause();
-  //     }
-  //   } catch (error) {
-  //     // Handle any errors during play
-  //     console.error("Error during play:", error);
-  //   }
-  // };
+  const audioRefMusic = React.useRef(null);
+  const handlePlaySound = async () => {
+    try {
+      if (audioRefMusic?.current?.pause) {
+        await audioRefMusic?.current?.play();
+      } else {
+        await audioRefMusic?.current?.pause();
+      }
+    } catch (error) {
+      // Handle any errors during play
+      console.error("Error during play:", error);
+    }
+  };
+  const audioRefMusiclast = React.useRef(null);
+  const handlePlaySoundLast = async () => {
+    try {
+      if (audioRefMusiclast?.current?.pause) {
+        await audioRefMusiclast?.current?.play();
+      } else {
+        await audioRefMusiclast?.current?.pause();
+      }
+    } catch (error) {
+      // Handle any errors during play
+      console.error("Error during play:", error);
+    }
+  };
 
   return (
     <Box className="countdownbgtrx" sx={{ background: zubgtext }}>

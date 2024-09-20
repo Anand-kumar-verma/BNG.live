@@ -32,7 +32,7 @@ function Profile() {
 
   const profileFn = async () => {
     try {
-      const response = await axios.get(`${endpoint.profiledata}?id=${user_id}`);
+      const response = await axios.get(`${endpoint.profiledata}?user_id=${user_id}`);
       return response;
     } catch (e) {
       toast(e?.message);
@@ -41,6 +41,7 @@ function Profile() {
   };
 
   const profile_data = data?.data || {};
+  console.log(profile_data);
   if (isLoading)
     return (
       <Layout>
