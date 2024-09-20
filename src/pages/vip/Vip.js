@@ -2619,21 +2619,23 @@ function VIPPage() {
                         alignItems: "center",
                         flexDirection: "column",
                         color: "#ccc",
+                        background: "#242424",
                       }}
+                      className={"!bg-[#333333] !p-2"}
                     >
                       <>
-                      <div className="!w-full !flex !flex-row !justify-between">
-                        <p>VIP BONUS</p>
-                        <p>
-                          {rupees} {i?.l01_amount}
-                        </p>
-                      </div>
-                      <div className="!w-full !flex !flex-row !justify-between">
-                        <p>Date</p>
-                        <p>
-                           {moment(i?.l01_date)?.format("DD-MM-YYYY HH:mm:ss")}
-                        </p>
-                      </div>
+                        <div className="!w-full !flex !flex-row !justify-between">
+                          <p>VIP BONUS</p>
+                          <p>
+                            {rupees} {i?.l01_amount}
+                          </p>
+                        </div>
+                        <div className="!w-full !flex !flex-row !justify-between">
+                          <p>Date</p>
+                          <p>
+                            {moment(i?.l01_date)?.format("DD-MM-YYYY HH:mm:ss")}
+                          </p>
+                        </div>
                       </>
                     </Box>
                   );
