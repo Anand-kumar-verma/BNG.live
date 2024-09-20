@@ -1,8 +1,8 @@
-import StartIcon from '@mui/icons-material/ArrowRightAlt';
+import StartIcon from "@mui/icons-material/ArrowRightAlt";
 import CampaignOutlinedIcon from "@mui/icons-material/CampaignOutlined";
-import CasinoIcon from '@mui/icons-material/Casino';
+import CasinoIcon from "@mui/icons-material/Casino";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
+import MilitaryTechIcon from "@mui/icons-material/MilitaryTech";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import {
   Box,
@@ -28,31 +28,38 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { flexbetween, flexcoloumcenter } from "../../Shared/Commom";
 import { checkTokenValidity } from "../../Shared/CookieStorage";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
-import { bgdarkgray, bggold, bggrad, bggray, bglightgray, bgtan, zubgshadow } from "../../Shared/color";
-import aviator_game_image from "../../assets/aviator_game_image.png";
+import MyModal from "../../Shared/Modal";
+import {
+  bgdarkgray,
+  bggold,
+  bggrad,
+  bggray,
+  bglightgray,
+  bgtan,
+  zubgshadow,
+} from "../../Shared/color";
 import crown1 from "../../assets/crown1.png";
 import crown2 from "../../assets/crown2.png";
+import crown3 from "../../assets/crown3.png";
+import fivedlooter from "../../assets/images/5dlottery.png";
 import aviater from "../../assets/images/avioter.png";
 import k3lottery from "../../assets/images/k3lottery.png";
-import fivedlooter from "../../assets/images/5dlottery.png";
-import crown3 from "../../assets/crown3.png";
-import trximg from "../../assets/images/f233fc5431d2b61e65327cc77d9bb1f8.png";
 import stage from "../../assets/images/podium.png";
-import trx from '../../assets/images/trx.png';
-import wingo from '../../assets/images/wingo.png';
-import customer from '../../assets/img/customer care.png';
-import download from '../../assets/img/download btn.png';
+import trx from "../../assets/images/trx.png";
+import wingo from "../../assets/images/wingo.png";
+import customer from "../../assets/img/customer care.png";
+import download from "../../assets/img/download btn.png";
 import logo from "../../assets/img/logo.png";
-import slider10 from '../../assets/img/slider 10.png';
-import slider7 from '../../assets/img/slider 7.png';
-import slider1 from '../../assets/img/slider1.png';
-import slider2 from '../../assets/img/slider2.png';
-import slider3 from '../../assets/img/slider3.png';
-import slider4 from '../../assets/img/slider4.png';
-import slider5 from '../../assets/img/slider5.png';
-import slider6 from '../../assets/img/slider6.png';
-import slider8 from '../../assets/img/slider8.png';
-import slider9 from '../../assets/img/slider9.png';
+import slider10 from "../../assets/img/slider 10.png";
+import slider7 from "../../assets/img/slider 7.png";
+import slider1 from "../../assets/img/slider1.png";
+import slider2 from "../../assets/img/slider2.png";
+import slider3 from "../../assets/img/slider3.png";
+import slider4 from "../../assets/img/slider4.png";
+import slider5 from "../../assets/img/slider5.png";
+import slider6 from "../../assets/img/slider6.png";
+import slider8 from "../../assets/img/slider8.png";
+import slider9 from "../../assets/img/slider9.png";
 import place1 from "../../assets/place1.png";
 import place2 from "../../assets/place2.png";
 import place3 from "../../assets/place3.png";
@@ -74,7 +81,6 @@ import {
   telegram_url,
 } from "../../services/urls";
 import theme from "../../utils/theme";
-import MyModal from '../../Shared/Modal';
 // import Lottery from "./DashboadSubcomponent/Lottery";
 // import Original from "./DashboadSubcomponent/Original";
 // import Sports from "./DashboadSubcomponent/Sports";
@@ -91,7 +97,6 @@ const imageSources = [
 ];
 
 function Dashboard() {
-
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
   const onAutoplayTimeLeft = (s, time, progress) => {
@@ -158,18 +163,6 @@ function Dashboard() {
     localStorage.removeItem("server_provider");
   }, []);
 
-  // const openbannerFunction = async () => {
-  //   setlodingBanner(true);
-  //   try {
-  //     const response = await axios.get(`${endpoint.openbannerUrl}`);
-  //     setopenbannerurl(response?.data?.image);
-  //   } catch (e) {
-  //     toast(e?.message);
-  //     console.log(e);
-  //   }
-  //   setlodingBanner(false);
-  // };
-
   const initialValues = {
     referrel_code: `${fron_end_main_domain}/register?ref=${wallet?.referral_code}`,
   };
@@ -182,62 +175,10 @@ function Dashboard() {
     },
   });
 
-  // const handleClosepolicy = () => {
-  //   setpoicy(false);
-  //   sessionStorage.removeItem("isAvailableUser");
-  // };
-
-  // useEffect(() => {
-  //   if (isAvailableUser) {
-  //     setpoicy(true);
-  //   }
-  // }, []);
-
   useEffect(() => {
     dispatch(waitingAviatorFun(true));
     dispatch(please_reconnect_the_serverFun(false));
   }, []);
-
-  const scrollToSection = (sectionId) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  // useEffect(() => {
-  //   !aviator_login_data && get_user_data_fn(dispatch);
-  // }, []);
-
-  const game_data = [
-    {
-      name: "Wingo",
-      url: "win",
-      img: "https://ossimg.bdgadminbdg.com/IndiaBDG/gamecategory/gamecategory_202401100619315n2k.png",
-    },
-    {
-      name: "Aviator",
-
-      img: aviator_game_image,
-    },
-    {
-      name: "Trx",
-      url: "trx",
-      img: trximg,
-    },
-    {
-      name: "Slots",
-      img: "https://ossimg.bdgadminbdg.com/IndiaBDG/gamecategory/gamecategory_20240110061937gbid.png",
-    },
-    {
-      name: "Popular",
-      img: "https://ossimg.bdgadminbdg.com/IndiaBDG/gamecategory/gamecategory_202401100619464x51.png",
-    },
-    {
-      name: "Casino",
-      img: "https://ossimg.bdgadminbdg.com/IndiaBDG/gamecategory/gamecategory_20240110061909hwqs.png",
-    },
-  ];
 
   useQuery(["yesterday_income"], () => yesterdayFn(), {
     refetchOnMount: false,
@@ -245,25 +186,27 @@ function Dashboard() {
     refetchOnWindowFocus: false,
   });
   return (
-    <Layout header={false} >
+    <Layout header={false}>
       <Box sx={styles.root}>
         <Box sx={{ ...flexbetween }}>
-          <Box component='img' sx={{ width: '150px' }} src={logo} ></Box>
+          <Box component="img" sx={{ width: "150px" }} src={logo}></Box>
           <NavLink component={NavLink}>
-            <Box component='img' sx={{ width: '120px' }} src={download} ></Box>
+            <Box component="img" sx={{ width: "120px" }} src={download}></Box>
           </NavLink>
         </Box>
-        <Box sx={{ ...flexbetween }} >
-          <Typography variant="body1" className="funp13" sx={{ color: bggold }}>Welcome to BNG Game</Typography>
+        <Box sx={{ ...flexbetween }}>
+          <Typography variant="body1" className="funp13" sx={{ color: bggold }}>
+            Welcome to BNG Game
+          </Typography>
           <NavLink component={NavLink}>
-            <Box component='img' sx={{ width: '120px' }} src={customer} ></Box>
+            <Box component="img" sx={{ width: "120px" }} src={customer}></Box>
           </NavLink>
         </Box>
       </Box>
-      <Box sx={{ pb: '70px', }}>
+      <Box sx={{ pb: "70px" }}>
         <Container
           className="!h-[100%] !overflow-auto no-scrollbar"
-          sx={{ background: bgdarkgray, }}
+          sx={{ background: bgdarkgray }}
         >
           <Box mt={1} px={1}>
             <Swiper
@@ -277,26 +220,64 @@ function Dashboard() {
                 clickable: true,
               }}
               navigation={true}
-              modules={[Autoplay,]}
+              modules={[Autoplay]}
               onAutoplayTimeLeft={onAutoplayTimeLeft}
               className="mySwiper"
-              style={{ borderRadius: '8px', overflow: 'hidden', height: '25vh' }}
+              style={{
+                borderRadius: "8px",
+                overflow: "hidden",
+                height: "25vh",
+              }}
             >
-              <SwiperSlide sx={styles.sliderbox}> <Box component='img' src={slider1} sx={styles.sliderimg}></Box></SwiperSlide>
-              <SwiperSlide sx={styles.sliderbox}> <Box component='img' src={slider2} sx={styles.sliderimg}></Box></SwiperSlide>
-              <SwiperSlide sx={styles.sliderbox}> <Box component='img' src={slider3} sx={styles.sliderimg}></Box></SwiperSlide>
-              <SwiperSlide sx={styles.sliderbox}> <Box component='img' src={slider4} sx={styles.sliderimg}></Box></SwiperSlide>
-              <SwiperSlide sx={styles.sliderbox}> <Box component='img' src={slider5} sx={styles.sliderimg}></Box></SwiperSlide>
-              <SwiperSlide sx={styles.sliderbox}> <Box component='img' src={slider6} sx={styles.sliderimg}></Box></SwiperSlide>
-              <SwiperSlide sx={styles.sliderbox}> <Box component='img' src={slider7} sx={styles.sliderimg}></Box></SwiperSlide>
-              <SwiperSlide sx={styles.sliderbox}> <Box component='img' src={slider8} sx={styles.sliderimg}></Box></SwiperSlide>
-              <SwiperSlide sx={styles.sliderbox}> <Box component='img' src={slider9} sx={styles.sliderimg}></Box></SwiperSlide>
-              <SwiperSlide sx={styles.sliderbox}> <Box component='img' src={slider10} sx={styles.sliderimg}></Box></SwiperSlide>
-              <div className="autoplay-progress" slot="container-end" style={{ display: 'none' }}>
+              <SwiperSlide sx={styles.sliderbox}>
+                {" "}
+                <Box component="img" src={slider1} sx={styles.sliderimg}></Box>
+              </SwiperSlide>
+              <SwiperSlide sx={styles.sliderbox}>
+                {" "}
+                <Box component="img" src={slider2} sx={styles.sliderimg}></Box>
+              </SwiperSlide>
+              <SwiperSlide sx={styles.sliderbox}>
+                {" "}
+                <Box component="img" src={slider3} sx={styles.sliderimg}></Box>
+              </SwiperSlide>
+              <SwiperSlide sx={styles.sliderbox}>
+                {" "}
+                <Box component="img" src={slider4} sx={styles.sliderimg}></Box>
+              </SwiperSlide>
+              <SwiperSlide sx={styles.sliderbox}>
+                {" "}
+                <Box component="img" src={slider5} sx={styles.sliderimg}></Box>
+              </SwiperSlide>
+              <SwiperSlide sx={styles.sliderbox}>
+                {" "}
+                <Box component="img" src={slider6} sx={styles.sliderimg}></Box>
+              </SwiperSlide>
+              <SwiperSlide sx={styles.sliderbox}>
+                {" "}
+                <Box component="img" src={slider7} sx={styles.sliderimg}></Box>
+              </SwiperSlide>
+              <SwiperSlide sx={styles.sliderbox}>
+                {" "}
+                <Box component="img" src={slider8} sx={styles.sliderimg}></Box>
+              </SwiperSlide>
+              <SwiperSlide sx={styles.sliderbox}>
+                {" "}
+                <Box component="img" src={slider9} sx={styles.sliderimg}></Box>
+              </SwiperSlide>
+              <SwiperSlide sx={styles.sliderbox}>
+                {" "}
+                <Box component="img" src={slider10} sx={styles.sliderimg}></Box>
+              </SwiperSlide>
+              <div
+                className="autoplay-progress"
+                slot="container-end"
+                style={{ display: "none" }}
+              >
                 <svg viewBox="0 0 48 48" ref={progressCircle}>
                   <circle cx="24" cy="24" r="20"></circle>
                 </svg>
-                <span ref={progressContent} style={{ display: 'none' }}></span>
+                <span ref={progressContent} style={{ display: "none" }}></span>
               </div>
             </Swiper>
           </Box>
@@ -361,7 +342,11 @@ function Dashboard() {
                   "&>p": { fontSize: "13px" },
                 }}
               >
-                <Typography variant="body1" className="funp13" sx={{ color: bgdarkgray }}>
+                <Typography
+                  variant="body1"
+                  className="funp13"
+                  sx={{ color: bgdarkgray }}
+                >
                   See the Installation page for additional docs about how to
                   make sure everything is set up correctly.
                 </Typography>
@@ -416,13 +401,14 @@ function Dashboard() {
                 <a href={`mailto:${support_mail}`}>
                   <Stack>
                     <HelpOutlineIcon sx={styles.socialIconinfo} />
-                    <Box sx={styles.socialButtonText} className="funp13">Support</Box>
+                    <Box sx={styles.socialButtonText} className="funp13">
+                      Support
+                    </Box>
                   </Stack>
                 </a>
               </Button>
             </Stack>
           </Box>
-
 
           {/* <div
             className="mt-2 w-full grid grid-cols-3 gap-[2%] o"
@@ -490,104 +476,320 @@ function Dashboard() {
               );
             })}
           </div> */}
-          <Box >
-            <Box sx={{ mt: 3, width: '95%', ml: '2.5%', }}>
-              <Stack direction='row' alignItems='center'>
-                <Typography variant="body1" mr={1}>      <CasinoIcon sx={{ color: bggold }} /></Typography>
-                <Typography variant="h6" sx={styles.headertitle}> Lottery</Typography>
+          <Box>
+            <Box sx={{ mt: 3, width: "95%", ml: "2.5%" }}>
+              <Stack direction="row" alignItems="center">
+                <Typography variant="body1" mr={1}>
+                  {" "}
+                  <CasinoIcon sx={{ color: bggold }} />
+                </Typography>
+                <Typography variant="h6" sx={styles.headertitle}>
+                  {" "}
+                  Lottery
+                </Typography>
               </Stack>
-              <Box sx={{ ...flexcoloumcenter, }}>
+              <Box sx={{ ...flexcoloumcenter }}>
                 <Box sx={{ ...flexbetween, ...styles.gamemenubox }}>
                   <Box sx={{ ...styles.gameimgbox }}>
-                    <Box component='img' src={wingo} sx={{ ...styles.gameimg }}></Box>
+                    <Box
+                      component="img"
+                      src={wingo}
+                      sx={{ ...styles.gameimg }}
+                    ></Box>
                   </Box>
                   <Box sx={{ ...styles.gamenamebox }}>
                     <Box sx={{ ...flexbetween }}>
-                      <Typography variant="h4" sx={{ fontWeight: '700', color: 'white', fontSize: '20px', }} >Win Go</Typography>
-                      <Button onClick={() => navigate('/win')} variant="text" color="primary" sx={{ ...styles.playbutton }}> Go <StartIcon ml={2} /></Button>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          fontWeight: "700",
+                          color: "white",
+                          fontSize: "20px",
+                        }}
+                      >
+                        Win Go
+                      </Typography>
+                      <Button
+                        onClick={() => navigate("/win")}
+                        variant="text"
+                        color="primary"
+                        sx={{ ...styles.playbutton }}
+                      >
+                        {" "}
+                        Go <StartIcon ml={2} />
+                      </Button>
                     </Box>
                     <Box sx={{ ...flexbetween, my: 1, ...styles.maxwin }}>
-                      <Typography className='w fp13 fw400 ' sx={{ color: 'white', fontFamily: 'roboto !important' }} >The Highest Bounus in history</Typography>
-                      <Typography variant="body2" sx={{ color: bggold, fontWeight: '500', color: 'white', fontSize: '14px', }}>98456.66</Typography>
+                      <Typography
+                        className="w fp13 fw400 "
+                        sx={{ color: "white", fontFamily: "roboto !important" }}
+                      >
+                        The Highest Bounus in history
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: bggold,
+                          fontWeight: "500",
+                          color: "white",
+                          fontSize: "14px",
+                        }}
+                      >
+                        98456.66
+                      </Typography>
                     </Box>
                     <Box sx={{}}>
-                      <Typography variant="body2" sx={{ color: 'white', fontFamily: 'roboto !important' }} className='w fp13 fw400 '>Through the platform Win Go Hash lottery seed as the result of the lottery
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "white", fontFamily: "roboto !important" }}
+                        className="w fp13 fw400 "
+                      >
+                        Through the platform Win Go Hash lottery seed as the
+                        result of the lottery
                       </Typography>
                     </Box>
                   </Box>
                 </Box>
                 <Box sx={{ ...flexbetween, ...styles.gamemenubox }}>
                   <Box sx={{ ...styles.gameimgbox }}>
-                    <Box component='img' src={trx} sx={{ ...styles.gameimg }}></Box>
+                    <Box
+                      component="img"
+                      src={trx}
+                      sx={{ ...styles.gameimg }}
+                    ></Box>
                   </Box>
                   <Box sx={{ ...styles.gamenamebox }}>
                     <Box sx={{ ...flexbetween }}>
-                      <Typography variant="h4" sx={{ fontWeight: '700', color: 'white', fontSize: '20px', }} >TRX</Typography>
-                      <Button onClick={() => navigate('/trx')} variant="text" color="primary" sx={{ ...styles.playbutton }}> Go <StartIcon ml={2} /></Button>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          fontWeight: "700",
+                          color: "white",
+                          fontSize: "20px",
+                        }}
+                      >
+                        TRX
+                      </Typography>
+                      <Button
+                        onClick={() => navigate("/trx")}
+                        variant="text"
+                        color="primary"
+                        sx={{ ...styles.playbutton }}
+                      >
+                        {" "}
+                        Go <StartIcon ml={2} />
+                      </Button>
                     </Box>
                     <Box sx={{ ...flexbetween, my: 1, ...styles.maxwin }}>
-                      <Typography className='w fp13 fw400 ' sx={{ color: 'white', fontFamily: 'roboto !important' }} >The Highest Bounus in history</Typography>
-                      <Typography variant="body2" sx={{ color: bggold, fontWeight: '500', color: 'white', fontSize: '14px', }}>98456.66</Typography>
+                      <Typography
+                        className="w fp13 fw400 "
+                        sx={{ color: "white", fontFamily: "roboto !important" }}
+                      >
+                        The Highest Bounus in history
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: bggold,
+                          fontWeight: "500",
+                          color: "white",
+                          fontSize: "14px",
+                        }}
+                      >
+                        98456.66
+                      </Typography>
                     </Box>
                     <Box sx={{}}>
-                      <Typography variant="body2" sx={{ color: 'white', fontFamily: 'roboto !important' }} className='w fp13 fw400 '>By obtaining the real-time hash value of the TRX blockchain as the result of the lottery
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "white", fontFamily: "roboto !important" }}
+                        className="w fp13 fw400 "
+                      >
+                        By obtaining the real-time hash value of the TRX
+                        blockchain as the result of the lottery
                       </Typography>
                     </Box>
                   </Box>
                 </Box>
                 <Box sx={{ ...flexbetween, ...styles.gamemenubox }}>
                   <Box sx={{ ...styles.gameimgbox }}>
-                    <Box component='img' src={aviater} sx={{ ...styles.gameimg }}></Box>
+                    <Box
+                      component="img"
+                      src={aviater}
+                      sx={{ ...styles.gameimg }}
+                    ></Box>
                   </Box>
                   <Box sx={{ ...styles.gamenamebox }}>
                     <Box sx={{ ...flexbetween }}>
-                      <Typography variant="h4" sx={{ fontWeight: '700', color: 'white', fontSize: '20px', }} >Aviator</Typography>
-                      <Button onClick={() => navigate('/trx')} variant="text" color="primary" sx={{ ...styles.playbutton }}> Go <StartIcon ml={2} /></Button>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          fontWeight: "700",
+                          color: "white",
+                          fontSize: "20px",
+                        }}
+                      >
+                        Aviator
+                      </Typography>
+                      <Button
+                        onClick={() => navigate("/test")}
+                        variant="text"
+                        color="primary"
+                        sx={{ ...styles.playbutton }}
+                      >
+                        {" "}
+                        Go <StartIcon ml={2} />
+                      </Button>
                     </Box>
                     <Box sx={{ ...flexbetween, my: 1, ...styles.maxwin }}>
-                      <Typography className='w fp13 fw400 ' sx={{ color: 'white', fontFamily: 'roboto !important' }} >The Highest Bounus in history</Typography>
-                      <Typography variant="body2" sx={{ color: bggold, fontWeight: '500', color: 'white', fontSize: '14px', }}>98456.66</Typography>
+                      <Typography
+                        className="w fp13 fw400 "
+                        sx={{ color: "white", fontFamily: "roboto !important" }}
+                      >
+                        The Highest Bounus in history
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: bggold,
+                          fontWeight: "500",
+                          color: "white",
+                          fontSize: "14px",
+                        }}
+                      >
+                        98456.66
+                      </Typography>
                     </Box>
                     <Box sx={{}}>
-                      <Typography variant="body2" sx={{ color: 'white', fontFamily: 'roboto !important' }} className='w fp13 fw400 '>By obtaining the real-time hash value of the TRX blockchain as the result of the lottery
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "white", fontFamily: "roboto !important" }}
+                        className="w fp13 fw400 "
+                      >
+                        By obtaining the real-time hash value of the TRX
+                        blockchain as the result of the lottery
                       </Typography>
                     </Box>
                   </Box>
                 </Box>
                 <Box sx={{ ...flexbetween, ...styles.gamemenubox }}>
                   <Box sx={{ ...styles.gameimgbox }}>
-                    <Box component='img' src={k3lottery} sx={{ ...styles.gameimg }}></Box>
+                    <Box
+                      component="img"
+                      src={k3lottery}
+                      sx={{ ...styles.gameimg }}
+                    ></Box>
                   </Box>
                   <Box sx={{ ...styles.gamenamebox }}>
                     <Box sx={{ ...flexbetween }}>
-                      <Typography variant="h4" sx={{ fontWeight: '700', color: 'white', fontSize: '20px', }} >K3 lottery</Typography>
-                      <Button onClick={() => navigate('/trx')} variant="text" color="primary" sx={{ ...styles.playbutton }}> Go <StartIcon ml={2} /></Button>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          fontWeight: "700",
+                          color: "white",
+                          fontSize: "20px",
+                        }}
+                      >
+                        K3 lottery
+                      </Typography>
+                      <Button
+                        onClick={() => navigate("/test")}
+                        variant="text"
+                        color="primary"
+                        sx={{ ...styles.playbutton }}
+                      >
+                        {" "}
+                        Go <StartIcon ml={2} />
+                      </Button>
                     </Box>
                     <Box sx={{ ...flexbetween, my: 1, ...styles.maxwin }}>
-                      <Typography className='w fp13 fw400 ' sx={{ color: 'white', fontFamily: 'roboto !important' }} >The Highest Bounus in history</Typography>
-                      <Typography variant="body2" sx={{ color: bggold, fontWeight: '500', color: 'white', fontSize: '14px', }}>98456.66</Typography>
+                      <Typography
+                        className="w fp13 fw400 "
+                        sx={{ color: "white", fontFamily: "roboto !important" }}
+                      >
+                        The Highest Bounus in history
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: bggold,
+                          fontWeight: "500",
+                          color: "white",
+                          fontSize: "14px",
+                        }}
+                      >
+                        98456.66
+                      </Typography>
                     </Box>
                     <Box sx={{}}>
-                      <Typography variant="body2" sx={{ color: 'white', fontFamily: 'roboto !important' }} className='w fp13 fw400 '>By obtaining the real-time hash value of the TRX blockchain as the result of the lottery
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "white", fontFamily: "roboto !important" }}
+                        className="w fp13 fw400 "
+                      >
+                        By obtaining the real-time hash value of the TRX
+                        blockchain as the result of the lottery
                       </Typography>
                     </Box>
                   </Box>
                 </Box>
                 <Box sx={{ ...flexbetween, ...styles.gamemenubox }}>
                   <Box sx={{ ...styles.gameimgbox }}>
-                    <Box component='img' src={fivedlooter} sx={{ ...styles.gameimg }}></Box>
+                    <Box
+                      component="img"
+                      src={fivedlooter}
+                      sx={{ ...styles.gameimg }}
+                    ></Box>
                   </Box>
                   <Box sx={{ ...styles.gamenamebox }}>
                     <Box sx={{ ...flexbetween }}>
-                      <Typography variant="h4" sx={{ fontWeight: '700', color: 'white', fontSize: '20px', }} >5D Lottery</Typography>
-                      <Button onClick={() => navigate('/trx')} variant="text" color="primary" sx={{ ...styles.playbutton }}> Go <StartIcon ml={2} /></Button>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          fontWeight: "700",
+                          color: "white",
+                          fontSize: "20px",
+                        }}
+                      >
+                        5D Lottery
+                      </Typography>
+                      <Button
+                        onClick={() => navigate("/test")}
+                        variant="text"
+                        color="primary"
+                        sx={{ ...styles.playbutton }}
+                      >
+                        {" "}
+                        Go <StartIcon ml={2} />
+                      </Button>
                     </Box>
                     <Box sx={{ ...flexbetween, my: 1, ...styles.maxwin }}>
-                      <Typography className='w fp13 fw400 ' sx={{ color: 'white', fontFamily: 'roboto !important' }} >The Highest Bounus in history</Typography>
-                      <Typography variant="body2" sx={{ color: bggold, fontWeight: '500', color: 'white', fontSize: '14px', }}>98456.66</Typography>
+                      <Typography
+                        className="w fp13 fw400 "
+                        sx={{ color: "white", fontFamily: "roboto !important" }}
+                      >
+                        The Highest Bounus in history
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: bggold,
+                          fontWeight: "500",
+                          color: "white",
+                          fontSize: "14px",
+                        }}
+                      >
+                        98456.66
+                      </Typography>
                     </Box>
                     <Box sx={{}}>
-                      <Typography variant="body2" sx={{ color: 'white', fontFamily: 'roboto !important' }} className='w fp13 fw400 '>By obtaining the real-time hash value of the TRX blockchain as the result of the lottery
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "white", fontFamily: "roboto !important" }}
+                        className="w fp13 fw400 "
+                      >
+                        By obtaining the real-time hash value of the TRX
+                        blockchain as the result of the lottery
                       </Typography>
                     </Box>
                   </Box>
@@ -656,10 +858,10 @@ function Dashboard() {
                       <p className="!flex !flex-col" style={{ color: "white" }}>
                         {i?.email
                           ? i.email.split("@")[0].substring(0, 2) +
-                          "**" +
-                          (i.email.split("@")[0].length > 2
-                            ? i.email.split("@")[0].substring(2, 4)
-                            : "")
+                            "**" +
+                            (i.email.split("@")[0].length > 2
+                              ? i.email.split("@")[0].substring(2, 4)
+                              : "")
                           : "**"}
                       </p>
                     </Typography>
@@ -685,10 +887,15 @@ function Dashboard() {
             </Box>
           )}
 
-          <Box sx={{ mt: 3, }}>
-            <Stack direction='row' alignItems='center'>
-              <Typography variant="body1" mr={1}>      <MilitaryTechIcon sx={{ color: 'white' }} /></Typography>
-              <Typography variant="h6" sx={styles.headertitle}>Today's earnings chart</Typography>
+          <Box sx={{ mt: 3 }}>
+            <Stack direction="row" alignItems="center">
+              <Typography variant="body1" mr={1}>
+                {" "}
+                <MilitaryTechIcon sx={{ color: "white" }} />
+              </Typography>
+              <Typography variant="h6" sx={styles.headertitle}>
+                Today's earnings chart
+              </Typography>
             </Stack>
           </Box>
           <Box sx={styles.podiumbox} mt={5}>
@@ -713,14 +920,14 @@ function Dashboard() {
                   <Typography variant="body1" sx={{ color: bgdarkgray }}>
                     {winnner_data?.[1]?.email
                       ? winnner_data?.[1]?.email
-                        ?.split("@")?.[0]
-                        ?.substring(0, 2) +
-                      "**" +
-                      (winnner_data?.[1]?.email?.split("@")?.[0]?.length > 2
-                        ? winnner_data?.[1]?.email
                           ?.split("@")?.[0]
-                          ?.substring(2, 4)
-                        : "")
+                          ?.substring(0, 2) +
+                        "**" +
+                        (winnner_data?.[1]?.email?.split("@")?.[0]?.length > 2
+                          ? winnner_data?.[1]?.email
+                              ?.split("@")?.[0]
+                              ?.substring(2, 4)
+                          : "")
                       : "**"}
                   </Typography>
                   <Typography variant="body1" sx={styles.winningamount}>
@@ -757,14 +964,14 @@ function Dashboard() {
                   <Typography variant="body1">
                     {winnner_data?.[0]?.email
                       ? winnner_data?.[0]?.email
-                        ?.split("@")?.[0]
-                        ?.substring(0, 2) +
-                      "**" +
-                      (winnner_data?.[0]?.email?.split("@")?.[0]?.length > 2
-                        ? winnner_data?.[0]?.email
                           ?.split("@")?.[0]
-                          ?.substring(2, 4)
-                        : "")
+                          ?.substring(0, 2) +
+                        "**" +
+                        (winnner_data?.[0]?.email?.split("@")?.[0]?.length > 2
+                          ? winnner_data?.[0]?.email
+                              ?.split("@")?.[0]
+                              ?.substring(2, 4)
+                          : "")
                       : "**"}
                   </Typography>
                   <Typography variant="body1" sx={styles.winningamount}>
@@ -801,14 +1008,14 @@ function Dashboard() {
                   <Typography variant="body1">
                     {winnner_data?.[2]?.email
                       ? winnner_data?.[2]?.email
-                        ?.split("@")?.[0]
-                        ?.substring(0, 2) +
-                      "**" +
-                      (winnner_data?.[2]?.email?.split("@")?.[0]?.length > 2
-                        ? winnner_data?.[2]?.email
                           ?.split("@")?.[0]
-                          ?.substring(2, 4)
-                        : "")
+                          ?.substring(0, 2) +
+                        "**" +
+                        (winnner_data?.[2]?.email?.split("@")?.[0]?.length > 2
+                          ? winnner_data?.[2]?.email
+                              ?.split("@")?.[0]
+                              ?.substring(2, 4)
+                          : "")
                       : "**"}
                   </Typography>
                   <Typography variant="body1" sx={styles.winningamount}>
@@ -844,10 +1051,10 @@ function Dashboard() {
                     <p className="!flex !flex-col" style={{ color: "white" }}>
                       {i?.email
                         ? i.email.split("@")[0].substring(0, 2) +
-                        "**" +
-                        (i.email.split("@")[0].length > 2
-                          ? i.email.split("@")[0].substring(2, 4)
-                          : "")
+                          "**" +
+                          (i.email.split("@")[0].length > 2
+                            ? i.email.split("@")[0].substring(2, 4)
+                            : "")
                         : "**"}
                     </p>
                   </Typography>
@@ -1000,7 +1207,7 @@ function Dashboard() {
 export default Dashboard;
 
 const styles = {
-  root: { background: '#3F3F3F', padding: '5px 15px' },
+  root: { background: "#3F3F3F", padding: "5px 15px" },
   dashboardTitle: {
     textAlign: "center",
     color: "#E71D1E !important",
@@ -1037,12 +1244,12 @@ const styles = {
     background: bglightgray,
     boxShadow: zubgshadow,
     borderRadius: "5px",
-    "&>div>input": { color: 'white' },
+    "&>div>input": { color: "white" },
   },
   referralLinkButton: {
     marginLeft: 2,
     background: bgdarkgray,
-    color: 'white',
+    color: "white",
   },
   socialButtonsContainer: {
     alignItems: "center",
@@ -1059,7 +1266,7 @@ const styles = {
   },
   supportButton: {
     fontSize: "14px",
-    color: 'white',
+    color: "white",
     textTransform: "capitalize",
     fontWeight: "400",
     background: bgdarkgray,
@@ -1149,7 +1356,7 @@ const styles = {
     justifyContent: "space-around",
     alignItems: "center",
     padding: "10px 0px 10px 5px",
-    position: 'relative',
+    position: "relative",
     borderRadius: "10px",
     my: 1.5,
     boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
@@ -1257,7 +1464,7 @@ const styles = {
     background: bggrad,
     marginLeft: "5%",
     width: "90%",
-    color: bgdarkgray
+    color: bgdarkgray,
   },
   headertitle: { color: bggold },
   winbox: {
@@ -1275,10 +1482,31 @@ const styles = {
     "&>div>p": { fontSize: "12px", fontWeight: 400, color: "white" },
   },
   gameheading: { fontSize: "20px", fontWeight: 700, color: "white" },
-  gamemenubox: { padding: '8px 5px', background: bglightgray, mt: 2, borderRadius: '10px', width: '100%' },
-  gameimgbox: { width: '25%', borderRadius: '10px', height: '16vh' },
-  gameimg: { width: '100%', borderRadius: '10px', height: '100%', objectFit: 'cover' },
-  gamenamebox: { width: '70%', },
-  playbutton: { background: bggrad, color: bgtan, fontWeight: '900', fontSize: "13px", padding: '5px 30px' },
-  maxwin: { background: bggray, padding: '2px 5px 2px 5px', borderRadius: '5px' },
+  gamemenubox: {
+    padding: "8px 5px",
+    background: bglightgray,
+    mt: 2,
+    borderRadius: "10px",
+    width: "100%",
+  },
+  gameimgbox: { width: "25%", borderRadius: "10px", height: "16vh" },
+  gameimg: {
+    width: "100%",
+    borderRadius: "10px",
+    height: "100%",
+    objectFit: "cover",
+  },
+  gamenamebox: { width: "70%" },
+  playbutton: {
+    background: bggrad,
+    color: bgtan,
+    fontWeight: "900",
+    fontSize: "13px",
+    padding: "5px 30px",
+  },
+  maxwin: {
+    background: bggray,
+    padding: "2px 5px 2px 5px",
+    borderRadius: "5px",
+  },
 };

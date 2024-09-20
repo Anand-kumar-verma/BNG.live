@@ -22,6 +22,8 @@ import pr9 from "../../../../assets/images/9.png";
 import circle from "../../../../assets/images/circle-arrow.png";
 import howToPlay from "../../../../assets/images/user-guide.png";
 import winback from "../../../../assets/images/winbackbanner.03270574b912ee2ea784.png";
+import countdownfirst from "../../../../assets/countdownfirst.mp3";
+import countdownlast from "../../../../assets/countdownlast.mp3";
 import {
   dummycounterFun,
   net_wallet_amount_function,
@@ -29,7 +31,10 @@ import {
   trx_my_history_data_function,
   updateNextCounter,
 } from "../../../../redux/slices/counterSlice";
-import { My_All_HistoryFn, walletamount } from "../../../../services/apicalling";
+import {
+  My_All_HistoryFn,
+  walletamount,
+} from "../../../../services/apicalling";
 import { changeImages } from "../../../../services/schedular";
 import { endpoint } from "../../../../services/urls";
 import Policy from "../policy/Policy";
@@ -70,7 +75,8 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
     setpoicy(false);
   };
   React.useEffect(() => {
-    const handleFiveMin = (fivemin) => {
+    const handleFiveMin = (onemin) => {
+      let fivemin = `${4 - (new Date()?.getMinutes() % 5)}_${onemin}`;
       setOne_min_time(fivemin);
       setBetNumber(fivemin);
       fk.setFieldValue("show_this_one_min_time", fivemin);
@@ -79,11 +85,11 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
         fivemin?.split("_")?.[0] === "0" // this is for minut
       ) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);
-      }
-      if (fivemin?.split("_")?.[1] === "59") {
+        Number(Number(fivemin?.split("_")?.[1])) <= 5 &&  Number(Number(fivemin?.split("_")?.[1])) > 0  && handlePlaySound();
+        Number(Number(fivemin?.split("_")?.[1])) === 0 && handlePlaySoundLast();
+      } else {
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
-    
       if (
         fivemin?.split("_")?.[1] === "0" &&
         fivemin?.split("_")?.[0] === "0"
@@ -95,10 +101,10 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
       }
     };
 
-    socket.on("fivemin", handleFiveMin);
+    socket.on("onemin", handleFiveMin);
 
     return () => {
-      socket.off("fivemin", handleFiveMin);
+      socket.off("onemin", handleFiveMin);
     };
   }, []);
 
@@ -108,7 +114,7 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
   const { data: game_history } = useQuery(
@@ -135,8 +141,11 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
   };
   React.useEffect(() => {
     dispatch(trx_my_history_data_function(my_history?.data?.data));
-    (Number(show_this_three_min_time_sec) >= 58 || Number(show_this_three_min_time_sec) === 0) && Number(show_this_three_min_time_min) === 0 && dispatch(dummycounterFun());
-  }, [my_history?.data?.data])
+    (Number(show_this_three_min_time_sec) >= 58 ||
+      Number(show_this_three_min_time_sec) === 0) &&
+      Number(show_this_three_min_time_min) === 0 &&
+      dispatch(dummycounterFun());
+  }, [my_history?.data?.data]);
 
   React.useEffect(() => {
     dispatch(
@@ -159,15 +168,54 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
     dispatch(net_wallet_amount_function(data?.data?.data));
   }, [Number(data?.data?.data?.wallet), Number(data?.data?.data?.winning)]);
 
-
+  const audioRefMusic = React.useRef(null);
+  const handlePlaySound = async () => {
+    try {
+      if (audioRefMusic?.current?.pause) {
+        await audioRefMusic?.current?.play();
+      } else {
+        await audioRefMusic?.current?.pause();
+      }
+    } catch (error) {
+      // Handle any errors during play
+      console.error("Error during play:", error);
+    }
+  };
+  const audioRefMusiclast = React.useRef(null);
+  const handlePlaySoundLast = async () => {
+    try {
+      if (audioRefMusiclast?.current?.pause) {
+        await audioRefMusiclast?.current?.play();
+      } else {
+        await audioRefMusiclast?.current?.pause();
+      }
+    } catch (error) {
+      // Handle any errors during play
+      console.error("Error during play:", error);
+    }
+  };
 
   return (
-    <Box className="countdownbg" sx={{
-      backgroundImage: `url(${winback})`,
-      backgroundSize: '100% 100%',
-      backgroundRepeat: 'no-repeat',
-    }}>
-
+    <Box
+      className="countdownbg"
+      sx={{
+        backgroundImage: `url(${winback})`,
+        backgroundSize: "100% 100%",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      {React.useMemo(() => {
+        return (
+          <>
+            <audio ref={audioRefMusic} hidden>
+              <source src={`${countdownfirst}`} type="audio/mp3" />
+            </audio>
+            <audio ref={audioRefMusiclast} hidden>
+              <source src={`${countdownlast}`} type="audio/mp3" />
+            </audio>
+          </>
+        );
+      }, [audioRefMusic, audioRefMusiclast])}
       <Box
         sx={{
           display: "flex",

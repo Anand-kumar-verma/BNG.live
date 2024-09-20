@@ -2,11 +2,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
+import axios from "axios";
 import * as React from "react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useQuery, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useSocket } from "../../../../Shared/SocketContext";
+import { bggoldtext } from "../../../../Shared/color";
 import countdownfirst from "../../../../assets/countdownfirst.mp3";
 import countdownlast from "../../../../assets/countdownlast.mp3";
 import pr0 from "../../../../assets/images/0.png";
@@ -15,21 +18,27 @@ import pr22 from "../../../../assets/images/22.png";
 import pr33 from "../../../../assets/images/33.png";
 import pr4 from "../../../../assets/images/4.png";
 import pr5 from "../../../../assets/images/5.png";
-import winback from "../../../../assets/images/winbackbanner.03270574b912ee2ea784.png";
 import pr6 from "../../../../assets/images/6.png";
 import pr7 from "../../../../assets/images/7.png";
 import pr8 from "../../../../assets/images/8.png";
 import pr9 from "../../../../assets/images/9.png";
 import circle from "../../../../assets/images/circle-arrow.png";
 import howToPlay from "../../../../assets/images/user-guide.png";
-import { dummycounterFun, net_wallet_amount_function, trx_game_history_data_function, trx_my_history_data_function, updateNextCounter } from "../../../../redux/slices/counterSlice";
+import winback from "../../../../assets/images/winbackbanner.03270574b912ee2ea784.png";
+import {
+  dummycounterFun,
+  net_wallet_amount_function,
+  trx_game_history_data_function,
+  trx_my_history_data_function,
+  updateNextCounter,
+} from "../../../../redux/slices/counterSlice";
+import {
+  My_All_HistoryFn,
+  walletamount,
+} from "../../../../services/apicalling";
 import { changeImages } from "../../../../services/schedular";
-import Policy from "../policy/Policy";
-import { bggoldtext, zubgmid } from "../../../../Shared/color";
-import { My_All_HistoryFn, walletamount } from "../../../../services/apicalling";
 import { endpoint } from "../../../../services/urls";
-import axios from "axios";
-import toast from "react-hot-toast";
+import Policy from "../policy/Policy";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -49,18 +58,13 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
   const dispatch = useDispatch();
   const audioRefMusic = React.useRef(null);
   const audioRefMusiclast = React.useRef(null);
-  const next_step = useSelector((state) => state.aviator.next_step)
+  const next_step = useSelector((state) => state.aviator.next_step);
 
   React.useEffect(() => {
     setIsImageChange(changeImages());
   }, []);
 
-  React.useEffect(() => {
-    if (show_this_one_min_time === "05") {
-      // oneMinCheckResult();
-      // oneMinColorWinning();
-    }
-  }, [show_this_one_min_time]);
+ 
 
   const [poicy, setpoicy] = React.useState(false);
   const handleClickOpenpoicy = () => {
@@ -72,17 +76,16 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
 
   React.useEffect(() => {
     const handleOneMin = (onemin) => {
-
       setOne_min_time(onemin);
-      setBetNumber(onemin)
+      setBetNumber(onemin);
       fk.setFieldValue("show_this_one_min_time", onemin);
       if (onemin === 5 || onemin === 4 || onemin === 3 || onemin === 2) {
-
       }
-
 
       if (onemin <= 10) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);
+        Number(onemin) <= 5 &&  Number(onemin) > 0 && handlePlaySound();
+        Number(onemin) === 0 && handlePlaySoundLast();
       } else {
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
       }
@@ -111,7 +114,7 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
   const { data: game_history } = useQuery(
@@ -148,13 +151,13 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
   }, [game_history?.data?.data]);
 
   React.useEffect(() => {
-    dispatch(net_wallet_amount_function(data?.data?.data))
-  }, [Number(data?.data?.data?.wallet), Number(data?.data?.data?.winning)])
+    dispatch(net_wallet_amount_function(data?.data?.data));
+  }, [Number(data?.data?.data?.wallet), Number(data?.data?.data?.winning)]);
 
   React.useEffect(() => {
     dispatch(trx_my_history_data_function(my_history?.data?.data));
-    one_min_time >= 58 || one_min_time === 0 && dispatch(dummycounterFun());
-  }, [my_history?.data?.data])
+    one_min_time >= 58 || (one_min_time === 0 && dispatch(dummycounterFun()));
+  }, [my_history?.data?.data]);
   const handlePlaySound = async () => {
     try {
       if (audioRefMusic?.current?.pause) {
@@ -182,11 +185,14 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
   };
 
   return (
-    <Box className="countdownbg" sx={{
-      backgroundImage: `url(${winback})`,
-      backgroundSize: '100% 100%',
-      backgroundRepeat: 'no-repeat',
-    }}>
+    <Box
+      className="countdownbg"
+      sx={{
+        backgroundImage: `url(${winback})`,
+        backgroundSize: "100% 100%",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {React.useMemo(() => {
         return (
           <>
@@ -296,7 +302,7 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
             );
           }, [show_this_one_min_time])}
           <Typography variant="h3" color="initial" className="winTexttwo">
-            {(Number(next_step))?.toString()?.padStart(7, "0")}
+            {Number(next_step)?.toString()?.padStart(7, "0")}
           </Typography>
         </Box>
       </Box>

@@ -14,7 +14,7 @@ const user_id = value && JSON.parse(value)?.UserID;
 
 export const MyProfileDataFn = async () => {
   try {
-    const response = await axios.get(`${endpoint.profiledata}?id=${user_id}`);
+    const response = await axios.get(`${endpoint.profiledata}?user_id=${user_id}`);
     return response;
   } catch (e) {
     toast(e?.message);
