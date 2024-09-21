@@ -3,10 +3,10 @@ export const rupees = "₹";
 export const baseUrl = "https://api.bngwin.live";
 export const fron_end_main_domain = "https://bngwin.live";
 
-// export const newdomain1 = "https://api.bngwin.live";
-// export const newdomain = "https://api.bngwin.live";
-export const newdomain1 = "http://192.168.18.183:9000";
-export const newdomain = "http://192.168.18.183:9000";
+export const newdomain1 = "https://api.bngwin.live";
+export const newdomain = "https://api.bngwin.live";
+// export const newdomain1 = "http://192.168.18.183:9000";
+// export const newdomain = "http://192.168.18.183:9000";
 
 export const domain = "https://bng-live-timer-1.onrender.com";
 export const support_mail = "";
@@ -36,7 +36,6 @@ export const endpoint = {
   change_password: `${baseUrl}/api/v1/forget-password-change-pass`,
   forget_password: `${baseUrl}/api/v1/change-password`,
   Qr_address: `${newdomain1}/api/v1/admin-qr-address`,
-
 
   userwallet: `${newdomain1}/api/v1/userwallet`,
   get_yesterday_deposit_withdrawl_by_treamFn: `${newdomain1}/api/v1/get_yesterday_deposit_withdrawl_by_treamFn`,
