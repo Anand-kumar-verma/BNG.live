@@ -1,6 +1,5 @@
 export const rupees = "₹";
 // https://admin.bngwin.live/
-
 export const baseUrl = "https://api.bngwin.live";
 export const fron_end_main_domain = "https://bngwin.live";
 

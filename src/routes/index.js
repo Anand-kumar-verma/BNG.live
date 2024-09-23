@@ -65,11 +65,11 @@ import WalletTransfer from "../pages/wallet/component/WalletTransfer";
 import WalletTransferHistory from "../pages/wallet/component/WalletTransferHistory";
 import WithdravalHistory from "../pages/wallet/component/WithdravalHistory";
 import WinLossPopup from "../pages/win/component/WinOneMin/WinLossPopup";
-
 import VipBonus from "../pages/income/VipBonus";
 import Attendence from "../pages/income/incomeSubSection/Attendaence";
 import Claim from "../pages/income/incomeSubSection/Claim";
 import StreakBonus from "../pages/income/incomeSubSection/Streak";
+import ActivityDetail from "../pages/activity/component/ActivityDetail.js";
 import DepositeUsdtrecharge from "../pages/wallet/component/DepositUsdtRecharge.js";
 import Win from "../pages/win/win";
 
@@ -345,6 +345,10 @@ export const routes = [
     {
         path: "/activity/Laundry/LaundryRecord",
         component: <RebateHistory />
+    },
+    {
+        path: "/activity/ActivityDetail",
+        component: <ActivityDetail />
     },
     {
         path: "/gift",

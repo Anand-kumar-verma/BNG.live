@@ -6,7 +6,7 @@ import {
   Container,
   IconButton,
   Stack,
-  Typography
+  Typography,
 } from "@mui/material";
 import axios from "axios";
 import copy from "clipboard-copy";
@@ -127,7 +127,7 @@ function Account() {
                   <Typography className="text-white !text-xs">UID </Typography>
                   <Typography className="text-white !text-xs">| </Typography>
                   <Typography className="text-white !text-xs">
-                    {wallet?.username || 0} <CopyAll fontSize="small" />{" "} 
+                    {wallet?.username || 0} <CopyAll fontSize="small" />{" "}
                   </Typography>
                 </Box>
                 <p style={{ color: "white", marginTop: "2px" }}>
@@ -228,8 +228,14 @@ function Account() {
               </Box>
               <Box
                 sx={style.actionBox2}
-                component={NavLink}
-                to="/Withdrawalusdt"
+                // component={NavLink}
+                onClick={() => {
+                  navigate("/rechargeusdt", {
+                    state: {
+                      key: 2,
+                    },
+                  });
+                }}
                 mt={2}
               >
                 <Box component="img" src={trc} sx={style.actionImage2} />
@@ -243,8 +249,14 @@ function Account() {
               </Box>
               <Box
                 sx={style.actionBox2}
-                component={NavLink}
-                to="/Withdrawalusdt"
+                // component={NavLink}
+                onClick={() => {
+                  navigate("/rechargeusdt", {
+                    state: {
+                      key: 1,
+                    },
+                  });
+                }}
                 mt={2}
               >
                 <Box component="img" src={bep} sx={style.actionImage2} />

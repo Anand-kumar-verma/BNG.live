@@ -220,7 +220,7 @@ function Promotion() {
           </Stack>
           <Box sx={style.boxStyles}>
             <Box sx={style.innerBoxStyles}>
-              <Box sx={style.subcordinatelist}>
+              {/* <Box sx={style.subcordinatelist}>
                 <Typography
                   variant="body1"
                   className="!text-white"
@@ -233,8 +233,8 @@ function Promotion() {
                 >
                   Direct subordinates
                 </Typography>
-              </Box>
-              <Box sx={style.subcordinatelist} mt={3}>
+              </Box> */}
+              <Box sx={style.subcordinatelist} >
                 <Typography
                   variant="body1"
                   className="!text-white"
@@ -265,7 +265,7 @@ function Promotion() {
             </Box>
 
             <Box sx={style.innerBoxStylestwo}>
-              <Box sx={style.subcordinatelist}>
+              {/* <Box sx={style.subcordinatelist}>
                 <Typography variant="body1"
                   className="!text-white">
                   0
@@ -274,7 +274,7 @@ function Promotion() {
 
                   Total No of subordinates in the team
                 </Typography>
-              </Box>
+              </Box> */}
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1"
                   className="!text-white" >

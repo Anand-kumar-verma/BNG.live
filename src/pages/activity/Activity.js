@@ -4,8 +4,8 @@ import React, { useEffect } from "react";
 import banner2 from "../../assets/images/giftRedeem.png";
 import banner1 from "../../assets/images/signInBanner.png";
 import logo from '../../assets/img/logo.png';
-import actbanner1 from "../../assets/img/banner1.png";
-import actbanner2 from "../../assets/img/banner2.jpg";
+import actbanner1 from "../../assets/img/banner6.png";
+import actbanner2 from "../../assets/img/banner4.png";
 import actbanner3 from "../../assets/img/banner3.jpg";
 import BettingRebate from "../../assets/images/BettingRebate-17d35455.png";
 import invitationBonus from "../../assets/images/invitationBonus-aa7acbd3.png";
@@ -108,34 +108,24 @@ function Activity() {
         </Box>
       </Stack>
       <Stack sx={style.act2}>
-        <Box sx={style.actimg2}>
+        <Box sx={style.actimg2} component={NavLink} to="/activity/InvitationBonus">
           <Box
             component="img"
             sx={{ width: "100%", borderRadius: "10px 10px 0px 0px" }}
             src={actbanner1}
           ></Box>
           <Typography variant="body1" color="initial">
-            FIRST DEPOSIT BONUS
+            Invitation bonus
           </Typography>
         </Box>
-        <Box sx={style.actimg2}>
+        <Box sx={style.actimg2} component={NavLink} to="/activity/ActivityDetail">
           <Box
             component="img"
             sx={{ width: "100%", borderRadius: "10px 10px 0px 0px" }}
             src={actbanner2}
           ></Box>
           <Typography variant="body1" color="initial">
-            BNG Game CREATIVE VIDEO CONTEST
-          </Typography>
-        </Box>
-        <Box sx={style.actimg2}>
-          <Box
-            component="img"
-            sx={{ width: "100%", borderRadius: "10px 10px 0px 0px" }}
-            src={actbanner3}
-          ></Box>
-          <Typography variant="body1" color="initial">
-            WINSTREAK 2X PRIZE HAPPY HOUR
+            win streak bonus
           </Typography>
         </Box>
         <MyModal />

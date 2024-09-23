@@ -10,7 +10,6 @@ import {
   FormControl,
   IconButton,
   InputAdornment,
-  MenuItem,
   OutlinedInput,
   Stack,
   TextField,
@@ -375,7 +374,7 @@ function Withdrawl() {
               </Typography>
             </Box>
           </Box>
-         
+
           <Box
             sx={{
               padding: "10px",
@@ -415,7 +414,7 @@ function Withdrawl() {
                   <div className="error">{fk.errors.amount}</div>
                 )}
               </FormControl>
-             
+
               <Box mt={3}>
                 <FormControl fullWidth>
                   <Stack direction="row" className="loginlabel">
@@ -496,35 +495,44 @@ function Withdrawl() {
               mt={1}
               className="!text-bold "
             >
-            
-                <Typography
-                  variant="body1"
-                  sx={{ color: "white" }}
-                  className="!text-xs"
-                >
-                  * Maximum Amount{" "}
-                  <span className="!text-green-500">
-                    {rupees} {Number(amount?.working_wallet) || 0}
-                  </span>{" "}
-                  can be withdrawl from  wallet.
-                </Typography>
-            
-          
-         
+              <Typography
+                variant="body1"
+                sx={{ color: "white" }}
+                className="!text-xs"
+              >
+                * Need to play Amount{" "}
+                <span className="!text-green-500">
+                  {rupees}{" "}
+                  {need_to_bet?.data?.data <= 0 ? 0 : need_to_bet?.data?.data}
+                </span>{" "}
+                for withdrawl from winning wallet.
+              </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{ color: "white" }}
+                className="!text-xs"
+              >
+                * Maximum Amount{" "}
+                <span className="!text-green-500">
+                  {rupees} {Number(amount?.working_wallet) || 0}
+                </span>{" "}
+                can be withdrawl from wallet.
+              </Typography>
             </Stack>
             <Typography
               variant="body1"
               sx={{ color: "white" }}
               className="!text-xs !my-4"
             >
-              * Need to play Amount {" "}
+              * Need to play Amount{" "}
               <span className="!text-yellow-500">
                 {rupees}{" "}
                 {need_to_bet?.data?.data <= 0 ? 0 : need_to_bet?.data?.data}
               </span>{" "}
               for withdrawl from wallet.
             </Typography>
-           
+
             <Stack
               direction="row"
               alignItems="center"
