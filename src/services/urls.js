@@ -38,7 +38,6 @@ export const endpoint = {
   forget_password: `${baseUrl}/api/v1/change-password`,
   Qr_address: `${newdomain1}/api/v1/admin-qr-address`,
 
-
   userwallet: `${newdomain1}/api/v1/userwallet`,
   get_yesterday_deposit_withdrawl_by_treamFn: `${newdomain1}/api/v1/get_yesterday_deposit_withdrawl_by_treamFn`,
   top11winner: `${newdomain1}/api/v1/get-top-winners`,
