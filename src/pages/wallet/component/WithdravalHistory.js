@@ -36,7 +36,7 @@ function WithdravalHistory() {
       refetchOnWindowFocus: false
     }
   );
-  const res = data?.data?.data?.filter((i) => i?.type === "Winzo")
+  const res = data?.data?.data
 
   return (
     <Layout>
@@ -104,12 +104,12 @@ function WithdravalHistory() {
                     <Box>
                       <Button
                         sx={{ color: "green", textTransform: "capitalize" }}
-                        className={`${i?.status === "Success"
+                        className={`${i?.tr15_status === "Success"
                           ? "!text-green-500"
                           : "!text-red-500"
                           }`}
                       >
-                        {i?.status}
+                        {i?.tr15_status}
                       </Button>
                       <IconButton>
                         <ArrowForwardIcon sx={{ color: zubgtext }} />
@@ -130,7 +130,7 @@ function WithdravalHistory() {
                       Balance
                     </Typography>
                     <Typography variant="body1" >
-                      ₹ {i?.amount}
+                      ₹ {i?.tr15_amt}
                     </Typography>
                   </Stack>
                   <Stack
@@ -160,10 +160,10 @@ function WithdravalHistory() {
                     }}
                   >
                     <Typography variant="body1" >
-                      Status
+                      tr15_status
                     </Typography>
                     <Typography variant="body1" >
-                      {i?.status}{" "}
+                      {i?.tr15_status}{" "}
                     </Typography>
                   </Stack>
                   {i?.approve_date !== null && i?.approve_date !== "" && <Stack
@@ -204,11 +204,11 @@ function WithdravalHistory() {
                       }}
                     >
                       <Typography variant="body1" >
-                        {i?.tran_id}
+                        {i?.tr15_trans}
                       </Typography>
-                      <IconButton>
+                      {/* <IconButton>
                         <ContentCopyIcon sx={{ color: zubgtext }} />
-                      </IconButton>
+                      </IconButton> */}
                     </Stack>
                   </Stack>
                 </Box>

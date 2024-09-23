@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal, Button, Typography, Box, FormControlLabel, Checkbox } from '@mui/material';
 import { bgdarkgray, bggold, bglightgray, bgtan } from './color';
 import { Close } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 function MyModal() {
   const [open, setOpen] = useState(false);
@@ -13,7 +14,7 @@ function MyModal() {
   const handleClose = () => {
     setOpen(false);
   };
-
+const navigate = useNavigate()
   return (
     <div>
       <Modal
@@ -50,7 +51,7 @@ function MyModal() {
                   <Typography className=' fp13' sx={{ color: bggold }}>+ ₹10,000.00</Typography>
                 </Box>
                 <Typography className='w fp13' my={1} sx={{ lineHeight: '15px' }}>Deposit 200000 for the first time and you will receive 10000 bonus</Typography>
-                <Box className="fcsb">
+                <Box className="fcsb"  onClick={()=>navigate('/wallet/Recharge')}>
                   <Typography sx={{ textAlign: 'center', width: '60%', background: bgdarkgray, borderRadius: '10px', m: 0, p: 0, textTransform: 'capitalize !important', }} className='w fp13 fw400'>0/200000</Typography>
                   <Button variant='outlined' sx={{ m: 0, p: '0px 8px', }}>Deposit</Button>
                 </Box>
@@ -63,7 +64,7 @@ function MyModal() {
                   <Typography className=' fp13' sx={{ color: bggold }}>+ ₹5,000.00</Typography>
                 </Box>
                 <Typography className='w fp13' my={1} sx={{ lineHeight: '15px' }}>Deposit 100000 for the first time and you will receive 5000 bonus</Typography>
-                <Box className="fcsb">
+                <Box className="fcsb"  onClick={()=>navigate('/wallet/Recharge')}>
                   <Typography sx={{ textAlign: 'center', width: '60%', background: bgdarkgray, borderRadius: '10px', m: 0, p: 0, textTransform: 'capitalize !important', }} className='w fp13 fw400'>0/100000</Typography>
                   <Button variant='outlined' sx={{ m: 0, p: '0px 8px', }}>Deposit</Button>
                 </Box>
@@ -76,7 +77,7 @@ function MyModal() {
                   <Typography className=' fp13' sx={{ color: bggold }}>+ ₹2,000.00</Typography>
                 </Box>
                 <Typography className='w fp13' my={1} sx={{ lineHeight: '15px' }}>Deposit 30000 for the first time and you will receive 2000 bonus</Typography>
-                <Box className="fcsb">
+                <Box className="fcsb"  onClick={()=>navigate('/wallet/Recharge')}>
                   <Typography sx={{ textAlign: 'center', width: '60%', background: bgdarkgray, borderRadius: '10px', m: 0, p: 0, textTransform: 'capitalize !important', }} className='w fp13 fw400'>0/30000</Typography>
                   <Button variant='outlined' sx={{ m: 0, p: '0px 8px', }}>Deposit</Button>
                 </Box>
@@ -89,7 +90,7 @@ function MyModal() {
                   <Typography className=' fp13' sx={{ color: bggold }}>+ ₹600.00</Typography>
                 </Box>
                 <Typography className='w fp13' my={1} sx={{ lineHeight: '15px' }}>Deposit 10000 for the first time and you will receive 600 bonus</Typography>
-                <Box className="fcsb">
+                <Box className="fcsb"  onClick={()=>navigate('/wallet/Recharge')}> 
                   <Typography sx={{ textAlign: 'center', width: '60%', background: bgdarkgray, borderRadius: '10px', m: 0, p: 0, textTransform: 'capitalize !important', }} className='w fp13 fw400'>0/10000</Typography>
                   <Button variant='outlined' sx={{ m: 0, p: '0px 8px', }}>Deposit</Button>
                 </Box>
@@ -102,7 +103,7 @@ function MyModal() {
                   <Typography className=' fp13' sx={{ color: bggold }}>+ ₹300.00</Typography>
                 </Box>
                 <Typography className='w fp13' my={1} sx={{ lineHeight: '15px' }}>Deposit 3000 for the first time and you will receive 300 bonus</Typography>
-                <Box className="fcsb">
+                <Box className="fcsb"  onClick={()=>navigate('/wallet/Recharge')}>
                   <Typography sx={{ textAlign: 'center', width: '60%', background: bgdarkgray, borderRadius: '10px', m: 0, p: 0, textTransform: 'capitalize !important', }} className='w fp13 fw400'>0/3000</Typography>
                   <Button variant='outlined' sx={{ m: 0, p: '0px 8px', }}>Deposit</Button>
                 </Box>
@@ -115,7 +116,7 @@ function MyModal() {
                   <Typography className=' fp13' sx={{ color: bggold }}>+ ₹150.00</Typography>
                 </Box>
                 <Typography className='w fp13' my={1} sx={{ lineHeight: '15px' }}>Deposit 1000 for the first time and you will receive 150 bonus</Typography>
-                <Box className="fcsb">
+                <Box className="fcsb"  onClick={()=>navigate('/wallet/Recharge')}>
                   <Typography sx={{ textAlign: 'center', width: '60%', background: bgdarkgray, borderRadius: '10px', m: 0, p: 0, textTransform: 'capitalize !important', }} className='w fp13 fw400'>0/1000</Typography>
                   <Button variant='outlined' sx={{ m: 0, p: '0px 8px', }}>Deposit</Button>
                 </Box>
@@ -128,7 +129,7 @@ function MyModal() {
                   <Typography className=' fp13' sx={{ color: bggold }}>+ ₹60.00</Typography>
                 </Box>
                 <Typography className='w fp13' my={1} sx={{ lineHeight: '15px' }}>Deposit 300 for the first time and you will receive 60 bonus</Typography>
-                <Box className="fcsb">
+                <Box className="fcsb" onClick={()=>navigate('/wallet/Recharge')}>
                   <Typography sx={{ textAlign: 'center', width: '60%', background: bgdarkgray, borderRadius: '10px', m: 0, p: 0, textTransform: 'capitalize !important', }} className='w fp13 fw400'>0/300</Typography>
                   <Button variant='outlined' sx={{ m: 0, p: '0px 8px', }}>Deposit</Button>
                 </Box>
@@ -141,9 +142,9 @@ function MyModal() {
                   <Typography className=' fp13' sx={{ color: bggold }}>+ ₹20.00</Typography>
                 </Box>
                 <Typography className='w fp13' my={1} sx={{ lineHeight: '15px' }}>Deposit 100 for the first time and you will receive 20 bonus</Typography>
-                <Box className="fcsb">
+                <Box className="fcsb"  onClick={()=>navigate('/wallet/Recharge')}>
                   <Typography sx={{ textAlign: 'center', width: '60%', background: bgdarkgray, borderRadius: '10px', m: 0, p: 0, textTransform: 'capitalize !important', }} className='w fp13 fw400'>0/100</Typography>
-                  <Button variant='outlined' sx={{ m: 0, p: '0px 8px', }}>Deposit</Button>
+                  <Button variant='outlined' sx={{ m: 0, p: '0px 8px', }}  > Deposit</Button>
                 </Box>
               </Box>
             </Box>

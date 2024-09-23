@@ -9,6 +9,7 @@ import {
   Typography
 } from "@mui/material";
 import axios from "axios";
+import copy from "clipboard-copy";
 import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
@@ -42,6 +43,7 @@ import dpt from "../../assets/withdrow.png";
 import Layout from "../../component/Layout/Layout";
 import { walletamount } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
+import toast from "react-hot-toast";
 
 function Account() {
   const [opend, setOpend] = useState(false);
@@ -61,7 +63,10 @@ function Account() {
     }
   );
   const wallet = amount?.data?.data;
-
+  const functionTOCopy = (value) => {
+    copy(value);
+    toast.success("Copied to clipboard!");
+  }
   async function sendUrlCallBackToBackend(transactionId) {
     try {
       const res = await axios.get(
@@ -116,9 +121,9 @@ function Account() {
                   </Typography>
                 </Box>
                 <Box
-                  className="!w-fit h-6 rounded-full p-1   realtive !left-40 flex gap-3 justify-center"
+                  className="!w-fit h-6 rounded-full p-1 !cursor-pointer  realtive !left-40 flex gap-3 justify-center"
                   sx={{ background: bgtan }}
-                >
+                  onClick={() => functionTOCopy(wallet?.username || 0)}>
                   <Typography className="text-white !text-xs">UID </Typography>
                   <Typography className="text-white !text-xs">| </Typography>
                   <Typography className="text-white !text-xs">

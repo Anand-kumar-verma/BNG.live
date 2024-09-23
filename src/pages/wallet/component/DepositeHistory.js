@@ -36,8 +36,8 @@ function DepositeHistory() {
       refetchOnWindowFocus: false
     }
   );
-  const res = data?.data?.data?.filter((i) => i?.tr15_depo_type === "Winzo")
-
+  const res = data?.data?.data 
+  console.log(res)
 
   return (
     <Layout>
