@@ -415,7 +415,7 @@ function WithdrawalUsdt() {
               sx={{ color: "white" }}
               className="!text-xs"
             >
-              * Need to play Amount {" "}
+              * Need to play Amount{" "}
               <span className="!text-green-500">
                 {rupees}{" "}
                 {need_to_bet?.data?.data <= 0 ? 0 : need_to_bet?.data?.data}

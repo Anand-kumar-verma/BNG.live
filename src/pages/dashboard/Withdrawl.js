@@ -10,11 +10,10 @@ import {
   FormControl,
   IconButton,
   InputAdornment,
-  MenuItem,
   OutlinedInput,
   Stack,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import axios from "axios";
 import CryptoJS from "crypto-js";
@@ -116,7 +115,6 @@ function Withdrawl() {
     amount: "",
     password: "",
     bank_id: "",
-    select_wallet: "",
   };
 
   const fk = useFormik({
@@ -147,7 +145,6 @@ function Withdrawl() {
       fd.append("Mobile", data?.mobile);
       fd.append("user_id", user_id);
       fd.append("password", fk.values.password);
-      fd.append("select_wallet", fk.values.select_wallet);
 
       withdraw_payment_Function(fd);
     },
@@ -566,33 +563,18 @@ function Withdrawl() {
               mt={1}
               className="!text-bold "
             >
-              {fk.values.select_wallet === "Working Wallet" && (
-                <Typography
-                  variant="body1"
-                  sx={{ color: "white" }}
-                  className="!text-xs"
-                >
-                  * Maximum Amount{" "}
-                  <span className="!text-green-500">
-                    {rupees} {Number(amount?.working_wallet) || 0}
-                  </span>{" "}
-                  can be withdrawl from working wallet.
-                </Typography>
-              )}
-              {fk.values.select_wallet === "Main Wallet" && (
-                <Typography
-                  variant="body1"
-                  sx={{ color: "white" }}
-                  className="!text-xs"
-                >
-                  * Need to play Amount{" "}
-                  <span className="!text-green-500">
-                    {rupees}{" "}
-                    {need_to_bet?.data?.data <= 0 ? 0 : need_to_bet?.data?.data}
-                  </span>{" "}
-                  for withdrawl from winning wallet.
-                </Typography>
-              )}
+              <Typography
+                variant="body1"
+                sx={{ color: "white" }}
+                className="!text-xs"
+              >
+                * Need to play Amount{" "}
+                <span className="!text-green-500">
+                  {rupees}{" "}
+                  {need_to_bet?.data?.data <= 0 ? 0 : need_to_bet?.data?.data}
+                </span>{" "}
+                for withdrawl from winning wallet.
+              </Typography>
             </Stack>
 
             <Stack
