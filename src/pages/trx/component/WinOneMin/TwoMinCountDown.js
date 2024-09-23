@@ -22,7 +22,7 @@ import {
   trx_my_history_data_function,
 } from "../../../../redux/slices/counterSlice";
 import axios from "axios";
-import { endpoint } from "../../../../services/urls";
+import { endpoint, public_chain } from "../../../../services/urls";
 import toast from "react-hot-toast";
 import { zubgtext } from "../../../../Shared/color";
 import {
@@ -30,6 +30,7 @@ import {
   My_All_TRX_HistoryFnTemp,
   walletamount,
 } from "../../../../services/apicalling";
+import { Search } from "@mui/icons-material";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -314,8 +315,9 @@ const TwoMinCountDown = ({ fk, setBetNumber }) => {
           )}
         </Box>
         <Box>
-          <Typography variant="h3" color="initial" className="winTextone">
-            Time remaining
+        <Typography variant="h3" color="initial" className="!text-[#f0ab56] !mb-3 py-1 !text-xs text-center bg-gray-800  rounded-full"
+        onClick={() => window.open(`${public_chain}`, "_blank")}>
+          <Search className="!text-sm "/>  Public Chain Query
           </Typography>
           <Stack direction="row">
             {React.useMemo(() => {
@@ -344,7 +346,7 @@ const TwoMinCountDown = ({ fk, setBetNumber }) => {
               );
             }, [show_this_three_min_time_sec])}
           </Stack>
-          <Typography variant="h3" color="initial" className="winTexttwo">
+          <Typography variant="h3" color="initial" className="!ml-2 !text-lg !text-[#8f5206] !font-bold">
             {Number(next_step)?.toString()?.padStart(7, "0")}
           </Typography>
         </Box>

@@ -1,6 +1,5 @@
 // import LayoutAviator from "../GamePage/Layout";
 // import PlayGame from "../GamePage/PlayGame";
-import Ticketgenerate from "../pages/promotion/component/Ticketgenerate";
 import Test from "../pages/Test";
 import Account from "../pages/account/Account";
 import AddBankDetails from "../pages/account/Component/AddBankDetails";
@@ -17,7 +16,6 @@ import SettingCenter from "../pages/account/Component/SettingCenter";
 import Activity from "../pages/activity/Activity";
 import BettingRebate from "../pages/activity/component/BettingRebate";
 import DailySignInBonous from "../pages/activity/component/DailySignInBonous";
-import AttendanceBonus from "../pages/activity/component/DailySignInBonous";
 import DailySignInRules from "../pages/activity/component/DailySignInRules";
 import Gift from "../pages/activity/component/Gift";
 import InvitationBonus from "../pages/activity/component/InvitationBonus";
@@ -52,6 +50,7 @@ import Subordinate from "../pages/promotion/component/Subordinate";
 import SubordinateIncome from "../pages/promotion/component/SubordinateIncome";
 import TeamData from "../pages/promotion/component/TeamData";
 import TeamReports from "../pages/promotion/component/TeamReport";
+import Ticketgenerate from "../pages/promotion/component/Ticketgenerate";
 import Trx from "../pages/trx/Trx";
 import TronScanPage from "../pages/trx/component/TronScanPage";
 import VIPPage from "../pages/vip/Vip";
@@ -67,12 +66,12 @@ import WalletTransferHistory from "../pages/wallet/component/WalletTransferHisto
 import WithdravalHistory from "../pages/wallet/component/WithdravalHistory";
 import WinLossPopup from "../pages/win/component/WinOneMin/WinLossPopup";
 
-import Win from "../pages/win/win";
+import VipBonus from "../pages/income/VipBonus";
 import Attendence from "../pages/income/incomeSubSection/Attendaence";
 import Claim from "../pages/income/incomeSubSection/Claim";
 import StreakBonus from "../pages/income/incomeSubSection/Streak";
-import VipBonus from "../pages/income/VipBonus";
 import DepositeUsdtrecharge from "../pages/wallet/component/DepositUsdtRecharge.js";
+import Win from "../pages/win/win";
 
 export const routes = [
     {

@@ -339,7 +339,7 @@ function DepositeUsdtrecharge() {
                     <Typography variant="body1" color="initial">
                         Deposit
                     </Typography>
-                    <Box component={NavLink} to="/depositHistory">
+                    <Box component={NavLink} to="/depositusdt">
                         <HistoryIcon />
                     </Box>
                 </Box>

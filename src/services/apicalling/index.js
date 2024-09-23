@@ -236,7 +236,7 @@ export const depositHistoryFunction = async () => {
 export const depositHistoryUsdtFunction = async () => {
   try {
     const response = await axios.get(
-      `${endpoint.deposit_history_usdt}?userid=${user_id}`
+      `${endpoint.deposit_history_usdt}?user_id=${user_id}`
     );
     return response;
   } catch (e) {
@@ -270,7 +270,7 @@ export const withdrawlHistoryFunction = async () => {
 export const withdrawlHistoryUSdtFunction = async () => {
   try {
     const response = await axios.get(
-      `${endpoint.withdrawl_usdt_history}?userid=${user_id}`
+      `${endpoint.withdrawl_usdt_history}?user_id=${user_id}`
     );
     return response;
   } catch (e) {

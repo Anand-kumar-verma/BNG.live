@@ -116,13 +116,13 @@ function Account() {
                   </Typography>
                 </Box>
                 <Box
-                  className=" w-40 h-6 rounded-full p-1   realtive !left-40 flex gap-3 justify-center"
+                  className="!w-fit h-6 rounded-full p-1   realtive !left-40 flex gap-3 justify-center"
                   sx={{ background: bgtan }}
                 >
                   <Typography className="text-white !text-xs">UID </Typography>
                   <Typography className="text-white !text-xs">| </Typography>
                   <Typography className="text-white !text-xs">
-                    {wallet?.username || 0} <CopyAll fontSize="small" />{" "}
+                    {wallet?.username || 0} <CopyAll fontSize="small" />{" "} 
                   </Typography>
                 </Box>
                 <p style={{ color: "white", marginTop: "2px" }}>
@@ -258,7 +258,7 @@ function Account() {
           className="grid grid-cols-2 gap-3 "
           sx={{ mt: "-40px", width: "95%", ml: "2.5%" }}
         >
-          <Box
+          {/* <Box
             className="flex gap-1 justify-center p-1 py-4 items-center  shadow-xl  rounded-lg"
             sx={{ background: bglightgray }}
             component={NavLink}
@@ -288,8 +288,8 @@ function Account() {
                 My Transaction history
               </span>
             </Typography>
-          </Box>
-          <NavLink to="/depositehistory">
+          </Box> */}
+          <NavLink to="/depositHistory">
             <Box
               className="flex gap-1 p-1 py-4 justify-center items-center shadow-xl  rounded-lg"
               sx={{ background: bglightgray }}
@@ -306,7 +306,7 @@ function Account() {
               </Typography>
             </Box>
           </NavLink>
-          <NavLink to="/withdrawlhistory">
+          <NavLink to="/withdravalHistory">
             <Box
               className="flex gap-1 p-1 py-4 justify-center items-center shadow-xl  rounded-lg"
               sx={{ background: bglightgray }}

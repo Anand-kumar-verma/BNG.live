@@ -45,6 +45,8 @@ function Register() {
     React.useState(false);
   const [loding, setloding] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const url = new URL(window.location.href);
+  const [refParam, setrefParam] = useState(url.searchParams.get("ref") || "");
   const handle_confirm_ClickShowPassword = () =>
     set_show_confirm_password(!show_confirm_password);
 
@@ -58,7 +60,7 @@ function Register() {
     name: "",
     pass: "",
     confirmpass: "",
-    refid : "",
+    refid : refParam,
   };
 
   const fk = useFormik({

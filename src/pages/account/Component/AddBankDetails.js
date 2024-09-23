@@ -57,30 +57,26 @@ function AddBankDetails() {
     validationSchema: withdrawAmountSchemaValidaton,
     onSubmit: () => {
       console.log(fk.values);
-      const fd = new FormData();
-      fd.append("email", fk.values.email);
-      fd.append("mobile", fk.values.mobile);
-      fd.append("bank_name", fk.values.bank_name);
-      fd.append("name", fk.values.name);
       const capitalizedIFSC = fk.values.ifsc.toUpperCase();
-      fd.append("ifsc_code", capitalizedIFSC);
-      // fd.append("ifsc_code", fk.values.ifsc);
-      fd.append("account_number", fk.values.account_number);
-      fd.append("user_id", user_id);
+      const reqbody = {
+        email: fk.values.email ,
+        bank_name: fk.values.bank_name ,
+        name: fk.values.name ,
+        email: fk.values.email ,
+        user_id: user_id,
+        mobile :fk.values.mobile ,
+        ifsc_code :capitalizedIFSC,
+        account_number :fk.values.account_number ,
+    }
 
-      addbankDetailsFunction(fd);
-      // paymentRequest(fd, fk.values.amount);
-      // fk.setFieldValue("all_data", {
-      //   t_id: fd.get("TransactionID") || "",
-      //   amount: fk.values.amount,
-      //   date: new Date(),
-      // });
+      addbankDetailsFunction(reqbody);
+    
     },
   });
 
-  const addbankDetailsFunction = async (fd) => {
+  const addbankDetailsFunction = async (reqbody) => {
     try {
-      const response = await axios.post(`${endpoint.add_bank_details}`, fd);
+      const response = await axios.post(`${endpoint.add_bank_details}`, reqbody);
       toast(response?.data?.msg);
       client.refetchQueries("bank_list_details");
       if (response?.data?.msg) {
