@@ -13,7 +13,7 @@ import {
   OutlinedInput,
   Stack,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import axios from "axios";
 import CryptoJS from "crypto-js";
@@ -128,8 +128,8 @@ function Withdrawl() {
       //   if (amount?.winning < fk.values.amount)
       //     return toast("Your winning amount is low.");
       // }
-      if (Number(fk.values.amount) < 110 && Number(fk.values.amount) > 50000)
-        return toast("Amount shoulb be minimum 110 and maximum 50,000");
+      if (Number(fk.values.amount) < 500 && Number(fk.values.amount) > 50000)
+        return toast("Amount shoulb be minimum 500 and maximum 50,000");
 
       const data = result?.[0];
 
@@ -374,33 +374,7 @@ function Withdrawl() {
               </Typography>
             </Box>
           </Box>
-          {/* <Box className="!flex !justify-between " mt={2} sx={{ width: '95%', ml: '2.5%' }}>
-            <Box sx={{ background: bglightgray, border: zubgtext, width: '48%', }} className="!cursor-pointer !rounded-lg "
-            >
-              <Box component={NavLink} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', py: 2 }}>
-                <Box component="img" src={cip} sx={{ width: '60px' }}></Box>
-                <Typography className="!text-center !text-white !text-sm " mt={1}>
-                  Bank Card
-                </Typography>
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                background: bglightgray,
-                border: zubgtext,
-                width: '48%',
-              }}
-              className="!cursor-pointer !rounded-lg "
-              onClick={() => navigate("/Withdrawalusdt")}
-            >
-              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', py: 2 }}>
-                <Box component="img" src={usdt} sx={{ width: '40px' }} ></Box>
-                <Typography className="!text-center !text-white !text-sm " mt={1}>
-                  USDT
-                </Typography>
-              </Box>
-            </Box>
-          </Box> */}
+
           <Box
             sx={{
               padding: "10px",
@@ -435,52 +409,11 @@ function Withdrawl() {
                   onChange={fk.handleChange}
                   placeholder="Enter amount *"
                   className="withdrawalfield2"
-                  // onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                 />
                 {fk.touched.amount && fk.errors.amount && (
                   <div className="error">{fk.errors.amount}</div>
                 )}
               </FormControl>
-              {/* <Box mt={3}>
-                <FormControl fullWidth sx={{ mt: "10px" }}>
-                  <Stack direction="row" className="loginlabel">
-                    <Typography variant="h3" sx={{ color: "white" }}>
-                      Select Wallet <span className="!text-white-600">*</span>
-                    </Typography>
-                  </Stack>
-                  <TextField
-                    select
-                    id="select_wallet"
-                    name="select_wallet"
-                    value={fk.values.select_wallet}
-                    onChange={fk.handleChange}
-                    className="withdrawalfield2 "
-                    sx={{
-                      background: "white",
-                      border: "none",
-                      borderRadius: "5px",
-                      padding: "0px",
-                    }}
-                    InputProps={{
-                      style: {
-                        borderWidth: "1px",
-                        color: "black",
-                        background: "red !important",
-                        borderRadius: "10px",
-                        border: "none",
-                        padding: "10px !important",
-                        "&>div": { padding: "0px !important" },
-                      },
-                    }}
-                  >
-                    <MenuItem value="Working Wallet">Working Wallet</MenuItem>
-                    <MenuItem value="Main Wallet">Main Wallet</MenuItem>
-                  </TextField>
-                </FormControl>
-                {fk.touched.select_wallet && fk.errors.select_wallet && (
-                  <div className="error">{fk.errors.select_wallet}</div>
-                )}
-              </Box> */}
 
               <Box mt={3}>
                 <FormControl fullWidth>
@@ -496,7 +429,6 @@ function Withdrawl() {
                     value={fk.values.password}
                     onChange={fk.handleChange}
                     placeholder="Enter password"
-                    // onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                     sx={{
                       width: "100%",
                       background: "white",
@@ -575,7 +507,31 @@ function Withdrawl() {
                 </span>{" "}
                 for withdrawl from winning wallet.
               </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{ color: "white" }}
+                className="!text-xs"
+              >
+                * Maximum Amount{" "}
+                <span className="!text-green-500">
+                  {rupees} {Number(amount?.working_wallet) || 0}
+                </span>{" "}
+                can be withdrawl from wallet.
+              </Typography>
             </Stack>
+            <Typography
+              variant="body1"
+              sx={{ color: "white" }}
+              className="!text-xs !my-4"
+            >
+              * Need to play Amount{" "}
+              <span className="!text-yellow-500">
+                {rupees}{" "}
+                {need_to_bet?.data?.data <= 0 ? 0 : need_to_bet?.data?.data}
+              </span>{" "}
+              for withdrawl from wallet.
+            </Typography>
 
             <Stack
               direction="row"
@@ -622,7 +578,7 @@ function Withdrawl() {
                   color: theme.palette.primary.main,
                 }}
               >
-                ₹ 110.00 - ₹ 50000.00 .{" "}
+                ₹ 500.00 - ₹ 50000.00 .{" "}
               </Typography>
             </Stack>
             <Stack direction="row" alignItems="center" mt={1}>

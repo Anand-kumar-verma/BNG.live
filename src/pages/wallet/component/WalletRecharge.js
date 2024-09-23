@@ -632,10 +632,10 @@ function WalletRecharge() {
              
             >
               {/* contained */}
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '10px 20px' }}>
+              {/* <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '10px 20px' }}>
                 <Button variant="" sx={{ color: bgtan, fontWeight: '500', borderRadius: '30px', background: bggrad }} className={`${Number(fk.values.amount || 0) < 2000 ? "!bg-[linear-gradient(180deg,#F6E3A3 0%,#D2A753 100%)]" : "contained"}`}>Flex</Button>
                 <Button variant="" sx={{ color: 'white', fontWeight: '500', borderRadius: '30px', }} className={`${Number(fk.values.amount || 0) >= 2000 ? "!bg-[linear-gradient(180deg,#F6E3A3 0%,#D2A753 100%)]" : "contained"} `}>PYT-PAY</Button>
-              </Box>
+              </Box> */}
             
             </Box>
           </Box>

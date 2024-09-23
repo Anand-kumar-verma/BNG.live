@@ -6,17 +6,18 @@ export const fron_end_main_domain = "https://bngwin.live";
 export const newdomain1 = "https://api.bngwin.live";
 export const newdomain = "https://api.bngwin.live";
 // export const newdomain1 = "http://192.168.18.183:9000";
-// export const newdomain = "http://192.168.18.183:9000";
+// export const baseUrl = "http://192.168.18.183:9000";
+export const admin = "https://admin.bngwin.live";
 
 export const domain = "https://bng-live-timer-1.onrender.com";
-export const support_mail = "";
+export const public_chain = "https://tronscan.io/#/";
 export const telegram_url = "";
 export const facebook_url = "";
 export const instagram_url = "";
+export const support_mail = "";
 
 export const endpoint = {
   //node login api
-
   login: `${newdomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
@@ -52,23 +53,23 @@ export const endpoint = {
 
   //payment
   payment: `${newdomain1}/api/v1/payment`,
-  deposit_history_usdt: `${newdomain1}/api/v1/coin-payment-deposit-history`,
+  deposit_history_usdt: `${newdomain1}/api/v1/deposit-history-usdt`,
   withdrawal_request_usdt: `${newdomain1}/api/v1/payout-request`,
   withdrawal_address_usdt: `${newdomain1}/api/v1/add-usdt-address`,
   get_address_list: `${newdomain1}/api/v1/usdt-address-record`,
-  withdrawl_usdt_history: `${newdomain1}/api/v1/coin-payment-withdrawl-history`,
+  withdrawl_usdt_history: `${newdomain1}/api/v1/withdrawal-history-usdt`,
   payment_deposite: `${newdomain}/api/v1/payin-request`,
 
   check_result: `${baseUrl}/api/checkresult`,
   color_winning: `${baseUrl}/api/colour_winning`,
   cash_deposit: `${baseUrl}/api/deposit`,
   payment_url: "https://vpayout.com/Upi_controller/insert_fund_request_online",
-  withdraw_payment: `${baseUrl}/api/payout-request`,
+  withdraw_payment: `${admin}/api/payout-request`,
 
-  payment_request: `${baseUrl}/api/deposit-request`,
+  payment_request: `${admin}/api/deposit-request`,
   registration_bonus: `${baseUrl}/api/welcom-bonus`,
-  deposit_history: `${baseUrl}/api/deposit-history`,
-  withdrawl_history: `${baseUrl}/api/withdrawl-history`,
+  deposit_history: `${baseUrl}/api/v1/deposit-history-inr`,
+  withdrawl_history: `${baseUrl}/api/v1/withdrawal-history-inr`,
   // deposit_bonus: `${baseUrl}/api/deposit-bonus`,
 
   // referral_bonus: `${baseUrl}/api/refral-bonus`,
@@ -78,8 +79,8 @@ export const endpoint = {
   weekly_salary_income: `${newdomain1}/api/v1/weekly-salary-icome`,
   team_reward_bonus: `${baseUrl}/api/team-reward-bonus`,
   team_trading_bonus: `${newdomain}/api/v1/level-income`,
-  add_bank_details: `${baseUrl}/api/bank-add`,
-  get_bank_list: `${baseUrl}/api/user-bank-details`,
+  add_bank_details: `${baseUrl}/api/v1/bank-add`,
+  get_bank_list: `${baseUrl}/api/v1/user-bank-details`,
   all_withdrawl_user_list: `${baseUrl}/api/widthrol-user-list`,
   recharge_call_bakc: `${baseUrl}/api/deposits-user-request`,
   cricket_get_url_id_pass: `${baseUrl}/api/cricket-details`,

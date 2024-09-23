@@ -313,7 +313,7 @@ function WithdrawalUsdt() {
               <FormControl fullWidth sx={{ mt: "10px" }}>
                 <Stack direction="row" className="loginlabel">
                   <Typography variant="h3" sx={{ color: "white" }}>
-                    Select Network / Address{" "}
+                    Select Address{" "}
                     <span className="!text-red-600">*</span>
                   </Typography>
                 </Stack>
@@ -346,7 +346,7 @@ function WithdrawalUsdt() {
                   {result?.map((i, index) => {
                     return (
                       <MenuItem key={index} value={i?.usdt_type}>
-                        {i?.usdt_type} <br /> {i?.usdt_address}
+                        {i?.usdt_address}
                       </MenuItem>
                     );
                   })}

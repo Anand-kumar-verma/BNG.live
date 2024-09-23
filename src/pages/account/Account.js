@@ -6,7 +6,7 @@ import {
   Container,
   IconButton,
   Stack,
-  Typography
+  Typography,
 } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -116,7 +116,7 @@ function Account() {
                   </Typography>
                 </Box>
                 <Box
-                  className=" w-40 h-6 rounded-full p-1   realtive !left-40 flex gap-3 justify-center"
+                  className="!w-fit h-6 rounded-full p-1   realtive !left-40 flex gap-3 justify-center"
                   sx={{ background: bgtan }}
                 >
                   <Typography className="text-white !text-xs">UID </Typography>
@@ -223,8 +223,14 @@ function Account() {
               </Box>
               <Box
                 sx={style.actionBox2}
-                component={NavLink}
-                to="/Withdrawalusdt"
+                // component={NavLink}
+                onClick={() => {
+                  navigate("/rechargeusdt", {
+                    state: {
+                      key: 2,
+                    },
+                  });
+                }}
                 mt={2}
               >
                 <Box component="img" src={trc} sx={style.actionImage2} />
@@ -238,8 +244,14 @@ function Account() {
               </Box>
               <Box
                 sx={style.actionBox2}
-                component={NavLink}
-                to="/Withdrawalusdt"
+                // component={NavLink}
+                onClick={() => {
+                  navigate("/rechargeusdt", {
+                    state: {
+                      key: 1,
+                    },
+                  });
+                }}
                 mt={2}
               >
                 <Box component="img" src={bep} sx={style.actionImage2} />
@@ -258,7 +270,7 @@ function Account() {
           className="grid grid-cols-2 gap-3 "
           sx={{ mt: "-40px", width: "95%", ml: "2.5%" }}
         >
-          <Box
+          {/* <Box
             className="flex gap-1 justify-center p-1 py-4 items-center  shadow-xl  rounded-lg"
             sx={{ background: bglightgray }}
             component={NavLink}
@@ -288,8 +300,8 @@ function Account() {
                 My Transaction history
               </span>
             </Typography>
-          </Box>
-          <NavLink to="/depositehistory">
+          </Box> */}
+          <NavLink to="/depositHistory">
             <Box
               className="flex gap-1 p-1 py-4 justify-center items-center shadow-xl  rounded-lg"
               sx={{ background: bglightgray }}
@@ -306,7 +318,7 @@ function Account() {
               </Typography>
             </Box>
           </NavLink>
-          <NavLink to="/withdrawlhistory">
+          <NavLink to="/withdravalHistory">
             <Box
               className="flex gap-1 p-1 py-4 justify-center items-center shadow-xl  rounded-lg"
               sx={{ background: bglightgray }}
