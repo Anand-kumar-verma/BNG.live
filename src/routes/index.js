@@ -72,6 +72,7 @@ import Attendence from "../pages/income/incomeSubSection/Attendaence";
 import Claim from "../pages/income/incomeSubSection/Claim";
 import StreakBonus from "../pages/income/incomeSubSection/Streak";
 import VipBonus from "../pages/income/VipBonus";
+import ActivityDetail from "../pages/activity/component/ActivityDetail.js";
 
 export const routes = [
     {
@@ -342,6 +343,10 @@ export const routes = [
     {
         path: "/activity/Laundry/LaundryRecord",
         component: <RebateHistory />
+    },
+    {
+        path: "/activity/ActivityDetail",
+        component: <ActivityDetail />
     },
     {
         path: "/gift",
