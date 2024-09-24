@@ -1,12 +1,19 @@
 export const rupees = "₹";
 // https://admin.bngwin.live/
-export const baseUrl = "https://api.bngwin.live";
+
 export const fron_end_main_domain = "https://bngwin.live";
 
 export const newdomain1 = "https://api.bngwin.live";
 export const newdomain = "https://api.bngwin.live";
+export const baseUrl = "https://api.bngwin.live";
 // export const newdomain1 = "http://192.168.18.183:9000";
+// export const newdomain = "http://192.168.18.183:9000";
 // export const baseUrl = "http://192.168.18.183:9000";
+
+
+
+
+
 export const admin ="https://admin.bngwin.live";
 
 export const domain = "https://bng-live-timer-1.onrender.com";

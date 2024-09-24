@@ -24,7 +24,6 @@ import { fron_end_main_domain } from "../../services/urls";
 import MyModal from "../../Shared/Modal";
 
 function Promotion() {
-  const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
 
   const { data: amount } = useQuery(["walletamount"], () => walletamount(), {
     refetchOnMount: false,
