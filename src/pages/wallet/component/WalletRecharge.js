@@ -494,7 +494,11 @@ function WalletRecharge() {
         }}
       >
         <Box sx={style.header}>
-          <Box component={NavLink} onClick={goBack}>
+          <Box  onClick={() => {
+              setDeposit_req_data(null);
+              navigate('/account')
+            }
+            }>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
           <Typography variant="body1" color="initial">
@@ -601,18 +605,6 @@ function WalletRecharge() {
               USDT
             </Typography>
           </Box>
-          {/* <Box sx={{ width: '48%', background: '#F0F0F0', borderRadius: "5px", mt: 2, }} className="fccc" component={NavLink} onClick={() => setPaymentType("USDT")}>
-            <Box component="img" src={TRC20} sx={{ width: "100%", height: '55px', borderRadius: "10px", pt: 1, px: 1, }}></Box>
-            <Typography className="fp13 " sx={{ fontWeight: 'bolder', borderRadius: "0px 0px  5px 5px", background: bggrad, width: '100%', py: 1, textAlign: 'center', fontFamily: 'roboto !important' }} mt={1}>
-              USDT TRC 20
-            </Typography>
-          </Box>
-          <Box sx={{ width: '48%', background: '#1B0E1F', borderRadius: "5px", mt: 2, }} className="fccc" component={NavLink} onClick={() => setPaymentType("USDT")}>
-            <Box component="img" src={BEP20} sx={{ width: "100%", height: '55px', borderRadius: "10px", pt: 1, px: 1, }}></Box>
-            <Typography className="fp13 " sx={{ fontWeight: 'bolder', borderRadius: "0px 0px  5px 5px", background: bggrad, width: '100%', py: 1, textAlign: 'center', fontFamily: 'roboto !important' }} mt={1}>
-              USDT  BEP 20
-            </Typography>
-          </Box> */}
         </Box>
 
     
