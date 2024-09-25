@@ -160,7 +160,7 @@ function WithdravalHistory() {
                     }}
                   >
                     <Typography variant="body1" >
-                      tr15_status
+                      Status
                     </Typography>
                     <Typography variant="body1" >
                       {i?.tr15_status}{" "}

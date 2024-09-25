@@ -5,7 +5,7 @@ export const fron_end_main_domain = "https://bngwin.live";
 
 export const newdomain1 = "https://api.bngwin.live";
 export const newdomain = "https://api.bngwin.live";
-// export const newdomain1 = "http://192.168.18.183:9000";
+export const newdomainn = "http://192.168.18.183:9000";
 // export const baseUrl = "http://192.168.18.183:9000";
 export const admin ="https://admin.bngwin.live";
 
@@ -18,6 +18,7 @@ export const support_mail = "";
 
 export const endpoint = {
   //node login api
+  
   login: `${newdomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
@@ -110,5 +111,9 @@ export const endpoint = {
   commission_data: `${newdomain1}/api/v1/get-commisssion-data-funx`,
   tranfer_wallet: `${newdomain1}/api/v1/transfer-amount-from-working-wallet-to-main-wallet`,
   transfer_wallet_history: `${newdomain1}/api/v1/transfer-history-from-working-wallet-to-main-wallet`,
-  yesterday_income: `${newdomain}/api/v1/get-total-betA-ad-income-yesterday`,
+  yesterday_income: `${newdomain1}/api/v1/get-total-betA-ad-income-yesterday`,
+  status_popup: `${newdomain1}/api/v1/hideStatusOfDepositPopup`,
+  get_level_general: `${newdomain1}/api/v1/get_level_general_data`,
+ 
+ 
 };

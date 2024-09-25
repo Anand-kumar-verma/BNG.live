@@ -173,11 +173,14 @@ function Dashboard() {
     dispatch(please_reconnect_the_serverFun(false));
   }, []);
 
-  useQuery(["yesterday_income"], () => yesterdayFn(), {
+  const { data: amount } = useQuery(["yesterday_income"], () => yesterdayFn(), {
     refetchOnMount: false,
     refetchOnReconnect: false,
     refetchOnWindowFocus: false,
   });
+
+  const statusyesterday = amount?.data?.data
+  
   return (
     <Layout header={false}>
       <Box sx={styles.root}>
@@ -1161,7 +1164,10 @@ function Dashboard() {
               </DialogContent>
             </Dialog>
           )} */}
-          <MyModal />
+          {statusyesterday?.[0]?.status_of_deposit_popup === "1" ?
+           <MyModal /> 
+          : "null" }
+        
         </Container>
       </Box>
       <CustomCircularProgress isLoading={isLoading || isLoading} />

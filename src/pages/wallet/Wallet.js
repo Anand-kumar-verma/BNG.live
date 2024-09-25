@@ -27,7 +27,7 @@ import rechargeIcon from "../../assets/images/new/download (8).png";
 
 // import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
-import { walletamount } from "../../services/apicalling";
+import { walletamount, yesterdayFn } from "../../services/apicalling";
 import theme from "../../utils/theme";
 import MyModal from "../../Shared/Modal";
 
@@ -49,6 +49,14 @@ function Wallet() {
   const series = [(Number(Number(amount?.wallet || 0) % 100) || 0)?.toFixed(2),]
   const series2 = [(Number(Number(amount?.winning || 0) % 100) || 0)?.toFixed(2),];
   const series1 = [(Number(Number(amount?.working_wallet || 0) % 100) || 0)?.toFixed(2),];
+
+  const { data: status } = useQuery(["yesterday_income"], () => yesterdayFn(), {
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+  });
+
+  const statusyesterday = status?.data?.data
 
   const [options] = React.useState({
     colors: ["#D9AC4F", "red", "green"],
@@ -411,7 +419,10 @@ function Wallet() {
           </Dialog>
         )} */}
         <CustomCircularProgress isLoading={isLoading} />
-        <MyModal />
+        {statusyesterday?.[0]?.status_of_deposit_popup === "1" ?
+           <MyModal /> 
+          : "null" }
+
       </Container>
     </Layout>
   );

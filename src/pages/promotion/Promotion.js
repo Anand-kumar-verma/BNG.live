@@ -19,12 +19,11 @@ import donut from "../../assets/images/database.png";
 import money from "../../assets/images/salary.png";
 // import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import Layout from "../../component/Layout/Layout";
-import { walletamount, yesterdayFn } from "../../services/apicalling";
+import { MygetdataLevelFn, walletamount, yesterdayFn } from "../../services/apicalling";
 import { fron_end_main_domain } from "../../services/urls";
 import MyModal from "../../Shared/Modal";
 
 function Promotion() {
-  const [openDialogBoxHomeBanner, setopenDialogBoxHomeBanner] = useState(false);
 
   const { data: amount } = useQuery(["walletamount"], () => walletamount(), {
     refetchOnMount: false,
@@ -33,17 +32,6 @@ function Promotion() {
   });
 
   const wallet = amount?.data?.data;
-
-  // const { isLoading, data } = useQuery(
-  //   ["get_level"],
-  //   () => MygetdataFn(),
-  //   {
-  //     refetchOnMount: false,
-  //     refetchOnReconnect: false,
-  //     refetchOnWindowFocus: false
-  //   }
-  // );
-  // const result = data?.data?.data;
 
   const { isLoading, data } = useQuery(
     ["yesterday_income"],
@@ -55,6 +43,21 @@ function Promotion() {
     }
   );
   const result = data?.data?.data?.[0] || [];
+
+  const { data: level } = useQuery(
+    ["get_level_general"],
+    () => MygetdataLevelFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+    }
+  );
+  const get = level?.data?.data?.[0] || [];
+  
+  console.log(get)
+
+
   const functionTOCopy = (value) => {
     copy(value);
     toast.success("Copied to clipboard!");
@@ -153,7 +156,7 @@ function Promotion() {
                   className="!text-white"
 
                 >
-                  0
+                 {result?.direct_depo_mem || 0}
                 </Typography>
                 <Typography
                   variant="body1" >
@@ -198,7 +201,7 @@ function Promotion() {
                   className="!text-white"
 
                 >
-                  0
+                 {result?.direct_depo_mem || 0}
                 </Typography>
                 <Typography
                   variant="body1" >
@@ -240,13 +243,13 @@ function Promotion() {
                   className="!text-white"
 
                 >
-                  0
+                 {get?.daily_salary_today || 0}
                 </Typography>
                 <Typography
                   variant="body1"
 
                 >
-                  Total salary
+                  Today salary
                 </Typography>
               </Box>
               <Box sx={style.subcordinatelist}>
@@ -255,11 +258,11 @@ function Promotion() {
                   className="!text-white"
 
                 >
-                  0
+                  {get?.daily_salary_total || 0}
                 </Typography>
                 <Typography
                   variant="body1" >
-                  Today salary
+                  Total salary
                 </Typography>
               </Box>
             </Box>
@@ -278,7 +281,7 @@ function Promotion() {
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1"
                   className="!text-white" >
-                  0
+                 {get?.today_withdrawal || 0}
                 </Typography>
                 <Typography variant="body1" >
                   Today withdrawal
@@ -290,7 +293,7 @@ function Promotion() {
                   className="!text-white"
 
                 >
-                  0
+                  {get?.total_withdrawal || 0}
                 </Typography>
                 <Typography
                   variant="body1" >
@@ -421,7 +424,7 @@ function Promotion() {
               <Box className="!text-black">
                 <DashboardRounded />
                 <Typography variant="body1" >
-                  {result?.this_week_commission || 0}
+                  {get?.this_week_commission || 0}
                 </Typography>
                 <Typography variant="body1" >
                   This Week
@@ -430,7 +433,7 @@ function Promotion() {
               <Box className="!text-black">
                 <Money />
                 <Typography variant="body1" >
-                  {result?.total_commission || 0}
+                  {get?.today_commission || 0}
                 </Typography>
                 <Typography variant="body1" >
                   Total Commission
@@ -476,7 +479,10 @@ function Promotion() {
             </div>
           </Dialog>
         )} */}
+        {result?.status_of_deposit_popup === "1" ?
         <MyModal />
+      :"null" }
+       
       </Container>
     </Layout>
   );
