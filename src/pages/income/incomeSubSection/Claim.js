@@ -1,5 +1,14 @@
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
-import { Box, Container, Table, TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
+import {
+  Box,
+  Container,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TablePagination,
+  TableRow,
+} from "@mui/material";
 import axios from "axios";
 import moment from "moment";
 import * as React from "react";
@@ -7,12 +16,18 @@ import toast from "react-hot-toast";
 import { useQuery, useQueryClient } from "react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
-import { bgdarkgray, bgtan, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext } from "../../../Shared/color";
+import {
+  bgdarkgray,
+  bgtan,
+  zubgback,
+  zubgbackgrad,
+  zubgmid,
+  zubgshadow,
+  zubgtext,
+} from "../../../Shared/color";
 import nodatafoundimage from "../../../assets/images/nodatafoundimage.png";
 import Layout from "../../../component/Layout/Layout";
-import {
-  InvitationIncomeFn
-} from "../../../services/apicalling";
+import { InvitationIncomeFn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
 
 function Claim() {
@@ -26,18 +41,14 @@ function Claim() {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const client = useQueryClient();
 
-
   const ClaimIncomeFn = async (id) => {
     try {
-      const response = await axios.get(
-        `${endpoint.claim_income}?t_id=${id}`
-      );
+      const response = await axios.get(`${endpoint.claim_income}?t_id=${id}`);
       client.refetchQueries("invitation_bonus");
       client.refetchQueries("walletamount");
-      return response;
+      toast(response?.data?.msg);
     } catch (e) {
       toast(e?.message);
-      console.log(e);
     }
   };
 
@@ -47,7 +58,7 @@ function Claim() {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
   const res = data?.data?.data;
@@ -63,13 +74,9 @@ function Claim() {
 
   React.useEffect(() => {
     setVisibleRows(
-      res?.slice(
-        page * rowsPerPage,
-        page * rowsPerPage + rowsPerPage
-      )
+      res?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
     );
   }, [page, rowsPerPage, res]);
-
 
   if (!isLoading && !res)
     return (
@@ -87,7 +94,7 @@ function Claim() {
             <Box component={NavLink} onClick={goBack}>
               <KeyboardArrowLeftOutlinedIcon style={{ color: bgtan }} />
             </Box>
-            <p style={{ color: bgtan }}>Invitation  Income</p>
+            <p style={{ color: bgtan }}>Invitation Bonus</p>
           </Box>
           <div>
             <img className="" src={nodatafoundimage} />
@@ -111,36 +118,88 @@ function Claim() {
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon sx={{ color: bgtan }} />
           </Box>
-          <p style={{ color: bgtan }}>Invitation Income</p>
+          <p style={{ color: bgtan }}>Invitation Bonus</p>
           <Box></Box>
         </Box>
-        <div className="!overflow-x-auto" style={{ width: "95%", marginLeft: '2.5%', marginTop: '16px', }}>
+        <div
+          className="!overflow-x-auto"
+          style={{ width: "95%", marginLeft: "2.5%", marginTop: "16px" }}
+        >
           <Table sx={{ background: bgdarkgray, boxShadow: zubgshadow }}>
             <TableHead>
-              <TableRow >
-                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r  !text-center !border-b !border-white">S.No</TableCell>
-                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Date/Time</TableCell>
-                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Amount</TableCell>
-                <TableCell sx={{ color: 'white' }} className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Claim</TableCell>
-                <TableCell sx={{ color: 'white' }} className="!font-bold !border !text-xs !border-r !text-center  !border-b !border-white">Transaction Type</TableCell>
+              <TableRow>
+                <TableCell
+                  sx={{ color: "white" }}
+                  className=" !font-bold !border !text-xs !border-r  !text-center !border-b !border-white"
+                >
+                  S.No
+                </TableCell>
+                <TableCell
+                  sx={{ color: "white" }}
+                  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white"
+                >
+                  Date/Time
+                </TableCell>
+                <TableCell
+                  sx={{ color: "white" }}
+                  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white"
+                >
+                  Amount
+                </TableCell>
+                <TableCell
+                  sx={{ color: "white" }}
+                  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white"
+                >
+                  Claim
+                </TableCell>
+                <TableCell
+                  sx={{ color: "white" }}
+                  className="!font-bold !border !text-xs !border-r !text-center  !border-b !border-white"
+                >
+                  Transaction Type
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {visibleRows?.map((i, index) => (
                 <TableRow key={i?.id}>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white">{index + 1}</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">
+                  <TableCell
+                    sx={{ color: "white" }}
+                    className="!border !border-r !text-xs !text-center !mt-5  !border-b !border-white"
+                  >
+                    {index + 1}
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "white" }}
+                    className="!border !border-r !text-xs !text-center  !border-b !border-white"
+                  >
                     {moment(i?.l01_date).format("DD-MM-YYYY HH:mm:ss")}
                   </TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{i?.l01_amount}</TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">
-                  <span 
-                  className="border px-2 cursor-pointer"
-                  onClick={() =>i?.l01_clame_status === 0 &&  ClaimIncomeFn(i?.lo1_id)}>
-                  {i?.l01_clame_status === 0 ? "Claim" : "Achieve"}
-                  </span>
+                  <TableCell
+                    sx={{ color: "white" }}
+                    className="!border !border-r !text-xs !text-center  !border-b !border-white"
+                  >
+                    {i?.l01_amount}
                   </TableCell>
-                  <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !border-b !border-white">{i?.l01_transection_type}</TableCell>
+                  <TableCell
+                    sx={{ color: "white" }}
+                    className="!border !border-r !text-xs !text-center  !border-b !border-white"
+                  >
+                    <span
+                      className="border px-2 cursor-pointer"
+                      onClick={() =>
+                        i?.l01_clame_status === 0 && ClaimIncomeFn(i?.lo1_id)
+                      }
+                    >
+                      {i?.l01_clame_status === 0 ? "Claim" : "Achieve"}
+                    </span>
+                  </TableCell>
+                  <TableCell
+                    sx={{ color: "white" }}
+                    className="!border !border-r !text-xs !text-center !border-b !border-white"
+                  >
+                    {i?.l01_transection_type}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -166,7 +225,6 @@ function Claim() {
         </div>
       </Container>
     </Layout>
-
   );
 }
 
@@ -257,7 +315,3 @@ const style = {
     "&>p": { marginLeft: "10px", color: "white !important", fontSize: "14px" },
   },
 };
-
-
-
-

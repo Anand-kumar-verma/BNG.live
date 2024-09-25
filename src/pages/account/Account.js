@@ -25,7 +25,6 @@ import bep from "../../assets/images/bep20token_nadcab.png";
 import c1 from "../../assets/images/c1.png";
 import depo from "../../assets/images/depo.png";
 import f1 from "../../assets/images/f1.png";
-import game from "../../assets/images/game.png";
 import lang from "../../assets/images/lang.png";
 import n1 from "../../assets/images/n1.png";
 import not from "../../assets/images/not.png";
@@ -37,13 +36,13 @@ import edit from "../../assets/images/vipicon.png";
 import wit from "../../assets/images/witt.png";
 import wtd from "../../assets/rechargeIcon.png";
 // import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
+import toast from "react-hot-toast";
 import MyModal from "../../Shared/Modal";
 import s from "../../assets/wdhistory.png";
 import dpt from "../../assets/withdrow.png";
 import Layout from "../../component/Layout/Layout";
 import { walletamount, yesterdayFn } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
-import toast from "react-hot-toast";
 
 function Account() {
   const [opend, setOpend] = useState(false);
@@ -66,7 +65,7 @@ function Account() {
   const functionTOCopy = (value) => {
     copy(value);
     toast.success("Copied to clipboard!");
-  }
+  };
   async function sendUrlCallBackToBackend(transactionId) {
     try {
       const res = await axios.get(
@@ -131,7 +130,8 @@ function Account() {
                 <Box
                   className="!w-fit h-6 rounded-full p-1 !cursor-pointer  realtive !left-40 flex gap-3 justify-center"
                   sx={{ background: bgtan }}
-                  onClick={() => functionTOCopy(wallet?.username || 0)}>
+                  onClick={() => functionTOCopy(wallet?.username || 0)}
+                >
                   <Typography className="text-white !text-xs">UID </Typography>
                   <Typography className="text-white !text-xs">| </Typography>
                   <Typography className="text-white !text-xs">
@@ -231,7 +231,7 @@ function Account() {
                   color="initial"
                   sx={style.actionText}
                 >
-                  vip level
+                  VIP Level
                 </Typography>
               </Box>
               <Box

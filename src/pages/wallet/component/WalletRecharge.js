@@ -668,7 +668,9 @@ function WalletRecharge() {
                   onChange={fk.handleChange}
                   endAdornment={
                     <InputAdornment position="end">
-                      <IconButton edge="end">
+                      <IconButton edge="end"
+                      onClick={()=>fk.setFieldValue("amount","")}
+                      >
                         <CloseIcon />
                       </IconButton>
                     </InputAdornment>

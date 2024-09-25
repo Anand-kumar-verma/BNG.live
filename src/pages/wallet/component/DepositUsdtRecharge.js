@@ -18,10 +18,10 @@ import {
 import axios from "axios";
 import copy from "clipboard-copy";
 import CryptoJS from "crypto-js";
+import { useFormik } from "formik";
 import * as React from "react";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
-import { useSelector } from "react-redux";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import {
@@ -46,7 +46,6 @@ import Layout from "../../../component/Layout/Layout";
 import { getQraddress } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
 import theme from "../../../utils/theme";
-import { useFormik } from "formik";
 
 function DepositeUsdtrecharge() {
   const location = useLocation();

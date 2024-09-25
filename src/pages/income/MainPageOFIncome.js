@@ -17,22 +17,22 @@ function MainPageOFIncome() {
     
     {
       to: "/account/income-main/attendance-bonus",
-      name: "Attendance Income",
+      name: "Attendance Bonus",
       logo: <PriceCheckIcon className="!w-[40px] !h-[40px] " color="black" />,
     },
     {
       to: "/account/income-main/claim-bonus",
-      name: "Invitation Income",
+      name: "Invitation Bonus",
       logo: <RedeemIcon className="!w-[40px] !h-[40px] " color="black" />,
     },
     {
        to: "/account/income-main/streak-bonus",
-      name: "Winning Streak Income",
+      name: "Winning Streak Bonus",
       logo: <PriceCheckIcon className="!w-[40px] !h-[40px] " color="black" />,
     },
     {
         to: "/account/income-main/vip-bonus",
-        name: "VIP Income",
+        name: "VIP Bonus",
         logo: <AccountBalanceIcon className="!w-[40px] !h-[40px] " color="black" />,
       },
        {
@@ -42,7 +42,7 @@ function MainPageOFIncome() {
     },
     {
       to: "/account/income-main/deposit-bonus",
-      name: "Deposit Self Income",
+      name: "Deposit Self Bonus",
       logo: <Diversity2Outlined className="!w-[40px] !h-[40px] " color="black" />,
     },
     //  {

@@ -4,65 +4,121 @@ import Layout from "../../../component/Layout/Layout";
 import { NavLink, useNavigate } from "react-router-dom";
 import { bgcolorlight, bgtan } from "../../../Shared/color";
 import { ArrowBackIos } from "@mui/icons-material";
-import giftbg from '../../../assets/images/giftbg.png'
-import coin from '../../../assets/images/coin-294b6998.png'
-import day7Bg from '../../../assets/images/day7Bg-ada1d750.png'
-
-
-const AttendanceCard = ({ day, amount }) => (
-  <Box sx={styles.rewardBox}>
-    <Typography variant="h6">₹{amount}</Typography>
-    <Typography variant="body2">{day} Day</Typography>
-  </Box>
-);
+import giftbg from "../../../assets/images/giftbg.png";
+import coin from "../../../assets/images/coin-294b6998.png";
+import day7Bg from "../../../assets/images/day7Bg-ada1d750.png";
+import { AttendenceIncomeFn } from "../../../services/apicalling";
+import { useQuery, useQueryClient } from "react-query";
+import { endpoint } from "../../../services/urls";
+import axios from "axios";
+import toast from "react-hot-toast";
+// onClick={() =>i?.l01_clame_status === 0 &&  ClaimIncomeFn(i?.lo1_id)}>
+// {i?.l01_clame_status === 0 ? "Claim" : "Achieve"}
 function DailySignInBonous() {
-
-
   const navigate = useNavigate();
+  const client = useQueryClient();
   const handleBack = () => {
     navigate(-1);
-  }
+  };
 
+  const ClaimIncomeFn = async (id) => {
+    try {
+      const response = await axios.get(`${endpoint.claim_income}?t_id=${id}`);
+      client.refetchQueries("attendence_bonus");
+      client.refetchQueries("walletamount");
+      toast(response?.data?.msg);
+    } catch (e) {
+      toast(e?.message);
+    }
+  };
+
+  const { isLoading, data } = useQuery(
+    ["attendence_bonus"],
+    () => AttendenceIncomeFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+    }
+  );
+  const res = data?.data?.data;
   return (
     <Layout header={false} footer={false}>
-      <Box sx={{ py: '12px', background: bgcolorlight }}>
-        <Box className="fcsb w95" >
-          <Box sx={{ width: '20%' }}>
-            <ArrowBackIos className='fp18' sx={{ color: 'white', }} onClick={handleBack} />
+      <Box sx={{ py: "12px", background: bgcolorlight }}>
+        <Box className="fcsb w95">
+          <Box sx={{ width: "20%" }}>
+            <ArrowBackIos
+              className="fp18"
+              sx={{ color: "white" }}
+              onClick={handleBack}
+            />
           </Box>
-          <Typography className='fp15 fw500' sx={{ color: 'white', width: '60%', textAlign: 'center' }}>Attendance</Typography>
-          <Typography sx={{ color: 'white', width: '20%' }}></Typography>
+          <Typography
+            className="fp15 fw500"
+            sx={{ color: "white", width: "60%", textAlign: "center" }}
+          >
+            Attendance
+          </Typography>
+          <Typography sx={{ color: "white", width: "20%" }}></Typography>
         </Box>
       </Box>
       <Box sx={styles.root}>
-        <Box sx={{
-          padding: 2,
-          background: '#F54545',
-          backgroundImage: `url(${giftbg})`,
-          backgroundSize: 'cover',
-        }} >
-          < Typography className="w fp20 fw600" >
-            Attendance Bonus
-          </Typography>
+        <Box
+          sx={{
+            padding: 2,
+            background: "#F54545",
+            backgroundImage: `url(${giftbg})`,
+            backgroundSize: "cover",
+          }}
+        >
+          <Typography className="w fp20 fw600">Attendance Bonus</Typography>
           <Typography className="w fp14 fw600">
             Get rewards based on consecutive login days
           </Typography>
-          <Box sx={{ padding: '4px', background: 'white', mt: 2, width: '50%', clipPath: 'polygon(100% 0%, 90% 50%, 100% 100%, 0 100%, 0% 50%, 0 0)', }}>
-            <Typography variant="h6" sx={{ color: '#F54545' }} className=" fp14 fw500">
+          <Box
+            sx={{
+              padding: "4px",
+              background: "white",
+              mt: 2,
+              width: "50%",
+              clipPath:
+                "polygon(100% 0%, 90% 50%, 100% 100%, 0 100%, 0% 50%, 0 0)",
+            }}
+          >
+            <Typography
+              variant="h6"
+              sx={{ color: "#F54545" }}
+              className=" fp14 fw500"
+            >
               Attended consecutively
             </Typography>
-            <Typography variant="h6" sx={{ color: '#F54545' }} className=" fp14 fw500">
+            <Typography
+              variant="h6"
+              sx={{ color: "#F54545" }}
+              className=" fp14 fw500"
+            >
               0 Day
             </Typography>
           </Box>
 
-          <Typography sx={{ color: 'white' }}>Accumulated </Typography>
-          <Typography className="w f23" >₹0.00</Typography>
-          <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2, }}>
-            <Button variant="contained" sx={styles.button} component={NavLink} to="/activity/DailySignIn/Rules">
+          <Typography sx={{ color: "white" }}>Accumulated </Typography>
+          <Typography className="w f23">₹0.00</Typography>
+          <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
+            <Button
+              variant="contained"
+              sx={styles.button}
+              component={NavLink}
+              to="/activity/DailySignIn/Rules"
+            >
               Game Rules
             </Button>
-            <Button variant="contained" sx={styles.button}>
+            <Button
+              onClick={() => {
+                navigate("/account/income-main/attendance-bonus");
+              }}
+              variant="contained"
+              sx={styles.button}
+            >
               Attendance History
             </Button>
           </Box>
@@ -75,11 +131,40 @@ function DailySignInBonous() {
             { day: 4, amount: 200, img: coin },
             { day: 5, amount: 450, img: coin },
             { day: 6, amount: 2400, img: coin },
-          ].map((reward) => (
-            <Box sx={{ background: '#333332', borderRadius: '8px', width: '30%', mb: 2, py: 1, }} className="fccc" key={reward.day}>
-              <Typography className=" w fp16 fw700" mb={1} ax={{ textAlign: 'center' }}>₹{reward.amount}.00</Typography>
-              <Box component='img' src={reward.img} sx={{ width: '30px' }}></Box>
-              <Typography className=" w fp14 fw500" mt={1} ax={{ textAlign: 'center' }}>{reward.day} Days</Typography>
+          ].map((reward, index) => (
+            <Box
+              sx={{
+                borderRadius: "8px",
+                width: "30%",
+                mb: 2,
+                py: 1,
+              }}
+              className={`fccc !bg-gray-500`}
+              key={reward.day}
+              // onClick={() =>
+              //   res?.[index]?.l01_clame_status === 0 &&
+              //   ClaimIncomeFn(res?.[index]?.lo1_id)
+              // }
+            >
+              <Typography
+                className=" w fp16 fw700"
+                mb={1}
+                ax={{ textAlign: "center" }}
+              >
+                ₹{reward.amount}.00
+              </Typography>
+              <Box
+                component="img"
+                src={reward.img}
+                sx={{ width: "30px" }}
+              ></Box>
+              <Typography
+                className=" w fp14 fw500"
+                mt={1}
+                ax={{ textAlign: "center" }}
+              >
+                {reward.day} Days
+              </Typography>
             </Box>
           ))}
         </Box>
@@ -95,24 +180,39 @@ function DailySignInBonous() {
             component="img"
             src={day7Bg}
             alt="Gift Icon"
-            sx={{ width: "150px", }}
+            sx={{ width: "150px" }}
           />
-          <Box sx={{ width: '30%', textAlign: 'center', }}>
+          <Box sx={{ width: "30%", textAlign: "center" }}>
             <Typography variant="h5" className="w f20 fw500">
-              ₹6,400.00</Typography>
-            <Typography variant="body2" className="w f15">7 Day</Typography>
+              ₹6,400.00
+            </Typography>
+            <Typography variant="body2" className="w f15">
+              7 Day
+            </Typography>
           </Box>
         </Box>
-        <Button variant="contained" sx={{ width: '80%', background: 'linear-gradient(90deg, #FAE59F 0%, #C4933F 100%)', borderRadius: '50px', marginLeft: '10%', color: bgtan, padding: '7px0', my: 5, textTransform: 'capitalize' }}>
+        <Button
+          variant="contained"
+          sx={{
+            width: "80%",
+            background: "linear-gradient(90deg, #FAE59F 0%, #C4933F 100%)",
+            borderRadius: "50px",
+            marginLeft: "10%",
+            color: bgtan,
+            padding: "7px0",
+            my: 5,
+            textTransform: "capitalize",
+          }}
+          onClick={() => navigate("/account/income-main/attendance-bonus")}
+        >
           Attendance
         </Button>
       </Box>
-    </Layout >
-  )
+    </Layout>
+  );
 }
 
-export default DailySignInBonous
-
+export default DailySignInBonous;
 
 const styles = {
   button: {
