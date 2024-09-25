@@ -33,7 +33,7 @@ function Attendence() {
       );
       client.refetchQueries("attendence_bonus");
       client.refetchQueries("walletamount");
-      return response;
+      toast(response?.data?.msg);
     } catch (e) {
       toast(e?.message);
       console.log(e);

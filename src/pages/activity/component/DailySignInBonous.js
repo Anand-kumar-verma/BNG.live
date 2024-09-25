@@ -26,7 +26,7 @@ function DailySignInBonous() {
       const response = await axios.get(`${endpoint.claim_income}?t_id=${id}`);
       client.refetchQueries("attendence_bonus");
       client.refetchQueries("walletamount");
-      return response;
+      toast(response?.data?.msg);
     } catch (e) {
       toast(e?.message);
     }

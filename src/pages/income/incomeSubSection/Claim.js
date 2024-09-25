@@ -46,10 +46,9 @@ function Claim() {
       const response = await axios.get(`${endpoint.claim_income}?t_id=${id}`);
       client.refetchQueries("invitation_bonus");
       client.refetchQueries("walletamount");
-      return response;
+      toast(response?.data?.msg);
     } catch (e) {
       toast(e?.message);
-      console.log(e);
     }
   };
 

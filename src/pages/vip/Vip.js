@@ -13,11 +13,12 @@ import {
   Tabs,
   Typography,
 } from "@mui/material";
+import moment from "moment";
 import React, { useState } from "react";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import empty from "../../assets/images/empty.png";
 import profile from "../../assets/images/profile.jpg";
 import vip from "../../assets/images/vip.png";
 import vip01 from "../../assets/images/vip01.png";
@@ -52,11 +53,9 @@ import vip88 from "../../assets/images/vip88.png";
 import vip9 from "../../assets/images/vip9.png";
 import vip99 from "../../assets/images/vip99.png";
 import Layout from "../../component/Layout/Layout";
-import { VipIncomeFn } from "../../services/apicalling";
-import { bgcolorlight, bggold, bgtan } from "../../Shared/color";
-import { useQuery } from "react-query";
+import { VipIncomeFn, yesterdayFn } from "../../services/apicalling";
 import { rupees } from "../../services/urls";
-import moment from "moment";
+import { bgcolorlight, bggold, bgtan } from "../../Shared/color";
 
 function VIPPage() {
   const navigate = useNavigate();
@@ -85,6 +84,17 @@ function VIPPage() {
     }
   );
   const res = data?.data?.data;
+  const { data: vip_data } = useQuery(
+    ["yesterday_income"],
+    () => yesterdayFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+    }
+  );
+  const vip_data_res = vip_data?.data?.data?.[0] || [];
+  console.log(vip_data_res);
   const Rules = () => {
     return (
       <Box>
@@ -459,7 +469,11 @@ function VIPPage() {
               </Box>
               <LinearProgress
                 variant="determinate"
-                value={res?.[0] ? 100 : 0}
+                value={
+                  res?.[0]
+                    ? 100
+                    : vip_data_res?.total_betting_by_user * (100 / 3000)
+                }
                 sx={{ ...styles.vipLevelProgress, backgroundColor: "#6E8094" }}
               />
               <Box
@@ -473,7 +487,10 @@ function VIPPage() {
                     background: "#899fbf",
                   }}
                 >
-                  {res?.[0] ? "3000" : "0"}/3000
+                  {res?.[0]
+                    ? "3000"
+                    : parseInt(vip_data_res?.total_betting_by_user)}
+                  /3000
                 </Button>
                 <Typography variant="body2" sx={styles.vipLevelText}>
                   3000 EXP can be leveled up
@@ -542,7 +559,11 @@ function VIPPage() {
               </Box>
               <LinearProgress
                 variant="determinate"
-                value={res?.[1] ? 100 : 0}
+                value={
+                  res?.[1]
+                    ? 100
+                    : vip_data_res?.total_betting_by_user * (100 / 30000)
+                }
                 sx={{ ...styles.vipLevelProgress, backgroundColor: "#ad5913" }}
               />
               <Box
@@ -556,7 +577,10 @@ function VIPPage() {
                     background: "#ad5913",
                   }}
                 >
-                  {res?.[1] ? "30000" : "0"}/30000
+                  {res?.[1]
+                    ? "30000"
+                    : parseInt(vip_data_res?.total_betting_by_user)}
+                  /30000
                 </Button>
                 <Typography variant="body2" sx={styles.vipLevelText}>
                   30000 EXP can be leveled up
@@ -625,7 +649,11 @@ function VIPPage() {
               </Box>
               <LinearProgress
                 variant="determinate"
-                value={res?.[2] ? 100 : 0}
+                value={
+                  res?.[2]
+                    ? 100
+                    : vip_data_res?.total_betting_by_user * (100 / 400000)
+                }
                 sx={{ ...styles.vipLevelProgress, backgroundColor: "#fa4a4a" }}
               />
               <Box
@@ -639,7 +667,10 @@ function VIPPage() {
                     background: "#fa4a4a",
                   }}
                 >
-                  {res?.[0] ? "400000" : "0"}/400000
+                  {res?.[2]
+                    ? "400000"
+                    : parseInt(vip_data_res?.total_betting_by_user)}
+                  /400000
                 </Button>
                 <Typography variant="body2" sx={styles.vipLevelText}>
                   400000 EXP can be leveled up
@@ -708,7 +739,11 @@ function VIPPage() {
               </Box>
               <LinearProgress
                 variant="determinate"
-                value={res?.[3] ? 100 : 0}
+                value={
+                  res?.[3]
+                    ? 100
+                    : vip_data_res?.total_betting_by_user * (100 / 4000000)
+                }
                 sx={{ ...styles.vipLevelProgress, backgroundColor: "#008798" }}
               />
               <Box
@@ -722,7 +757,10 @@ function VIPPage() {
                     background: "#008798",
                   }}
                 >
-                  {res?.[0] ? "4000000" : "0"}/4000000
+                  {res?.[3]
+                    ? "4000000"
+                    : parseInt(vip_data_res?.total_betting_by_user)}
+                  /4000000
                 </Button>
                 <Typography variant="body2" sx={styles.vipLevelText}>
                   4000000 EXP can be leveled up
@@ -791,7 +829,11 @@ function VIPPage() {
               </Box>
               <LinearProgress
                 variant="determinate"
-                value={res?.[4] ? 100 : 0}
+                value={
+                  res?.[4]
+                    ? 100
+                    : vip_data_res?.total_betting_by_user * (100 / 20000000)
+                }
                 sx={{ ...styles.vipLevelProgress, backgroundColor: "#d73ab1" }}
               />
               <Box
@@ -806,7 +848,10 @@ function VIPPage() {
                   }}
                 >
                   {" "}
-                  {res?.[4] ? "20000000" : "0"}/20000000
+                  {res?.[4]
+                    ? "20000000"
+                    : parseInt(vip_data_res?.total_betting_by_user)}
+                  /20000000
                 </Button>
                 <Typography variant="body2" sx={styles.vipLevelText}>
                   20000000 EXP can be leveled up
@@ -875,7 +920,11 @@ function VIPPage() {
               </Box>
               <LinearProgress
                 variant="determinate"
-                value={res?.[5] ? 100 : 0}
+                value={
+                  res?.[5]
+                    ? 100
+                    : vip_data_res?.total_betting_by_user * (100 / 80000000)
+                }
                 sx={{ ...styles.vipLevelProgress, backgroundColor: "#2c584d" }}
               />
               <Box
@@ -890,7 +939,10 @@ function VIPPage() {
                   }}
                 >
                   {" "}
-                  {res?.[0] ? "80000000" : "0"}/80000000
+                  {res?.[5]
+                    ? "80000000"
+                    : parseInt(vip_data_res?.total_betting_by_user)}
+                  /80000000
                 </Button>
                 <Typography variant="body2" sx={styles.vipLevelText}>
                   80000000 EXP can be leveled up
@@ -959,7 +1011,11 @@ function VIPPage() {
               </Box>
               <LinearProgress
                 variant="determinate"
-                value={res?.[6] ? 100 : 0}
+                value={
+                  res?.[6]
+                    ? 100
+                    : vip_data_res?.total_betting_by_user * (100 / 300000000)
+                }
                 sx={{ ...styles.vipLevelProgress, backgroundColor: "#23650b" }}
               />
               <Box
@@ -974,7 +1030,10 @@ function VIPPage() {
                   }}
                 >
                   {" "}
-                  {res?.[6] ? "300000000" : "0"}/300000000
+                  {res?.[6]
+                    ? "300000000"
+                    : parseInt(vip_data_res?.total_betting_by_user)}
+                  /300000000
                 </Button>
                 <Typography variant="body2" sx={styles.vipLevelText}>
                   300000000 EXP can be leveled up
@@ -1043,7 +1102,11 @@ function VIPPage() {
               </Box>
               <LinearProgress
                 variant="determinate"
-                value={res?.[7] ? 100 : 0}
+                value={
+                  res?.[7]
+                    ? 100
+                    : vip_data_res?.total_betting_by_user * (100 / 1000000000)
+                }
                 sx={{ ...styles.vipLevelProgress, backgroundColor: "#26437b" }}
               />
               <Box
@@ -1058,7 +1121,10 @@ function VIPPage() {
                   }}
                 >
                   {" "}
-                  {res?.[7] ? "1000000000" : "0"}/1000000000
+                  {res?.[7]
+                    ? "1000000000"
+                    : parseInt(vip_data_res?.total_betting_by_user)}
+                  /1000000000
                 </Button>
                 <Typography variant="body2" sx={styles.vipLevelText}>
                   1000000000 EXP can be leveled up
@@ -1127,7 +1193,11 @@ function VIPPage() {
               </Box>
               <LinearProgress
                 variant="determinate"
-                value={res?.[8] ? 100 : 0}
+                value={
+                  res?.[8]
+                    ? 100
+                    : vip_data_res?.total_betting_by_user * (100 / 5000000000)
+                }
                 sx={{ ...styles.vipLevelProgress, backgroundColor: "#4e2395" }}
               />
               <Box
@@ -1142,7 +1212,10 @@ function VIPPage() {
                   }}
                 >
                   {" "}
-                  {res?.[8] ? "5000000000" : "0"}/5000000000
+                  {res?.[8]
+                    ? "5000000000"
+                    : parseInt(vip_data_res?.total_betting_by_user)}
+                  /5000000000
                 </Button>
                 <Typography variant="body2" sx={styles.vipLevelText}>
                   5000000000 EXP can be leveled up
@@ -1211,7 +1284,11 @@ function VIPPage() {
               </Box>
               <LinearProgress
                 variant="determinate"
-                value={res?.[9] ? 100 : 0}
+                value={
+                  res?.[9]
+                    ? 100
+                    : vip_data_res?.total_betting_by_user * (100 / 9999999999)
+                }
                 sx={{ ...styles.vipLevelProgress, backgroundColor: "#805331" }}
               />
               <Box
@@ -1226,7 +1303,10 @@ function VIPPage() {
                   }}
                 >
                   {" "}
-                  {res?.[0] ? "9999999999" : "0"}/9999999999
+                  {res?.[9]
+                    ? "9999999999"
+                    : parseInt(vip_data_res?.total_betting_by_user)}
+                  /9999999999
                 </Button>
                 <Typography variant="body2" sx={styles.vipLevelText}>
                   9999999999 EXP can be leveled up
