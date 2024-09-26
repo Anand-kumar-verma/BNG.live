@@ -298,7 +298,7 @@ const GameHistory = ({ gid }) => {
                         {" "}
                         {Number(i?.tr41_slot_id)}
                       </span>
-                      <span className="!font-semibold " style={{ marginLeft: '5px', fontSize: '14px', color: Number(i?.tr41_slot_id) <= 4 ? '#FEAA57' : '#6DA7F4', }}>
+                      <span className="!font-semibold " style={{ marginLeft: '5px', fontSize: '14px', color: Number(i?.tr41_slot_id) <= 4 ? '#6DA7F4' : '#FEAA57', }}>
                         {Number(i?.tr41_slot_id) <= 4 ? "S" : "B"}
                       </span>
                     </p>
