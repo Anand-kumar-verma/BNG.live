@@ -194,9 +194,9 @@ function Dashboard() {
           <Typography variant="body1" className="funp13" sx={{ color: bggold }}>
             Welcome to BNG Game
           </Typography>
-          <NavLink component={NavLink}>
-            <Box component="img" sx={{ width: "120px" }} src={customer}></Box>
-          </NavLink>
+        
+            <Box className="!cursor-pointer" component="img" sx={{ width: "120px" }} src={customer} onClick={()=>navigate('/ticket')}></Box>
+       
         </Box>
       </Box>
       <Box sx={{ pb: "70px" }}>
