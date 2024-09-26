@@ -519,7 +519,7 @@ function Withdrawl() {
                 for withdrawl from winning wallet.
               </Typography>
 
-              <Typography
+              {/* <Typography
                 variant="body1"
                 sx={{ color: "white" }}
                 className="!text-xs"
@@ -529,7 +529,7 @@ function Withdrawl() {
                   {rupees} {Number(amount?.working_wallet) || 0}
                 </span>{" "}
                 can be withdrawl from wallet.
-              </Typography>
+              </Typography> */}
             </Stack>
             <Typography
               variant="body1"

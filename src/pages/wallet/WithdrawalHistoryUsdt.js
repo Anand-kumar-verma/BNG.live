@@ -103,12 +103,12 @@ function WithdrawalHistoryUSdt() {
                     <Box>
                       <Button
                         sx={{ color: "green", textTransform: "capitalize" }}
-                        className={`${i?.m_w_status === "Approve"
+                        className={`${i?.tr15_status === "Approve"
                           ? "!text-green-500 !text-[15px]"
                           : "!text-red-500 !text-[15px]"
                           }`}
                       >
-                        {i?.m_w_status}
+                        {i?.tr15_status}
                       </Button>
                       <IconButton>
                         <ArrowForwardIcon sx={{ color: zubgtext }} />
@@ -130,7 +130,7 @@ function WithdrawalHistoryUSdt() {
                     </Typography>
                     <Typography variant="body1" color="initial" className="!text-[15px]">
                       {/* ₹  */}
-                      {i?.m_w_amount}
+                      {i?.tr15_amt}
                     </Typography>
                   </Stack>
                   <Stack
@@ -146,8 +146,8 @@ function WithdrawalHistoryUSdt() {
                       Date/Time
                     </Typography>
                     <Typography variant="body1" color="initial" className="!text-[15px]">
-                      {moment(i?.m_w_reqdate)?.format("DD-MM-YYYY")}{" "}
-                      {moment(i?.m_w_reqdate)?.format("HH:mm:ss")}
+                      {moment(i?.tr15_date)?.format("DD-MM-YYYY")}{" "}
+                      {moment(i?.tr15_date)?.format("HH:mm:ss")}
                     </Typography>
                   </Stack>
                   <Stack
@@ -163,7 +163,7 @@ function WithdrawalHistoryUSdt() {
                       Status
                     </Typography>
                     <Typography variant="body1" color="initial" className="!text-[15px]">
-                      {i?.m_w_crypto_status}{" "}
+                      {i?.tr15_status}{" "}
                     </Typography>
                   </Stack>
                   {i?.success_date !== null && i?.success_date !== "" && <Stack
@@ -205,7 +205,7 @@ function WithdrawalHistoryUSdt() {
                       }}
                     >
                       <Typography variant="body1" color="initial" className="!text-[15px]">
-                        {i?.m_w_trans_id}
+                        {i?.tr15_w_id}
                       </Typography>
 
                       {/* <IconButton>
@@ -224,7 +224,7 @@ function WithdrawalHistoryUSdt() {
                     }}
                   >
                     <Typography variant="body1" color="initial" className="!text-[15px]">
-                      Address
+                      USDT Type
                     </Typography>
                     <Stack
                       direction="row"
@@ -236,10 +236,8 @@ function WithdrawalHistoryUSdt() {
                       }}
                     >
                       <Typography variant="body1" color="initial" className="!text-[15px] " >
-                        <p>   {i?.withdrawal_add?.substring(0, 20)}</p>
-                        <p>
-                          {i?.withdrawal_add?.substring(20)}
-                        </p>
+                        <p>   {i?.usdt_type}</p>
+                       
                       </Typography>
                     </Stack>
                   </Stack>

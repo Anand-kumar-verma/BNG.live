@@ -1164,7 +1164,7 @@ function Dashboard() {
               </DialogContent>
             </Dialog>
           )} */}
-          {statusyesterday?.[0]?.status_of_deposit_popup === "1" ?
+          {statusyesterday?.status_of_deposit_popup === 1 ?
            <MyModal /> 
           : "null" }
         
