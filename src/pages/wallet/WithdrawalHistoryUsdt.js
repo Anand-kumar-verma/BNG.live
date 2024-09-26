@@ -119,7 +119,7 @@ function WithdrawalHistoryUSdt() {
                   <Stack
                     direction="row"
                     sx={{
-                      mb: "5px",
+                      mt: "10px",
                       alignItems: "center",
                       justifyContent: "space-between",
                       "&>p": { color: zubgtext },
@@ -133,27 +133,11 @@ function WithdrawalHistoryUSdt() {
                       {i?.tr15_amt}
                     </Typography>
                   </Stack>
+                
                   <Stack
                     direction="row"
                     sx={{
-                      mb: "5px",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
-                    }}
-                  >
-                    <Typography variant="body1" color="initial" className="!text-[15px]">
-                      Date/Time
-                    </Typography>
-                    <Typography variant="body1" color="initial" className="!text-[15px]">
-                      {moment(i?.tr15_date)?.format("DD-MM-YYYY")}{" "}
-                      {moment(i?.tr15_date)?.format("HH:mm:ss")}
-                    </Typography>
-                  </Stack>
-                  <Stack
-                    direction="row"
-                    sx={{
-                      mb: "5px",
+                      my: "5px",
                       alignItems: "center",
                       justifyContent: "space-between",
                       "&>p": { color: zubgtext },
@@ -166,23 +150,7 @@ function WithdrawalHistoryUSdt() {
                       {i?.tr15_status}{" "}
                     </Typography>
                   </Stack>
-                  {i?.success_date !== null && i?.success_date !== "" && <Stack
-                    direction="row"
-                    sx={{
-                      mb: "5px",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
-                    }}
-                  >
-                    <Typography variant="body1" color="initial" className="!text-[15px]">
-                      Success D/T
-                    </Typography>
-                    <Typography variant="body1" color="initial" className="zubgtext !text-[15px]" >
-                      {moment(i?.success_date)?.format("DD-MM-YYYY")}{" "}
-                      {moment(i?.success_date)?.format("HH:mm:ss")}
-                    </Typography>
-                  </Stack>}
+                 
                   <Stack
                     direction="row"
                     sx={{
@@ -240,6 +208,24 @@ function WithdrawalHistoryUSdt() {
                        
                       </Typography>
                     </Stack>
+                    
+                  </Stack>
+                  <Stack
+                    direction="row"
+                    sx={{
+                      mb: "5px",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      "&>p": { color: zubgtext },
+                    }}
+                  >
+                    <Typography variant="body1" color="initial" className="!text-[15px]">
+                      Date/Time
+                    </Typography>
+                    <Typography variant="body1" color="initial" className="!text-[15px]">
+                      {moment(i?.tr15_date)?.format("DD-MM-YYYY")}{" "}
+                      {moment(i?.tr15_date)?.format("HH:mm:ss")}
+                    </Typography>
                   </Stack>
                 </Box>
               );

@@ -27,8 +27,6 @@ import CryptoJS from "crypto-js";
 export default function Ticketgenerate() {
 
   const [image, setImage] = React.useState(null);
-  const [isAllValue, setIsAllValue] = React.useState(false);
-  const [visibleData, setvisibleData] = React.useState([]);
   const [isvisible, setisvisible] = React.useState(false);
   const login_data =
     (localStorage.getItem("logindataen") &&
@@ -41,6 +39,7 @@ export default function Ticketgenerate() {
   const initialValue = {
     type: "Select Type",
     description: "",
+    files: "",
   };
   const client = useQueryClient();
   const [loding, setloding] = React.useState(false);
@@ -48,8 +47,13 @@ export default function Ticketgenerate() {
     initialValues: initialValue,
     enableReinitialize: true,
     onSubmit: () => {
-      if (fk.values.type === "Select Type")
-        return "Select Type of issues."
+      // if (fk.values.type === "Select Type")
+      //   return "Select Type of issues."
+
+      // if(!fk.values.files || !fk.values.type || !fk.values.description){
+      //   toast(" Please Enter All Fields ")
+      //   return
+      // }
       const reqBody = {
         user_id: user_id,
         files: image,
@@ -64,13 +68,13 @@ export default function Ticketgenerate() {
     setloding(true);
     try {
       const response = await axios.post(endpoint.ticket_raised, reqBody);
-      toast(response?.data?.msg);
       if (response?.data?.msg === "Data saved successfully") {
-        toast(response?.data?.msg);
+        toast(response?.data?.msg ,{id:-1});
         fk.handleReset();
       }
     } catch (e) {
-      toast("File size should be less than 25kb");
+      console.error(e);
+      toast.error("Enter all Fields");
     }
     setloding(false);
     client.refetchQueries("get_ticket_raised_history");
@@ -100,24 +104,20 @@ export default function Ticketgenerate() {
     }
   );
 
-  React.useEffect(() => {
-    isAllValue
-      ? setvisibleData(TicketRaised?.data?.data)
-      : setvisibleData(TicketRaised?.data?.data?.slice(0, 3));
-  }, [isAllValue, TicketRaised]);
+const ticket = TicketRaised?.data?.data || []
 
   return (
     <Layout>
       <Container sx={{ background: zubgback, width: '100%', height: '100vh', overflow: 'auto', mt: 9 }}>
-        <div className="flex justify-between w-full items-center bg-[#272726] px-2 py-6 rounded-lg mt-3 ">
+        <div className="flex justify-between w-full items-center bg-[#272726] px-2 pt-6 rounded-lg  ">
           <div className="grid grid-cols-2 gap-1 items-center w-[400px] p-5">
             <span className="col-span-2 justify-end">
               <div className="flex justify-between">
-                <span className="font-bold text-white !text-center">Ticket Generate</span>
+                <span className="font-bold text-white !text-xl my-3 !text-center">Ticket Generate</span>
               </div>
             </span>
-            <span className="!text-white !my-3 !text-sm">
-              Select Ticket Type*
+            <span className="!text-white !my-3 !text-xl">
+              Select Type*
             </span>
             <TextField
               id="type"
@@ -136,7 +136,7 @@ export default function Ticketgenerate() {
               <MenuItem value={"5"}>Other issue </MenuItem>
             </TextField>
 
-            <span className="!text-white !my-3 !text-sm">Attachment*</span>
+            <span className="!text-white !my-3 !text-lg">Attachment*</span>
             <div>
               <input
                 type="file"
@@ -149,7 +149,7 @@ export default function Ticketgenerate() {
               />
               <p className="!text-white !text-[10px]">File size should be less than 10MB</p>
             </div>
-            <span className="!text-white !my-3 !text-sm">Description*</span>
+            <span className="!text-white !my-3 !text-lg">Description*</span>
             <textarea
               type="textarea"
               id="description"
@@ -178,8 +178,8 @@ export default function Ticketgenerate() {
             </div>
           </div>
         </div>
-
-        {visibleData?.map((i, index) => {
+     <p className="!text-white text-center !-mt-16 ">Ticket Raised History </p>
+        {ticket?.map((i, index) => {
           return (
             <Box
               key={index}
@@ -362,14 +362,6 @@ export default function Ticketgenerate() {
             </Box>
           );
         })}
-
-        <Button
-          sx={style.paytmbtntwo}
-          variant="outlined"
-          onClick={() => setIsAllValue(!isAllValue)}
-        >
-          {isAllValue ? "Show Less" : " All history"}
-        </Button>
 
         <CustomCircularProgress isLoading={loding || isLoading} />
       </Container>

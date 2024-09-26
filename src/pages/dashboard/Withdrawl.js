@@ -111,6 +111,8 @@ function Withdrawl() {
     }
   );
   const result = React.useMemo(() => data?.data?.data, [data]);
+
+  
   const initialValues = {
     amount: "",
     password: "",
@@ -385,16 +387,23 @@ function Withdrawl() {
               borderRadius: "10px",
             }}
           >
-          <div className="  my-2 mb-4">
-            <p
-              style={{ color: theme.palette.primary.main }}
-              className="!text-center !p-4  cursor-pointer  border border-dashed border-gray-400"
-              onClick={() => navigate("/add-bank-details")}
-            >
-              {" "}
-              + Add Bank
-            </p>
-          </div>
+         {result?.length === 0 ? (
+      <div className="my-2 mb-4">
+        <p
+          style={{ color: theme.palette.primary.main }}
+          className="!text-center !p-4 cursor-pointer border border-dashed border-gray-400"
+          onClick={() => navigate("/add-bank-details")}
+        >
+          + Add Bank
+        </p>
+      </div>
+    ) : 
+     <>
+     <p className="text-white "><span className="!text-black !font-bold">Account No : </span> {result?.[0]?.account}</p>
+     <p className="text-white "><span className="!text-black !font-bold">IFSC Code  : </span> {result?.[0]?.ifsc}</p>
+
+     </>
+    }
     
             <Stack direction="row" sx={{ alignItems: "end", mb: "20px" }}>
               <Box component="img" src={payment} width={30}></Box>
