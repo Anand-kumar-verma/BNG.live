@@ -93,8 +93,7 @@ function VIPPage() {
       refetchOnWindowFocus: false,
     }
   );
-  const vip_data_res = vip_data?.data?.data?.[0] || [];
-  console.log(vip_data_res);
+  const vip_data_res = vip_data?.data?.data || [];
   const Rules = () => {
     return (
       <Box>
