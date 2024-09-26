@@ -1,5 +1,4 @@
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import {
   Box,
   Button,
@@ -11,13 +10,12 @@ import {
 import moment from "moment";
 import * as React from "react";
 import { useQuery } from "react-query";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import { bgdarkgray, bggrad, zubgback, zubgbackgrad, zubgmid, zubgtext } from "../../Shared/color";
 import deposit from "../../assets/check.png";
 import Layout from "../../component/Layout/Layout";
 import { withdrawlHistoryUSdtFunction } from "../../services/apicalling";
-import theme from "../../utils/theme";
 
 function WithdrawalHistoryUSdt() {
   const navigate = useNavigate();

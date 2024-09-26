@@ -1,5 +1,6 @@
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import { Box, Container, Table, TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import axios from "axios";
 import moment from "moment";
 import * as React from "react";
@@ -134,9 +135,9 @@ function Attendence() {
                   <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">{i?.l01_amount}</TableCell>
                   <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center  !border-b !border-white">
                   <span 
-                  className="border px-2 !cursor-pointer"
+                  className="border px-2 !cursor-pointer !flex "
                   onClick={() =>i?.l01_clame_status === 0 &&  ClaimIncomeFn(i?.lo1_id)}>
-                  {i?.l01_clame_status === 0 ? "Claim" : "Achieve"}
+                  {i?.l01_clame_status === 0 ? "Claim" : <span>Achieved <CheckCircleOutlineIcon className="!text-[15px] !pb-[1px] !text-green-500"/></span>}
                   </span>
                   </TableCell>
                   <TableCell sx={{ color: 'white' }} className="!border !border-r !text-xs !text-center !border-b !border-white">{i?.l01_transection_type}</TableCell>

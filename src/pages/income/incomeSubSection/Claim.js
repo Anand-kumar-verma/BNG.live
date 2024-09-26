@@ -1,4 +1,5 @@
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import {
   Box,
   Container,
@@ -186,12 +187,12 @@ function Claim() {
                     className="!border !border-r !text-xs !text-center  !border-b !border-white"
                   >
                     <span
-                      className="border px-2 cursor-pointer"
+                      className="border px-2 cursor-pointer !flex "
                       onClick={() =>
                         i?.l01_clame_status === 0 && ClaimIncomeFn(i?.lo1_id)
                       }
                     >
-                      {i?.l01_clame_status === 0 ? "Claim" : "Achieve"}
+                      {i?.l01_clame_status === 0 ? "Claim" : <span>Achieved <CheckCircleOutlineIcon className="!text-[15px] !pb-[1px] !text-green-500"/></span>}
                     </span>
                   </TableCell>
                   <TableCell
