@@ -3,6 +3,12 @@ import { Modal, Button, Typography, Box, FormControlLabel, Checkbox } from '@mui
 import { bgdarkgray, bggold, bglightgray, bgtan } from './color';
 import { Close } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import CryptoJS from "crypto-js";
+import { endpoint } from '../services/urls';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+
 
 function MyModal() {
   const [open, setOpen] = useState(false);
@@ -15,6 +21,29 @@ function MyModal() {
     setOpen(false);
   };
 const navigate = useNavigate()
+const login_data =
+(localStorage.getItem("logindataen") &&
+  CryptoJS.AES.decrypt(
+    localStorage.getItem("logindataen"),
+    "anand"
+  )?.toString(CryptoJS.enc.Utf8)) ||
+null;
+const user_id = login_data && JSON.parse(login_data)?.UserID;
+const Status = async () => {
+  try {
+    const reqBody = {
+      user_id: user_id,
+    };
+    const response = await axios.post(
+      `${endpoint.status_popup}`,
+      reqBody
+    );
+    toast(response?.data?.msg)
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
   return (
     <div>
       <Modal
@@ -157,6 +186,7 @@ const navigate = useNavigate()
                 label=""
                 control={
                   <Checkbox
+                  onClick={Status}
                     sx={{ color: bggold }}
                     value=""
                     color="primary"

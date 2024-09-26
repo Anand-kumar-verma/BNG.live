@@ -41,7 +41,7 @@ import MyModal from "../../Shared/Modal";
 import s from "../../assets/wdhistory.png";
 import dpt from "../../assets/withdrow.png";
 import Layout from "../../component/Layout/Layout";
-import { walletamount } from "../../services/apicalling";
+import { walletamount, yesterdayFn } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
 
 function Account() {
@@ -86,6 +86,14 @@ function Account() {
       sendUrlCallBackToBackend(transactionId);
     }
   }, []);
+
+  const { data: amountdata } = useQuery(["yesterday_income"], () => yesterdayFn(), {
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+  });
+
+  const statusyesterday = amountdata?.data?.data
 
   return (
     <Layout header={false}>
@@ -704,7 +712,9 @@ function Account() {
           </Dialog>
         )} */}
         <CustomCircularProgress isLoading={isLoading} />
-        <MyModal />
+        {statusyesterday?.status_of_deposit_popup === 1 ?
+           <MyModal /> 
+          : "null" }
       </Container>
     </Layout>
   );

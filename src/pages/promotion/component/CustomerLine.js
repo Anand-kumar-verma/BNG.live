@@ -19,7 +19,7 @@ function Subordinate() {
             <Box component='img' src={customer} sx={{ mt: 3, width: '100%', height: '100%', margin: 'auto', objectFit: 'cover', objectPosition: 'top', }}></Box>
           </Box>
         </Box>
-        <Box component={NavLink} to='/rise/query'>
+        <Box component={NavLink} to='/ticket'>
           <Stack direction='row' sx={{ background: zubgtext, width: '95%', marginLeft: '2.5%', borderRadius: '5px', marginTop: '10px', padding: '15px', alignItems: 'center', justifyContent: 'space-between' }}>
             <Typography variant="body1" sx={{ color: bgtan, fontSize: '15px', fontWeight: '400', }}>
               Live Now

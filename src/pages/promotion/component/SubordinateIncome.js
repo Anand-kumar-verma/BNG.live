@@ -171,7 +171,7 @@ function SubordinateIncome() {
                                 </Stack>
                                 <Stack direction="row" justifyContent={"space-between"}>
                                     <Typography className='hunp15' sx={{ color: 'black' }}>Commission </Typography>
-                                    <Typography className='hunp13' sx={{ color: 'black' }}>{item?.commission || 0}</Typography>
+                                    <Typography className='hunp13' sx={{ color: 'black' }}>{(item?.betting > 0 ? item?.commission:0) || 0}</Typography>
                                 </Stack>
 
                             </Box>

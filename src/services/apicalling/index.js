@@ -63,6 +63,18 @@ export const MygetdataFn = async () => {
     console.log(e);
   }
 };
+
+
+export const MygetdataLevelFn = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.get_level_general}?user_id=${Number(user_id)}`
+    );
+    return response;
+  } catch (e) {
+    console.log(e);
+  }
+};
 export const get_user_data_fn = async (dispatch) => {
   try {
     const response = await axios.get(

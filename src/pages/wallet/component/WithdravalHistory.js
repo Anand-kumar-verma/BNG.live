@@ -103,7 +103,7 @@ function WithdravalHistory() {
                       <Button
                         sx={{ color: "green", textTransform: "capitalize" }}
                         className={`${i?.tr15_status === "Success"
-                          ? "!text-green-500"
+                          ? "!text-green-700"
                           : "!text-red-500"
                           }`}
                       >
@@ -158,7 +158,7 @@ function WithdravalHistory() {
                     }}
                   >
                     <Typography variant="body1" >
-                      tr15_status
+                      Status
                     </Typography>
                     <Typography variant="body1" >
                       {i?.tr15_status}{" "}
@@ -176,7 +176,7 @@ function WithdravalHistory() {
                     <Typography variant="body1" >
                       Success Date/Time
                     </Typography>
-                    <Typography variant="body1" className="!text-green-500">
+                    <Typography variant="body1" className="!text-green-700">
                       {moment(i?.approve_date)?.format("DD-MM-YYYY")}{" "}
                       {moment(i?.approve_date)?.format("HH:mm:ss")}
                     </Typography>

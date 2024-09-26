@@ -16,6 +16,8 @@ import { bgfootergray } from "../../Shared/color";
 import Layout from "../../component/Layout/Layout";
 import { NavLink } from "react-router-dom";
 import MyModal from "../../Shared/Modal";
+import { yesterdayFn } from "../../services/apicalling";
+import { useQuery } from "react-query";
 
 const style = {
   root: {
@@ -60,6 +62,16 @@ const style = {
   },
 };
 function Activity() {
+
+  const { data: amount } = useQuery(["yesterday_income"], () => yesterdayFn(), {
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+  });
+
+  const statusyesterday = amount?.data?.data
+
+
   return (
     <Layout>
       {/* <Box sx={{ background: bgfootergray }}>
@@ -171,6 +183,7 @@ function Activity() {
             win streak bonus
           </Typography>
         </Box>
+      
         <Stack sx={style.act2}>
           <Box sx={style.actimg2}>
             <Box
@@ -203,7 +216,9 @@ function Activity() {
             </Typography>
           </Box>
         </Stack>
-        <MyModal />
+        {statusyesterday?.status_of_deposit_popup === 1 ?
+           <MyModal /> 
+          : "null" }
       </Stack>
     </Layout>
   );

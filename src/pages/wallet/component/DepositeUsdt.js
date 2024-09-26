@@ -108,7 +108,7 @@ function DepositeUsdt() {
                                             <Button
                                                 sx={{ color: "green", textTransform: "capitalize" }}
                                                 className={`${i?.status === "success"
-                                                    ? "!text-green-500"
+                                                    ? "!text-green-700"
                                                     : "!text-red-500"
                                                     }`}
                                             >
@@ -165,7 +165,7 @@ function DepositeUsdt() {
                                         <Typography variant="body1" color="initial">
                                             Success Date/Time
                                         </Typography>
-                                        <Typography variant="body1" color="initial" className="!text-green-500">
+                                        <Typography variant="body1" color="initial" className="!text-green-700">
                                             {moment(i?.success_date)?.format("DD-MM-YYYY")}{" "}
                                             {moment(i?.success_date)?.format("HH:mm:ss")}
                                         </Typography>

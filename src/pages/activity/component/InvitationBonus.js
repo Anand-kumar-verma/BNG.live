@@ -37,6 +37,7 @@ function InvitationBonus() {
   );
   const invitation_result = invitation?.data?.data;
   console.log(res, invitation_result);
+  
   return (
     <Layout header={false}>
       <Box sx={{ py: "12px", background: bgcolorlight }}>

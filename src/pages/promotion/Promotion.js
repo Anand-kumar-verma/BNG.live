@@ -24,7 +24,7 @@ import money from "../../assets/images/salary.png";
 // import sunlotteryhomebanner from "../../assets/sunlotteryhomebanner.jpg";
 import MyModal from "../../Shared/Modal";
 import Layout from "../../component/Layout/Layout";
-import { walletamount, yesterdayFn } from "../../services/apicalling";
+import { MygetdataLevelFn, walletamount, yesterdayFn } from "../../services/apicalling";
 import { fron_end_main_domain } from "../../services/urls";
 
 function Promotion() {
@@ -36,17 +36,6 @@ function Promotion() {
 
   const wallet = amount?.data?.data;
 
-  // const { isLoading, data } = useQuery(
-  //   ["get_level"],
-  //   () => MygetdataFn(),
-  //   {
-  //     refetchOnMount: false,
-  //     refetchOnReconnect: false,
-  //     refetchOnWindowFocus: false
-  //   }
-  // );
-  // const result = data?.data?.data;
-
   const { isLoading, data } = useQuery(
     ["yesterday_income"],
     () => yesterdayFn(),
@@ -56,7 +45,21 @@ function Promotion() {
       refetchOnWindowFocus: false,
     }
   );
-  const result = data?.data?.data?.[0] || [];
+  const result = data?.data?.data || [];
+
+  const { data: level } = useQuery(
+    ["get_level_general"],
+    () => MygetdataLevelFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+    }
+  );
+  const get = level?.data?.data?.[0] || [];
+  
+
+
   const functionTOCopy = (value) => {
     copy(value);
     toast.success("Copied to clipboard!");
@@ -77,7 +80,7 @@ function Promotion() {
         <Box sx={style.commitionboxOuter} className="!rounded-xl ">
           <Box sx={style.commitionbox}>
             <Typography variant="body1" sx={{ color: zubgtext, mb: 1 }}>
-              {result?.yesterday_income}
+              {Number(result?.yesterday_income || 0)?.toFixed(4)}
             </Typography>
             <Typography
               variant="body1"
@@ -119,13 +122,17 @@ function Promotion() {
               </Box>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1" className="!text-white">
-                  {result?.direct_yest_depo || 0}
+                  {Number(result?.direct_yest_depo || 0)?.toFixed(2)}
                 </Typography>
                 <Typography variant="body1">Deposit amount</Typography>
               </Box>
               <Box sx={style.subcordinatelist}>
-                <Typography variant="body1" className="!text-white">
-                  0
+                <Typography
+                  variant="body1"
+                  className="!text-white"
+
+                >
+                 {result?.direct_depo_mem || 0}
                 </Typography>
                 <Typography variant="body1">
                   No of people making first deposit
@@ -150,13 +157,17 @@ function Promotion() {
               </Box>
               <Box sx={style.subcordinatelist}>
                 <Typography variant="body1" className="!text-white">
-                  {result?.team_yest_depo || 0}
+                  {Number(result?.team_yest_depo || 0)?.toFixed(2)}
                 </Typography>
                 <Typography variant="body1">Deposit amount</Typography>
               </Box>
               <Box sx={style.subcordinatelist}>
-                <Typography variant="body1" className="!text-white">
-                  0
+                <Typography
+                  variant="body1"
+                  className="!text-white"
+
+                >
+                 {result?.direct_depo_mem || 0}
                 </Typography>
                 <Typography variant="body1">
                   No of people making first deposit
@@ -174,31 +185,35 @@ function Promotion() {
           </Stack>
           <Box sx={style.boxStyles}>
             <Box sx={style.innerBoxStyles}>
-              {/* <Box sx={style.subcordinatelist}>
+              
+              <Box sx={style.subcordinatelist} >
                 <Typography
                   variant="body1"
                   className="!text-white"
 
                 >
-                  0
+                 {Number(get?.daily_salary_today || 0)?.toFixed(2)}
+
                 </Typography>
                 <Typography
                   variant="body1"
+
                 >
-                  Direct subordinates
+                  Today salary
                 </Typography>
-              </Box> */}
-              <Box sx={style.subcordinatelist}>
-                <Typography variant="body1" className="!text-white">
-                  0
-                </Typography>
-                <Typography variant="body1">Total salary</Typography>
               </Box>
               <Box sx={style.subcordinatelist}>
-                <Typography variant="body1" className="!text-white">
-                  0
+                <Typography
+                  variant="body1"
+                  className="!text-white"
+
+                >
+                  {Number(get?.daily_salary_total || 0)?.toFixed(2)}
                 </Typography>
-                <Typography variant="body1">Today salary</Typography>
+                <Typography
+                  variant="body1" >
+                  Total salary
+                </Typography>
               </Box>
             </Box>
 
@@ -214,14 +229,20 @@ function Promotion() {
                 </Typography>
               </Box> */}
               <Box sx={style.subcordinatelist}>
-                <Typography variant="body1" className="!text-white">
-                  0
+                <Typography variant="body1"
+                  className="!text-white" >
+                 {Number(get?.today_withdrawal || 0)?.toFixed(2)}
                 </Typography>
                 <Typography variant="body1">Today withdrawal</Typography>
               </Box>
               <Box sx={style.subcordinatelist}>
-                <Typography variant="body1" className="!text-white">
-                  0
+                <Typography
+                  variant="body1"
+                  className="!text-white"
+
+                >
+                  {Number(get?.total_withdrawal || 0)?.toFixed(2)}
+                  
                 </Typography>
                 <Typography variant="body1">Total withdrawal</Typography>
               </Box>
@@ -366,15 +387,15 @@ function Promotion() {
             <Stack direction="row">
               <Box className="!text-black">
                 <DashboardRounded />
-                <Typography variant="body1">
-                  {result?.this_week_commission || 0}
+                <Typography variant="body1" >
+                  {Number(get?.this_week_commission || 0)?.toFixed(4)}
                 </Typography>
                 <Typography variant="body1">This Week</Typography>
               </Box>
               <Box className="!text-black">
                 <Money />
-                <Typography variant="body1">
-                  {result?.total_commission || 0}
+                <Typography variant="body1" >
+                  {Number(get?.total_commission || 0)?.toFixed(4)}
                 </Typography>
                 <Typography variant="body1">Total Commission</Typography>
               </Box>
@@ -411,7 +432,10 @@ function Promotion() {
             </div>
           </Dialog>
         )} */}
+        {result?.status_of_deposit_popup === 1 ?
         <MyModal />
+      :"null" }
+       
       </Container>
     </Layout>
   );
