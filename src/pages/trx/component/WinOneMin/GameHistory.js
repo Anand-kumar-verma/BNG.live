@@ -227,12 +227,12 @@ const GameHistory = ({ gid }) => {
                 <div className="!w-full  !grid !grid-cols-12  !place-items-center !text-[12px] !bg-[#333332] !px-2 !py-1 ">
                   <p className="!col-span-2 !text-[#ffffff] !font-semibold !text-[13px] bdg" >
                     {i?.tr_transaction_id
-                          ? i.tr_transaction_id.split("@")[0].substring(0,3) +
-                            "**" +
-                            (i.tr_transaction_id.split("@")[0].length > 2
-                              ? i.tr_transaction_id.split("@")[0].substring(10 , 14)
-                              : "")
-                          : "**"}
+                      ? i.tr_transaction_id.split("@")[0].substring(0, 3) +
+                      "**" +
+                      (i.tr_transaction_id.split("@")[0].length > 2
+                        ? i.tr_transaction_id.split("@")[0].substring(10, 14)
+                        : "")
+                      : "**"}
                   </p>
                   <p className="!col-span-3 !flex gap-[1px] fccc ">
                     <span style={{ color: "white" }} >
@@ -256,39 +256,49 @@ const GameHistory = ({ gid }) => {
                   <p className="!col-span-3 bdg" style={{ color: "white" }}>{i?.tr_block_time}</p>
                   <p className="bdg !col-span-3" style={{ color: "white" }}>{i?.tr_hashno}</p>
                   <div className="!flex !gap-[1px]  !items-center ">
-                    <p
-                      className={` bdg
-                      ${(String(Number(i?.tr41_slot_id)) === "0" &&
-                          "!bg-gradient-to-t from-red-400 to-violet-400") ||
-                        (String(Number(i?.tr41_slot_id)) === "5" &&
-                          "!bg-gradient-to-t from-violet-400 to-green-400") ||
-                        ((String(Number(i?.tr41_slot_id)) === "1" ||
-                          String(Number(i?.tr41_slot_id)) === "3" ||
-                          String(Number(i?.tr41_slot_id)) === "7" ||
-                          String(Number(i?.tr41_slot_id)) === "9" ||
-                          String(Number(i?.tr41_slot_id)) === "10") &&
-                          "bg-gradient-to-t from-green-400 to-green-900") ||
-                        ((String(Number(i?.tr41_slot_id)) === "2" ||
-                          String(Number(i?.tr41_slot_id)) === "4" ||
-                          String(Number(i?.tr41_slot_id)) === "6" ||
-                          String(Number(i?.tr41_slot_id)) === "8" ||
-                          String(Number(i?.tr41_slot_id)) === "30") &&
-                          "bg-gradient-to-tl from-red-400 to-red-900") ||
-                        (String(Number(i?.tr41_slot_id)) === "50" &&
-                          "bg-[#3183ee]") ||
-                        (String(Number(i?.tr41_slot_id)) === "40" &&
-                          "bg-[#f1be24]") ||
-                        (String(Number(i?.tr41_slot_id)) === "20" && "bg-[#eb2feb]")
-                        }
-                        transparentColor  text-lg
-                        `}
-                    // style={{ color: "white" }}
+                    <p className="flex-b"
+                    // className={` bdg
+                    // ${(String(Number(i?.tr41_slot_id)) === "0" &&
+                    //     "!bg-gradient-to-t from-red-400 to-violet-400") ||
+                    //   (String(Number(i?.tr41_slot_id)) === "5" &&
+                    //     "!bg-gradient-to-t from-violet-400 to-green-400") ||
+                    //   ((String(Number(i?.tr41_slot_id)) === "1" ||
+                    //     String(Number(i?.tr41_slot_id)) === "3" ||
+                    //     String(Number(i?.tr41_slot_id)) === "7" ||
+                    //     String(Number(i?.tr41_slot_id)) === "9" ||
+                    //     String(Number(i?.tr41_slot_id)) === "10") &&
+                    //     "bg-gradient-to-t from-green-400 to-green-900") ||
+                    //   ((String(Number(i?.tr41_slot_id)) === "2" ||
+                    //     String(Number(i?.tr41_slot_id)) === "4" ||
+                    //     String(Number(i?.tr41_slot_id)) === "6" ||
+                    //     String(Number(i?.tr41_slot_id)) === "8" ||
+                    //     String(Number(i?.tr41_slot_id)) === "30") &&
+                    //     "bg-gradient-to-tl from-red-400 to-red-900") ||
+                    //   (String(Number(i?.tr41_slot_id)) === "50" &&
+                    //     "bg-[#3183ee]") ||
+                    //   (String(Number(i?.tr41_slot_id)) === "40" &&
+                    //     "bg-[#f1be24]") ||
+                    //   (String(Number(i?.tr41_slot_id)) === "20" && "bg-[#eb2feb]")
+                    //   }
+                    //   transparentColor  text-lg
+                    //   `}
                     >
-                      <span className="!font-semibold">
+                      <span className="!font-semibold ghistry" style={{
+                        background:
+                          Number(i?.tr41_slot_id) === 0
+                            ? 'linear-gradient(148deg, rgba(210,56,56,1) 50%, rgba(155,72,219,1) 50%)'
+                            : [1, 3, 7, 9].includes(Number(i?.tr41_slot_id))
+                              ? '#18B45E'
+                              : Number(i?.tr41_slot_id) === 5
+                                ? 'linear-gradient(148deg, rgba(23,177,94,1) 50%, rgba(155,72,219,1) 50%)'
+                                : [2, 4, 6, 8].includes(Number(i?.tr41_slot_id))
+                                  ? '#CA3534'
+                                  : 'inherit',
+                      }} >
                         {" "}
                         {Number(i?.tr41_slot_id)}
                       </span>
-                      <span className="!font-semibold">
+                      <span className="!font-semibold " style={{ marginLeft: '5px', fontSize: '14px', color: Number(i?.tr41_slot_id) <= 4 ? '#FEAA57' : '#6DA7F4', }}>
                         {Number(i?.tr41_slot_id) <= 4 ? "S" : "B"}
                       </span>
                     </p>
@@ -314,8 +324,48 @@ const GameHistory = ({ gid }) => {
         />
       </Box>
       {/* <CustomCircularProgress isLoading={isLoading}/> */}
-    </Box>
+    </Box >
   );
 };
 
 export default GameHistory;
+
+
+
+
+{/* <p
+  className={` bdg
+                      ${(String(Number(i?.tr41_slot_id)) === "0" &&
+      "!bg-gradient-to-t from-red-400 to-violet-400") ||
+    (String(Number(i?.tr41_slot_id)) === "5" &&
+      "!bg-gradient-to-t from-violet-400 to-green-400") ||
+    ((String(Number(i?.tr41_slot_id)) === "1" ||
+      String(Number(i?.tr41_slot_id)) === "3" ||
+      String(Number(i?.tr41_slot_id)) === "7" ||
+      String(Number(i?.tr41_slot_id)) === "9" ||
+      String(Number(i?.tr41_slot_id)) === "10") &&
+      "bg-gradient-to-t from-green-400 to-green-900") ||
+    ((String(Number(i?.tr41_slot_id)) === "2" ||
+      String(Number(i?.tr41_slot_id)) === "4" ||
+      String(Number(i?.tr41_slot_id)) === "6" ||
+      String(Number(i?.tr41_slot_id)) === "8" ||
+      String(Number(i?.tr41_slot_id)) === "30") &&
+      "bg-gradient-to-tl from-red-400 to-red-900") ||
+    (String(Number(i?.tr41_slot_id)) === "50" &&
+      "bg-[#3183ee]") ||
+    (String(Number(i?.tr41_slot_id)) === "40" &&
+      "bg-[#f1be24]") ||
+    (String(Number(i?.tr41_slot_id)) === "20" && "bg-[#eb2feb]")
+    }
+                        transparentColor  text-lg
+                        `}
+// style={{ color: "white" }}
+>
+  <span className="!font-semibold">
+    {" "}
+    {Number(i?.tr41_slot_id)}
+  </span>
+  <span className="!font-semibold">
+    {Number(i?.tr41_slot_id) <= 4 ? "S" : "B"}
+  </span>
+</p> */}

@@ -162,3 +162,19 @@
   margin-top: 15px !important;
   display: block !important;
 }
+
+.ghistry {
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+}
+
+.flex-b {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
