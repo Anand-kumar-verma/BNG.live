@@ -306,8 +306,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.numberDetailText}>
               {invitation_result?.[2]
                 ? 10
-                : res?.direct_member_team - 14 > 0
-                ? res?.direct_member_team - 14
+                : res?.direct_member_team - 4 > 0
+                ? res?.direct_member_team - 4
                 : 0}{" "}
               / 10
             </Typography>
