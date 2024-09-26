@@ -4,10 +4,10 @@ export const baseUrl = "https://api.bngwin.live";
 export const fron_end_main_domain = "https://bngwin.live";
 
 export const newdomain1 = "https://api.bngwin.live";
-// export const newdomain = "https://api.bngwin.live";
-export const newdomain = "http://192.168.18.183:9000";
+export const newdomain = "https://api.bngwin.live";
+// export const newdomain = "http://192.168.18.183:9000";
 // export const baseUrl = "http://192.168.18.183:9000";
-export const admin ="https://admin.bngwin.live";
+export const admin = "https://admin.bngwin.live";
 
 export const domain = "https://bng-live-timer-1.onrender.com";
 export const public_chain = "https://tronscan.io/#/";
@@ -18,7 +18,7 @@ export const support_mail = "";
 
 export const endpoint = {
   //node login api
-  
+
   login: `${newdomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
@@ -114,6 +114,4 @@ export const endpoint = {
   yesterday_income: `${newdomain1}/api/v1/get-total-betA-ad-income-yesterday`,
   status_popup: `${newdomain1}/api/v1/hideStatusOfDepositPopup`,
   get_level_general: `${newdomain1}/api/v1/get_level_general_data`,
- 
- 
 };

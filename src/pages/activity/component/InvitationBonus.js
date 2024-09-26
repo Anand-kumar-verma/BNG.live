@@ -36,8 +36,7 @@ function InvitationBonus() {
     }
   );
   const invitation_result = invitation?.data?.data;
-  console.log(res, invitation_result);
-  
+
   return (
     <Layout header={false}>
       <Box sx={{ py: "12px", background: bgcolorlight }}>
@@ -307,8 +306,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.numberDetailText}>
               {invitation_result?.[2]
                 ? 10
-                : res?.direct_member_team - 14 > 0
-                ? res?.direct_member_team - 14
+                : res?.direct_member_team - 4 > 0
+                ? res?.direct_member_team - 4
                 : 0}{" "}
               / 10
             </Typography>
@@ -320,8 +319,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.depositDetailText}>
               {invitation_result?.[2]
                 ? 10
-                : res?.direct_member_topup_by_3_hundred - 14 > 0
-                ? res?.direct_member_topup_by_3_hundred - 14
+                : res?.direct_member_topup_by_3_hundred - 4 > 0
+                ? res?.direct_member_topup_by_3_hundred - 4
                 : 0}{" "}
               / 10
             </Typography>
@@ -379,8 +378,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.numberDetailText}>
               {invitation_result?.[3]
                 ? 30
-                : res?.direct_member_team - 44 > 0
-                ? res?.direct_member_team - 44
+                : res?.direct_member_team - 14 > 0
+                ? res?.direct_member_team - 14
                 : 0}{" "}
               / 30
             </Typography>
@@ -392,8 +391,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.depositDetailText}>
               {invitation_result?.[3]
                 ? 30
-                : res?.direct_member_topup_by_3_hundred - 44 > 0
-                ? res?.direct_member_topup_by_3_hundred - 44
+                : res?.direct_member_topup_by_3_hundred - 14 > 0
+                ? res?.direct_member_topup_by_3_hundred - 14
                 : 0}{" "}
               / 30
             </Typography>
@@ -451,8 +450,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.numberDetailText}>
               {invitation_result?.[4]
                 ? 60
-                : res?.direct_member_team - 104 > 0
-                ? res?.direct_member_team - 104
+                : res?.direct_member_team - 44 > 0
+                ? res?.direct_member_team - 44
                 : 0}{" "}
               / 60
             </Typography>
@@ -464,8 +463,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.depositDetailText}>
               {invitation_result?.[4]
                 ? 60
-                : res?.direct_member_topup_by_3_hundred - 104 > 0
-                ? res?.direct_member_topup_by_3_hundred - 104
+                : res?.direct_member_topup_by_3_hundred - 44 > 0
+                ? res?.direct_member_topup_by_3_hundred - 44
                 : 0}{" "}
               / 60
             </Typography>
@@ -523,8 +522,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.numberDetailText}>
               {invitation_result?.[5]
                 ? 100
-                : res?.direct_member_team - 204 > 0
-                ? res?.direct_member_team - 204
+                : res?.direct_member_team - 104 > 0
+                ? res?.direct_member_team - 104
                 : 0}{" "}
               / 100
             </Typography>
@@ -536,8 +535,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.depositDetailText}>
               {invitation_result?.[5]
                 ? 100
-                : res?.direct_member_topup_by_3_hundred - 204 > 0
-                ? res?.direct_member_topup_by_3_hundred - 204
+                : res?.direct_member_topup_by_3_hundred - 104 > 0
+                ? res?.direct_member_topup_by_3_hundred - 104
                 : 0}{" "}
               / 100
             </Typography>
@@ -595,8 +594,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.numberDetailText}>
               {invitation_result?.[6]
                 ? 200
-                : res?.direct_member_team - 404 > 0
-                ? res?.direct_member_team - 404
+                : res?.direct_member_team - 204 > 0
+                ? res?.direct_member_team - 204
                 : 0}{" "}
               / 200
             </Typography>
@@ -608,8 +607,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.depositDetailText}>
               {invitation_result?.[6]
                 ? 200
-                : res?.direct_member_topup_by_3_hundred - 404 > 0
-                ? res?.direct_member_topup_by_3_hundred - 404
+                : res?.direct_member_topup_by_3_hundred - 204 > 0
+                ? res?.direct_member_topup_by_3_hundred - 204
                 : 0}{" "}
               / 200
             </Typography>
@@ -667,8 +666,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.numberDetailText}>
               {invitation_result?.[7]
                 ? 500
-                : res?.direct_member_team - 904 > 0
-                ? res?.direct_member_team - 904
+                : res?.direct_member_team - 404 > 0
+                ? res?.direct_member_team - 404
                 : 0}{" "}
               / 500
             </Typography>
@@ -680,8 +679,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.depositDetailText}>
               {invitation_result?.[7]
                 ? 500
-                : res?.direct_member_topup_by_3_hundred - 904 > 0
-                ? res?.direct_member_topup_by_3_hundred - 904
+                : res?.direct_member_topup_by_3_hundred - 404 > 0
+                ? res?.direct_member_topup_by_3_hundred - 404
                 : 0}{" "}
               / 500
             </Typography>
@@ -739,8 +738,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.numberDetailText}>
               {invitation_result?.[8]
                 ? 1000
-                : res?.direct_member_team - 1904 > 0
-                ? res?.direct_member_team - 1904
+                : res?.direct_member_team - 904 > 0
+                ? res?.direct_member_team - 904
                 : 0}{" "}
               / 1000
             </Typography>
@@ -752,8 +751,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.depositDetailText}>
               {invitation_result?.[8]
                 ? 1000
-                : res?.direct_member_topup_by_3_hundred - 1904 > 0
-                ? res?.direct_member_topup_by_3_hundred - 1904
+                : res?.direct_member_topup_by_3_hundred - 904 > 0
+                ? res?.direct_member_topup_by_3_hundred - 904
                 : 0}{" "}
               / 1000
             </Typography>
@@ -811,8 +810,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.numberDetailText}>
               {invitation_result?.[9]
                 ? 5000
-                : res?.direct_member_team - 6904 > 0
-                ? res?.direct_member_team - 6904
+                : res?.direct_member_team - 1904 > 0
+                ? res?.direct_member_team - 1904
                 : 0}{" "}
               / 5000
             </Typography>
@@ -824,8 +823,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.depositDetailText}>
               {invitation_result?.[9]
                 ? 5000
-                : res?.direct_member_topup_by_3_hundred - 6904 > 0
-                ? res?.direct_member_topup_by_3_hundred - 6904
+                : res?.direct_member_topup_by_3_hundred - 1904 > 0
+                ? res?.direct_member_topup_by_3_hundred - 1904
                 : 0}{" "}
               / 5000
             </Typography>
@@ -883,8 +882,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.numberDetailText}>
               {invitation_result?.[10]
                 ? 10000
-                : res?.direct_member_team - 16904 > 0
-                ? res?.direct_member_team - 16904
+                : res?.direct_member_team - 6904 > 0
+                ? res?.direct_member_team - 6904
                 : 0}{" "}
               / 10000
             </Typography>
@@ -896,8 +895,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.depositDetailText}>
               {invitation_result?.[10]
                 ? 10000
-                : res?.direct_member_topup_by_3_hundred - 16904 > 0
-                ? res?.direct_member_topup_by_3_hundred - 16904
+                : res?.direct_member_topup_by_3_hundred - 6904 > 0
+                ? res?.direct_member_topup_by_3_hundred - 6904
                 : 0}{" "}
               / 10000
             </Typography>
@@ -955,8 +954,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.numberDetailText}>
               {invitation_result?.[11]
                 ? 20000
-                : res?.direct_member_team - 36904 > 0
-                ? res?.direct_member_team - 36904
+                : res?.direct_member_team - 16904 > 0
+                ? res?.direct_member_team - 16904
                 : 0}{" "}
               / 20000
             </Typography>
@@ -968,8 +967,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.depositDetailText}>
               {invitation_result?.[11]
                 ? 20000
-                : res?.direct_member_topup_by_3_hundred - 36904 > 0
-                ? res?.direct_member_topup_by_3_hundred - 36904
+                : res?.direct_member_topup_by_3_hundred - 16904 > 0
+                ? res?.direct_member_topup_by_3_hundred - 16904
                 : 0}{" "}
               / 20000
             </Typography>
@@ -1027,8 +1026,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.numberDetailText}>
               {invitation_result?.[12]
                 ? 50000
-                : res?.direct_member_team - 86904 > 0
-                ? res?.direct_member_team - 86904
+                : res?.direct_member_team - 36904 > 0
+                ? res?.direct_member_team - 36904
                 : 0}{" "}
               / 50000
             </Typography>
@@ -1040,8 +1039,8 @@ function InvitationBonus() {
             <Typography variant="body2" sx={styles.depositDetailText}>
               {invitation_result?.[12]
                 ? 50000
-                : res?.direct_member_topup_by_3_hundred - 86904 > 0
-                ? res?.direct_member_topup_by_3_hundred - 86904
+                : res?.direct_member_topup_by_3_hundred - 36904 > 0
+                ? res?.direct_member_topup_by_3_hundred - 36904
                 : 0}{" "}
               / 50000
             </Typography>
