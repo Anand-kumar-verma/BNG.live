@@ -40,7 +40,7 @@ const style = {
   act2: { px: 2, width: "100%", mt: 3, pb: "80px" },
   actimg: {
     width: "49%",
-    height: "100%",
+    height: "200px",
     background: "#fff",
     borderRadius: "10px",
     paddingBottom: "20px",
@@ -183,42 +183,42 @@ function Activity() {
             win streak bonus
           </Typography>
         </Box>
-      
-        <Stack sx={style.act2}>
-          <Box sx={style.actimg2}>
-            <Box
-              component="img"
-              sx={{ width: "100%", borderRadius: "10px 10px 0px 0px" }}
-              src={b3}
-            ></Box>
-            <Typography variant="body1" color="initial">
-              Invitation bonus
-            </Typography>
-          </Box>
-          <Box sx={style.actimg2}>
-            <Box
-              component="img"
-              sx={{ width: "100%", borderRadius: "10px 10px 0px 0px" }}
-              src={b2}
-            ></Box>
-            <Typography variant="body1" color="initial">
-              BNG Games CREATIVE VIDEO CONTEST
-            </Typography>
-          </Box>
-          <Box sx={style.actimg2}>
-            <Box
-              component="img"
-              sx={{ width: "100%", borderRadius: "10px 10px 0px 0px" }}
-              src={b1}
-            ></Box>
-            <Typography variant="body1" color="initial">
-              WINSTREAK 2X PRIZE HAPPY HOUR
-            </Typography>
-          </Box>
-        </Stack>
+
+
+        <Box sx={style.actimg2}>
+          <Box
+            component="img"
+            sx={{ width: "100%", borderRadius: "10px 10px 0px 0px" }}
+            src={b3}
+          ></Box>
+          <Typography variant="body1" color="initial">
+            Invitation bonus
+          </Typography>
+        </Box>
+        <Box sx={style.actimg2}>
+          <Box
+            component="img"
+            sx={{ width: "100%", borderRadius: "10px 10px 0px 0px" }}
+            src={b2}
+          ></Box>
+          <Typography variant="body1" color="initial">
+            BNG Games CREATIVE VIDEO CONTEST
+          </Typography>
+        </Box>
+        <Box sx={style.actimg2}>
+          <Box
+            component="img"
+            sx={{ width: "100%", borderRadius: "10px 10px 0px 0px" }}
+            src={b1}
+          ></Box>
+          <Typography variant="body1" color="initial">
+            WINSTREAK 2X PRIZE HAPPY HOUR
+          </Typography>
+        </Box>
+
         {statusyesterday?.status_of_deposit_popup === 1 ?
-           <MyModal /> 
-          : "null" }
+          <MyModal />
+          : "null"}
       </Stack>
     </Layout>
   );
