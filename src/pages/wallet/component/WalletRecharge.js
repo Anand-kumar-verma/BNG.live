@@ -669,8 +669,11 @@ function WalletRecharge() {
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton edge="end"
-                      onClick={()=>fk.setFieldValue("amount","")}
-                      >
+                     onClick={() => {
+                        setDeposit_req_data(null);
+                        fk.setFieldValue("amount","")
+                      }
+                      }  >
                         <CloseIcon />
                       </IconButton>
                     </InputAdornment>
@@ -734,7 +737,8 @@ function WalletRecharge() {
                           USDT
                         </Typography>
                         <IconButton edge="end">
-                          <CloseIcon style={{ color: "white" }} />
+                          <CloseIcon style={{ color: "white" }}  
+                          />
                         </IconButton>
                       </div>
                     </InputAdornment>

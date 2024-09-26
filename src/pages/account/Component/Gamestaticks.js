@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { bglightgray, bgtan, zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
 import Layout from "../../../component/Layout/Layout";
 import { rupees } from "../../../services/urls";
-import { MyHistoryFn, getAllBetsAviator } from "../../../services/apicalling";
+import { MyHistoryFn, getAllBetsAviator, yesterdayFn } from "../../../services/apicalling";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { useQuery } from "react-query";
 import moment from "moment";
@@ -21,24 +21,22 @@ function Gamestaticks() {
     setValue(newValue);
   };
 
-  const { isLoading: myhistory_loding, data: my_history } = useQuery(
-    ["my_all_history", value],
-    () =>
-      (value === "1" && MyHistoryFn()) ||
-      (value === "3" && getAllBetsAviator()),
+
+  const { isLoading, data:yesterday } = useQuery(
+    ["yesterday_income"],
+    () => yesterdayFn(),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
     }
   );
+  const result = yesterday?.data?.data || [];
 
-  const data = my_history?.data?.data;
-  console.log(data);
   return (
     <Layout header={false}>
       <Container sx={style.container}>
-        <CustomCircularProgress isLoading={myhistory_loding} />
+        <CustomCircularProgress isLoading={isLoading} />
         <Box sx={style.header}>
           <Box component={NavLink} onClick={() => goBack()}>
             <KeyboardArrowLeftOutlinedIcon />
@@ -84,26 +82,7 @@ function Gamestaticks() {
                 borderRadius: "5px",
               }}
             />
-            <Tab
-              value="3"
-              label="Aviator"
-              className="abcdef"
-              sx={{
-                background: value == 3 && zubgtext,
-                color: bgtan,
-                borderRadius: "5px",
-              }}
-            />
-            <Tab
-              value="4"
-              label="Cricket"
-              className="abcdef"
-              sx={{
-                background: value == 4 && zubgtext,
-                color: value == 4 ? 'black !impottnat' : bgtan,
-                borderRadius: "5px",
-              }}
-            />
+         
           </Tabs>
         </Box>
         <Box>
@@ -128,10 +107,10 @@ function Gamestaticks() {
                 fontWeight: "600",
               }}
             >
-              {rupees}{" "}
+              {/* {rupees}{" "}
               {data
                 ?.reduce((a, b) => a + Number(b?.amount || 0), 0)
-                ?.toFixed(2) || 0}
+                ?.toFixed(2) || 0} */}
             </Typography>
           </Box>
           <Box
@@ -158,9 +137,7 @@ function Gamestaticks() {
                 ? "Win Go"
                 : value === "2"
                   ? "Trx"
-                  : value === "3"
-                    ? "Aviator"
-                    : "Cricket"}
+                    : "null"}
             </Typography>
             <Stack
               direction="row"
@@ -179,7 +156,11 @@ function Gamestaticks() {
                 Total bet
               </Typography>
               <Typography variant="body1" color="initial">
-                {data?.length || 0}
+               {value === "1"
+                ? <p>{result?.wingo_total_yester_bet}</p>
+                : value === "2"
+                  ? <p>{result?.trx_total_bet_yester}</p>
+                  : "null"}
               </Typography>
             </Stack>
             <Stack
@@ -199,64 +180,16 @@ function Gamestaticks() {
                 Winning amount
               </Typography>
               <Typography variant="body1" color="initial">
-                ₹
-                {value === "3"
-                  ? data
-                    ?.reduce(
-                      (a, b) =>
-                        a +
-                        Number(
-                          Number(b?.cashout_amount || 0) -
-                          Number(b?.amount || 0)
-                        ),
-                      0
-                    )
-                    ?.toFixed(2) || 0
-                  : data
-                    ?.reduce((a, b) => a + Number(b?.win || 0), 0)
-                    ?.toFixed(2) || 0}
+             
+                {value === "1"
+                ? <p>    ₹ {result?.wingo_total_win_yes}</p>
+                : value === "2"
+                  ? <p>    ₹ {result?.trx_total_win_yes}</p>
+                  : "null"}
               </Typography>
             </Stack>
-            <Stack
-              direction="row"
-              sx={{
-                alignItems: "center",
-                justifyContent: "space-between",
-                "&>p": {
-                  color: bgtan,
-                  fontWeight: "500",
-                  fontSize: "13px",
-                  mt: "10px",
-                },
-              }}
-            >
-              <Typography variant="body1" color="initial">
-                Last Date
-              </Typography>
-              <Typography variant="body1" color="initial">
-                {moment(data?.[0]?.datetime)?.format("DD-MM-YYYY")}
-              </Typography>
-            </Stack>
-            <Stack
-              direction="row"
-              sx={{
-                alignItems: "center",
-                justifyContent: "space-between",
-                "&>p": {
-                  color: bgtan,
-                  fontWeight: "500",
-                  fontSize: "13px",
-                  mt: "10px",
-                },
-              }}
-            >
-              <Typography variant="body1" color="initial">
-                Time
-              </Typography>
-              <Typography variant="body1" color="initial">
-                {moment(data?.[0]?.datetime)?.format("HH:mm:ss")}
-              </Typography>
-            </Stack>
+          
+            
           </Box>
         </Box>
       </Container>
