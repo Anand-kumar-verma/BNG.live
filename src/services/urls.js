@@ -11,7 +11,7 @@ export const admin ="https://admin.bngwin.live";
 
 export const domain = "https://bng-live-timer-1.onrender.com";
 export const public_chain = "https://tronscan.io/#/";
-export const telegram_url = "";
+export const telegram_url = "https://t.me/bnggofficial";
 export const facebook_url = "";
 export const instagram_url = "";
 export const support_mail = "";
