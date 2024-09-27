@@ -167,7 +167,7 @@ function Promotion() {
                   className="!text-white"
 
                 >
-                 {result?.direct_depo_mem || 0}
+                 {result?.team_depo_mem || 0}
                 </Typography>
                 <Typography variant="body1">
                   No of people making first deposit
