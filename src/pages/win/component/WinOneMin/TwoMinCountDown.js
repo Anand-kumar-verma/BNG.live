@@ -105,7 +105,9 @@ const TwoMinCountDown = ({ fk, setBetNumber }) => {
         client.refetchQueries("gamehistory_wingo_2");
         client.refetchQueries("walletamount");
         client.refetchQueries("myAllhistory_2");
-        // dispatch(dummycounterFun());
+        setTimeout(() => {
+          dispatch(dummycounterFun());
+        }, 2000);
       }
     };
 
@@ -194,10 +196,10 @@ const TwoMinCountDown = ({ fk, setBetNumber }) => {
 
   React.useEffect(() => {
     dispatch(trx_my_history_data_function(my_history?.data?.data));
-    (Number(show_this_three_min_time_sec) >= 58 ||
-      Number(show_this_three_min_time_sec) === 0) &&
-      Number(show_this_three_min_time_min) === 0 &&
-      dispatch(dummycounterFun());
+    // (Number(show_this_three_min_time_sec) >= 58 ||
+    //   Number(show_this_three_min_time_sec) === 0) &&
+    //   Number(show_this_three_min_time_min) === 0 &&
+    //   dispatch(dummycounterFun());
   }, [my_history?.data?.data]);
 
   React.useEffect(() => {

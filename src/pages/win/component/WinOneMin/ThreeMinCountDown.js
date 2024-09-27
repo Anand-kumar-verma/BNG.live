@@ -85,7 +85,9 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
         fivemin?.split("_")?.[0] === "0" // this is for minut
       ) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);
-        Number(Number(fivemin?.split("_")?.[1])) <= 5 &&  Number(Number(fivemin?.split("_")?.[1])) > 0  && handlePlaySound();
+        Number(Number(fivemin?.split("_")?.[1])) <= 5 &&
+          Number(Number(fivemin?.split("_")?.[1])) > 0 &&
+          handlePlaySound();
         Number(Number(fivemin?.split("_")?.[1])) === 0 && handlePlaySoundLast();
       } else {
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
@@ -97,7 +99,9 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
         client.refetchQueries("gamehistory_wingo_3");
         client.refetchQueries("walletamount");
         client.refetchQueries("myAllhistory_3");
-        // dispatch(dummycounterFun());
+        setTimeout(() => {
+          dispatch(dummycounterFun());
+        }, 2000);
       }
     };
 
@@ -141,10 +145,10 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
   };
   React.useEffect(() => {
     dispatch(trx_my_history_data_function(my_history?.data?.data));
-    (Number(show_this_three_min_time_sec) >= 58 ||
-      Number(show_this_three_min_time_sec) === 0) &&
-      Number(show_this_three_min_time_min) === 0 &&
-      dispatch(dummycounterFun());
+    // (Number(show_this_three_min_time_sec) >= 58 ||
+    //   Number(show_this_three_min_time_sec) === 0) &&
+    //   Number(show_this_three_min_time_min) === 0 &&
+    //   dispatch(dummycounterFun());
   }, [my_history?.data?.data]);
 
   React.useEffect(() => {

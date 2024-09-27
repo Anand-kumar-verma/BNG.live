@@ -1,7 +1,14 @@
 import VolumeUpIcon from "@mui/icons-material/VolumeUpOutlined";
 import WalletOutlinedIcon from "@mui/icons-material/WalletOutlined";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
-import { Box, Button, Container, Dialog, Stack, Typography, } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Dialog,
+  Stack,
+  Typography,
+} from "@mui/material";
 import * as React from "react";
 import { useState } from "react";
 import { useQueryClient } from "react-query";
@@ -23,7 +30,6 @@ import WinOneMin from "./component/WinOneMin/WinOneMin";
 import WinThreeMin from "./component/WinOneMin/WinThreeMin";
 import { bgdarkgray, bggrad, bglightgray, bgtan } from "../../Shared/color";
 
-
 function Win() {
   const client = useQueryClient();
   const [musicicon, setmusicicon] = useState(true);
@@ -40,14 +46,13 @@ function Win() {
     setTimeout(() => {
       if (isAppliedbet?.split("_")?.[1] === String(true)) {
         setOpenDialogBox(true);
-        setTimeout(() => {
-          setOpenDialogBox(false);
-          localStorage.setItem("betApplied", false);
-        }, 5000);
+        // setTimeout(() => {
+        //   setOpenDialogBox(false);
+        //   localStorage.setItem("betApplied", false);
+        // }, 5000);
       }
     }, 1000);
   }, [dummycounter]);
-
 
   function refreshFunctionForRotation() {
     client.refetchQueries("walletamount");
@@ -73,15 +78,22 @@ function Win() {
   return (
     <Layout header={true}>
       <Container sx={styles.root}>
-
-        <Box sx={{ position: "relative", overflow: "hidden", background: bgdarkgray, py: 2, mt: 7, }}>
+        <Box
+          sx={{
+            position: "relative",
+            overflow: "hidden",
+            background: bgdarkgray,
+            py: 2,
+            mt: 7,
+          }}
+        >
           <Box sx={{ px: 2, pb: 2, position: "relative" }}>
             <Box
               sx={{
                 background: bglightgray,
                 padding: "15px 10px",
                 backgroundImage: `url(${bg})`,
-                backgroundSize: '100% 100%',
+                backgroundSize: "100% 100%",
 
                 borderRadius: "10px",
                 my: 0,
@@ -96,17 +108,21 @@ function Win() {
                   variant="body1"
                   color="initial"
                   className="b-val"
-                  sx={{ color: 'white' }}
+                  sx={{ color: "white" }}
                 >
                   ₹{" "}
                   {Number(
                     Number(net_wallet_amount?.wallet || 0) +
-                    Number(net_wallet_amount?.winning || 0) || 0
+                      Number(net_wallet_amount?.winning || 0) || 0
                   )?.toFixed(2)}
                 </Typography>
-                <div className="mx-4 rotate_refresh_image" id="refresh_button" style={{ mb: '5px !important', ml: '10px !important' }}>
+                <div
+                  className="mx-4 rotate_refresh_image"
+                  id="refresh_button"
+                  style={{ mb: "5px !important", ml: "10px !important" }}
+                >
                   <img
-                    style={{ mb: '5px', ml: '10px' }}
+                    style={{ mb: "5px", ml: "10px" }}
                     src={refresh}
                     className="!w-6"
                     ml={3}
@@ -122,7 +138,7 @@ function Win() {
                   variant="body1"
                   color="initial"
                   className="b-val2"
-                  sx={{ color: 'white' }}
+                  sx={{ color: "white" }}
                 >
                   Walllet balance
                 </Typography>
@@ -179,8 +195,11 @@ function Win() {
             >
               1.All recharge methods only available in RECHARGE menu on OFFICIAL
             </Typography>
-            <Typography sx={{ background: bggrad, color: bgtan }} className=" !text-xs rounded-2xl px-2 py-1 !flex justify-center">
-              <WhatshotIcon fontSize="small" sx={{ color: bgtan, }} /> Details
+            <Typography
+              sx={{ background: bggrad, color: bgtan }}
+              className=" !text-xs rounded-2xl px-2 py-1 !flex justify-center"
+            >
+              <WhatshotIcon fontSize="small" sx={{ color: bgtan }} /> Details
             </Typography>
           </Stack>
         </Box>
@@ -265,7 +284,7 @@ function Win() {
               },
             }}
           >
-            <WinLossPopup gid={isAppliedbet?.split("_")?.[0]} />
+            <WinLossPopup gid={isAppliedbet?.split("_")?.[0]} setOpenDialogBox ={setOpenDialogBox}/>
           </Dialog>
         )}
         {/* <CustomCircularProgress isLoading={walletloding} /> */}

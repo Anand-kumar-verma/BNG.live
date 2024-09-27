@@ -35,7 +35,7 @@ const ApplyBetDialogBox = ({
   random,
   net_wallet_amount,
 }) => {
-  const [value, setValue] =useState(random || 1)
+  const [value, setValue] = useState(random || 1);
   const [Rules, setRules] = useState(false);
   const [loding, setLoding] = useState(false);
 
@@ -48,7 +48,7 @@ const ApplyBetDialogBox = ({
       )?.toString(CryptoJS.enc.Utf8)) ||
     null;
   // const login_data_ = localStorage.getItem("aviator_data");
-  
+
   const user_id = login_data && JSON.parse(login_data)?.UserID;
 
   // React.useEffect(() => {
@@ -106,7 +106,7 @@ const ApplyBetDialogBox = ({
       toast(e?.message);
       console.log(e);
     }
-    
+
     client.refetchQueries(`myAllhistory_${gid}`);
     client.refetchQueries("walletamount");
     setLoding(false);
@@ -121,12 +121,13 @@ const ApplyBetDialogBox = ({
     >
       <Box>
         <Stack
-          className={`${((type === "green" ||
-            type === 1 ||
-            type === 3 ||
-            type === 7 ||
-            type === 9) &&
-            "!bg-[#30b539]") ||
+          className={`${
+            ((type === "green" ||
+              type === 1 ||
+              type === 3 ||
+              type === 7 ||
+              type === 9) &&
+              "!bg-[#30b539]") ||
             ((type === "red" ||
               type === 2 ||
               type === 6 ||
@@ -137,7 +138,7 @@ const ApplyBetDialogBox = ({
               "!bg-[#710193]") ||
             (type === "small" && "!bg-[#EE1285]") ||
             (type === "big" && "!bg-[#FBB13B]")
-            } 
+          } 
             dialog-header `}
         >
           <Box>
@@ -178,12 +179,13 @@ const ApplyBetDialogBox = ({
                 onClick={() => {
                   handleClickValue(i);
                 }}
-                className={`${((type === "green" ||
-                  type === 1 ||
-                  type === 3 ||
-                  type === 7 ||
-                  type === 9) &&
-                  "!bg-[#30b539]") ||
+                className={`${
+                  ((type === "green" ||
+                    type === 1 ||
+                    type === 3 ||
+                    type === 7 ||
+                    type === 9) &&
+                    "!bg-[#30b539]") ||
                   ((type === "red" ||
                     type === 2 ||
                     type === 6 ||
@@ -194,7 +196,7 @@ const ApplyBetDialogBox = ({
                     "!bg-[#710193]") ||
                   (type === "small" && "!bg-[#EE1285]") ||
                   (type === "big" && "!bg-[#FBB13B]")
-                  } 
+                } 
             `}
               >
                 {i}
@@ -211,7 +213,7 @@ const ApplyBetDialogBox = ({
           <RemoveIcon />
         </IconButton>
         <TextField
-          sx={{ background: 'white' }}
+          sx={{ background: "white" }}
           placeholder="Enter value"
           value={value}
           variant="outlined"
@@ -230,12 +232,13 @@ const ApplyBetDialogBox = ({
                 handleClickValue(value * i);
                 // setcalculated_value(value)
               }}
-              className={`${((type === "green" ||
-                type === 1 ||
-                type === 3 ||
-                type === 7 ||
-                type === 9) &&
-                "!bg-[#30b539]") ||
+              className={`${
+                ((type === "green" ||
+                  type === 1 ||
+                  type === 3 ||
+                  type === 7 ||
+                  type === 9) &&
+                  "!bg-[#30b539]") ||
                 ((type === "red" ||
                   type === 2 ||
                   type === 6 ||
@@ -246,7 +249,7 @@ const ApplyBetDialogBox = ({
                   "!bg-[#710193]") ||
                 (type === "small" && "!bg-[#EE1285]") ||
                 (type === "big" && "!bg-[#FBB13B]")
-                }
+              }
              !px-3 !py-2 rounded-md  !text-center !text-[#fff]
             `}
             >
@@ -291,7 +294,7 @@ const ApplyBetDialogBox = ({
           variant="text"
           color="primary"
           onClick={() => {
-            betFunctionStart()
+            betFunctionStart();
           }}
           loding={true}
         >

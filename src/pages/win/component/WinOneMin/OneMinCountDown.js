@@ -64,8 +64,6 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
     setIsImageChange(changeImages());
   }, []);
 
- 
-
   const [poicy, setpoicy] = React.useState(false);
   const handleClickOpenpoicy = () => {
     setpoicy(true);
@@ -84,7 +82,7 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
 
       if (onemin <= 10) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);
-        Number(onemin) <= 5 &&  Number(onemin) > 0 && handlePlaySound();
+        Number(onemin) <= 5 && Number(onemin) > 0 && handlePlaySound();
         Number(onemin) === 0 && handlePlaySoundLast();
       } else {
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
@@ -93,6 +91,9 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
         client.refetchQueries("myAllhistory_1");
         client.refetchQueries("walletamount");
         client.refetchQueries("gamehistory_wingo_1");
+        setTimeout(() => {
+          dispatch(dummycounterFun());
+        }, 2000);
       }
     };
 
@@ -156,7 +157,6 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
 
   React.useEffect(() => {
     dispatch(trx_my_history_data_function(my_history?.data?.data));
-    one_min_time >= 58 || (one_min_time === 0 && dispatch(dummycounterFun()));
   }, [my_history?.data?.data]);
   const handlePlaySound = async () => {
     try {

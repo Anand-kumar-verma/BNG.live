@@ -323,7 +323,7 @@ function WinOneMin({ gid }) {
                     </Box>
                   </Box>
                 </Stack>
-              </Box >
+              </Box>
             </>
           );
         }, [TabTwo])}
@@ -343,7 +343,7 @@ function WinOneMin({ gid }) {
           />
         )
       }
-    </Box >
+    </Box>
   );
 }
 

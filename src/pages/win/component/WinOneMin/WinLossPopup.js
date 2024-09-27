@@ -16,7 +16,7 @@ import six from "../../../../assets/trximage/6.png";
 import seven from "../../../../assets/trximage/7.png";
 import eight from "../../../../assets/trximage/8.png";
 import nine from "../../../../assets/trximage/9.png";
-const WinLossPopup = ({ gid }) => {
+const WinLossPopup = ({ gid, setOpenDialogBox }) => {
   let array = [zero, one, two, three, four, five, six, seven, eight, nine];
   const login_data =
     (localStorage.getItem("logindataen") &&
@@ -72,6 +72,10 @@ const WinLossPopup = ({ gid }) => {
 
   useEffect(() => {
     MyHistoryFn();
+    setTimeout(() => {
+      setOpenDialogBox(false);
+      localStorage.setItem("betApplied", false);
+    }, 5000);
   }, []);
 
   useEffect(() => {
