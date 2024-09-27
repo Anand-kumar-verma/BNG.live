@@ -714,7 +714,7 @@ function Account() {
         <CustomCircularProgress isLoading={isLoading} />
         {statusyesterday?.status_of_deposit_popup === 1 ?
            <MyModal /> 
-          : "null" }
+          : "" }
       </Container>
     </Layout>
   );

@@ -434,7 +434,7 @@ function Promotion() {
         )} */}
         {result?.status_of_deposit_popup === 1 ?
         <MyModal />
-      :"null" }
+      :"" }
        
       </Container>
     </Layout>

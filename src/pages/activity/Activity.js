@@ -218,7 +218,7 @@ function Activity() {
 
         {statusyesterday?.status_of_deposit_popup === 1 ?
           <MyModal />
-          : "null"}
+          : ""}
       </Stack>
     </Layout>
   );
