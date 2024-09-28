@@ -1,12 +1,24 @@
 import WalletOutlinedIcon from "@mui/icons-material/WalletOutlined";
-import { Box, Button, Container, Dialog, Stack, Typography, } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Dialog,
+  IconButton,
+  Stack,
+  Typography,
+} from "@mui/material";
+import CancelIcon from "@mui/icons-material/Cancel";
 import * as React from "react";
 import { useState } from "react";
 import { useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import refresh from "../../assets/images/refresh.png";
-import { default as Timeactive, default as Timeinactive, } from "../../assets/images/time-.png";
+import {
+  default as Timeactive,
+  default as Timeinactive,
+} from "../../assets/images/time-.png";
 import Layout from "../../component/Layout/Layout";
 import { bgdarkgray, bglightgray } from "../../Shared/color";
 import bg from "../../assets/img/walletbg-dcbd4124.png";
@@ -29,14 +41,13 @@ function Win() {
     setTimeout(() => {
       if (isAppliedbet?.split("_")?.[1] === String(true)) {
         setOpenDialogBox(true);
-        setTimeout(() => {
-          setOpenDialogBox(false);
-          localStorage.setItem("betApplied", false);
-        }, 2000);
+        // setTimeout(() => {
+        //   setOpenDialogBox(false);
+        //   localStorage.setItem("betApplied", false);
+        // }, 2000);
       }
     }, 1000);
   }, [dummycounter]);
-
 
   function refreshFunctionForRotation() {
     client.refetchQueries("walletamount");
@@ -63,7 +74,14 @@ function Win() {
     <Layout header={true} footer={true}>
       <Container sx={styles.root}>
         <Box sx={{ position: "relative", overflow: "hidden" }}>
-          <Box sx={{ mt: 7, padding: 2, position: "relative", background: bgdarkgray, }}>
+          <Box
+            sx={{
+              mt: 7,
+              padding: 2,
+              position: "relative",
+              background: bgdarkgray,
+            }}
+          >
             <Box
               sx={{
                 padding: "20px 10px",
@@ -75,7 +93,7 @@ function Win() {
                 justifyContent: "center",
                 background: bglightgray,
                 backgroundImage: `url(${bg})`,
-                backgroundSize: '100% 100%',
+                backgroundSize: "100% 100%",
               }}
             >
               <Box display="flex" alignItems="center" ml={5}>
@@ -83,12 +101,12 @@ function Win() {
                   variant="body1"
                   color="initial"
                   className="b-val"
-                  sx={{ color: 'white' }}
+                  sx={{ color: "white" }}
                 >
                   ₹{" "}
                   {Number(
                     Number(net_wallet_amount?.wallet || 0) +
-                    Number(net_wallet_amount?.winning || 0) || 0
+                      Number(net_wallet_amount?.winning || 0) || 0
                   )?.toFixed(2)}
                 </Typography>
                 <div className="mx-1 rotate_refresh_image" id="refresh_button">
@@ -108,7 +126,7 @@ function Win() {
                   variant="body1"
                   color="initial"
                   className="b-val2"
-                  sx={{ color: 'white' }}
+                  sx={{ color: "white" }}
                 >
                   Walllet balance
                 </Typography>
@@ -148,7 +166,7 @@ function Win() {
               position: "relative",
             }}
           >
-            <Stack direction="row" sx={{ borderRadius: '10px' }}>
+            <Stack direction="row" sx={{ borderRadius: "10px" }}>
               <Box
                 component={NavLink}
                 onClick={() => setTab(1)}
@@ -159,7 +177,7 @@ function Win() {
                 ) : (
                   <Box component="img" src={Timeactive} width={50}></Box>
                 )}
-                <Typography variant="h3" >
+                <Typography variant="h3">
                   TRX <br />
                   1Min
                 </Typography>
@@ -192,7 +210,6 @@ function Win() {
                   TRX <br /> 5Min
                 </Typography>
               </Box>
-            
             </Stack>
           </Box>
         </Box>
@@ -210,7 +227,13 @@ function Win() {
               },
             }}
           >
-            <WinLossPopup gid={isAppliedbet?.split("_")?.[0]} />
+            <WinLossPopup
+              gid={isAppliedbet?.split("_")?.[0]}
+              setOpenDialogBox={setOpenDialogBox}
+            />
+            <IconButton onClick={() => setOpenDialogBox(false)}>
+              <CancelIcon className="!text-white" />
+            </IconButton>
           </Dialog>
         )}
         {/* <CustomCircularProgress isLoading={walletloding} /> */}
@@ -222,7 +245,7 @@ function Win() {
 export default Win;
 
 const styles = {
-  root: { background: bgdarkgray, },
+  root: { background: bgdarkgray },
   dashboardTitle: {
     textAlign: "center",
     color: "white !important",

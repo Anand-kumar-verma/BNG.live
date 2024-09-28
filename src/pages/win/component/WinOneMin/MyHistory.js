@@ -4,7 +4,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import moment from "moment";
 import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { bgtan, zubgtext } from "../../../../Shared/color";
 import { rupees } from "../../../../services/urls";
 
@@ -14,7 +14,6 @@ const MyHistory = ({ gid }) => {
   const my_history_data = useSelector(
     (state) => state.aviator.trx_my_history_data
   );
-  const dispatch = useDispatch();
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

@@ -199,7 +199,6 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
       console.error("Error during play:", error);
     }
   };
- const navigate = useNavigate()
   return (
     <Box className="countdownbgtrx" sx={{ background: zubgtext }}>
       {React.useMemo(() => {
@@ -254,7 +253,6 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
                 >
                   TRX 1 Min
                 </Typography>
-                
               </>
             );
           }, [])}
@@ -282,9 +280,13 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
           )}
         </Box>
         <Box>
-          <Typography variant="h3" color="initial" className="!cursor-pointer !text-[#f0ab56] !mb-3 py-1 !text-xs text-center bg-gray-800  rounded-full" 
-            onClick={() => window.open(`${public_chain}`, "_blank")}>
-          <Search className="!text-sm "/>  Public Chain Query
+          <Typography
+            variant="h3"
+            color="initial"
+            className="!cursor-pointer !text-[#f0ab56] !mb-3 py-1 !text-xs text-center bg-gray-800  rounded-full"
+            onClick={() => window.open(`${public_chain}`, "_blank")}
+          >
+            <Search className="!text-sm " /> Public Chain Query
           </Typography>
           {React.useMemo(() => {
             return (
@@ -301,7 +303,11 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
               </Stack>
             );
           }, [show_this_one_min_time])}
-         <Typography variant="h3" color="initial" className="!ml-2 !text-lg !text-[#8f5206] !font-bold">
+          <Typography
+            variant="h3"
+            color="initial"
+            className="!ml-2 !text-lg !text-[#8f5206] !font-bold"
+          >
             {Number(next_step)?.toString()?.padStart(7, "0")}
           </Typography>
         </Box>

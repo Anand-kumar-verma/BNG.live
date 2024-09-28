@@ -20,7 +20,7 @@ import * as React from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useQueryClient } from "react-query";
-import {useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { endpoint } from "../../../services/urls";
 import Policy from "./policy/Policy";
@@ -286,7 +286,7 @@ const ApplyBetDialogBox = ({
           variant="text"
           color="primary"
           onClick={() => {
-            betFunctionStart()
+            betFunctionStart();
           }}
           loding={true}
         >

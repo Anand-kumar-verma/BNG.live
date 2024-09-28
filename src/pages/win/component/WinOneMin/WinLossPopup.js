@@ -73,7 +73,7 @@ const WinLossPopup = ({ gid, setOpenDialogBox }) => {
   useEffect(() => {
     MyHistoryFn();
     setTimeout(() => {
-      setOpenDialogBox(false);
+      // setOpenDialogBox(false);
       localStorage.setItem("betApplied", false);
     }, 5000);
   }, []);

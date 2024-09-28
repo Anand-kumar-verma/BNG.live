@@ -1,11 +1,13 @@
 import VolumeUpIcon from "@mui/icons-material/VolumeUpOutlined";
 import WalletOutlinedIcon from "@mui/icons-material/WalletOutlined";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
+import CancelIcon from "@mui/icons-material/Cancel";
 import {
   Box,
   Button,
   Container,
   Dialog,
+  IconButton,
   Stack,
   Typography,
 } from "@mui/material";
@@ -14,25 +16,20 @@ import { useState } from "react";
 import { useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import asistant from "../../assets/images/asistant.png";
-import backbtn from "../../assets/images/backBtn.png";
-import bg from "../../assets/img/walletbg-dcbd4124.png";
-import music from "../../assets/images/music.png";
-import musicoff from "../../assets/images/musicoff.png";
 import Timeinactive from "../../assets/images/new/download (7).png";
 import refresh from "../../assets/images/refresh.png";
 import Timeactive from "../../assets/images/time-.png";
+import bg from "../../assets/img/walletbg-dcbd4124.png";
 import Layout from "../../component/Layout/Layout";
+import { bgdarkgray, bggrad, bglightgray, bgtan } from "../../Shared/color";
 import theme from "../../utils/theme";
 import WinFiveMin from "./component/WinOneMin/WinFiveMin";
 import WinLossPopup from "./component/WinOneMin/WinLossPopup";
 import WinOneMin from "./component/WinOneMin/WinOneMin";
 import WinThreeMin from "./component/WinOneMin/WinThreeMin";
-import { bgdarkgray, bggrad, bglightgray, bgtan } from "../../Shared/color";
 
 function Win() {
   const client = useQueryClient();
-  const [musicicon, setmusicicon] = useState(true);
   const navigate = useNavigate();
   const [Tab, setTab] = useState(1);
   const [opendialogbox, setOpenDialogBox] = useState(false);
@@ -284,7 +281,15 @@ function Win() {
               },
             }}
           >
-            <WinLossPopup gid={isAppliedbet?.split("_")?.[0]} setOpenDialogBox ={setOpenDialogBox}/>
+            <WinLossPopup
+              gid={isAppliedbet?.split("_")?.[0]}
+              setOpenDialogBox={setOpenDialogBox}
+            />
+            <p className="!text-center">
+              <IconButton onClick={() => setOpenDialogBox(false)}>
+                <CancelIcon className="!text-white" />
+              </IconButton>
+            </p>
           </Dialog>
         )}
         {/* <CustomCircularProgress isLoading={walletloding} /> */}
