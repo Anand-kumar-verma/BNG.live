@@ -12,6 +12,8 @@ import AddIcon from '@mui/icons-material/Add';
 import { Draggable } from 'react-draggable';
 import Otpverify from "./pages/auth/login/Otpverify";
 import Changepassword from "./pages/auth/login/Changepassword";
+import BeforeLogin from "./Shared/BeforeLogin";
+import SplashScreen from "./Shared/SplashScreen";
 
 const App = () => {
   const isAuthenticated =
@@ -31,6 +33,7 @@ const App = () => {
       </Draggable> */}
       <Routes>
         <Route path="/" element={<Login />} />
+      <Route path="/before-login" element={<BeforeLogin />}></Route>
         <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="/otp" element={<Otpverify />} />
         <Route path="/changepassword" element={<Changepassword />} />
@@ -45,6 +48,7 @@ const App = () => {
         ) : (
           <Route path="/" element={<Login />} />
         )}
+         <Route path="/splash" element={<SplashScreen />}></Route>
       </Routes>
     </Box>
   );

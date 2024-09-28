@@ -35,7 +35,7 @@ function LoginWithMobile() {
 
 
   const [CountryCode, setCountryCode] = React.useState('+91');
-  const handleChangecr = (event: SelectChangeEvent) => {
+  const handleChangecr = (event) => {
     setCountryCode(event.target.value);
   };
 
@@ -110,7 +110,7 @@ function LoginWithMobile() {
         // get_user_data(response?.data?.UserID);
         setloding(false);
         storeCookies();
-        navigate("/dashboard");
+        navigate("/before-login");
         window.location.reload();
       }
     } catch (e) {

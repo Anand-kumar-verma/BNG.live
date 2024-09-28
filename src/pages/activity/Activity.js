@@ -3,7 +3,6 @@ import Typography from "@mui/material/Typography";
 import React, { useEffect } from "react";
 import banner2 from "../../assets/images/giftRedeem.png";
 import banner1 from "../../assets/images/signInBanner.png";
-import logo from "../../assets/img/logo.png";
 import actbanner1 from "../../assets/img/banner6.png";
 import actbanner2 from "../../assets/img/banner4.png";
 import b3 from "../../assets/img/banner3.jpg";
@@ -14,7 +13,7 @@ import BettingRebate from "../../assets/images/BettingRebate-17d35455.png";
 import invitationBonus from "../../assets/images/invitationBonus-aa7acbd3.png";
 import { bgfootergray } from "../../Shared/color";
 import Layout from "../../component/Layout/Layout";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import MyModal from "../../Shared/Modal";
 import { yesterdayFn } from "../../services/apicalling";
 import { useQuery } from "react-query";
@@ -63,6 +62,7 @@ const style = {
 };
 function Activity() {
 
+  const navigate = useNavigate()
   const { data: amount } = useQuery(["yesterday_income"], () => yesterdayFn(), {
     refetchOnMount: false,
     refetchOnReconnect: false,
@@ -185,14 +185,14 @@ function Activity() {
         </Box>
 
 
-        <Box sx={style.actimg2}>
+        <Box sx={style.actimg2} className="!cursor-pointer"  onClick={()=>navigate('/first')}>
           <Box
             component="img"
             sx={{ width: "100%", borderRadius: "10px 10px 0px 0px" }}
             src={b3}
           ></Box>
           <Typography variant="body1" color="initial">
-            Invitation bonus
+          First Deposit bonus
           </Typography>
         </Box>
         <Box sx={style.actimg2}>
@@ -218,7 +218,7 @@ function Activity() {
 
         {statusyesterday?.status_of_deposit_popup === 1 ?
           <MyModal />
-          : "null"}
+          : ""}
       </Stack>
     </Layout>
   );

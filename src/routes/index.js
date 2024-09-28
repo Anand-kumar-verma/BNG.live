@@ -72,6 +72,7 @@ import StreakBonus from "../pages/income/incomeSubSection/Streak";
 import ActivityDetail from "../pages/activity/component/ActivityDetail.js";
 import DepositeUsdtrecharge from "../pages/wallet/component/DepositUsdtRecharge.js";
 import Win from "../pages/win/win";
+import FirstDepositBonus from "../pages/account/FirstDepositeBonus.js";
 
 export const routes = [
   {
@@ -256,7 +257,10 @@ export const routes = [
     path: "/rechargeusdt",
     component: <DepositeUsdtrecharge />,
   },
-
+  {
+    path: "/first",
+    component: <FirstDepositBonus />,
+  },
   {
     path: "/account/income-main",
     component: <MainPageOFIncome />,
