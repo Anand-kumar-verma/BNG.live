@@ -6,7 +6,6 @@ import moment from "moment";
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { bgtan, zubgtext } from "../../../../Shared/color";
-import history from "../../../../assets/images/list.png";
 import { rupees } from "../../../../services/urls";
 
 const MyHistory = ({ gid }) => {
@@ -79,30 +78,52 @@ const MyHistory = ({ gid }) => {
                           height: "45px",
                           borderRadius: "10px",
                         }}
-                        className={` flexcenter ${i?.result <= 4 ? "!bg-[#6DA7F4]" : "!bg-[#FEAA57]"
-                          }`}
+                        className={`flexcenter
+                                     ${
+                                       (i?.number === "0" &&
+                                         "transparentColorRedPurpleBGTOP") ||
+                                       (i?.number === "5" &&
+                                         "transparentColorGreenRedBGTOP") ||
+                                       ((i?.number === "1" ||
+                                         i?.number === "3" ||
+                                         i?.number === "7" ||
+                                         i?.number === "9" ||
+                                         i?.number === "10") &&
+                                         "!bg-[#18b680]") ||
+                                       ((i?.number === "2" ||
+                                         i?.number === "4" ||
+                                         i?.number === "6" ||
+                                         i?.number === "8" ||
+                                         i?.number === "30") &&
+                                         "!bg-[#fb6161]") ||
+                                       (i?.number === "50" &&
+                                         "!bg-[#468ce8]") ||
+                                       (i?.number === "40" &&
+                                         "!bg-[#ffc300]") ||
+                                       (i?.number === "20" && "!bg-[#c86eff]")
+                                     }
+                                  font-bold text-xl 
+
+                                        `}
                       >
                         <Typography
                           variant="body1"
                           sx={{ color: "white" }}
-                          className={`funp1100 !text-[12px] ${i?.result <= 4 ? "!bg-[#6DA7F4]" : "!bg-[#FEAA57]"
-                            }`}
+                          className="!text-[11px]"
                         >
                           {/* {i?.result <= 4 ? "Small" : "Big"} */}
                           {i?.number === "10" ? (
-                            "Green"
+                            ""
                           ) : i?.number === "50" ? (
-                            "Small"
+                            "small"
                           ) : i?.number === "40" ? (
-                            "Big"
+                            "big"
                           ) : i?.number === "30" ? (
-                            "Red"
+                            ""
                           ) : i?.number === "20" ? (
-                            "Voilet"
+                            ""
                           ) : (
-                            <span className="!text-lg">
-                              {i?.number}
-                            </span>
+                            <span className="!text-lg">{i?.number}</span>
                           )}
                         </Typography>
                       </Box>
@@ -137,29 +158,31 @@ const MyHistory = ({ gid }) => {
                         }}
                         className={` funp15
                         !w-[80px] !text-center
-                         ${i?.status === "0"
-                            ? "!text-red-400"
-                            : i?.status === "1"
-                              ? "!text-green-400 !border-[.5px] !border-green-500"
-                              : "!text-red-400"
-                          } !py-0`}
+                         ${
+                           i?.status === "0"
+                             ? "!text-red-400"
+                             : i?.status === "1"
+                             ? "!text-green-400 !border-[.5px] !border-green-500"
+                             : "!text-red-400"
+                         } !py-0`}
                       >
                         {" "}
                         {i?.status === "0"
                           ? "Pending"
                           : i?.status === "1"
-                            ? "Success"
-                            : "Failed"}
+                          ? "Success"
+                          : "Failed"}
                       </Typography>
                       <Typography
                         variant="body1"
                         sx={{ color: "red", mt: 1 }}
-                        className={` funp13 ${i?.status === "0"
-                          ? "!text-red-400"
-                          : i?.status === "1"
+                        className={` funp13 ${
+                          i?.status === "0"
+                            ? "!text-red-400"
+                            : i?.status === "1"
                             ? "!text-green-400"
                             : "!text-red-400"
-                          } !pr-1`}
+                        } !pr-1`}
                       >
                         {" "}
                         {i?.win ? "₹ " + i?.win : "- " + " ₹ " + i?.amount}
@@ -220,26 +243,27 @@ const MyHistory = ({ gid }) => {
                         <span>{`${i?.result}`}</span>
                         <span
                           className={`
-                  ${(i?.result === "0" &&
-                              "!bg-gradient-to-t from-red-400 to-violet-400") ||
-                            (i?.result === "5" &&
-                              "!bg-gradient-to-t from-violet-400 to-green-400") ||
-                            ((i?.result === "1" ||
-                              i?.result === "3" ||
-                              i?.result === "7" ||
-                              i?.result === "9" ||
-                              i?.result === "10") &&
-                              "bg-gradient-to-t from-green-400 to-green-900") ||
-                            ((i?.result === "2" ||
-                              i?.result === "4" ||
-                              i?.result === "6" ||
-                              i?.result === "8" ||
-                              i?.result === "30") &&
-                              "bg-gradient-to-tl from-red-400 to-red-900") ||
-                            (i?.result === "50" && "bg-[#3183ee]") ||
-                            (i?.result === "40" && "bg-[#f1be24]") ||
-                            (i?.result === "20" && "bg-[#eb2feb]")
-                            }
+                  ${
+                    (i?.result === "0" &&
+                      "!bg-gradient-to-t from-red-400 to-violet-400") ||
+                    (i?.result === "5" &&
+                      "!bg-gradient-to-t from-violet-400 to-green-400") ||
+                    ((i?.result === "1" ||
+                      i?.result === "3" ||
+                      i?.result === "7" ||
+                      i?.result === "9" ||
+                      i?.result === "10") &&
+                      "bg-gradient-to-t from-green-400 to-green-900") ||
+                    ((i?.result === "2" ||
+                      i?.result === "4" ||
+                      i?.result === "6" ||
+                      i?.result === "8" ||
+                      i?.result === "30") &&
+                      "bg-gradient-to-tl from-red-400 to-red-900") ||
+                    (i?.result === "50" && "bg-[#3183ee]") ||
+                    (i?.result === "40" && "bg-[#f1be24]") ||
+                    (i?.result === "20" && "bg-[#eb2feb]")
+                  }
                   transparentColor font-bold text-xl
                   `}
                         >
@@ -249,14 +273,14 @@ const MyHistory = ({ gid }) => {
                               i?.result === "3" ||
                               i?.result === "7" ||
                               i?.result === "9"
-                              ? "Green"
-                              : i?.result === "5"
-                                ? "Voilet Green"
-                                : (i?.result === "2" ||
-                                  i?.result === "4" ||
-                                  i?.result === "6" ||
-                                  i?.result === "8") &&
-                                "Red"}
+                            ? "Green"
+                            : i?.result === "5"
+                            ? "Voilet Green"
+                            : (i?.result === "2" ||
+                                i?.result === "4" ||
+                                i?.result === "6" ||
+                                i?.result === "8") &&
+                              "Red"}
                         </span>
                         <span>{Number(i?.result) <= 4 ? "Small" : "Big"}</span>
                       </div>
@@ -270,26 +294,27 @@ const MyHistory = ({ gid }) => {
                     <div className="!bg-white !bg-opacity-10 py-1 px-2">
                       <span
                         className={`
-                  ${(i?.number === "0" &&
-                            "!bg-gradient-to-t from-red-400 to-violet-400") ||
-                          (i?.number === "5" &&
-                            "!bg-gradient-to-t from-violet-400 to-green-400") ||
-                          ((i?.number === "1" ||
-                            i?.number === "3" ||
-                            i?.number === "7" ||
-                            i?.number === "9" ||
-                            i?.number === "10") &&
-                            "bg-gradient-to-t from-green-400 to-green-900") ||
-                          ((i?.number === "2" ||
-                            i?.number === "4" ||
-                            i?.number === "6" ||
-                            i?.number === "8" ||
-                            i?.number === "30") &&
-                            "bg-gradient-to-tl from-red-400 to-red-900") ||
-                          (i?.number === "50" && "bg-[#3183ee]") ||
-                          (i?.number === "40" && "bg-[#f1be24]") ||
-                          (i?.number === "20" && "bg-[#eb2feb]")
-                          }
+                  ${
+                    (i?.number === "0" &&
+                      "!bg-gradient-to-t from-red-400 to-violet-400") ||
+                    (i?.number === "5" &&
+                      "!bg-gradient-to-t from-violet-400 to-green-400") ||
+                    ((i?.number === "1" ||
+                      i?.number === "3" ||
+                      i?.number === "7" ||
+                      i?.number === "9" ||
+                      i?.number === "10") &&
+                      "bg-gradient-to-t from-green-400 to-green-900") ||
+                    ((i?.number === "2" ||
+                      i?.number === "4" ||
+                      i?.number === "6" ||
+                      i?.number === "8" ||
+                      i?.number === "30") &&
+                      "bg-gradient-to-tl from-red-400 to-red-900") ||
+                    (i?.number === "50" && "bg-[#3183ee]") ||
+                    (i?.number === "40" && "bg-[#f1be24]") ||
+                    (i?.number === "20" && "bg-[#eb2feb]")
+                  }
                   transparentColor font-bold text-xl 
 
                   `}
@@ -297,32 +322,33 @@ const MyHistory = ({ gid }) => {
                         {i?.number === "10"
                           ? "Green"
                           : i?.number === "50"
-                            ? "Small"
-                            : i?.number === "40"
-                              ? "Big"
-                              : i?.number === "30"
-                                ? "Red"
-                                : i?.number === "20"
-                                  ? "Voilet"
-                                  : i?.number}
+                          ? "Small"
+                          : i?.number === "40"
+                          ? "Big"
+                          : i?.number === "30"
+                          ? "Red"
+                          : i?.number === "20"
+                          ? "Voilet"
+                          : i?.number}
                       </span>
                     </div>
                     <span className="bg-white !bg-opacity-10 py-1 px-2">
                       Status
                     </span>
                     <span
-                      className={`${i?.status === "0"
-                        ? "!text-red-400"
-                        : i?.status === "1"
+                      className={`${
+                        i?.status === "0"
+                          ? "!text-red-400"
+                          : i?.status === "1"
                           ? "!text-green-400"
                           : "!text-red-400"
-                        } bg-white !bg-opacity-10 py-1 px-2`}
+                      } bg-white !bg-opacity-10 py-1 px-2`}
                     >
                       {i?.status === "0"
                         ? "Pending"
                         : i?.status === "1"
-                          ? "Win"
-                          : "Loss"}
+                        ? "Win"
+                        : "Loss"}
                     </span>
                     <span className="bg-white !bg-opacity-10 py-1 px-2">
                       Amount
