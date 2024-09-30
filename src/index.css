@@ -41,7 +41,22 @@
     transform: rotate(360deg);
   }
 }
-
+.transparentColorRedPurpleBGTOP {
+  background: #c86eff !important;
+  background: linear-gradient(
+    to bottom right,
+    #fb6161 50%,
+    #c86eff 50%
+  ) !important;
+}
+.transparentColorGreenRedBGTOP {
+  background: #18b680 !important;
+  background: linear-gradient(
+    to bottom right,
+    #18b680 50%,
+    #c86eff 50%
+  ) !important;
+}
 .transparentColor {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

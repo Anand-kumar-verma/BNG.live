@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import CustomCircularProgress from "../../../../Shared/CustomCircularProgress";
@@ -16,10 +15,9 @@ import seven from "../../../../assets/trximage/7.png";
 import eight from "../../../../assets/trximage/8.png";
 import nine from "../../../../assets/trximage/9.png";
 
-import { endpoint } from "../../../../services/urls";
 import CryptoJS from "crypto-js";
 import { useSelector } from "react-redux";
-const WinLossPopup = ({ gid }) => {
+const WinLossPopup = ({ gid ,setOpenDialogBox}) => {
   let array = [zero, one, two, three, four, five, six, seven, eight, nine];
   const login_data =
     (localStorage.getItem("logindataen") &&
@@ -79,6 +77,10 @@ const WinLossPopup = ({ gid }) => {
   };
 
   useEffect(() => {
+    setTimeout(() => {
+    // setOpenDialogBox(false);
+      localStorage.setItem("betApplied", false);
+    }, 5000);
       MyHistoryFn();
   }, []);
 
