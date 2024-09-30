@@ -280,6 +280,7 @@ function Dashboard() {
                   fontSize: "20px",
                 }}
               >
+                  
                 ₹{" "}
                 {(Number(wallet?.wallet) + Number(wallet?.winning))?.toFixed(2)}
               </Typography>

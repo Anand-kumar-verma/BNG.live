@@ -195,7 +195,7 @@ function Account() {
                   Number(
                     Number(wallet?.winning || 0) + Number(wallet?.wallet || 0)
                   ) || 0
-                )?.toFixed(0)}{" "}
+                )?.toFixed(2)}{" "}
                 <CachedIcon sx={style.cachedIcon} />
               </Typography>
             </Box>

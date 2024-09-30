@@ -216,7 +216,9 @@ function DepositeUsdt() {
                                             }}
                                         >
                                             <Typography variant="body1" color="initial">
-                                                {i?.description_user }
+                                               
+                                                <p> {i?.description_user?.substring(0, 20)}</p>
+                                                <p>{i?.description_user?.substring(20)}</p>
                                             </Typography>
                                             {/* <IconButton>
                                                 <ContentCopyIcon sx={{ color: zubgtext }} />
