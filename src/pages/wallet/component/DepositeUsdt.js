@@ -196,6 +196,33 @@ function DepositeUsdt() {
                                             </IconButton> */}
                                         </Stack>
                                     </Stack>
+                                    <Stack
+                                        direction="row"
+                                        sx={{
+                                            alignItems: "center",
+                                            justifyContent: "space-between",
+                                            "&>p": { color: zubgtext },
+                                        }}
+                                    >
+                                        <Typography variant="body1" color="initial">
+                                           Description
+                                        </Typography>
+                                        <Stack
+                                            direction="row"
+                                            sx={{
+                                                alignItems: "center",
+                                                justifyContent: "space-between",
+                                                "&>p": { color: zubgtext },
+                                            }}
+                                        >
+                                            <Typography variant="body1" color="initial">
+                                                {i?.description_user }
+                                            </Typography>
+                                            {/* <IconButton>
+                                                <ContentCopyIcon sx={{ color: zubgtext }} />
+                                            </IconButton> */}
+                                        </Stack>
+                                    </Stack>
                                 </Box>
                             );
                         })}
