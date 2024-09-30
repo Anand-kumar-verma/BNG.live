@@ -594,13 +594,13 @@ function DepositeUsdtrecharge() {
               onChange={handleFileChange}
               required
             />
-            <span className="text-white text-lg !mt-5">UTR Number</span>
+            <span className="text-white text-lg !mt-5">Transaction hash </span>
             <TextField
               id="utr_no"
               name="utr_no"
               value={fk.values.utr_no}
               onChange={fk.handleChange}
-              placeholder="Enter UTR NO"
+              placeholder="Enter Transaction hash"
               className="!w-[100%] !bg-[#D9AC4F] !text-[#8f5206] !mt-2"
               size="small"
             ></TextField>
