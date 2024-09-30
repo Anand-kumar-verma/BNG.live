@@ -107,10 +107,12 @@ function Gamestaticks() {
                 fontWeight: "600",
               }}
             >
-              {/* {rupees}{" "}
-              {data
-                ?.reduce((a, b) => a + Number(b?.amount || 0), 0)
-                ?.toFixed(2) || 0} */}
+              {rupees}{" "}
+              {value === "1"
+                ? <p>{result?.wingo_total_win_yes}</p>
+                : value === "2"
+                  ? <p>{result?.trx_total_win_yes}</p>
+                  : "null"} 
             </Typography>
           </Box>
           <Box
