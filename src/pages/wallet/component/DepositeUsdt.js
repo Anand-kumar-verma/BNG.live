@@ -106,12 +106,12 @@ function DepositeUsdt() {
                                         <Box>
                                             <Button
                                                 sx={{ color: "green", textTransform: "capitalize" }}
-                                                className={`${i?.status === "success"
+                                                className={`${i?.tr15_status === "success"
                                                     ? "!text-green-700"
                                                     : "!text-red-500"
                                                     }`}
                                             >
-                                                {i?.status}
+                                                {i?.tr15_status}
                                             </Button>
                                             <IconButton>
                                                 <ArrowForwardIcon sx={{ color: zubgtext }} />
@@ -132,7 +132,7 @@ function DepositeUsdt() {
                                             Balance
                                         </Typography>
                                         <Typography variant="body1" color="initial">
-                                            $ {i?.amt}
+                                        ₹ {i?.tr15_amt}
                                         </Typography>
                                     </Stack>
                                     <Stack
@@ -148,8 +148,8 @@ function DepositeUsdt() {
                                             Date/Time
                                         </Typography>
                                         <Typography variant="body1" color="initial">
-                                            {moment(i?.created_at)?.format("DD-MM-YYYY")}{" "}
-                                            {moment(i?.created_at)?.format("HH:mm:ss")}
+                                            {moment(i?.tr15_date)?.format("DD-MM-YYYY")}{" "}
+                                            {moment(i?.tr15_date)?.format("HH:mm:ss")}
                                         </Typography>
                                     </Stack>
                                     {i?.success_date !== "NUll" && <Stack
@@ -189,11 +189,11 @@ function DepositeUsdt() {
                                             }}
                                         >
                                             <Typography variant="body1" color="initial">
-                                                {i?.order_id}
+                                                {i?.tr15_trans}
                                             </Typography>
-                                            <IconButton>
+                                            {/* <IconButton>
                                                 <ContentCopyIcon sx={{ color: zubgtext }} />
-                                            </IconButton>
+                                            </IconButton> */}
                                         </Stack>
                                     </Stack>
                                 </Box>

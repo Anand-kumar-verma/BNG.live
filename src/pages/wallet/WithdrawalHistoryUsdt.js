@@ -204,7 +204,7 @@ function WithdrawalHistoryUSdt() {
                         color="initial"
                         className="!text-[15px]"
                       >
-                        {i?.tr15_w_id}
+                        {i?.tr15_trans}
                       </Typography>
 
                       {/* <IconButton>

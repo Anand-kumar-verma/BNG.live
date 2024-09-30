@@ -573,9 +573,9 @@ function DepositeUsdtrecharge() {
                     <div className="w-full flex justify-center mt-5">
                       <Button
                         size="small !py-1"
-                        className="!bg-[#0ee6ac]  !text-white place-items-center"
+                        className="!bg-[#8f5206]  !text-white place-items-center"
                         onClick={() =>
-                          functionTOCopy(selectedUPIDetails.m37_value)
+                          functionTOCopy(selectedUPIDetails?.usdt_address)
                         }
                       >
                         Copy
