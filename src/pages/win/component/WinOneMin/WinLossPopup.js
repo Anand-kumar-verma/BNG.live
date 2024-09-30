@@ -50,7 +50,7 @@ const WinLossPopup = ({ gid, setOpenDialogBox }) => {
           ?.reduce((a, b) => a + Number(b?.amount || 0), 0) || 0;
       setall_result(my_history_data?.[0]);
 
-      if (winAmnt) {
+      if (!winAmnt) {
         setstatus({
           status: "1",
           amount: winAmnt,
@@ -92,9 +92,8 @@ const WinLossPopup = ({ gid, setOpenDialogBox }) => {
         width: "300px",
         height: "400px",
         margin: "auto",
-        backgroundImage: `url(${
-          (status?.status === "1" && win) || (status?.status === "2" && Loss)
-        })`,
+        backgroundImage: `url(${(status?.status === "1" && win) || (status?.status === "2" && Loss)
+          })`,
         // backgroundImage: `url(${win})`,
         backgroundSize: "100% 100%",
         backgroundPosition: "center",
@@ -128,9 +127,8 @@ const WinLossPopup = ({ gid, setOpenDialogBox }) => {
           <Typography
             variant="body1"
             color="initial"
-            className={`bonustext ${
-              status?.status === "1" ? "!text-green" : "!text-red"
-            }
+            className={`bonustext ${status?.status === "1" ? "!text-green" : "!text-red"
+              }
             !mr-0
             `}
           >
@@ -138,7 +136,7 @@ const WinLossPopup = ({ gid, setOpenDialogBox }) => {
               <>
                 <div className="!text-sm !ml-7 !flex !items-center !gap-2">
                   <span>Results: </span>
-                  <span
+                  {/* <span
                     className={`${
                       [1, 3, 7, 9]?.includes(Number(all_result?.result))
                         ? "!bg-green-500"
@@ -162,25 +160,42 @@ const WinLossPopup = ({ gid, setOpenDialogBox }) => {
                     [1, 3, 7, 9]?.includes(Number(all_result?.result))
                       ? "Green"
                       : "Red"}
+                  </span> */}
+                  <span
+                    className={`${[1, 3, 7, 9].includes(Number(all_result?.result))
+                        ? "!bg-green-500"
+                        : "!bg-red-500"
+                      } ${Number(all_result?.result) === 0
+                        ? "!bg-gradient-to-r from-red-500 to-purple-500"
+                        : Number(all_result?.result) === 5
+                          ? "!bg-gradient-to-r from-green-500 to-purple-500"
+                          : ""
+                      } !text-center !p-2 !rounded-md`}
+                  >
+                    {Number(all_result?.result) === 0
+                      ? "Red Purple"
+                      : Number(all_result?.result) === 5
+                        ? "Green Purple"
+                        : [1, 3, 7, 9].includes(Number(all_result?.result))
+                          ? "Green"
+                          : "Red"}
                   </span>
+
                   <img
                     className="!h-[10%] !w-[10%]"
                     src={array[Number(all_result?.result)]}
                   />
                   <span
-                    className={`${
-                      [1, 3, 7, 9]?.includes(Number(all_result?.result))
+                    className={`${[1, 3, 7, 9]?.includes(Number(all_result?.result))
                         ? "!bg-green-500"
                         : "!bg-red-500"
-                    }
-                  ${
-                    String(Number(all_result?.result)) === String(0) &&
-                    "!bg-gradient-to-r from-red-500 to-purple-500"
-                  }
-                  ${
-                    String(Number(all_result?.result)) === String(5) &&
-                    "!bg-gradient-to-r from-green-500 to-purple-500"
-                  }
+                      }
+                  ${String(Number(all_result?.result)) === String(0) &&
+                      "!bg-gradient-to-r from-red-500 to-purple-500"
+                      }
+                  ${String(Number(all_result?.result)) === String(5) &&
+                      "!bg-gradient-to-r from-green-500 to-purple-500"
+                      }
                   !text-center !p-2 !rounded-md
                   `}
                   >
@@ -195,18 +210,16 @@ const WinLossPopup = ({ gid, setOpenDialogBox }) => {
           <Typography
             variant="body1"
             color="initial"
-            className={`bonusamt  ${
-              status?.status === "1" ? "!text-green-500" : "!text-red-300"
-            }`}
+            className={`bonusamt  ${status?.status === "1" ? "!text-green-500" : "!text-red-300"
+              }`}
           >
             ₹ {Number(status?.amount || 0)?.toFixed(2) || 0}
           </Typography>
           <Typography
             variant="body1"
             color="initial"
-            className={`bonuspr ${
-              status?.status === "1" ? "!text-white" : "!text-black"
-            }`}
+            className={`bonuspr ${status?.status === "1" ? "!text-white" : "!text-black"
+              }`}
           >
             Period min :{all_result?.gamesno}
             {/* {(status?.gameid === "1" && "One") ||
@@ -214,7 +227,7 @@ const WinLossPopup = ({ gid, setOpenDialogBox }) => {
               (status?.gameid === "5" && "Five")}{" "} */}
           </Typography>
           <Typography variant="body1" color="initial" className="bonuscl">
-          {(status?.status === "1" &&  "") || (status?.status === "2" && "Try Again")}      
+            {(status?.status === "1" && "") || (status?.status === "2" && "Try Again")}
             {/* Auto Close in 5 sec{" "} */}
           </Typography>
         </>
