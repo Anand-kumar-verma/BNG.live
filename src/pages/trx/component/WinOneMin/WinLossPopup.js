@@ -206,7 +206,7 @@ const WinLossPopup = ({ gid }) => {
 
           </Typography>
           <Typography variant="body1" color="initial" className="bonuscl">
-            Auto Close in 5 sec{" "}
+          {(status?.status === "1" &&  "") || (status?.status === "2" && "Try Again")}    
           </Typography>
         </>
       )}

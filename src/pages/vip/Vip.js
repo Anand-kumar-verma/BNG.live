@@ -2706,7 +2706,7 @@ function VIPPage() {
                         <div className="!w-full !flex !flex-row !justify-between">
                           <p>VIP BONUS</p>
                           <p>
-                            {rupees} {i?.l01_amount}
+                            {rupees} {i?.l01_amount} 
                           </p>
                         </div>
                         <div className="!w-full !flex !flex-row !justify-between">

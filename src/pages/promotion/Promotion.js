@@ -132,7 +132,7 @@ function Promotion() {
                   className="!text-white"
 
                 >
-                 {result?.direct_depo_mem || 0}
+                 {result?.no_of_direct_people_making_first_depo || 0}
                 </Typography>
                 <Typography variant="body1">
                   No of people making first deposit
@@ -167,7 +167,7 @@ function Promotion() {
                   className="!text-white"
 
                 >
-                 {result?.team_depo_mem || 0}
+                 {result?.no_of_team_people_making_first_depo || 0}
                 </Typography>
                 <Typography variant="body1">
                   No of people making first deposit
@@ -404,13 +404,13 @@ function Promotion() {
               <Box className="!text-black">
                 <EmojiPeopleOutlinedIcon />
                 <Typography variant="body1">
-                  {result?.direct_reg || 0}
+                  {Number(result?.total_direct_reg || 0)?.toFixed(0,2)}
                 </Typography>
                 <Typography variant="body1">Direct subordinate</Typography>
               </Box>
               <Box className="!text-black">
                 <Groups2OutlinedIcon />
-                <Typography variant="body1">{result?.team_reg || 0}</Typography>
+                <Typography variant="body1">{Number(result?.total_team_reg || 0)?.toFixed(0,2)}</Typography>
                 <Typography variant="body1">Team subordinates</Typography>
               </Box>
             </Stack>

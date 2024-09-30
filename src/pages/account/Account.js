@@ -31,7 +31,7 @@ import not from "../../assets/images/not.png";
 import dp1 from "../../assets/images/pr.png";
 import star from "../../assets/images/star.png";
 import trc from "../../assets/images/tether-usdt-logo-FA55C7F397-seeklogo.com.png";
-import vip from "../../assets/images/vip.png";
+import vip from "../../assets/images/vipp.png";
 import edit from "../../assets/images/vipicon.png";
 import wit from "../../assets/images/witt.png";
 import wtd from "../../assets/rechargeIcon.png";
@@ -41,7 +41,7 @@ import MyModal from "../../Shared/Modal";
 import s from "../../assets/wdhistory.png";
 import dpt from "../../assets/withdrow.png";
 import Layout from "../../component/Layout/Layout";
-import { walletamount, yesterdayFn } from "../../services/apicalling";
+import { VipIncomeFn, walletamount, yesterdayFn } from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
 
 function Account() {
@@ -62,6 +62,20 @@ function Account() {
     }
   );
   const wallet = amount?.data?.data;
+
+  const { data: data } = useQuery(
+    ["vip_bonus"],
+    () => VipIncomeFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: false,
+    }
+  );
+  const res = data?.data?.data;
+  console.log(res?.length)
+
+
   const functionTOCopy = (value) => {
     copy(value);
     toast.success("Copied to clipboard!");
@@ -124,7 +138,10 @@ function Account() {
                     {wallet?.full_name}
                   </Typography>
                   <Typography>
-                    <img src={vip} alt="" className=" w-12 ml-3" />
+                 <div className="!flex justify-center !cursor-pointer" onClick={()=>navigate('/vip')}>
+                 <img src={vip} alt="" className=" w-12 ml-3"  /> 
+                   <p className="!text-xs !font-bold -ml-1 !text-gray-400 !text-center bg-[#e2dfdf] rounded-full h-4 w-4 !mt-2"> {res?.length}</p>
+                    </div>
                   </Typography>
                 </Box>
                 <Box
@@ -283,37 +300,7 @@ function Account() {
           className="grid grid-cols-2 gap-3 "
           sx={{ mt: "-40px", width: "95%", ml: "2.5%" }}
         >
-          {/* <Box
-            className="flex gap-1 justify-center p-1 py-4 items-center  shadow-xl  rounded-lg"
-            sx={{ background: bglightgray }}
-            component={NavLink}
-            to="/gamehistory"
-          >
-            <Typography>
-              <img src={game} alt="" className="w-10" />
-            </Typography>
-            <Typography sx={{ color: "white" }}>
-              Game History <br />
-              <span className="!text-xs !text-white"> My game history</span>
-            </Typography>
-          </Box>
-          <Box
-            className="flex gap-1 p-1 justify-center items-center py-4 shadow-xl  rounded-lg"
-            sx={{ background: bglightgray }}
-            component={NavLink}
-            to="/transectionhistory"
-          >
-            <Typography>
-              <img src={game} alt="" className="w-10" />
-            </Typography>
-            <Typography sx={{ color: "white" }}>
-              Transaction <br />
-              <span className="!text-xs !text-white">
-                {" "}
-                My Transaction history
-              </span>
-            </Typography>
-          </Box> */}
+        
           <NavLink to="/depositHistory">
             <Box
               className="flex gap-1 p-1 py-4 justify-center items-center shadow-xl  rounded-lg"

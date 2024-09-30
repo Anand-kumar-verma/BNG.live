@@ -214,7 +214,8 @@ const WinLossPopup = ({ gid, setOpenDialogBox }) => {
               (status?.gameid === "5" && "Five")}{" "} */}
           </Typography>
           <Typography variant="body1" color="initial" className="bonuscl">
-            Auto Close in 5 sec{" "}
+          {(status?.status === "1" &&  "") || (status?.status === "2" && "Try Again")}      
+            {/* Auto Close in 5 sec{" "} */}
           </Typography>
         </>
       )}
