@@ -172,13 +172,14 @@ function DepositeUsdt() {
                                     <Stack
                                         direction="row"
                                         sx={{
+                                            mb: "10px",
                                             alignItems: "center",
                                             justifyContent: "space-between",
                                             "&>p": { color: zubgtext },
                                         }}
                                     >
                                         <Typography variant="body1" color="initial">
-                                            Trans number
+                                        Transaction Hash
                                         </Typography>
                                         <Stack
                                             direction="row"

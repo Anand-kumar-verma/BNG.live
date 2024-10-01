@@ -188,7 +188,7 @@ function WithdrawalHistoryUSdt() {
                       color="initial"
                       className="!text-[15px]"
                     >
-                      Trans number
+                      Transaction Hash
                     </Typography>
                     <Stack
                       direction="row"
