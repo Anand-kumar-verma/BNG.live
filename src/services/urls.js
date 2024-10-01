@@ -121,5 +121,4 @@ export const endpoint = {
   incom_gift : `${newdomain1}/api/v1/gift-bonus-list`,
   level_income : `${newdomain1}/api/v1/level-income`,
   
-  
 };

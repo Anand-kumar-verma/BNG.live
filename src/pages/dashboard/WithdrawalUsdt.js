@@ -65,9 +65,6 @@ function WithdrawalUsdt() {
     "Your withdrawl amount will be add in your bank account within 24 Hrs."
   );
 
-  // React.useEffect(() => {
-  //   !aviator_login_data && get_user_data_fn(dispatch);
-  // }, []);
 
   const navigate = useNavigate();
   const goBack = () => {
@@ -81,7 +78,6 @@ function WithdrawalUsdt() {
       );
 
       setAmount(response?.data?.data);
-      // console.log(response,"response")
     } catch (e) {
       toast(e?.message);
       console.log(e);
