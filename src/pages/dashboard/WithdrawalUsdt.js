@@ -127,11 +127,12 @@ function WithdrawalUsdt() {
         `${endpoint.withdrawal_request_usdt}`,
         reqbody
       );
-      client.refetchQueries("walletamount");
-      if (response?.data?.msg === "Record save successfully") {
+      
+      if (response?.data?.msg === "Request Accepted successfully, Your account will be credited within 24 Hrs.") {
         walletamountFn();
         fk.handleReset();
         setOpenDialogBox(true);
+        client.refetchQueries("walletamount");
       } else {
         fk.handleReset();
         setOpenDialogBox(true);
