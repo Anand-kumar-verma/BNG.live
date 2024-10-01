@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import empty from '../../../assets/images/empty.png'
 import gift from '../../../assets/images/gift-d7507b9b.png'
 import Layout from '../../../component/Layout/Layout'
-import { getGiftFn } from '../../../services/apicalling'
+import { getGiftFn, GiftIncomeFn } from '../../../services/apicalling'
 import { bgcolorlight, bggold, bggrad, bgtan } from '../../../Shared/color'
 import axios from 'axios'
 import { endpoint } from '../../../services/urls'
@@ -72,22 +72,34 @@ function Gift() {
     } catch (e) {
       const errorMsg = e.response?.data?.msg || e.message || "An error occurred.";
       toast(errorMsg);
-      console.error("Error:", e); // Use console.error for better visibility
+      console.error("Error:", e);
     }
   };
 
   const handleClaimGift = (item) => {
     const enteredCode = inputValue[item.id] || '';
-    if (enteredCode.trim() === '') {
+    if (enteredCode?.trim() === '') {
       toast.error("Please enter a valid gift code.");
       return;
     }
-    if (enteredCode !== item?.code) {  // Validate against the actual code
-      toast.error("Invalid code. Please enter the correct gift code.");
+    if (enteredCode !== item?.code) { 
+      toast.error(" Please enter the correct gift code.");
       return;
     }
     ClaimGiftFn(item?.id);
   };
+
+  const { isLoading, data:bonus } = useQuery(
+    ["gift_bonus"],
+    () => GiftIncomeFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false
+    }
+  );
+  const response = bonus?.data?.data;
+
   return (
     <Layout header={false} footer={false}>
       <Box sx={{ py: '12px', background: bgcolorlight }}>
@@ -118,7 +130,8 @@ function Gift() {
                   } /></p>
                   <p className='!text-xs !font-bold'>{moment(item?.expired_date)?.format("DD-MM-YYYY HH:mm:ss")} </p>
                 </div>
-                <TextField fullWidth variant="outlined" placeholder="Please enter gift code"
+                { !response?.find((j)=>j?.l01_middle_use === item?.id) ?
+                  <TextField fullWidth variant="outlined" placeholder="Please enter gift code"
                   value={inputValue[item?.id] || ''} 
                   onChange={(e) => handleInputChange(item?.id, e.target.value)}
                   sx={{
@@ -128,7 +141,10 @@ function Gift() {
                       '&.Mui-focused fieldset': { borderColor: 'transparent', },
                     },
                   }}
-                />
+                />:
+                <p className='px-2 py-1 !w-fit !mt-2 !rounded' style={{
+                  backgroundImage: bggrad, color: bgtan, textTransform: 'none'}}>Achieved</p>
+                }
                 {inputValue[item?.id] && (
                   <Button sx={{
                     backgroundImage: bggrad, color: bgtan, textTransform: 'none',

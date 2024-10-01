@@ -151,9 +151,8 @@ function Withdrawl() {
     setloding(true);
     try {
       const response = await axios.post(`${endpoint.withdraw_payment}`, fd);
-     
+      walletamountFn();
       if (response?.data?.msg === "Successfully Data Found") {
-        walletamountFn();
         fk.handleReset();
         setOpenDialogBox(true);
       } else {

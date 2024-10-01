@@ -260,6 +260,42 @@ function WithdrawalHistoryUSdt() {
                       color="initial"
                       className="!text-[15px]"
                     >
+                      Description
+                    </Typography>
+                    <Stack
+                      direction="row"
+                      sx={{
+                        mb: "5px",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        "&>p": { color: zubgtext },
+                      }}
+                    >
+                      <Typography
+                        variant="body1"
+                        color="initial"
+                        className="!text-[15px] "
+                      >
+                        <p> {i?.description_user?.substring(0,20)}
+                        {i?.description_user?.substring(20,40)}
+                        </p>
+                      </Typography>
+                    </Stack>
+                  </Stack>
+                  <Stack
+                    direction="row"
+                    sx={{
+                      mb: "5px",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      "&>p": { color: zubgtext },
+                    }}
+                  >
+                    <Typography
+                      variant="body1"
+                      color="initial"
+                      className="!text-[15px]"
+                    >
                       Date/Time
                     </Typography>
                     <Typography

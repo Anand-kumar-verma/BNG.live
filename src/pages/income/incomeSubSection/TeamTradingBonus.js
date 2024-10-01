@@ -19,7 +19,7 @@ import {
 } from "../../../Shared/color";
 import nodatafoundimage from "../../../assets/images/nodatafoundimage.png";
 import Layout from "../../../component/Layout/Layout";
-import { team_trading_bonus_functoin } from "../../../services/apicalling";
+import { levelFn, team_trading_bonus_functoin } from "../../../services/apicalling";
 function TeamTradingBonus() {
   const navigate = useNavigate();
   const goBack = () => {
@@ -34,32 +34,34 @@ function TeamTradingBonus() {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const { isLoading, data } = useQuery(
-    ["team_trading_bonus"],
-    () => team_trading_bonus_functoin(),
+    ["level_fn"],
+    () => levelFn(),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
     }
   );
-  const res = React.useMemo(() => {
-    if (startDate && endDate && filter) {
-      return data?.data?.data?.filter(
-        (i) =>
-          moment(i?.l01_date)?.format("YYYY-MM-DD") >=
-          moment(startDate)?.format("YYYY-MM-DD") &&
-          moment(i?.l01_date)?.format("YYYY-MM-DD") <=
-          moment(endDate)?.format("YYYY-MM-DD") &&
-          i?.l01_transection_type?.includes(filter)
-      );
-    }
 
-    return filter === "0"
-      ? data?.data?.data
-      : data?.data?.data?.filter((i) =>
-        i?.l01_transection_type?.includes(filter)
-      );
-  }, [filter, data?.data?.data, startDate && endDate]);
+  const res =  data?.data?.data || []
+  // const res = React.useMemo(() => {
+  //   if (startDate && endDate && filter) {
+  //     return data?.data?.data?.filter(
+  //       (i) =>
+  //         moment(i?.l01_date)?.format("YYYY-MM-DD") >=
+  //         moment(startDate)?.format("YYYY-MM-DD") &&
+  //         moment(i?.l01_date)?.format("YYYY-MM-DD") <=
+  //         moment(endDate)?.format("YYYY-MM-DD") &&
+  //         i?.l01_transection_type?.includes(filter)
+  //     );
+  //   }
+
+  //   return filter === "0"
+  //     ? data?.data?.data
+  //     : data?.data?.data?.filter((i) =>
+  //       i?.l01_transection_type?.includes(filter)
+  //     );
+  // }, [filter, data?.data?.data, startDate && endDate]);
 
 
   const handleChangePage = (event, newPage) => {
@@ -124,7 +126,7 @@ function TeamTradingBonus() {
           <p style={{ color: bgtan }}>Level Income</p>
           <Box></Box>
         </Box>
-        <div
+        {/* <div
           className="!flex !w-fullpx-5 justify-between py-1 items-center"
           style={{ background: zubgwhite, boxShadow: zubgshadow }}
         >
@@ -168,19 +170,19 @@ function TeamTradingBonus() {
               onChange={(e) => setEndDate(e.target.value)}
             />
           </div>
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <select
             onChange={(e) => setFilter(e.target.value)}
-            className="!w-full !flex !flex-col !p-2"
+            className="!w-96 !flex !flex-col !p-2 !ml-2"
             style={{ background: 'white', color: bgtan, borderRadius: '5px', padding: '15px 0px', marginBottom: '16px', marginTop: '16px', }}
           >
             <option value={"0"} style={{ color: bgtan }}>All </option>
-            {[1, 2, 3, 4, 5, 6]?.map((i) => {
+            {[1, 2, 3, 4]?.map((i) => {
               return <option value={`Level ${i}`} style={{ color: bgtan }}>Level {i} </option>;
             })}
           </select>
-        </div>
+        </div> */}
 
         <div className="!overflow-x-auto" style={{ width: "95%", marginLeft: '2.5%', marginTop: '16px', }}>
           <Table sx={{ background: bgdarkgray, boxShadow: zubgshadow }}>

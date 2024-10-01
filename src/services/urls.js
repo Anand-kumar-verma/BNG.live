@@ -119,5 +119,7 @@ export const endpoint = {
   get_claim_card: `${newdomainn}/api/v1/claim-gift-card`,
   get_gift: `${newdomainn}/api/v1/get-gift-card-list`,
   incom_gift : `${newdomainn}/api/v1/gift-bonus-list`,
+  level_income : `${newdomain1}/api/v1/level-income`,
+  
   
 };

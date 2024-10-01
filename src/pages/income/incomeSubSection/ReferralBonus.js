@@ -7,7 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { zubgback, zubgbackgrad, zubgmid, zubgshadow, zubgtext, zubgwhite } from "../../../Shared/color";
 import Layout from "../../../component/Layout/Layout";
-import { referralBonusFn } from "../../../services/apicalling";
+import { GiftIncomeFn, referralBonusFn } from "../../../services/apicalling";
 import nodatafoundimage from "../../../assets/images/nodatafoundimage.png";
 
 function ReferralBonus() {
@@ -20,8 +20,8 @@ function ReferralBonus() {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const { isLoading, data } = useQuery(
-    ["referral_bonus"],
-    () => referralBonusFn(),
+    ["gift_bonus"],
+    () => GiftIncomeFn(),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
@@ -64,7 +64,7 @@ function ReferralBonus() {
             <Box component={NavLink} onClick={goBack}>
               <KeyboardArrowLeftOutlinedIcon />
             </Box>
-            <p>Sponsor Income</p>
+            <p>Gift Bonus</p>
           </Box>
           <div>
             <img className="" src={nodatafoundimage} />
@@ -88,7 +88,7 @@ function ReferralBonus() {
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon />
           </Box>
-          <p>Sponsor Income</p>
+          <p>Gift Bonus</p>
           <Box></Box>
         </Box>
         <div className="!overflow-x-auto" style={{ width: "95%", marginLeft: '2.5%', marginTop: '16px', }}>

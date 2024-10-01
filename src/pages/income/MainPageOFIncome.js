@@ -46,11 +46,15 @@ function MainPageOFIncome() {
       logo: <Diversity2Outlined className="!w-[40px] !h-[40px] " color="black" />,
     },
      {
-      to: "/account/income-main/claim-bonus",
+      to: "/account/income-main/referral-bonus",
       name: "Gift Bonus ",
       logo: <RedeemIcon className="!w-[40px] !h-[40px] " color="black" />,
     },
-   
+    {
+      to: "/account/income-main/team-trading-bonus",
+      name: "Level Income",
+      logo: <CardGiftcardIcon className="!w-[40px] !h-[40px] " color="black" />,
+    },
     // {
     //   to: "/account/income-main/referral-bonus",
     //   name: "Sponsor Income",
@@ -70,11 +74,6 @@ function MainPageOFIncome() {
     //   to: "/account/income-main/weekly-bonus",
     //   name: "Weekly Salary Income",
     //   logo: <Diversity2Outlined className="!w-[40px] !h-[40px] " color="black" />,
-    // },
-    // {
-    //   to: "/account/income-main/team-trading-bonus",
-    //   name: "Level Income",
-    //   logo: <CardGiftcardIcon className="!w-[40px] !h-[40px] " color="black" />,
     // },
     // {
     //   to: "/account/income-main/cash_back_report",

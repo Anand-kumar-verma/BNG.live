@@ -574,3 +574,15 @@ export const getGiftFn = async () => {
     console.log(e);
   }
 }
+
+export const levelFn = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.level_income}?id=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+}
