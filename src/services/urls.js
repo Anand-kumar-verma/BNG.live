@@ -1,6 +1,6 @@
 export const rupees = "₹";
 // https://admin.bngwin.live/
-export const baseUrl = "https://api.bngwin.live";
+export const baseUrl = "https://admin.bngwin.live";
 export const fron_end_main_domain = "https://bngwin.live";
 
 export const newdomain1 = "https://api.bngwin.live";
@@ -23,21 +23,21 @@ export const endpoint = {
   login: `${newdomain}/api/v1/user_login`,
   send_otp: `${baseUrl}/api/forget-password`,
   veryfy_otp: `${baseUrl}/api/user-otp-verify`,
-  signup: `${baseUrl}/api/v1/signup`,
-  get_name_by_referral_code: `${baseUrl}/api/v1/get-sponsor-name`,
-  ticket_raised: `${baseUrl}/api/v1/ticket-raised`,
-  ticket_raised_history: `${baseUrl}/api/v1/ticket-raised-history`,
-  attendence_income: `${baseUrl}/api/v1/attendance-bonus`,
-  claim_income: `${baseUrl}/api/v1/clame-bonus`,
-  invitation_income: `${baseUrl}/api/v1/inivitation-bonus`,
-  streak_income: `${baseUrl}/api/v1/winning-streak-bonus`,
-  vip_income: `${baseUrl}/api/v1/vip-bonus`,
-  deposit_bonus: `${baseUrl}/api/v1/get-deposit-bonus-income/`,
-  daily_income: `${baseUrl}/api/v1/daily-salary-income`,
-  forget_pass: `${baseUrl}/api/v1/forget-password-send-otp`,
-  otp_verify: `${baseUrl}/api/v1/forget-password-veryfy-otp`,
-  change_password: `${baseUrl}/api/v1/forget-password-change-pass`,
-  forget_password: `${baseUrl}/api/v1/change-password`,
+  signup: `${newdomain1}/api/v1/signup`,
+  get_name_by_referral_code: `${newdomain1}/api/v1/get-sponsor-name`,
+  ticket_raised: `${newdomain1}/api/v1/ticket-raised`,
+  ticket_raised_history: `${newdomain1}/api/v1/ticket-raised-history`,
+  attendence_income: `${newdomain1}/api/v1/attendance-bonus`,
+  claim_income: `${newdomain1}/api/v1/clame-bonus`,
+  invitation_income: `${newdomain1}/api/v1/inivitation-bonus`,
+  streak_income: `${newdomain1}/api/v1/winning-streak-bonus`,
+  vip_income: `${newdomain1}/api/v1/vip-bonus`,
+  deposit_bonus: `${newdomain1}/api/v1/get-deposit-bonus-income/`,
+  daily_income: `${newdomain1}/api/v1/daily-salary-income`,
+  forget_pass: `${newdomain1}/api/v1/forget-password-send-otp`,
+  otp_verify: `${newdomain1}/api/v1/forget-password-veryfy-otp`,
+  change_password: `${newdomain1}/api/v1/forget-password-change-pass`,
+  forget_password: `${newdomain1}/api/v1/change-password`,
   Qr_address: `${newdomain1}/api/v1/admin-qr-address`,
   
 
@@ -72,8 +72,8 @@ export const endpoint = {
 
   payment_request: `${admin}/api/deposit-request`,
   registration_bonus: `${baseUrl}/api/welcom-bonus`,
-  deposit_history: `${baseUrl}/api/v1/deposit-history-inr`,
-  withdrawl_history: `${baseUrl}/api/v1/withdrawal-history-inr`,
+  deposit_history: `${newdomain1}/api/v1/deposit-history-inr`,
+  withdrawl_history: `${newdomain1}/api/v1/withdrawal-history-inr`,
   // deposit_bonus: `${baseUrl}/api/deposit-bonus`,
 
   // referral_bonus: `${baseUrl}/api/refral-bonus`,
@@ -83,8 +83,8 @@ export const endpoint = {
   weekly_salary_income: `${newdomain1}/api/v1/weekly-salary-icome`,
   team_reward_bonus: `${baseUrl}/api/team-reward-bonus`,
   team_trading_bonus: `${newdomain}/api/v1/level-income`,
-  add_bank_details: `${baseUrl}/api/v1/bank-add`,
-  get_bank_list: `${baseUrl}/api/v1/user-bank-details`,
+  add_bank_details: `${newdomain}/api/v1/bank-add`,
+  get_bank_list: `${newdomain}/api/v1/user-bank-details`,
   all_withdrawl_user_list: `${baseUrl}/api/widthrol-user-list`,
   recharge_call_bakc: `${baseUrl}/api/deposits-user-request`,
   cricket_get_url_id_pass: `${baseUrl}/api/cricket-details`,
