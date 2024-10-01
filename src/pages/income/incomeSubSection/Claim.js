@@ -28,7 +28,7 @@ import {
 } from "../../../Shared/color";
 import nodatafoundimage from "../../../assets/images/nodatafoundimage.png";
 import Layout from "../../../component/Layout/Layout";
-import { InvitationIncomeFn } from "../../../services/apicalling";
+import { GiftIncomeFn, InvitationIncomeFn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
 
 function Claim() {
@@ -42,20 +42,9 @@ function Claim() {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const client = useQueryClient();
 
-  const ClaimIncomeFn = async (id) => {
-    try {
-      const response = await axios.get(`${endpoint.claim_income}?t_id=${id}`);
-      client.refetchQueries("invitation_bonus");
-      client.refetchQueries("walletamount");
-      toast(response?.data?.msg);
-    } catch (e) {
-      toast(e?.message);
-    }
-  };
-
   const { isLoading, data } = useQuery(
-    ["invitation_bonus"],
-    () => InvitationIncomeFn(),
+    ["gift_bonus"],
+    () => GiftIncomeFn(),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
@@ -95,7 +84,7 @@ function Claim() {
             <Box component={NavLink} onClick={goBack}>
               <KeyboardArrowLeftOutlinedIcon style={{ color: bgtan }} />
             </Box>
-            <p style={{ color: bgtan }}>Invitation Bonus</p>
+            <p style={{ color: bgtan }}>Gift Bonus</p>
           </Box>
           <div>
             <img className="" src={nodatafoundimage} />
@@ -119,7 +108,7 @@ function Claim() {
           <Box component={NavLink} onClick={goBack}>
             <KeyboardArrowLeftOutlinedIcon sx={{ color: bgtan }} />
           </Box>
-          <p style={{ color: bgtan }}>Invitation Bonus</p>
+          <p style={{ color: bgtan }}>Gift Bonus  </p>
           <Box></Box>
         </Box>
         <div
@@ -147,12 +136,7 @@ function Claim() {
                 >
                   Amount
                 </TableCell>
-                <TableCell
-                  sx={{ color: "white" }}
-                  className=" !font-bold !border !text-xs !border-r !text-center  !border-b !border-white"
-                >
-                  Claim
-                </TableCell>
+             
                 <TableCell
                   sx={{ color: "white" }}
                   className="!font-bold !border !text-xs !border-r !text-center  !border-b !border-white"
@@ -182,19 +166,7 @@ function Claim() {
                   >
                     {i?.l01_amount}
                   </TableCell>
-                  <TableCell
-                    sx={{ color: "white" }}
-                    className="!border !border-r !text-xs !text-center  !border-b !border-white"
-                  >
-                    <span
-                      className="border px-2 cursor-pointer !flex "
-                      onClick={() =>
-                        i?.l01_clame_status === 0 && ClaimIncomeFn(i?.lo1_id)
-                      }
-                    >
-                      {i?.l01_clame_status === 0 ? "Claim" : <span>Achieved <CheckCircleOutlineIcon className="!text-[15px] !pb-[1px] !text-green-500"/></span>}
-                    </span>
-                  </TableCell>
+                 
                   <TableCell
                     sx={{ color: "white" }}
                     className="!border !border-r !text-xs !text-center !border-b !border-white"

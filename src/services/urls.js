@@ -5,7 +5,7 @@ export const fron_end_main_domain = "https://bngwin.live";
 
 export const newdomain1 = "https://api.bngwin.live";
 export const newdomain = "https://api.bngwin.live";
-// export const newdomain = "http://192.168.18.183:9000";
+export const newdomainn = "http://192.168.18.183:9000";
 // export const baseUrl = "http://192.168.18.183:9000";
 export const admin = "https://admin.bngwin.live";
 
@@ -116,4 +116,8 @@ export const endpoint = {
   yesterday_income: `${newdomain1}/api/v1/get-total-betA-ad-income-yesterday`,
   status_popup: `${newdomain1}/api/v1/hideStatusOfDepositPopup`,
   get_level_general: `${newdomain1}/api/v1/get_level_general_data`,
+  get_claim_card: `${newdomainn}/api/v1/claim-gift-card`,
+  get_gift: `${newdomainn}/api/v1/get-gift-card-list`,
+  incom_gift : `${newdomainn}/api/v1/gift-bonus-list`,
+  
 };

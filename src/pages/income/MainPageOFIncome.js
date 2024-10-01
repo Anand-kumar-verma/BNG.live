@@ -45,11 +45,11 @@ function MainPageOFIncome() {
       name: "Deposit Self Bonus",
       logo: <Diversity2Outlined className="!w-[40px] !h-[40px] " color="black" />,
     },
-    //  {
-    //   to: "/account/income-main/claim-bonus",
-    //   name: "Claim Income",
-    //   logo: <RedeemIcon className="!w-[40px] !h-[40px] " color="black" />,
-    // },
+     {
+      to: "/account/income-main/claim-bonus",
+      name: "Gift Bonus ",
+      logo: <RedeemIcon className="!w-[40px] !h-[40px] " color="black" />,
+    },
    
     // {
     //   to: "/account/income-main/referral-bonus",

@@ -395,6 +395,18 @@ export const AttendenceIncomeFn = async () => {
     console.log(e);
   }
 };
+export const GiftIncomeFn = async () => {
+  //
+  try {
+    const response = await axios.get(
+      `${endpoint.incom_gift}?user_id=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
 
 export const InvitationIncomeFn = async () => {
   //
@@ -550,3 +562,15 @@ export const getTicketRaisedHistory = async () => {
     console.log(e);
   }
 };
+
+export const getGiftFn = async () => {
+  try {
+    const response = await axios.get(
+      `${endpoint.get_gift}?user_id=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+}

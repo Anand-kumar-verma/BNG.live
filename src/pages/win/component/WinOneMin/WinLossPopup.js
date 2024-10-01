@@ -50,7 +50,7 @@ const WinLossPopup = ({ gid, setOpenDialogBox }) => {
           ?.reduce((a, b) => a + Number(b?.amount || 0), 0) || 0;
       setall_result(my_history_data?.[0]);
 
-      if (!winAmnt) {
+      if (winAmnt) {
         setstatus({
           status: "1",
           amount: winAmnt,

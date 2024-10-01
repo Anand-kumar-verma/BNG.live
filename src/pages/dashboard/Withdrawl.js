@@ -46,6 +46,7 @@ import { endpoint, rupees } from "../../services/urls";
 import theme from "../../utils/theme";
 
 function Withdrawl() {
+
   const location = useLocation();
   const [showoldPassword, setShowoldPassword] = React.useState(false);
   const handleClickShowoldPassword = () => setShowoldPassword((show) => !show);
@@ -123,13 +124,7 @@ function Withdrawl() {
     initialValues: initialValues,
     validationSchema: withdraw_amount_validation_schema,
     onSubmit: () => {
-      // if (type) {
-      //   if (Number(amount?.cricket_wallet || 0) < Number(fk.values.amount || 0))
-      //     return toast("Your Wallet Amount is low");
-      // } else {
-      //   if (amount?.winning < fk.values.amount)
-      //     return toast("Your winning amount is low.");
-      // }
+
       if (Number(fk.values.amount) < 500 && Number(fk.values.amount) > 50000)
         return toast("Amount shoulb be minimum 500 and maximum 50,000");
 
@@ -156,7 +151,7 @@ function Withdrawl() {
     setloding(true);
     try {
       const response = await axios.post(`${endpoint.withdraw_payment}`, fd);
-
+     
       if (response?.data?.msg === "Successfully Data Found") {
         walletamountFn();
         fk.handleReset();

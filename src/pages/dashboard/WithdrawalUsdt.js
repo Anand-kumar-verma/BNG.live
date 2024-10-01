@@ -17,7 +17,7 @@ import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
 import * as React from "react";
 import toast from "react-hot-toast";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../Shared/CustomCircularProgress";
 import {
@@ -101,7 +101,7 @@ function WithdrawalUsdt() {
     }
   );
   const result = React.useMemo(() => data?.data?.data, [data]);
-
+  const client = useQueryClient()
   const initialValues = {
     request_amount: "",
     req_type: "",
@@ -127,6 +127,7 @@ function WithdrawalUsdt() {
         `${endpoint.withdrawal_request_usdt}`,
         reqbody
       );
+      client.refetchQueries("walletamount");
       if (response?.data?.msg === "Record save successfully") {
         walletamountFn();
         fk.handleReset();
@@ -233,8 +234,8 @@ function WithdrawalUsdt() {
               {type
                 ? Number(amount?.cricket_wallet || 0).toFixed(2)
                 : Number(
-                    Number(amount?.wallet || 0) + Number(amount?.winning || 0)
-                  )?.toFixed(2)}
+                  Number(amount?.wallet || 0) + Number(amount?.winning || 0)
+                )?.toFixed(2)}
             </Typography>
             <CachedIcon
               sx={{
@@ -366,7 +367,7 @@ function WithdrawalUsdt() {
                   onChange={fk.handleChange}
                   placeholder="Enter amount *"
                   className="withdrawalfield2"
-                  //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                //   onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
                 />
               </FormControl>
 
