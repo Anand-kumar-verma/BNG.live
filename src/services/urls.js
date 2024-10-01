@@ -116,9 +116,9 @@ export const endpoint = {
   yesterday_income: `${newdomain1}/api/v1/get-total-betA-ad-income-yesterday`,
   status_popup: `${newdomain1}/api/v1/hideStatusOfDepositPopup`,
   get_level_general: `${newdomain1}/api/v1/get_level_general_data`,
-  get_claim_card: `${newdomainn}/api/v1/claim-gift-card`,
-  get_gift: `${newdomainn}/api/v1/get-gift-card-list`,
-  incom_gift : `${newdomainn}/api/v1/gift-bonus-list`,
+  get_claim_card: `${newdomain1}/api/v1/claim-gift-card`,
+  get_gift: `${newdomain1}/api/v1/get-gift-card-list`,
+  incom_gift : `${newdomain1}/api/v1/gift-bonus-list`,
   level_income : `${newdomain1}/api/v1/level-income`,
   
   
