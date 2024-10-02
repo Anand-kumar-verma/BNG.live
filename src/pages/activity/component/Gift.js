@@ -1,34 +1,32 @@
-import { ArrowBackIos, CopyAll, HistoryEduOutlined } from '@mui/icons-material'
+import { ArrowBackIos, HistoryEduOutlined } from '@mui/icons-material'
 import { Box, Button, Card, CardContent, TextField, Typography } from '@mui/material'
+import axios from 'axios'
+import copy from "clipboard-copy"
+import CryptoJS from "crypto-js"
+import { useFormik } from 'formik'
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'
 import { useQuery, useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import empty from '../../../assets/images/empty.png'
 import gift from '../../../assets/images/gift-d7507b9b.png'
 import Layout from '../../../component/Layout/Layout'
-import { getGiftFn, GiftIncomeFn } from '../../../services/apicalling'
-import { bgcolorlight, bggold, bggrad, bgtan } from '../../../Shared/color'
-import axios from 'axios'
+import { GiftIncomeFn } from '../../../services/apicalling'
 import { endpoint } from '../../../services/urls'
-import toast from 'react-hot-toast'
-import copy from "clipboard-copy";
-import CryptoJS from "crypto-js";
-import moment from 'moment/moment'
+import { bgcolorlight, bggold, bggrad, bgtan } from '../../../Shared/color'
+import { slice } from '../../../redux/slices/counterSlice'
 
 
 function Gift() {
 
   const navigate = useNavigate();
   const client = useQueryClient()
-  const [inputValue, setInputValue] = useState({});
-  const [openGiftId, setOpenGiftId] = useState(null);
+  const [openGift, setOpenGift] = useState(false);
   const [scratched, setScratched] = useState(false);
   const handleScratch = () => {
     setScratched(true);
   };
-  const handleInputChange = (id, value) => {
-    setInputValue((prev) => ({ ...prev, [id]: value }));
-  };
+
   const handleBack = () => {
     navigate(-1);
   }
@@ -45,30 +43,32 @@ function Gift() {
     null;
   const user_id = value && JSON.parse(value)?.UserID;
 
-  const { data } = useQuery(
-    ["gift_voucher"],
-    () => getGiftFn(),
-    {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false
-    }
-  );
-  const res = data?.data?.data || []
-
-
-  const ClaimGiftFn = async (id) => {
-    const reqBody = {
-      t_id: id,
-      user_id: user_id,
-    };
+  const initialValue = {
+    t_id: "",
+  };
+  const fk = useFormik({
+    initialValues: initialValue,
+    enableReinitialize: true,
+    onSubmit: () => {
+      if (!fk.values.t_id) {
+        return toast(" Please Enter Code ")
+      }
+      const reqBody = {
+        t_id: fk.values.t_id,
+        user_id: user_id,
+      };
+      ClaimGiftFn(reqBody ,setOpenGift);
+    },
+  });
+  async function ClaimGiftFn(reqBody , setOpenGift) {
     try {
       const response = await axios.post(endpoint.get_claim_card, reqBody);
-      toast(response?.data?.data, { id: 1 });
-      if ("Congratulation! You have achieved Gift Amount: 34.0000" === response?.data?.data) {
-        setOpenGiftId(id);
+      toast(response?.data?.data, { id: 1 }); 
+      if (response?.data?.data === "Congratulation! You have achieved Gift") {
+        fk.handleReset()
+          setOpenGift(true);
+          client.refetchQueries("gift_bonus");
       }
-      client.refetchQueries("gift_voucher");
     } catch (e) {
       const errorMsg = e.response?.data?.msg || e.message || "An error occurred.";
       toast(errorMsg);
@@ -76,20 +76,7 @@ function Gift() {
     }
   };
 
-  const handleClaimGift = (item) => {
-    const enteredCode = inputValue[item.id] || '';
-    if (enteredCode?.trim() === '') {
-      toast.error("Please enter a valid gift code.");
-      return;
-    }
-    if (enteredCode !== item?.code) { 
-      toast.error(" Please enter the correct gift code.");
-      return;
-    }
-    ClaimGiftFn(item?.id);
-  };
-
-  const { isLoading, data:bonus } = useQuery(
+  const { data: bonus } = useQuery(
     ["gift_bonus"],
     () => GiftIncomeFn(),
     {
@@ -101,6 +88,7 @@ function Gift() {
   const response = bonus?.data?.data;
 
   return (
+
     <Layout header={false} footer={false}>
       <Box sx={{ py: '12px', background: bgcolorlight }}>
         <Box className="fcsb w95" >
@@ -114,63 +102,76 @@ function Gift() {
       <Box>
         <Box sx={styles.emp} component='img' src={gift}></Box>
       </Box>
-      {res?.map((item) => {
-        return <>
-          <Box sx={{ paddingRight: '16px', paddingLeft: '16px', paddingTop: '10px', }}>
+      <Box sx={{ minHeight: '100vh', padding: '16px', }}>
+        <Card sx={{ backgroundColor: '#2f2f2f', color: '#fff', borderRadius: '8px', marginBottom: '16px', }}>
+          <CardContent><Typography className='w f15 fw500'>Hi</Typography>
+            <Typography variant="body2" sx={{ marginBottom: '10px' }}>We have a gift for you</Typography>
+            <Typography variant="body2">Please enter the gift code below</Typography>
+            <TextField fullWidth variant="outlined" placeholder="Please enter gift code"
+              id="t_id"
+              name="t_id"
+              value={fk.values.t_id}
+              onChange={fk.handleChange}
+              sx={{
+                backgroundColor: '#1c1c1c', borderRadius: '50px', marginTop: '12px', color: '#fff', '& input': { color: '#fff', padding: '10px 20px' },
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': { borderColor: 'transparent', }, '&:hover fieldset': { borderColor: 'transparent', },
+                  '&.Mui-focused fieldset': { borderColor: 'transparent', },
+                },
+              }}
+            />
+            <Button sx={{
+              backgroundImage: bggrad, color: bgtan, textTransform: 'none',
+              fontWeight: 'bold', borderRadius: '24px', marginTop: '12px', width: '100%', padding: '8px 0',
+            }} onClick={fk.handleSubmit}>
+              Receive
+            </Button>
+          </CardContent>
+        </Card>
+        {response?.map((item) => {
+          return <>
             <Card sx={{ backgroundColor: '#2f2f2f', color: '#fff', borderRadius: '8px', marginBottom: '16px', }}>
               <CardContent sx={{ padding: '16px !important' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
                   <HistoryEduOutlined sx={{ color: bggold, marginRight: '8px' }} />
-                  <Typography className='w f17 fw700'>Gift Code </Typography>
+                  <Typography className='w f17 fw700'>Gift Code History</Typography>
                 </Box>
-
-                <div className="!flex justify-between mt-5">
-                  <p className='!text-xs !font-bold'> {item?.code} <CopyAll className='!cursor-pointer' onClick={() =>
-                    functionTOCopy(item?.code)
-                  } /></p>
-                  <p className='!text-xs !font-bold'>{moment(item?.expired_date)?.format("DD-MM-YYYY HH:mm:ss")} </p>
-                </div>
-                { !response?.find((j)=>j?.l01_middle_use === item?.id) ?
-                  <TextField fullWidth variant="outlined" placeholder="Please enter gift code"
-                  value={inputValue[item?.id] || ''} 
-                  onChange={(e) => handleInputChange(item?.id, e.target.value)}
-                  sx={{
-                    backgroundColor: '#1c1c1c', borderRadius: '50px', marginTop: '12px', color: '#fff', '& input': { color: '#fff', padding: '10px 20px' },
-                    '& .MuiOutlinedInput-root': {
-                      '& fieldset': { borderColor: 'transparent', }, '&:hover fieldset': { borderColor: 'transparent', },
-                      '&.Mui-focused fieldset': { borderColor: 'transparent', },
-                    },
-                  }}
-                />:
-                <p className='px-2 py-1 !w-fit !mt-2 !rounded' style={{
-                  backgroundImage: bggrad, color: bgtan, textTransform: 'none'}}>Achieved</p>
-                }
-                {inputValue[item?.id] && (
-                  <Button sx={{
-                    backgroundImage: bggrad, color: bgtan, textTransform: 'none',
-                    fontWeight: 'bold', borderRadius: '24px', marginTop: '12px', width: '100%', padding: '8px 0',
-                  }}  onClick={() => handleClaimGift(item)}>
-                    Receive
-                  </Button>
-                )}
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', color: '#ccc', }}>
+                  {response?.length === 0 ? (
+                    <Box mt={5}>
+                      <Box sx={styles.emp1} component='img' src={empty} alt="No data" />
+                      <Typography className='w f15 fw500' mt={5} sx={{ textAlign: 'center' }}>
+                        No data
+                      </Typography>
+                    </Box>
+                  ) : (
+                    <Box className="!flex !flex-col gap-5 !justify-between">
+                      <div className='!flex !justify-between !font-bold gap-2'>
+                        <p className='!text-yellow-800'>You have Achieved Gift Amount</p>
+                        <p>₹ {item?.l01_amount}</p>
+                      </div>
+                    </Box>
+                  )}
+                </Box>
               </CardContent>
             </Card>
-            {openGiftId === item?.id && ( 
+            {openGift && (
               <div className="dialog">
                 <div
                   className={`scratch-area ${scratched ? 'scratched' : ''}`}
                   onMouseDown={handleScratch}
                 >
-                  {scratched && <div className="message">Congratulations! You have won ₹ {Number(item?.amount)?.toFixed(0, 2)}</div>}
+                  {scratched && <div className="message">Congratulations! You have won ₹ {Number(item?.l01_amount)?.toFixed(0, 2)}</div>}
                 </div>
-                <button onClick={() => setOpenGiftId(null)}>Close</button>
+                <button onClick={() => setOpenGift(false)}>Close</button>
               </div>
 
             )}
-          </Box>
-        </>
-      })}
+          </>
+        })}
+      </Box>
     </Layout>
+  
   )
 }
 

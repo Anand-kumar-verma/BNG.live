@@ -155,7 +155,7 @@ function AddAddressUsdt() {
                                         },
                                     }}
                                 >
-                                    <MenuItem value="USDT.BEP20">USDT.BEP20</MenuItem>
+                                    <MenuItem value="USDT Bep20">USDT Bep20</MenuItem>
                                     {/* <MenuItem value="USDT.TRC20">USDT.TRC20</MenuItem> */}
                                 </TextField>
                             </FormControl>

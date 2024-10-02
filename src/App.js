@@ -1,17 +1,15 @@
+import { Box } from '@mui/material';
 import CryptoJS from "crypto-js";
 import { Route, Routes } from "react-router-dom";
 import "../src/index.css";
 import "./App.css";
 import "./assets/styles/main.css";
+import Changepassword from "./pages/auth/login/Changepassword";
 import ForgetPassword from "./pages/auth/login/ForgetPassword";
 import Login from "./pages/auth/login/Login";
+import Otpverify from "./pages/auth/login/Otpverify";
 import Register from "./pages/auth/register/Register";
 import { routes } from "./routes";
-import { Box, Fab } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import { Draggable } from 'react-draggable';
-import Otpverify from "./pages/auth/login/Otpverify";
-import Changepassword from "./pages/auth/login/Changepassword";
 import BeforeLogin from "./Shared/BeforeLogin";
 import SplashScreen from "./Shared/SplashScreen";
 
@@ -26,11 +24,7 @@ const App = () => {
 
   return (
     <Box>
-      {/* <Draggable>
-        <Fab color="primary" aria-label="add">
-          <AddIcon />
-        </Fab>
-      </Draggable> */}
+      
       <Routes>
         <Route path="/" element={<Login />} />
       <Route path="/before-login" element={<BeforeLogin />}></Route>
