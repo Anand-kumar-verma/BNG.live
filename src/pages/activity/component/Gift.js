@@ -57,17 +57,17 @@ function Gift() {
         t_id: fk.values.t_id,
         user_id: user_id,
       };
-      ClaimGiftFn(reqBody ,setOpenGift);
+      ClaimGiftFn(reqBody, setOpenGift);
     },
   });
-  async function ClaimGiftFn(reqBody , setOpenGift) {
+  async function ClaimGiftFn(reqBody, setOpenGift) {
     try {
       const response = await axios.post(endpoint.get_claim_card, reqBody);
-      toast(response?.data?.data, { id: 1 }); 
+      toast(response?.data?.data, { id: 1 });
       if (response?.data?.data === "Congratulation! You have achieved Gift") {
         fk.handleReset()
-          setOpenGift(true);
-          client.refetchQueries("gift_bonus");
+        setOpenGift(true);
+        client.refetchQueries("gift_bonus");
       }
     } catch (e) {
       const errorMsg = e.response?.data?.msg || e.message || "An error occurred.";
@@ -132,9 +132,10 @@ function Gift() {
           return <>
             <Card sx={{ backgroundColor: '#2f2f2f', color: '#fff', borderRadius: '8px', marginBottom: '16px', }}>
               <CardContent sx={{ padding: '16px !important' }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
-                  <HistoryEduOutlined sx={{ color: bggold, marginRight: '8px' }} />
-                  <Typography className='w f17 fw700'>Gift Code History</Typography>
+                <Box sx={{ marginBottom: '16px' }} className="!w-full !flex !justify-between">
+                  <div className='!flex '>  <HistoryEduOutlined sx={{ color: bggold, marginRight: '8px' }} />
+                    <Typography className='w f17 fw700'>Gift Code </Typography></div>
+                  <Typography className='w f17 fw700'>{item?.l01_transection_type?.split(" ")?.[item?.l01_transection_type?.split(" ")?.length - 1]} </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', color: '#ccc', }}>
                   {response?.length === 0 ? (
@@ -171,7 +172,7 @@ function Gift() {
         })}
       </Box>
     </Layout>
-  
+
   )
 }
 
