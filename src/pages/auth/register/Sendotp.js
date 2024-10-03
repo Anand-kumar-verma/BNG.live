@@ -26,6 +26,10 @@ import {
     const fk = useFormik({
       initialValues: initialValue,
       onSubmit: () => {
+        if(!fk.values.email){
+          toast(" Please enter email")
+          return
+        }
         const reqbody = {
           email: fk.values.email ,
         };

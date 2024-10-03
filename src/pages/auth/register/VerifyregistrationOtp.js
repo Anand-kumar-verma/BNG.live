@@ -23,7 +23,7 @@ function VerifyregistrationOtp({ result, newfk }) {
     const [otp, setOtp] = useState("");
 
     const initialValue = {
-        email: "",
+        email:newfk.values.email,
         otp: ""
     };
 
@@ -145,7 +145,7 @@ function VerifyregistrationOtp({ result, newfk }) {
                                     <Typography variant="h3" sx={{ color: 'white', fontSize: '13px', fontWeight: '600', }}>Enter email or mobile no</Typography>
                                 </Stack>
 
-                                <TextField
+                                {/* <TextField
                                     id="email"
                                     type="email"
                                     name="email"
@@ -154,7 +154,7 @@ function VerifyregistrationOtp({ result, newfk }) {
                                     value={fk.values.email}
                                     onChange={fk.handleChange}
                                     onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                                />
+                                /> */}
                                 <div className="!flex !justify-center mt-3">
                                     <OtpInput
                                         value={otp}
