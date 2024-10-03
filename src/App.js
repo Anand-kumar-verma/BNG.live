@@ -12,6 +12,8 @@ import Register from "./pages/auth/register/Register";
 import { routes } from "./routes";
 import BeforeLogin from "./Shared/BeforeLogin";
 import SplashScreen from "./Shared/SplashScreen";
+import Sendotp from './pages/auth/register/Sendotp';
+import VerifyregistrationOtp from './pages/auth/register/VerifyregistrationOtp';
 
 const App = () => {
   const isAuthenticated =
@@ -29,6 +31,8 @@ const App = () => {
         <Route path="/" element={<Login />} />
       <Route path="/before-login" element={<BeforeLogin />}></Route>
         <Route path="/forget-password" element={<ForgetPassword />} />
+        <Route path="/send-otp" element={<Sendotp />} />
+        <Route path="/otp-registration" element={<VerifyregistrationOtp />} />
         <Route path="/otp" element={<Otpverify />} />
         <Route path="/changepassword" element={<Changepassword />} />
         <Route path="/register" element={<Register />} />

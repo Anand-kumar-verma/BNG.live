@@ -36,10 +36,12 @@ import Layout from '../../../component/Layout/Layout';
 import { CandidateNameFn } from "../../../services/apicalling";
 import { endpoint } from "../../../services/urls";
 import theme from '../../../utils/theme';
+import VerifyregistrationOtp from './VerifyregistrationOtp';
 
 
 function Register() {
   const navigate = useNavigate();
+  const [isOpenOTPBox, setIsOpenOTPBox] = useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
   const [show_confirm_password, set_show_confirm_password] =
     React.useState(false);
@@ -60,7 +62,7 @@ function Register() {
     name: "",
     pass: "",
     confirmpass: "",
-    refid : refParam,
+    refid: refParam,
   };
 
   const fk = useFormik({
@@ -78,329 +80,306 @@ function Register() {
         mobile: String(fk.values.mobile) || "",
         pass: fk.values.pass,
         confirmpass: fk.values.confirmpass,
-        refid : result?.id ,
+        refid: result?.id,
         name: fk.values.name,
         // privacy_policy: false,
       }
-      signupFunction(reqBody);
+
+      Sendotp(reqBody);
     },
   });
-
-  const signupFunction = async (reqBody) => {
+  const Sendotp = async (reqbody) => {
     setloding(true);
-  try {
-    const response = await axios.post(endpoint.signup, reqBody);
-    if ("Registration Successful." === response?.data?.msg ) {
-        toast(response?.data?.msg);
-      //    const value = CryptoJS.AES.encrypt(
-      //   JSON.stringify(response?.data),
-      //   "anand"
-      // ).toString();
-      // storeCookies()
-      // localStorage.setItem("logindataen", value)
-        navigate("/");  
-        // window.location.reload()
-    } else {
-      toast(response?.data?.msg);
+    try {
+      const response = await axios.post(endpoint.registration_send_otp, reqbody,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
+      toast.success(response?.data?.msg, { id: 1 });
+      if ("OTP sent Successfully" === response?.data?.msg) {
+        setIsOpenOTPBox(true)
+      }
+    } catch (e) {
+      toast.error(e?.message);
+      console.error(e);
     }
-  } catch (e) {
-    console.log(e);
-  }
-  setloding(false);
-}
+    setloding(false);
+  };
 
-  const {  data } = useQuery(
-    ["getname", fk.values.refid ],
-    () => CandidateNameFn({ userid: fk.values.refid  }),
+
+  const { data } = useQuery(
+    ["getname", fk.values.refid],
+    () => CandidateNameFn({ userid: fk.values.refid }),
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
     }
   );
-  const result = data?.data?.data ;
+  const result = data?.data?.data;
 
   return (
-    <Layout header={false} footer={false}>
-      <Box sx={style.authheader}>
-        <Container>
-          <Box sx={{ ...flexbetween, background: bgcolorlight, px: 1, py: 1 }}>
-            <Box component={NavLink} sx={{ width: "20%" }}>
-              <ArrowBackIosNew sx={style.icon1} />
-            </Box>
-            <Box sx={{ width: "60%" }}>
-              <Box component="img" src={logo} sx={style.logocss}></Box>
-            </Box>
-            <Box component={NavLink} sx={{ width: "20%" }}>
-              <Box sx={{ ...flexcenter, float: "right" }}>
-                <Box component="img" src={flag} sx={style.flagcss}></Box>
-                <Typography variant="body1" ml={1} sx={{ color: "white" }}>
-                  EN
-                </Typography>
+    isOpenOTPBox ? <VerifyregistrationOtp result={result} newfk={fk}/> :
+      <Layout header={false} footer={false}>
+        <Box sx={style.authheader}>
+          <Container>
+            <Box sx={{ ...flexbetween, background: bgcolorlight, px: 1, py: 1 }}>
+              <Box component={NavLink} sx={{ width: "20%" }}>
+                <ArrowBackIosNew sx={style.icon1} />
+              </Box>
+              <Box sx={{ width: "60%" }}>
+                <Box component="img" src={logo} sx={style.logocss}></Box>
+              </Box>
+              <Box component={NavLink} sx={{ width: "20%" }}>
+                <Box sx={{ ...flexcenter, float: "right" }}>
+                  <Box component="img" src={flag} sx={style.flagcss}></Box>
+                  <Typography variant="body1" ml={1} sx={{ color: "white" }}>
+                    EN
+                  </Typography>
+                </Box>
               </Box>
             </Box>
-          </Box>
-          <Box sx={{ padding: 1, background: bgcolorlight2, pt: 2 }}>
-            <Typography
-              sx={{ color: "white", mb: 1 }}
-              variant="h6"
-              className="funp15"
-            >
-              {" "}
-              Register{" "}
-            </Typography>
-            <Typography sx={{ color: "white" }} className="funp11" mb={2}>
-              Please register by phone number or email
-            </Typography>
-          </Box>
-        </Container>
-      </Box>
-
-      <Container >
-        <Box sx={style.authform} component="form">
-          <Box sx={{ ...style.flexcoloumcenter, ...style.registerheader }}>
-            <PhoneAndroidIcon sx={{ color: theme.palette.primary.main }} />
-            <Typography variant="body1" sx={{ color: 'white' }}>
-              Register your account
-            </Typography>
-          </Box>
-        </Box>
-        <Box
-          component="form"
-          sx={{
-            width: "90%",
-            marginLeft: "5%",
-            pb: 5,
-            transition: "0.3s",
-          }}
-          onSubmit={fk.handleSubmit}
-        >
-          <Box mt={0}>
-            <FormControl fullWidth>
-              <Box sx={{ ...flexcenterstart, my: 1, }}>
-                <Person4Icon sx={style.icons} /> <Typography variant="body1" ml={1} sx={{ color: 'white' }}> Name</Typography>
-              </Box>
-              <TextField
-                className="funp13"
-
-                id="name"
-                placeholder="Enter Name"
-                sx={{ ...normalinput, width: '100%', }}
-                name="name"
-                type="text"
-                value={fk.values.name}
-                onChange={fk.handleChange}
-                onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-              />
-              {fk.touched.name && fk.errors.name && (
-                <div className="error">{fk.errors.name}</div>
-              )}
-            </FormControl>
-          </Box>
-
-          <FormControl fullWidth>
-            <Box sx={{ ...flexcenterstart, my: 1, }}>
-              <PhoneAndroidIcon sx={style.icon} />{" "}
-              <Typography variant="body1" ml={1} sx={{ color: "white" }}>
+            <Box sx={{ padding: 1, background: bgcolorlight2, pt: 2 }}>
+              <Typography
+                sx={{ color: "white", mb: 1 }}
+                variant="h6"
+                className="funp15"
+              >
                 {" "}
-                Phone number
+                Register{" "}
+              </Typography>
+              <Typography sx={{ color: "white" }} className="funp11" mb={2}>
+                Please register by phone number or email
               </Typography>
             </Box>
-            <Box sx={{ ...style.flexbetween }}>
-              <TextField
-                className="funp13"
-                sx={{ ...normalinput, width: '100%', }}
-                ml={2}
-                id="mob"
-                name="mobile"
-                type="number"
-                value={fk.values.mobile}
-                onChange={fk.handleChange}
-                onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                placeholder="Enter Phone Number"
-              />
-            </Box>
-            {fk.touched.mobile && fk.errors.mobile && (
-              <div className="error">{fk.errors.mobile}</div>
-            )}
-          </FormControl>
-
-          <Box>
-            <FormControl fullWidth>
-              <Box sx={{ ...flexcenterstart, my: 1, }}>
-                <MarkEmailReadIcon sx={style.icon} />{" "}
-                <Typography variant="body1" ml={1} sx={{ color: "white" }}>
-                  E-mail
-                </Typography>
-              </Box>
-              <TextField
-                className="funp13"
-                id="fullWidth"
-                type="email"
-                placeholder="Enter email"
-                sx={{ ...normalinput, width: '100%', }}
-                name="email"
-                value={fk.values.email}
-                onChange={fk.handleChange}
-                onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-              />
-              {fk.touched.email && fk.errors.email && (
-                <div className="error">{fk.errors.email}</div>
-              )}
-            </FormControl>
-          </Box>
-          <Box mt={2}>
-            <FormControl fullWidth>
-              <Box sx={{ ...flexcenterstart, my: 1, }}>
-                <PhonelinkLockIcon sx={style.icon} />{" "}
-                <Typography variant="body1" ml={1} sx={{ color: "white" }}>
-                  Set password
-                </Typography>
-              </Box>
-              <OutlinedInput
-                className="funp13"
-                placeholder="Enter password"
-                name="pass"
-                sx={{ ...passwordinput, width: '100%', }}
-                value={fk.values.pass}
-                onChange={fk.handleChange}
-                onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                type={showPassword ? "text" : "pass"}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {showPassword ? (
-                        <VisibilityOff sx={{ color: theme.palette.primary.main, mr: 1 }} />
-                      ) : (
-                        <Visibility sx={{ color: theme.palette.primary.main, mr: 1 }} />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-              {fk.touched.pass && fk.errors.pass && (
-                <div className="error">{fk.errors.pass}</div>
-              )}
-            </FormControl>
-          </Box>
-          <Box mt={2}>
-            <FormControl fullWidth>
-              <Box sx={{ ...flexcenterstart, my: 1, }}>
-                <PhonelinkLockIcon sx={style.icon} />{" "}
-                <Typography variant="body1" ml={1} sx={{ color: "white" }}>
-                  Confirm password
-                </Typography>
-              </Box>
-              <OutlinedInput
-                className="funp13"
-                sx={{ ...passwordinput, width: '100%', }}
-                name="confirmpass"
-                id="confirmpass"
-                value={fk.values.confirmpass}
-                onChange={fk.handleChange}
-                onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-                placeholder="Enter confirm password"
-                type={show_confirm_password ? "text" : "password"}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handle_confirm_ClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {show_confirm_password ? (
-                        <VisibilityOff sx={{ color: theme.palette.primary.main, mr: 1 }} />
-                      ) : (
-                        <Visibility sx={{ color: theme.palette.primary.main, mr: 1 }} />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-              {fk.touched.confirmpass && fk.errors.confirmpass && (
-                <div className="error">{fk.errors.confirmpass}</div>
-              )}
-            </FormControl>
-          </Box>
-          <Box mt={2}>
-            <FormControl fullWidth>
-              <Box sx={{ ...flexcenterstart, my: 1, }}>
-                <ReceiptIcon sx={style.icon} />{" "}
-                <Typography variant="body1" ml={1} sx={{ color: "white" }}>
-                  Referral Code
-                </Typography>
-              </Box>
-              <TextField
-                className="funp13"
-                id="refid"
-                placeholder="Enter Referral Code"
-                sx={{ ...normalinput, width: '100%', }}
-                name="refid"
-                value={fk.values.refid}
-                onChange={fk.handleChange}
-                onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
-              />
-              {fk.touched.refid  && fk.errors.refid  ? (
-                <div className="error">{fk.errors.refid }</div>
-              ) : fk.values.refid  ? (
-                result ? (
-                  <div className="no-error">Referral From: {result?.full_name}</div>
-                ) : (
-                  <div className="error">Invalid Referral Id</div>
-                )
-              ) : null}
-
-            </FormControl>
-          </Box>
-          <Box mt={1}>
-            {/* <FormControl fullWidth>
-              <FormControlLabel
-                required
-                control={
-                  <Checkbox
-                    checked={fk.values.privacy_policy}
-                    sx={{ color: 'white !important', fontSize: "12px", fontWeight: "500", '&>label>div>span': { color: 'white !important' } }}
-                    onClick={() =>
-                      fk.setFieldValue(
-                        "privacy_policy",
-                        !fk.values.privacy_policy
-                      )
-                    }
-                  />
-                }
-                label={
-                  <span style={{ color: 'white', fontSize: "12px", }}>
-                    I have read and agree to the{' '}
-                    <a
-                      rel="noopener noreferrer"
-                      style={{ color: 'white', textDecoration: 'underline' }}
-                    >
-                      Privacy Agreement
-                    </a>
-                  </span>
-                }
-              />
-            </FormControl> */}
-          </Box>
-          <Stack mt={3}>
-            <Box sx={{ width: '100%' }}> <Button className='goldbtn' onClick={fk.handleSubmit}>Register</Button></Box>
-            <Box sx={{ width: '100%' }}>
-              <NavLink to='/'>
-                <Button className='goldborderbtn'>Back to Login</Button>
-              </NavLink>
-            </Box>
-          </Stack >
-
+          </Container>
         </Box>
-        <CustomCircularProgress isLoading={loding} />
-      </Container>
-    </Layout>
+
+        <Container >
+          <Box sx={style.authform} component="form">
+            <Box sx={{ ...style.flexcoloumcenter, ...style.registerheader }}>
+              <PhoneAndroidIcon sx={{ color: theme.palette.primary.main }} />
+              <Typography variant="body1" sx={{ color: 'white' }}>
+                Register your account
+              </Typography>
+            </Box>
+          </Box>
+          <Box
+            component="form"
+            sx={{
+              width: "90%",
+              marginLeft: "5%",
+              pb: 5,
+              transition: "0.3s",
+            }}
+            onSubmit={fk.handleSubmit}
+          >
+            <Box mt={0}>
+              <FormControl fullWidth>
+                <Box sx={{ ...flexcenterstart, my: 1, }}>
+                  <Person4Icon sx={style.icons} /> <Typography variant="body1" ml={1} sx={{ color: 'white' }}> Name</Typography>
+                </Box>
+                <TextField
+                  className="funp13"
+
+                  id="name"
+                  placeholder="Enter Name"
+                  sx={{ ...normalinput, width: '100%', }}
+                  name="name"
+                  type="text"
+                  value={fk.values.name}
+                  onChange={fk.handleChange}
+                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                />
+                {fk.touched.name && fk.errors.name && (
+                  <div className="error">{fk.errors.name}</div>
+                )}
+              </FormControl>
+            </Box>
+
+            <FormControl fullWidth>
+              <Box sx={{ ...flexcenterstart, my: 1, }}>
+                <PhoneAndroidIcon sx={style.icon} />{" "}
+                <Typography variant="body1" ml={1} sx={{ color: "white" }}>
+                  {" "}
+                  Phone number
+                </Typography>
+              </Box>
+              <Box sx={{ ...style.flexbetween }}>
+                <TextField
+                  className="funp13"
+                  sx={{ ...normalinput, width: '100%', }}
+                  ml={2}
+                  id="mob"
+                  name="mobile"
+                  type="number"
+                  value={fk.values.mobile}
+                  onChange={fk.handleChange}
+                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                  placeholder="Enter Phone Number"
+                />
+              </Box>
+              {fk.touched.mobile && fk.errors.mobile && (
+                <div className="error">{fk.errors.mobile}</div>
+              )}
+            </FormControl>
+
+            <Box>
+              <FormControl fullWidth>
+                <Box sx={{ ...flexcenterstart, my: 1, }}>
+                  <MarkEmailReadIcon sx={style.icon} />{" "}
+                  <Typography variant="body1" ml={1} sx={{ color: "white" }}>
+                    E-mail
+                  </Typography>
+                </Box>
+                <TextField
+                  className="funp13"
+                  id="fullWidth"
+                  type="email"
+                  placeholder="Enter email"
+                  sx={{ ...normalinput, width: '100%', }}
+                  name="email"
+                  value={fk.values.email}
+                  onChange={fk.handleChange}
+                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                />
+                {fk.touched.email && fk.errors.email && (
+                  <div className="error">{fk.errors.email}</div>
+                )}
+              </FormControl>
+            </Box>
+            <Box mt={2}>
+              <FormControl fullWidth>
+                <Box sx={{ ...flexcenterstart, my: 1, }}>
+                  <PhonelinkLockIcon sx={style.icon} />{" "}
+                  <Typography variant="body1" ml={1} sx={{ color: "white" }}>
+                    Set password
+                  </Typography>
+                </Box>
+                <OutlinedInput
+                  className="funp13"
+                  placeholder="Enter password"
+                  name="pass"
+                  sx={{ ...passwordinput, width: '100%', }}
+                  value={fk.values.pass}
+                  onChange={fk.handleChange}
+                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                  type={showPassword ? "text" : "pass"}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? (
+                          <VisibilityOff sx={{ color: theme.palette.primary.main, mr: 1 }} />
+                        ) : (
+                          <Visibility sx={{ color: theme.palette.primary.main, mr: 1 }} />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+                {fk.touched.pass && fk.errors.pass && (
+                  <div className="error">{fk.errors.pass}</div>
+                )}
+              </FormControl>
+            </Box>
+            <Box mt={2}>
+              <FormControl fullWidth>
+                <Box sx={{ ...flexcenterstart, my: 1, }}>
+                  <PhonelinkLockIcon sx={style.icon} />{" "}
+                  <Typography variant="body1" ml={1} sx={{ color: "white" }}>
+                    Confirm password
+                  </Typography>
+                </Box>
+                <OutlinedInput
+                  className="funp13"
+                  sx={{ ...passwordinput, width: '100%', }}
+                  name="confirmpass"
+                  id="confirmpass"
+                  value={fk.values.confirmpass}
+                  onChange={fk.handleChange}
+                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                  placeholder="Enter confirm password"
+                  type={show_confirm_password ? "text" : "password"}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handle_confirm_ClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {show_confirm_password ? (
+                          <VisibilityOff sx={{ color: theme.palette.primary.main, mr: 1 }} />
+                        ) : (
+                          <Visibility sx={{ color: theme.palette.primary.main, mr: 1 }} />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+                {fk.touched.confirmpass && fk.errors.confirmpass && (
+                  <div className="error">{fk.errors.confirmpass}</div>
+                )}
+              </FormControl>
+            </Box>
+            <Box mt={2}>
+              <FormControl fullWidth>
+                <Box sx={{ ...flexcenterstart, my: 1, }}>
+                  <ReceiptIcon sx={style.icon} />{" "}
+                  <Typography variant="body1" ml={1} sx={{ color: "white" }}>
+                    Referral Code
+                  </Typography>
+                </Box>
+                <TextField
+                  className="funp13"
+                  id="refid"
+                  placeholder="Enter Referral Code"
+                  sx={{ ...normalinput, width: '100%', }}
+                  name="refid"
+                  value={fk.values.refid}
+                  onChange={fk.handleChange}
+                  onKeyDown={(e) => e.key === "Enter" && fk.handleSubmit()}
+                />
+                {fk.touched.refid && fk.errors.refid ? (
+                  <div className="error">{fk.errors.refid}</div>
+                ) : fk.values.refid ? (
+                  result ? (
+                    <div className="no-error">Referral From: {result?.full_name}</div>
+                  ) : (
+                    <div className="error">Invalid Referral Id</div>
+                  )
+                ) : null}
+
+              </FormControl>
+            </Box>
+            <Box mt={1}>
+
+            </Box>
+            <Stack mt={3}>
+              <Box sx={{ width: '100%' }}> <Button className='goldbtn'
+                onClick={fk.handleSubmit}
+              //  onClick={()=>navigate('/send-otp')} 
+              >Submit</Button></Box>
+              <Box sx={{ width: '100%' }}>
+                <NavLink to='/'>
+                  <Button className='goldborderbtn'>Back to Login</Button>
+                </NavLink>
+              </Box>
+            </Stack >
+
+          </Box>
+          <CustomCircularProgress isLoading={loding} />
+        </Container>
+      </Layout>
   );
 }
 
