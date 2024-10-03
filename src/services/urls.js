@@ -7,7 +7,7 @@ export const newdomain1 = "https://api.bngwin.live";
 export const newdomain = "https://api.bngwin.live";
 export const admin = "https://admin.bngwin.live";
 
-export const newdomainn = "http://192.168.18.183:9000";
+// export const newdomainn = "http://192.168.18.183:9000";
 // export const baseUrl = "http://192.168.18.183:9000";
 
 export const domain = "https://bng-live-timer-1.onrender.com";
@@ -122,7 +122,7 @@ export const endpoint = {
   incom_gift : `${newdomain1}/api/v1/gift-bonus-list`,
   level_income : `${newdomain1}/api/v1/level-income`,
 
-  registration_send_otp : `${newdomainn}/api/v1/registration-send-otp`,
-  registration_verify_otp : `${newdomainn}/api/v1/registration-veryfy-otp`,
+  registration_send_otp : `${newdomain}/api/v1/registration-send-otp`,
+  registration_verify_otp : `${newdomain}/api/v1/registration-veryfy-otp`,
  
 };
