@@ -90,6 +90,7 @@ const imageSources = [
 ];
 
 function Dashboard() {
+  const [status, setStatus] = useState(false);
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
   const onAutoplayTimeLeft = (s, time, progress) => {
@@ -180,6 +181,18 @@ function Dashboard() {
   });
 
   const statusyesterday = amount?.data?.data
+
+  const getStatus = async () => {
+    try {
+      const res = await axios.get(endpoint.get_status);
+      setStatus(res?.data?.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  useEffect(() => {
+    getStatus();
+  }, []);
   
   return (
     <Layout header={false}>
@@ -479,7 +492,12 @@ function Dashboard() {
                         Win Go
                       </Typography>
                       <Button
-                        onClick={() => navigate("/win")}
+                        onClick={() => {
+                          if (status?.find((i)=>i?.title==="wingo_status")?.longtext !== "0") {
+                            navigate("/win");
+                          }
+                        }}
+                        
                         variant="text"
                         color="primary"
                         sx={{ ...styles.playbutton }}
@@ -540,7 +558,11 @@ function Dashboard() {
                         TRX
                       </Typography>
                       <Button
-                        onClick={() => navigate("/trx")}
+                        onClick={() => {
+                          if (status?.find((i)=>i?.title==="trx_status")?.longtext !== "0") {
+                              navigate("/trx");
+                            }
+                         }}
                         variant="text"
                         color="primary"
                         sx={{ ...styles.playbutton }}
@@ -601,7 +623,14 @@ function Dashboard() {
                         Aviator
                       </Typography>
                       <Button
-                        onClick={() => navigate("/test")}
+                        onClick={() => {
+                          if (status?.find((i)=>i?.title==="aviator_staus")?.longtext !== "0") {
+                            navigate("/playgame");
+                          }
+                          else{
+                            navigate('/test')
+                          }
+                        }}
                         variant="text"
                         color="primary"
                         sx={{ ...styles.playbutton }}
