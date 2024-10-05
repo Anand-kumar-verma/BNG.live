@@ -2,8 +2,9 @@ import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import * as React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { bgdarkgray, bglightgray, zubgshadow, zubgtext } from "../../../../Shared/color";
+import { bgdarkgray, bglightgray, zubgtext } from "../../../../Shared/color";
 import pr0 from "../../../../assets/images/0.png";
 import pr11 from "../../../../assets/images/11.png";
 import pr22 from "../../../../assets/images/22.png";
@@ -14,13 +15,12 @@ import pr6 from "../../../../assets/images/6.png";
 import pr7 from "../../../../assets/images/7.png";
 import pr8 from "../../../../assets/images/8.png";
 import pr9 from "../../../../assets/images/9.png";
+import theme from "../../../../utils/theme";
 import ApplyBetDialogBox from "../ApplyBetDialogBox";
 import Chart from "./Chart";
 import GameHistory from "./GameHistory";
 import MyHistory from "./MyHistory";
 import TwoMinCountDown from "./TwoMinCountDown";
-import { useSelector } from "react-redux";
-import theme from "../../../../utils/theme";
 
 function WinThreeMin({ gid }) {
   const [TabTwo, setTabTwo] = useState(1);

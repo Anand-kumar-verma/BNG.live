@@ -168,7 +168,12 @@ function InvitationBonus() {
         <Box sx={styles.numberDetails}>
           <Box sx={styles.numberDetailBox}>
             <Typography variant="body2" sx={styles.numberDetailText}>
-              {invitation_result?.[0] ? 1 : res?.direct_member_team} / 1
+              {invitation_result?.[0]
+                ? 1
+                : res?.direct_member_team >= 1
+                ? 1
+                : res?.direct_member_team}{" "}
+              / 1
             </Typography>
             <Typography variant="caption" sx={{ color: "#ddd" }}>
               Number of invitees
@@ -236,7 +241,9 @@ function InvitationBonus() {
               {invitation_result?.[1]
                 ? 3
                 : res?.direct_member_team - 1 > 0
-                ? res?.direct_member_team - 1
+                ? res?.direct_member_team - 1 > 3
+                  ? 3
+                  : res?.direct_member_team - 1
                 : 0}{" "}
               / 3
             </Typography>
@@ -307,7 +314,9 @@ function InvitationBonus() {
               {invitation_result?.[2]
                 ? 10
                 : res?.direct_member_team - 4 > 0
-                ? res?.direct_member_team - 4
+                ? res?.direct_member_team - 4 > 10
+                  ? 10
+                  : res?.direct_member_team - 4
                 : 0}{" "}
               / 10
             </Typography>
@@ -379,7 +388,9 @@ function InvitationBonus() {
               {invitation_result?.[3]
                 ? 30
                 : res?.direct_member_team - 14 > 0
-                ? res?.direct_member_team - 14
+                ? res?.direct_member_team - 14 > 30
+                  ? 30
+                  : res?.direct_member_team - 14
                 : 0}{" "}
               / 30
             </Typography>
@@ -451,7 +462,9 @@ function InvitationBonus() {
               {invitation_result?.[4]
                 ? 60
                 : res?.direct_member_team - 44 > 0
-                ? res?.direct_member_team - 44
+                ? res?.direct_member_team - 44 > 60
+                  ? 60
+                  : res?.direct_member_team - 44
                 : 0}{" "}
               / 60
             </Typography>
@@ -523,7 +536,9 @@ function InvitationBonus() {
               {invitation_result?.[5]
                 ? 100
                 : res?.direct_member_team - 104 > 0
-                ? res?.direct_member_team - 104
+                ? res?.direct_member_team - 104 > 100
+                  ? 100
+                  : res?.direct_member_team - 104
                 : 0}{" "}
               / 100
             </Typography>
@@ -595,7 +610,9 @@ function InvitationBonus() {
               {invitation_result?.[6]
                 ? 200
                 : res?.direct_member_team - 204 > 0
-                ? res?.direct_member_team - 204
+                ? res?.direct_member_team - 204 > 200
+                  ? 200
+                  : res?.direct_member_team - 204
                 : 0}{" "}
               / 200
             </Typography>
@@ -667,7 +684,9 @@ function InvitationBonus() {
               {invitation_result?.[7]
                 ? 500
                 : res?.direct_member_team - 404 > 0
-                ? res?.direct_member_team - 404
+                ? res?.direct_member_team - 404 > 500
+                  ? 500
+                  : res?.direct_member_team - 404
                 : 0}{" "}
               / 500
             </Typography>
@@ -739,7 +758,9 @@ function InvitationBonus() {
               {invitation_result?.[8]
                 ? 1000
                 : res?.direct_member_team - 904 > 0
-                ? res?.direct_member_team - 904
+                ? res?.direct_member_team - 904 > 1000
+                  ? 1000
+                  : res?.direct_member_team - 904
                 : 0}{" "}
               / 1000
             </Typography>
@@ -811,7 +832,9 @@ function InvitationBonus() {
               {invitation_result?.[9]
                 ? 5000
                 : res?.direct_member_team - 1904 > 0
-                ? res?.direct_member_team - 1904
+                ? res?.direct_member_team - 1904 > 5000
+                  ? 5000
+                  : res?.direct_member_team - 1904
                 : 0}{" "}
               / 5000
             </Typography>
@@ -883,7 +906,9 @@ function InvitationBonus() {
               {invitation_result?.[10]
                 ? 10000
                 : res?.direct_member_team - 6904 > 0
-                ? res?.direct_member_team - 6904
+                ? res?.direct_member_team - 6904 > 10000
+                  ? 10000
+                  : res?.direct_member_team - 6904
                 : 0}{" "}
               / 10000
             </Typography>
@@ -955,7 +980,9 @@ function InvitationBonus() {
               {invitation_result?.[11]
                 ? 20000
                 : res?.direct_member_team - 16904 > 0
-                ? res?.direct_member_team - 16904
+                ? res?.direct_member_team - 16904 > 20000
+                  ? 20000
+                  : res?.direct_member_team - 16904
                 : 0}{" "}
               / 20000
             </Typography>
@@ -1027,7 +1054,9 @@ function InvitationBonus() {
               {invitation_result?.[12]
                 ? 50000
                 : res?.direct_member_team - 36904 > 0
-                ? res?.direct_member_team - 36904
+                ? res?.direct_member_team - 36904 > 50000
+                  ? 50000
+                  : res?.direct_member_team - 36904
                 : 0}{" "}
               / 50000
             </Typography>
