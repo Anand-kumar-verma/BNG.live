@@ -14,6 +14,8 @@ import BeforeLogin from "./Shared/BeforeLogin";
 import SplashScreen from "./Shared/SplashScreen";
 import Sendotp from './pages/auth/register/Sendotp';
 import VerifyregistrationOtp from './pages/auth/register/VerifyregistrationOtp';
+import LayoutAviator from './GamePage/Layout';
+import PlayGame from './GamePage/PlayGame';
 
 const App = () => {
   const isAuthenticated =
@@ -36,7 +38,10 @@ const App = () => {
         <Route path="/otp" element={<Otpverify />} />
         <Route path="/changepassword" element={<Changepassword />} />
         <Route path="/register" element={<Register />} />
-
+        <Route
+        path="/playgame"
+        element={<LayoutAviator component={<PlayGame />} />}
+      />
         {isAuthenticated ? (
           routes?.map((route, index) => {
             return (
