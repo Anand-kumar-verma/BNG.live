@@ -557,9 +557,9 @@ function DepositeUsdtrecharge() {
                       key={i.id}
                       value={i.id}
                     >
-                      {i.usdt_type === "USDT.BEP20" ?
-                       "USDT Bep20" :
-                       "USDT Trc20" }
+                      {i.usdt_type === "USDT.BEP20"
+                        ? "USDT Bep20"
+                        : "USDT Trc20"}
                     </MenuItem>
                   ))}
               </TextField>

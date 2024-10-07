@@ -38,7 +38,6 @@ function DepositeUsdt() {
     );
     const res = data?.data?.data || []
 
-    console.log(res);
     return (
         <Layout>
             <Container

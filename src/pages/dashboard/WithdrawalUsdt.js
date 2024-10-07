@@ -465,7 +465,7 @@ function WithdrawalUsdt() {
                   mx: 0.5,
                 }}
               >
-                $10.00 - $500.00 .{" "}
+                $10.00 - $5000.00 .{" "}
               </Typography>
             </Stack>
             <Stack direction="row" alignItems="center" mt={1}>
