@@ -7,15 +7,16 @@ export const newdomain1 = "https://api.bngwin.live";
 export const newdomain = "https://api.bngwin.live";
 export const admin = "https://admin.bngwin.live";
 
-// export const newdomainn = "http://192.168.18.183:9000";
-// export const baseUrl = "http://192.168.18.183:9000";
-
+export const dummy_aviator = "https://bng-live-timer-1.onrender.com";
 export const domain = "https://bng-live-timer-1.onrender.com";
 export const public_chain = "https://tronscan.io/#/";
 export const telegram_url = "https://t.me/bnggofficial";
 export const facebook_url = "";
 export const instagram_url = "";
 export const support_mail = "";
+
+// export const dummy_aviator = "http://192.168.18.183:9000";
+// export const domain = "http://192.168.18.183:9000";
 
 export const endpoint = {
   //node login api
@@ -124,5 +125,14 @@ export const endpoint = {
 
   registration_send_otp : `${newdomain}/api/v1/registration-send-otp`,
   registration_verify_otp : `${newdomain}/api/v1/registration-veryfy-otp`,
+
+  node_api:{
+    get_leder_data:`${dummy_aviator}/api/v1/get-ledger-data`,
+    my_history: `${dummy_aviator}/api/v1/my-history-by-user-id`,
+    login_with_node:`${dummy_aviator}/api/v1/createuser`,
+    main_wallet:`${dummy_aviator}/main-wallet-to-aviator`,
+    aviator_main:`${dummy_aviator}/aviator-to-main-wallet`,
+    get_top_users: `${dummy_aviator}/api/v1/get-top-users`,
+  }
  
 };

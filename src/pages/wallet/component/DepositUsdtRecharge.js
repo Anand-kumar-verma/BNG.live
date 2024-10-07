@@ -48,6 +48,7 @@ import { endpoint } from "../../../services/urls";
 import theme from "../../../utils/theme";
 
 function DepositeUsdtrecharge() {
+
   const location = useLocation();
   const key_type = location?.state?.key;
   const [receipt, setReceipt] = React.useState();
@@ -103,8 +104,6 @@ function DepositeUsdtrecharge() {
     } catch (e) {
       console.log(e);
     }
-    // client.refetchQueries("wallet_amount");
-    // client.refetchQueries("withdrawl_history");
   }
   const navigate = useNavigate();
   const goBack = () => {
@@ -126,11 +125,10 @@ function DepositeUsdtrecharge() {
       console.error("Error during play:", error);
     }
   };
-
   const walletamountFn = async () => {
     try {
       const response = await axios.get(
-        `${endpoint.userwallet}?userid=${user_id}`
+        `${endpoint?.userwallet}?userid=${user_id}`
       );
 
       setAmount(response?.data?.data);
@@ -648,7 +646,7 @@ function DepositeUsdtrecharge() {
               <OutlinedInput
                 fullWidth
                 placeholder="Enter Amount "
-                className="wallet-textfield   mt-4"
+                className="wallet-textfield  mt-4"
                 type="number"
                 id="req_amount"
                 name="req_amount"
