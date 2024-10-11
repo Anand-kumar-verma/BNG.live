@@ -137,8 +137,8 @@ function WithdravalHistory() {
                   >
                     <Typography variant="body1">Date/Time</Typography>
                     <Typography variant="body1">
-                      {moment(i?.date)?.format("DD-MM-YYYY")}{" "}
-                      {moment(i?.date)?.format("HH:mm:ss")}
+                      {moment(i?.tr15_date)?.format("DD-MM-YYYY")}{" "}
+                      {moment(i?.tr15_date)?.format("HH:mm:ss")}
                     </Typography>
                   </Stack>
                   <Stack
@@ -152,7 +152,7 @@ function WithdravalHistory() {
                     <Typography variant="body1">Status</Typography>
                     <Typography variant="body1">{i?.tr15_status} </Typography>
                   </Stack>
-                  {i?.approve_date !== null && i?.approve_date !== "" && (
+                  {i?.success_date !== null && i?.success_date !== "" && (
                     <Stack
                       direction="row"
                       sx={{
@@ -163,8 +163,8 @@ function WithdravalHistory() {
                     >
                       <Typography variant="body1">Success Date/Time</Typography>
                       <Typography variant="body1" className="!text-green-700">
-                        {moment(i?.approve_date)?.format("DD-MM-YYYY")}{" "}
-                        {moment(i?.approve_date)?.format("HH:mm:ss")}
+                        {moment(i?.success_date)?.format("DD-MM-YYYY")}{" "}
+                        {moment(i?.success_date)?.format("HH:mm:ss")}
                       </Typography>
                     </Stack>
                   )}
