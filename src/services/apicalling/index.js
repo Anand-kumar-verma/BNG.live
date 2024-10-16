@@ -455,6 +455,18 @@ export const VipIncomeFn = async () => {
     console.log(e);
   }
 };
+export const VipIncomeFnMonthly = async () => {
+  //
+  try {
+    const response = await axios.get(
+      `${endpoint.vip_income_monthly}?user_id=${user_id}`
+    );
+    return response;
+  } catch (e) {
+    toast(e?.message);
+    console.log(e);
+  }
+};
 
 export const WeeklySalaryIncomeFn = async () => {
   //

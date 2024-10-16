@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import profile from "../../assets/images/profile.jpg";
-import vip from "../../assets/images/vip.png";
+import vip from "../../assets/images/vipp.png";
 import vip01 from "../../assets/images/vip01.png";
 import vip02 from "../../assets/images/vip02.png";
 import vip03 from "../../assets/images/vip03.png";
@@ -53,7 +53,11 @@ import vip88 from "../../assets/images/vip88.png";
 import vip9 from "../../assets/images/vip9.png";
 import vip99 from "../../assets/images/vip99.png";
 import Layout from "../../component/Layout/Layout";
-import { VipIncomeFn, yesterdayFn } from "../../services/apicalling";
+import {
+  VipIncomeFn,
+  VipIncomeFnMonthly,
+  yesterdayFn,
+} from "../../services/apicalling";
 import { rupees } from "../../services/urls";
 import { bgcolorlight, bggold, bgtan } from "../../Shared/color";
 
@@ -64,7 +68,6 @@ function VIPPage() {
   };
 
   const [activeSlide, setActiveSlide] = useState(0);
-
   const handleSlideChange = (swiper) => {
     setActiveSlide(swiper.activeIndex);
   };
@@ -83,7 +86,18 @@ function VIPPage() {
       refetchOnWindowFocus: false,
     }
   );
-  const res = data?.data?.data;
+  const res = data?.data?.data || [];
+  const { isLoading: monthly, data: data_monthly } = useQuery(
+    ["vip_bonus_monthly"],
+    () => VipIncomeFnMonthly(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: false,
+    }
+  );
+  const res_monthly = data_monthly?.data?.data || [];
+
   const { data: vip_data } = useQuery(
     ["yesterday_income"],
     () => yesterdayFn(),
@@ -348,16 +362,26 @@ function VIPPage() {
       <Box sx={styles.vipContainer}>
         <Box sx={styles.vipInfo}>
           <Avatar src={profile} alt="Profile Image" sx={styles.vipAvatar} />
-          <Box>
-            <Box
+          <Box className={"!w-full"}>
+            {/* <Box
               component="img"
               src={vip}
               alt="VIP Badge"
               sx={styles.vipBadge}
-            />
+            /> */}
+            <div
+              className="!flex justify-center !cursor-pointer"
+              onClick={() => navigate("/vip")}
+            >
+              <img src={vip} alt="" className=" w-12 -ml-10" />
+              <p className="!text-xs !font-bold -ml-1 !text-gray-400 !text-center bg-[#e2dfdf] rounded-full h-4 w-4 !mt-2">
+                {" "}
+                {res?.length}
+              </p>
+            </div>
             <Typography variant="body1" sx={styles.vipName}>
               {" "}
-              MemberNNGHGUQJ
+              Member: {vip_data_res?.username}
             </Typography>
           </Box>
         </Box>
@@ -372,8 +396,22 @@ function VIPPage() {
           </Box>
           <Box sx={styles.vipStat}>
             <Typography variant="body1" sx={styles.vipStatValue}>
-              15 Days
+              {res?.[activeSlide]?.l01_date
+                ? res_monthly?.[activeSlide]?.l01_transection_type
+                    ?.split(" ")
+                    ?.includes("Monthly")
+                  ? "Achieved"
+                  : new Date(
+                      new Date().getFullYear(),
+                      new Date().getMonth() + 1,
+                      0
+                    ).getDate() -
+                    Number(moment(res?.[activeSlide]?.l01_date)?.format("DD")) +
+                    "Days"
+                : "N/A"}{" "}
+              {/* - moment(res?.[activeSlide]?.l01_date)?.format("YYYY") */}
             </Typography>
+
             <Typography variant="caption" sx={styles.vipStatLabel}>
               Payout time
             </Typography>
@@ -2688,8 +2726,8 @@ function VIPPage() {
                   </Typography>
                 </Box>
               </Box> */}
-              <div className="!flex !flex-col">
-                {res?.map((i) => {
+              <div className="!flex !flex-col !gap-2">
+                {[...res, ...res_monthly]?.map((i) => {
                   return (
                     <Box
                       sx={{
@@ -2706,7 +2744,7 @@ function VIPPage() {
                         <div className="!w-full !flex !flex-row !justify-between">
                           <p>VIP BONUS</p>
                           <p>
-                            {rupees} {i?.l01_amount} 
+                            {rupees} {i?.l01_amount}
                           </p>
                         </div>
                         <div className="!w-full !flex !flex-row !justify-between">

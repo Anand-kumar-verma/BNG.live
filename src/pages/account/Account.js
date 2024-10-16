@@ -41,7 +41,11 @@ import MyModal from "../../Shared/Modal";
 import s from "../../assets/wdhistory.png";
 import dpt from "../../assets/withdrow.png";
 import Layout from "../../component/Layout/Layout";
-import { VipIncomeFn, walletamount, yesterdayFn } from "../../services/apicalling";
+import {
+  VipIncomeFn,
+  walletamount,
+  yesterdayFn,
+} from "../../services/apicalling";
 import { baseUrl, fron_end_main_domain } from "../../services/urls";
 
 function Account() {
@@ -63,18 +67,12 @@ function Account() {
   );
   const wallet = amount?.data?.data;
 
-  const { data: data } = useQuery(
-    ["vip_bonus"],
-    () => VipIncomeFn(),
-    {
-      refetchOnMount: false,
-      refetchOnReconnect: true,
-      refetchOnWindowFocus: false,
-    }
-  );
+  const { data: data } = useQuery(["vip_bonus"], () => VipIncomeFn(), {
+    refetchOnMount: false,
+    refetchOnReconnect: true,
+    refetchOnWindowFocus: false,
+  });
   const res = data?.data?.data;
-  console.log(res?.length)
-
 
   const functionTOCopy = (value) => {
     copy(value);
@@ -101,13 +99,17 @@ function Account() {
     }
   }, []);
 
-  const { data: amountdata } = useQuery(["yesterday_income"], () => yesterdayFn(), {
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
-  });
+  const { data: amountdata } = useQuery(
+    ["yesterday_income"],
+    () => yesterdayFn(),
+    {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+    }
+  );
 
-  const statusyesterday = amountdata?.data?.data
+  const statusyesterday = amountdata?.data?.data;
 
   return (
     <Layout header={false}>
@@ -138,9 +140,15 @@ function Account() {
                     {wallet?.full_name}
                   </Typography>
                   <Typography>
-                 <div className="!flex justify-center !cursor-pointer" onClick={()=>navigate('/vip')}>
-                 <img src={vip} alt="" className=" w-12 ml-3"  /> 
-                   <p className="!text-xs !font-bold -ml-1 !text-gray-400 !text-center bg-[#e2dfdf] rounded-full h-4 w-4 !mt-2"> {res?.length}</p>
+                    <div
+                      className="!flex justify-center !cursor-pointer"
+                      onClick={() => navigate("/vip")}
+                    >
+                      <img src={vip} alt="" className=" w-12 ml-3" />
+                      <p className="!text-xs !font-bold -ml-1 !text-gray-400 !text-center bg-[#e2dfdf] rounded-full h-4 w-4 !mt-2">
+                        {" "}
+                        {res?.length}
+                      </p>
                     </div>
                   </Typography>
                 </Box>
@@ -300,7 +308,6 @@ function Account() {
           className="grid grid-cols-2 gap-3 "
           sx={{ mt: "-40px", width: "95%", ml: "2.5%" }}
         >
-        
           <NavLink to="/depositHistory">
             <Box
               className="flex gap-1 p-1 py-4 justify-center items-center shadow-xl  rounded-lg"
@@ -699,9 +706,7 @@ function Account() {
           </Dialog>
         )} */}
         <CustomCircularProgress isLoading={isLoading} />
-        {statusyesterday?.status_of_deposit_popup === 1 ?
-           <MyModal /> 
-          : "" }
+        {statusyesterday?.status_of_deposit_popup === 1 ? <MyModal /> : ""}
       </Container>
     </Layout>
   );

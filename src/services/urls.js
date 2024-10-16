@@ -33,6 +33,7 @@ export const endpoint = {
   invitation_income: `${newdomain1}/api/v1/inivitation-bonus`,
   streak_income: `${newdomain1}/api/v1/winning-streak-bonus`,
   vip_income: `${newdomain1}/api/v1/vip-bonus`,
+  vip_income_monthly: `${newdomain1}/api/v1/vip-bonus-monthly`,
   deposit_bonus: `${newdomain1}/api/v1/get-deposit-bonus-income/`,
   daily_income: `${newdomain1}/api/v1/daily-salary-income`,
   forget_pass: `${newdomain1}/api/v1/forget-password-send-otp`,
