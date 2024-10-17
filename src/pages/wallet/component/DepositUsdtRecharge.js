@@ -24,6 +24,7 @@ import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
+import usdtbns from "../../../assets/images/gift-55dc786a.png";
 import {
   bgdarkgray,
   bggrad,
@@ -48,7 +49,6 @@ import { endpoint } from "../../../services/urls";
 import theme from "../../../utils/theme";
 
 function DepositeUsdtrecharge() {
-
   const location = useLocation();
   const key_type = location?.state?.key;
   const [receipt, setReceipt] = React.useState();
@@ -471,6 +471,7 @@ function DepositeUsdtrecharge() {
                 px: 1,
               }}
             ></Box>
+
             <Typography
               className="fp13 "
               sx={{
@@ -489,7 +490,7 @@ function DepositeUsdtrecharge() {
           </Box>
           <Box
             sx={{ width: "48%", background: "#FFFFFF", borderRadius: "5px" }}
-            className="fccc"
+            className="fccc relative"
           >
             <Box
               component="img"
@@ -500,6 +501,16 @@ function DepositeUsdtrecharge() {
                 borderRadius: "10px",
                 pt: 1,
                 px: 1,
+              }}
+            ></Box>
+            <Box
+              component="img"
+              src={usdtbns}
+              sx={{
+                width: "50px",
+                position: "absolute",
+                top: 0,
+                right: "0%",
               }}
             ></Box>
             <Typography

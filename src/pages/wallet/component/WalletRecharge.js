@@ -12,37 +12,34 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import bg from "../../../assets/img/download.png";
 import axios from "axios";
 import CryptoJS from "crypto-js";
 import { useFormik } from "formik";
 import * as React from "react";
 import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomCircularProgress from "../../../Shared/CustomCircularProgress";
 import { cashDepositRequestValidationSchema } from "../../../Shared/Validation";
-import logo1 from "../../../assets/images/logotred.png";
 import {
   bgdarkgray,
-  bggold,
   bggrad,
   bglightgray,
   bgtan,
   zubgmid,
   zubgshadow,
-  zubgtext,
+  zubgtext
 } from "../../../Shared/color";
 import audiovoice from "../../../assets/bankvoice.mp3";
 import user from "../../../assets/check.png";
 import dot from "../../../assets/images/circle-arrow.png";
-import balance from "../../../assets/images/send.png";
-import pay from "../../../assets/images/wallet.png";
-import usdt from "../../../assets/images/usdt.png";
 import usdtbns from "../../../assets/images/gift-55dc786a.png";
-import TRC20 from "../../../assets/images/trc20-removebg-preview.png";
-import BEP20 from "../../../assets/images/bep20.jpg";
+import logo1 from "../../../assets/images/logotred.png";
+import balance from "../../../assets/images/send.png";
 import upipayment from "../../../assets/images/upi.jpg";
+import usdt from "../../../assets/images/usdt.png";
+import pay from "../../../assets/images/wallet.png";
+import bg from "../../../assets/img/download.png";
 import Layout from "../../../component/Layout/Layout";
 import { endpoint } from "../../../services/urls";
 import theme from "../../../utils/theme";
