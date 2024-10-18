@@ -13,7 +13,7 @@ export const public_chain = "https://tronscan.io/#/";
 export const telegram_url = "https://t.me/bnggofficial";
 export const facebook_url = "";
 export const instagram_url = "";
-export const support_mail = "";
+export const support_mail = "techbignetworkgame.55@gmail.com";
 
 // export const dummy_aviator = "http://192.168.18.183:9000";
 // export const domain = "http://192.168.18.183:9000";
