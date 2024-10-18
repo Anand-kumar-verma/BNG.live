@@ -227,12 +227,9 @@ const GameHistory = ({ gid }) => {
                 <div className="!w-full  !grid !grid-cols-12  !place-items-center !text-[12px] !bg-[#333332] !px-2 !py-1 ">
                   <p className="!col-span-2 !text-[#ffffff] !font-semibold !text-[13px] bdg" >
                     {i?.tr_transaction_id
-                      ? i.tr_transaction_id.split("@")[0].substring(0, 3) +
+                      ? i.tr_transaction_id?.split("@")?.[0]?.substring(0, 3) +
                       "**" +
-                      (i.tr_transaction_id.split("@")[0].length > 2
-                        ? i.tr_transaction_id.split("@")[0].substring(10, 14)
-                        : "")
-                      : "**"}
+                     i?.tr_transaction_id?.split("@")?.[0]?.substring(i?.tr_transaction_id?.split("@")?.[0]?.length - 4): "**" }
                   </p>
                   <p className="!col-span-3 !flex gap-[1px] fccc ">
                     <span style={{ color: "white" }} >

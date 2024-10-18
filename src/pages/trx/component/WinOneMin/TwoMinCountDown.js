@@ -164,7 +164,6 @@ const TwoMinCountDown = ({ fk, setBetNumber }) => {
       console.log(e);
     }
   };
-
   React.useEffect(() => {
     dispatch(
       updateNextCounter(
