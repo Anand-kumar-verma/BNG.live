@@ -171,14 +171,14 @@ export const  incrementLargeNumber = (str) =>{
   let result = '';
 
   // Loop through the digits of the string from right to left
-  for (let i = str.length - 1; i >= 0; i--) {
-      let digit = parseInt(str[i], 10) + carry;
+  for (let i = str?.length - 1; i >= 0; i--) {
+      let digit = parseInt(str?.[i], 10) + carry;
       if (digit === 10) {
           carry = 1; // If sum is 10, carry over 1
           result = '0' + result;
       } else {
           carry = 0; // No carry if digit < 10
-          result = digit.toString() + result;
+          result = digit?.toString() + result;
       }
   }
 
