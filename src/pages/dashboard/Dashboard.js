@@ -68,6 +68,7 @@ import {
 } from "../../redux/slices/counterSlice";
 import { walletamount, yesterdayFn } from "../../services/apicalling";
 import {
+  apk_url,
   endpoint,
   fron_end_main_domain,
   support_mail,
@@ -199,9 +200,10 @@ function Dashboard() {
       <Box sx={styles.root}>
         <Box sx={{ ...flexbetween }}>
           <Box component="img" sx={{ width: "150px" }} src={logo}></Box>
-          <NavLink component={NavLink}>
-            <Box component="img" sx={{ width: "120px" }} src={download}></Box>
-          </NavLink>
+        
+            <Box component="img" sx={{ width: "120px" }} src={download} onClick={()=>{window.location.href= apk_url}}></Box>
+          
+       
         </Box>
         <Box sx={{ ...flexbetween }}>
           <Typography variant="body1" className="funp13" sx={{ color: bggold }}>

@@ -155,14 +155,14 @@ export default function AccountMenu({ anchorEl, setAnchorEl }) {
         </MenuItem>
         <Divider className="!bg-gray-500 !p-0" />
 
-        <MenuItem
+        {/* <MenuItem
           className={`${gray} !text-white !text-sm !flex !justify-between`}
         >
           <p className="flex items-center gap-2">
             <FaNotesMedical /> <span>Game Rules</span>
           </p>
         </MenuItem>
-        <Divider className="!bg-gray-500 !p-0" />
+        <Divider className="!bg-gray-500 !p-0" /> */}
 
         <MenuItem
           className={`${gray} !text-white !text-sm !flex !justify-between`}
