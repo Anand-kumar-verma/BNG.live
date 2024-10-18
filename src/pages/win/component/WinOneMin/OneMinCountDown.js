@@ -36,7 +36,7 @@ import {
   My_All_HistoryFn,
   walletamount,
 } from "../../../../services/apicalling";
-import { changeImages } from "../../../../services/schedular";
+import { changeImages, incrementLargeNumber } from "../../../../services/schedular";
 import { endpoint } from "../../../../services/urls";
 import Policy from "../policy/Policy";
 
@@ -144,7 +144,7 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
     dispatch(
       updateNextCounter(
         game_history?.data?.data
-          ? Number(game_history?.data?.data?.[0]?.gamesno) + 1
+          ? incrementLargeNumber(game_history?.data?.result?.[0]?.gamesno) 
           : 1
       )
     );
@@ -302,7 +302,7 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
             );
           }, [show_this_one_min_time])}
           <Typography variant="h3" color="initial" className="winTexttwo">
-            {Number(next_step)?.toString()?.padStart(7, "0")}
+            {next_step}
           </Typography>
         </Box>
       </Box>

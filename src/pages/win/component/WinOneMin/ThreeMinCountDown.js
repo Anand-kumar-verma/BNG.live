@@ -329,7 +329,7 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
             }, [show_this_three_min_time_sec])}
           </Stack>
           <Typography variant="h3" color="initial" className="winTexttwo">
-            {Number(next_step)?.toString()?.padStart(7, "0")}
+            {next_step}
           </Typography>
         </Box>
       </Box>

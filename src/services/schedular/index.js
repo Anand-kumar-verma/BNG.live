@@ -166,3 +166,25 @@ export const changeImagesTRX = (trx_game_image_index) => {
   });
   return index_value;
 };
+export const  incrementLargeNumber = (str) =>{
+  let carry = 1; // Initialize carry for adding 1
+  let result = '';
+
+  // Loop through the digits of the string from right to left
+  for (let i = str.length - 1; i >= 0; i--) {
+      let digit = parseInt(str[i], 10) + carry;
+      if (digit === 10) {
+          carry = 1; // If sum is 10, carry over 1
+          result = '0' + result;
+      } else {
+          carry = 0; // No carry if digit < 10
+          result = digit.toString() + result;
+      }
+  }
+
+  // If there's still a carry left, prepend '1'
+  if (carry) result = '1' + result;
+
+  return result;
+}
+

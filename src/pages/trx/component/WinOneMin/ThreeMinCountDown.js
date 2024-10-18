@@ -32,6 +32,7 @@ import {
   walletamount,
 } from "../../../../services/apicalling";
 import { Search } from "@mui/icons-material";
+import { incrementLargeNumber } from "../../../../services/schedular";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -158,7 +159,7 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
     dispatch(
       updateNextCounter(
         game_history?.data?.result
-          ? Number(game_history?.data?.result?.[0]?.tr_transaction_id) + 1
+          ? incrementLargeNumber(game_history?.data?.result?.[0]?.tr_transaction_id)
           : 1
       )
     );
@@ -335,7 +336,7 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
             }, [show_this_three_min_time_sec])}
           </Stack>
           <Typography variant="h3" color="initial" className="!text-lg !text-[#8f5206] !font-bold">
-            {Number(next_step)?.toString()?.padStart(7, "0")}
+            {next_step}
           </Typography>
         </Box>
       </Box>

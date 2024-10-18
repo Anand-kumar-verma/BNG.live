@@ -32,6 +32,7 @@ import {
 } from "../../../../services/apicalling";
 import { Search } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { incrementLargeNumber } from "../../../../services/schedular";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -127,7 +128,7 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
     dispatch(
       updateNextCounter(
         game_history?.data?.result
-          ? Number(game_history?.data?.result?.[0]?.tr_transaction_id) + 1
+          ? incrementLargeNumber(game_history?.data?.result?.[0]?.tr_transaction_id)
           : 1
       )
     );
@@ -308,7 +309,7 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
             color="initial"
             className="!ml-2 !text-lg !text-[#8f5206] !font-bold"
           >
-            {Number(next_step)?.toString()?.padStart(7, "0")}
+            {next_step}
           </Typography>
         </Box>
       </Box>

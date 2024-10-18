@@ -34,7 +34,7 @@ import {
   My_All_HistoryFn,
   walletamount,
 } from "../../../../services/apicalling";
-import { changeImages } from "../../../../services/schedular";
+import { changeImages, incrementLargeNumber } from "../../../../services/schedular";
 import Policy from "../policy/Policy";
 import axios from "axios";
 import { endpoint } from "../../../../services/urls";
@@ -181,7 +181,7 @@ const TwoMinCountDown = ({ fk, setBetNumber }) => {
     dispatch(
       updateNextCounter(
         game_history?.data?.data
-          ? Number(game_history?.data?.data?.[0]?.gamesno) + 1
+          ? incrementLargeNumber(game_history?.data?.result?.[0]?.gamesno)
           : 1
       )
     );
@@ -336,7 +336,7 @@ const TwoMinCountDown = ({ fk, setBetNumber }) => {
             }, [show_this_three_min_time_sec])}
           </Stack>
           <Typography variant="h3" color="initial" className="winTexttwo">
-            {Number(next_step)?.toString()?.padStart(7, "0")}
+            {next_step}
           </Typography>
         </Box>
       </Box>
