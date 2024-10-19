@@ -144,7 +144,7 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
     dispatch(
       updateNextCounter(
         game_history?.data?.data
-          ? incrementLargeNumber(game_history?.data?.result?.[0]?.gamesno) 
+          ? incrementLargeNumber(game_history?.data?.data?.[0]?.gamesno) 
           : 1
       )
     );

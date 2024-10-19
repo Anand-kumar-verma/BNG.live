@@ -2,12 +2,13 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
+import axios from "axios";
 import * as React from "react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useQuery, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useSocket } from "../../../../Shared/SocketContext";
-import { zubgmid } from "../../../../Shared/color";
 import countdownfirst from "../../../../assets/countdownfirst.mp3";
 import countdownlast from "../../../../assets/countdownlast.mp3";
 import pr0 from "../../../../assets/images/0.png";
@@ -19,10 +20,10 @@ import pr5 from "../../../../assets/images/5.png";
 import pr6 from "../../../../assets/images/6.png";
 import pr7 from "../../../../assets/images/7.png";
 import pr8 from "../../../../assets/images/8.png";
-import winback from "../../../../assets/images/winbackbanner.03270574b912ee2ea784.png";
 import pr9 from "../../../../assets/images/9.png";
 import circle from "../../../../assets/images/circle-arrow.png";
 import howToPlay from "../../../../assets/images/user-guide.png";
+import winback from "../../../../assets/images/winbackbanner.03270574b912ee2ea784.png";
 import {
   dummycounterFun,
   net_wallet_amount_function,
@@ -35,10 +36,8 @@ import {
   walletamount,
 } from "../../../../services/apicalling";
 import { changeImages, incrementLargeNumber } from "../../../../services/schedular";
-import Policy from "../policy/Policy";
-import axios from "axios";
 import { endpoint } from "../../../../services/urls";
-import toast from "react-hot-toast";
+import Policy from "../policy/Policy";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -181,7 +180,7 @@ const TwoMinCountDown = ({ fk, setBetNumber }) => {
     dispatch(
       updateNextCounter(
         game_history?.data?.data
-          ? incrementLargeNumber(game_history?.data?.result?.[0]?.gamesno)
+          ? incrementLargeNumber(game_history?.data?.data?.[0]?.gamesno)
           : 1
       )
     );
