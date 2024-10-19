@@ -509,8 +509,8 @@ function DepositeUsdtrecharge() {
               sx={{
                 width: "50px",
                 position: "absolute",
-                top: 0,
-                right: "0%",
+                top: -2,
+                right: -3,
               }}
             ></Box>
             <Typography

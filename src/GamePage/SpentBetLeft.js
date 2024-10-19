@@ -10,6 +10,7 @@ import { walletamountAviator } from "../services/apicalling";
 import { dummy_aviator, rupees } from "../services/urls";
 import { gray } from "./color";
 import { deCryptData, enCryptData } from "../Shared/secret";
+import { leftBetValidation } from "../Shared/Validation";
 
 const SpentBetLeft = ({ milliseconds, seconds, fk, formik }) => {
   const client = useQueryClient();
@@ -24,10 +25,6 @@ const SpentBetLeft = ({ milliseconds, seconds, fk, formik }) => {
   const [loding, setloding] = useState(false);
   const [selectedValue, setSelectedValue] = useState("Bet");
   const [betValue, setBetValue] = useState(10);
-  const initialValues = {
-    custombetValue_auto_cash_out: (0).toFixed(2) || 0,
-    isbetActive: false,
-  };
 
   const { isLoading: walletloding, data: walletdata } = useQuery(
     ["walletamount_aviator"],
@@ -39,6 +36,10 @@ const SpentBetLeft = ({ milliseconds, seconds, fk, formik }) => {
     }
   );
   const wallet_amount = walletdata?.data?.data || 0;
+  const initialValues = {
+    custombetValue_auto_cash_out: (0).toFixed(2) || 0,
+    isbetActive: false,
+  };
 
   const leftbitfk = useFormik({
     initialValues: initialValues,
@@ -46,14 +47,22 @@ const SpentBetLeft = ({ milliseconds, seconds, fk, formik }) => {
       console.log(leftbitfk.values);
     },
   });
-
+  const spnt_amount_fk = useFormik({
+    initialValues: {
+      spend_amount: 10,
+    },
+    validationSchema: leftBetValidation,
+    onSubmit: () => {
+      spentBit();
+    },
+  });
   const spentBit = async () => {
     setloding(true);
 
     const reqbody = {
       id_id: user_id,
       u_id: user_id,
-      spnt_amount: betValue || 0,
+      spnt_amount: Number(spnt_amount_fk?.values?.spend_amount || 0) || 0,
       button_type: "b1",
     };
     const dataToSend = {
@@ -67,7 +76,7 @@ const SpentBetLeft = ({ milliseconds, seconds, fk, formik }) => {
           `${dummy_aviator}/api/v1/apply-bet-aviator-first`,
           dataToSend
         );
-        console.log(response)
+        console.log(response);
         if (response?.data?.msg === "Data save successfully") {
           localStorage.setItem("spent_amount1", reqbody?.amount);
           setTimeout(() => {
@@ -93,7 +102,8 @@ const SpentBetLeft = ({ milliseconds, seconds, fk, formik }) => {
 
   useEffect(() => {
     if (fk.values.isFlying && leftbitfk?.values?.isbetActive) {
-      spentBit();
+      // spentBit();
+      spnt_amount_fk?.handleSubmit();
     } else {
       !leftbitfk?.values?.isbetActive && fk.setFieldValue("isStart1", false);
     }
@@ -103,7 +113,9 @@ const SpentBetLeft = ({ milliseconds, seconds, fk, formik }) => {
     const reqbody = {
       id_id: user_id,
       u_id: user_id,
-      cr_amount: betValue * Number(`${seconds}.${milliseconds}`),
+      cr_amount:
+        Number(spnt_amount_fk?.values?.spend_amount || 0) *
+        Number(`${seconds}.${milliseconds}`),
       multi: Number(`${sec}.${mili}`),
       button_type: "b1",
     };
@@ -127,7 +139,9 @@ const SpentBetLeft = ({ milliseconds, seconds, fk, formik }) => {
               <span className="text-[10px] text-gray-400">
                 You have cashed out
               </span>
-              <span className="">{`${Number(response?.data?.time)} x`}</span>
+              <span className="">{`${Number(response?.data?.time)?.toFixed(
+                3
+              )} x`}</span>
             </p>
             <Button
               sx={{
@@ -154,7 +168,10 @@ const SpentBetLeft = ({ milliseconds, seconds, fk, formik }) => {
                 <Box>Win, INR</Box>{" "}
                 <Box>
                   <span className="">
-                    {`${betValue * Number(response?.data?.time || 0)} x`}
+                    {`${
+                      Number(spnt_amount_fk?.values?.spend_amount || 0) *
+                      Number(response?.data?.time || 0)
+                    } x`}
                   </span>
                 </Box>
               </Stack>
@@ -193,6 +210,71 @@ const SpentBetLeft = ({ milliseconds, seconds, fk, formik }) => {
     }
   }, [milliseconds]);
 
+  const handleButtonFuncton = () => {
+    // cancel
+    if (fk.values.waitingForNextTime1) {
+      fk.setFieldValue("isStart1", false);
+      fk.setFieldValue("waitingForNextTime1", false);
+      localStorage.removeItem("spent_amount1");
+      leftbitfk.setFieldValue("isbetActive", false);
+      return;
+    }
+    // cancel
+    if (fk.values.isStart1 && !fk.values.isFlying) {
+      fk.setFieldValue("isStart1", false);
+      localStorage.removeItem("spent_amount1");
+      leftbitfk.setFieldValue("isbetActive", false);
+      return;
+    }
+    // cash out
+    if (fk.values.isStart1 && fk.values.isFlying) {
+      fk.setFieldValue("isStart1", false);
+      if (pre_amount && spent_amount1) {
+        cashOut(seconds, milliseconds);
+      }
+    }
+    // spent bet
+    else {
+      if (fk.values.isFlying) {
+        fk.setFieldValue("waitingForNextTime1", true);
+      }
+      if (pre_amount) {
+        leftbitfk.setFieldValue("isbetActive", true);
+        fk.setFieldValue("isStart1", true);
+      } else {
+        toast("Amount is low!");
+      }
+    }
+  };
+
+  const autoCashOutFunction = () => {
+    const customBetValue = Number(
+      leftbitfk?.values?.custombetValue_auto_cash_out || 0
+    );
+    if (customBetValue < 1.5) {
+      toast("Value should be greater than 1.5");
+    } else {
+      fk.setFieldValue("autocashout1", !fk.values.autocashout1);
+    }
+  };
+  const PlusIncrementButton = () => {
+    // setBetValue(betValue + 1 > 800 ? betValue : betValue + 1)
+    spnt_amount_fk?.setFieldValue(
+      "spend_amount",
+      Number(spnt_amount_fk?.values?.spend_amount || 0) + 1 > 800
+        ? Number(spnt_amount_fk?.values?.spend_amount || 0)
+        : Number(spnt_amount_fk?.values?.spend_amount || 0) + 1
+    );
+  };
+  const MinusDecrementButton = () => {
+    // setBetValue(betValue - 1 > 9 ? betValue - 1 : betValue)
+    spnt_amount_fk?.setFieldValue(
+      "spend_amount",
+      Number(spnt_amount_fk?.values?.spend_amount || 0) - 1 > 9
+        ? Number(spnt_amount_fk?.values?.spend_amount || 0) - 1
+        : Number(spnt_amount_fk?.values?.spend_amount || 0)
+    );
+  };
   return (
     <div
       className={`w-[100%]  lg:w-[50%] mt-2  flex justify-between lg:flex-row sm:flex-col md:flex-col`}
@@ -237,23 +319,34 @@ const SpentBetLeft = ({ milliseconds, seconds, fk, formik }) => {
           }`}
         >
           <div className=" lg:w-[20%] w-[45%]">
+            {spnt_amount_fk.touched.spend_amount &&
+              spnt_amount_fk.errors.spend_amount && (
+                <div className="error !text-[7px]">
+                  {spnt_amount_fk.errors.spend_amount}
+                </div>
+              )}
             <div
               className={`flex gap-2 items-center bg-black justify-evenly rounded-full  py-1  lg:py-0 lg:px-0`}
             >
               <CiCircleMinus
                 className="cursor-pointer lg:text-xl text-2xl text-gray-400"
-                onClick={() =>
-                  setBetValue(betValue - 1 > 1 ? betValue - 1 : betValue)
-                }
+                onClick={MinusDecrementButton}
               />
               <p className="text-[15px] font-bold lg:py-0">
-                {betValue?.toFixed(2)}
+                {/* {betValue?.toFixed(2)} */}
+                <input
+                  className="!w-[50px] !text-[10px] !text-white !bg-black"
+                  id="spend_amount"
+                  name="spend_amount"
+                  value={spnt_amount_fk?.values?.spend_amount}
+                  placeholder="0.00"
+                  onChange={spnt_amount_fk.handleChange}
+                  type="number"
+                />
               </p>
               <CiCirclePlus
                 className="cursor-pointer text-2xl text-gray-400"
-                onClick={() =>
-                  setBetValue(betValue + 1 > 1000 ? betValue : betValue + 1)
-                }
+                onClick={PlusIncrementButton}
               />
             </div>
             <div className="grid grid-cols-2 text-center text-[12px] lg:pt-2 pt-[2px] gap-1">
@@ -262,7 +355,8 @@ const SpentBetLeft = ({ milliseconds, seconds, fk, formik }) => {
                   <p
                     className={`bg-black rounded-full cursor-pointer lg:py-1 py-[4px] lg:text-[8px]`}
                     onClick={() => {
-                      if (!spent_amount1) setBetValue(i);
+                      if (!spent_amount1)
+                        spnt_amount_fk?.setFieldValue("spend_amount", i);
                     }}
                   >
                     {i}
@@ -278,42 +372,7 @@ const SpentBetLeft = ({ milliseconds, seconds, fk, formik }) => {
               </p>
             )}{" "}
             <div
-              onClick={() => {
-                // cancel
-                if (fk.values.waitingForNextTime1) {
-                  fk.setFieldValue("isStart1", false);
-                  fk.setFieldValue("waitingForNextTime1", false);
-                  localStorage.removeItem("spent_amount1");
-                  leftbitfk.setFieldValue("isbetActive", false);
-                  return;
-                }
-                // cancel
-                if (fk.values.isStart1 && !fk.values.isFlying) {
-                  fk.setFieldValue("isStart1", false);
-                  localStorage.removeItem("spent_amount1");
-                  leftbitfk.setFieldValue("isbetActive", false);
-                  return;
-                }
-                // cash out
-                if (fk.values.isStart1 && fk.values.isFlying) {
-                  fk.setFieldValue("isStart1", false);
-                  if (pre_amount && spent_amount1) {
-                    cashOut(seconds, milliseconds);
-                  }
-                }
-                // spent bet
-                else {
-                  if (fk.values.isFlying) {
-                    fk.setFieldValue("waitingForNextTime1", true);
-                  }
-                  if (pre_amount) {
-                    leftbitfk.setFieldValue("isbetActive", true);
-                    fk.setFieldValue("isStart1", true);
-                  } else {
-                    toast("Amount is low!");
-                  }
-                }
-              }}
+              onClick={handleButtonFuncton}
               className={`
             flex flex-col justify-center px-[20%]  rounded-2xl border-2 border-white border-opacity-30 shadow-lg z-20 cursor-pointer
             ${
@@ -356,9 +415,14 @@ const SpentBetLeft = ({ milliseconds, seconds, fk, formik }) => {
                       ? ""
                       : fk.values.isStart1 && spent_amount1
                       ? `${Number(
-                          betValue * Number(`${seconds}.${milliseconds}`)
+                          Number(spnt_amount_fk?.values?.spend_amount || 0) *
+                            Number(`${seconds}.${milliseconds}`)
                         )?.toFixed(2)} x`
-                      : `${betValue?.toFixed(2) || 0} ${rupees}`}
+                      : `${
+                          Number(
+                            spnt_amount_fk?.values?.spend_amount || 0
+                          )?.toFixed(2) || 0
+                        } ${rupees}`}
                   </span>
                 </div>
               ) : (
@@ -386,16 +450,7 @@ const SpentBetLeft = ({ milliseconds, seconds, fk, formik }) => {
                 <Switch
                   checked={fk.values.autocashout1}
                   color="secondary"
-                  onClick={() => {
-                    const customBetValue = Number(
-                      leftbitfk?.values?.custombetValue_auto_cash_out || 0
-                    );
-                    if (customBetValue < 1.5) {
-                      toast("Value should be greater than 1.5");
-                    } else {
-                      fk.setFieldValue("autocashout1", !fk.values.autocashout1);
-                    }
-                  }}
+                  onClick={autoCashOutFunction}
                 />
               </span>
             </p>

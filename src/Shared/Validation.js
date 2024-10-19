@@ -105,3 +105,11 @@ export const cashDepositRequestValidationSchema = Yup.object().shape({
   //   }
   // ),
 });
+export const leftBetValidation = Yup.object().shape({
+  spend_amount: Yup.number()
+    .typeError("Amount must be a number")  // Ensures that amount is a number
+    .required("Amount is required")
+    .min(10, "Amount must be greater than or equal to 10")  // Minimum limit
+    .max(800, "Amount must be less than or equal to 800")   // Maximum limit
+});
+

@@ -35,7 +35,7 @@ import {
   My_All_HistoryFn,
   walletamount,
 } from "../../../../services/apicalling";
-import { changeImages } from "../../../../services/schedular";
+import { changeImages, incrementLargeNumber } from "../../../../services/schedular";
 import { endpoint } from "../../../../services/urls";
 import Policy from "../policy/Policy";
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -155,7 +155,7 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
     dispatch(
       updateNextCounter(
         game_history?.data?.data
-          ? Number(game_history?.data?.data?.[0]?.gamesno) + 1
+          ? incrementLargeNumber(game_history?.data?.result?.[0]?.gamesno)
           : 1
       )
     );
