@@ -31,7 +31,6 @@ import {
   walletamount,
 } from "../../../../services/apicalling";
 import { Search } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
 import { incrementLargeNumber } from "../../../../services/schedular";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -108,7 +107,7 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
+      refetchOnWindowFocus: true,
     }
   );
 
@@ -128,7 +127,9 @@ const OneMinCountDown = ({ fk, setBetNumber }) => {
     dispatch(
       updateNextCounter(
         game_history?.data?.result
-          ? incrementLargeNumber(game_history?.data?.result?.[0]?.tr_transaction_id)
+          ? incrementLargeNumber(
+              game_history?.data?.result?.[0]?.tr_transaction_id
+            )
           : 1
       )
     );
