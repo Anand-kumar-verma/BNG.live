@@ -151,6 +151,31 @@ function WithdravalHistory() {
                     <Typography variant="body1">Status</Typography>
                     <Typography variant="body1">{i?.tr15_status} </Typography>
                   </Stack>
+                
+                  <Stack
+                    direction="row"
+                    sx={{
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      "&>p": { color: zubgtext },
+                    }}
+                  >
+                    <Typography variant="body1">Trans number</Typography>
+                    <Stack
+                      direction="row"
+                      sx={{
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        "&>p": { color: zubgtext },
+                      }}
+                    >
+                      <Typography variant="body1">{i?.tr15_trans}</Typography>
+                      {/* <IconButton>
+                        <ContentCopyIcon sx={{ color: zubgtext }} />
+                      </IconButton> */}
+                    </Stack>
+                   
+                  </Stack>
                   {i?.tr15_status === "Success" ?
                     <Stack
                       direction="row"
@@ -177,32 +202,9 @@ function WithdravalHistory() {
                       }}
                     >
                       <Typography variant="body1">Reason</Typography>
-                      <Typography variant="body1">{i?.description_user}</Typography>
+                      <Typography variant="body1">{i?.description_user?.substring(0,30)} <br/>
+                      {i?.description_user?.substring(30)}</Typography>
                     </Stack> : ""}
-                  <Stack
-                    direction="row"
-                    sx={{
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      "&>p": { color: zubgtext },
-                    }}
-                  >
-                    <Typography variant="body1">Trans number</Typography>
-                    <Stack
-                      direction="row"
-                      sx={{
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        "&>p": { color: zubgtext },
-                      }}
-                    >
-                      <Typography variant="body1">{i?.tr15_trans}</Typography>
-                      {/* <IconButton>
-                        <ContentCopyIcon sx={{ color: zubgtext }} />
-                      </IconButton> */}
-                    </Stack>
-
-                  </Stack>
                 </Box>
               );
             })}
