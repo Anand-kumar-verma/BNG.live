@@ -102,11 +102,10 @@ function WithdravalHistory() {
                     <Box>
                       <Button
                         sx={{ color: "green", textTransform: "capitalize" }}
-                        className={`${
-                          i?.tr15_status === "Success"
+                        className={`${i?.tr15_status === "Success"
                             ? "!text-green-700"
                             : "!text-red-500"
-                        }`}
+                          }`}
                       >
                         {i?.tr15_status}
                       </Button>
@@ -152,7 +151,7 @@ function WithdravalHistory() {
                     <Typography variant="body1">Status</Typography>
                     <Typography variant="body1">{i?.tr15_status} </Typography>
                   </Stack>
-                  {i?.success_date !== null && i?.success_date !== "" && (
+                  {i?.tr15_status === "Success" ?
                     <Stack
                       direction="row"
                       sx={{
@@ -167,7 +166,19 @@ function WithdravalHistory() {
                         {moment(i?.success_date)?.format("HH:mm:ss")}
                       </Typography>
                     </Stack>
-                  )}
+                    : ""}
+                  {i?.tr15_status === "Failed" ?
+                    <Stack
+                      direction="row"
+                      sx={{
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        "&>p": { color: zubgtext },
+                      }}
+                    >
+                      <Typography variant="body1">Reason</Typography>
+                      <Typography variant="body1">{i?.description_user}</Typography>
+                    </Stack> : ""}
                   <Stack
                     direction="row"
                     sx={{
@@ -190,6 +201,7 @@ function WithdravalHistory() {
                         <ContentCopyIcon sx={{ color: zubgtext }} />
                       </IconButton> */}
                     </Stack>
+
                   </Stack>
                 </Box>
               );
