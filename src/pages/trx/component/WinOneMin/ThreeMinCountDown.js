@@ -1,38 +1,37 @@
+import { Search } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
+import axios from "axios";
 import * as React from "react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useQuery, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useSocket } from "../../../../Shared/SocketContext";
+import { zubgtext } from "../../../../Shared/color";
 import countdownfirst from "../../../../assets/countdownfirst.mp3";
 import countdownlast from "../../../../assets/countdownlast.mp3";
 import circle from "../../../../assets/images/circle-arrow.png";
 import howToPlay from "../../../../assets/images/user-guide.png";
-import trxtimerbackground from "../../../../assets/trxtimerbackground.png";
-import Policy from "../policy/Policy";
-import ShowImages from "./ShowImages";
 import {
   dummycounterFun,
-  trx_game_history_data_function,
   net_wallet_amount_function,
+  trx_game_history_data_function,
   trx_game_image_index_function,
-  updateNextCounter,
   trx_my_history_data_function,
+  updateNextCounter,
 } from "../../../../redux/slices/counterSlice";
-import axios from "axios";
-import { endpoint, public_chain } from "../../../../services/urls";
-import toast from "react-hot-toast";
-import { zubgmid, zubgtext } from "../../../../Shared/color";
 import {
   My_All_TRX_HistoryFn,
   My_All_TRX_HistoryFnTemp,
   walletamount,
 } from "../../../../services/apicalling";
-import { Search } from "@mui/icons-material";
 import { incrementLargeNumber } from "../../../../services/schedular";
+import { endpoint, public_chain } from "../../../../services/urls";
+import Policy from "../policy/Policy";
+import ShowImages from "./ShowImages";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -71,7 +70,9 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
         fivemin?.split("_")?.[0] === "0" // this is for minut
       ) {
         fk.setFieldValue("openTimerDialogBoxOneMin", true);
-        Number(Number(fivemin?.split("_")?.[1])) <= 5 && Number(Number(fivemin?.split("_")?.[1])) > 0 && handlePlaySound();
+        Number(Number(fivemin?.split("_")?.[1])) <= 5 &&
+          Number(Number(fivemin?.split("_")?.[1])) > 0 &&
+          handlePlaySound();
         Number(Number(fivemin?.split("_")?.[1])) === 0 && handlePlaySoundLast();
       } else {
         fk.setFieldValue("openTimerDialogBoxOneMin", false);
@@ -139,7 +140,7 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
     {
       refetchOnMount: false,
       refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
+      refetchOnWindowFocus: true,
     }
   );
 
@@ -159,7 +160,9 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
     dispatch(
       updateNextCounter(
         game_history?.data?.result
-          ? incrementLargeNumber(game_history?.data?.result?.[0]?.tr_transaction_id)
+          ? incrementLargeNumber(
+              game_history?.data?.result?.[0]?.tr_transaction_id
+            )
           : 1
       )
     );
@@ -304,9 +307,13 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
           )}
         </Box>
         <Box>
-        <Typography variant="h3" color="initial" className="!text-[#f0ab56] !mb-3 py-1 !text-xs text-center bg-gray-800  rounded-full"
-        onClick={() => window.open(`${public_chain}`, "_blank")}>
-          <Search className="!text-sm "/>  Public Chain Query
+          <Typography
+            variant="h3"
+            color="initial"
+            className="!text-[#f0ab56] !mb-3 py-1 !text-xs text-center bg-gray-800  rounded-full"
+            onClick={() => window.open(`${public_chain}`, "_blank")}
+          >
+            <Search className="!text-sm " /> Public Chain Query
           </Typography>
           <Stack direction="row">
             {React.useMemo(() => {
@@ -335,7 +342,11 @@ const ThreeMinCountDown = ({ fk, setBetNumber }) => {
               );
             }, [show_this_three_min_time_sec])}
           </Stack>
-          <Typography variant="h3" color="initial" className="!text-lg !text-[#8f5206] !font-bold">
+          <Typography
+            variant="h3"
+            color="initial"
+            className="!text-lg !text-[#8f5206] !font-bold"
+          >
             {next_step}
           </Typography>
         </Box>
